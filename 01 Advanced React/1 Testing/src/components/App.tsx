@@ -7,9 +7,11 @@ import CommentList from "./CommentList";
 function App(): JSX.Element {
   return (
     <React.Fragment>
-      <div>Hi there!</div>
-      <CommentBox />
-      <CommentList />
+      {/* <div>Hi there!</div> */}
+      <div>
+        <CommentBox />
+        <CommentList />
+      </div>
     </React.Fragment>
   );
 }
