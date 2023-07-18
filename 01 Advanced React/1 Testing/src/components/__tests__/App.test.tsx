@@ -24,7 +24,8 @@ it("shows a comment box", () => {
     </React.Fragment>,
     div
   );
-  console.log(div.innerHTML);
-
+  // console.log(div.innerHTML);
+  expect(div.innerHTML).toContain("Comment Box");
+  expect(div.innerHTML).toContain("Comment List");
   ReactDOM.unmountComponentAtNode(div);
 });
