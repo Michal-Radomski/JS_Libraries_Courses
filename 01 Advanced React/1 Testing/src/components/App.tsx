@@ -7,6 +7,7 @@ import CommentList from "./CommentList";
 function App(): JSX.Element {
   return (
     <React.Fragment>
+      {/* //* First test */}
       {/* <div>Hi there!</div> */}
       <div>
         <CommentBox />
