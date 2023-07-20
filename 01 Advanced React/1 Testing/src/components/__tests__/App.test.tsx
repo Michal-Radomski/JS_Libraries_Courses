@@ -1,10 +1,18 @@
 // import React from "react";
 // import ReactDOM from "react-dom";
-import { ShallowWrapper, shallow } from "enzyme";
+import { ShallowWrapper, shallow, render } from "enzyme";
 
 import App from "components/App";
 import CommentBox from "components/CommentBox";
 import CommentList from "components/CommentList";
+
+//* Test 0 - static
+describe("<App/>", () => {
+  it("renders one div", () => {
+    const view = render(<App />);
+    expect(view.find("div").length).toBeTruthy();
+  });
+});
 
 //* First test
 // test("renders without crashing", () => {
