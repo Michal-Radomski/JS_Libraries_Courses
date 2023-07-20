@@ -8,9 +8,14 @@ import React from "react";
 //     setState({ comment: event.target.value });
 //   };
 
+//   const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
+//     event.preventDefault();
+//     setState({ comment: "" });
+//   };
+
 //   return (
 //     <React.Fragment>
-//       <form>
+//       <form onSubmit={handleSubmit}>
 //         <h4>Add a Comment</h4>
 //         <textarea value={state.comment} onChange={handleChange} />
 //         <div>
@@ -29,10 +34,15 @@ class CommentBox extends React.Component {
     this.setState({ comment: event.target.value });
   };
 
+  handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
+    event.preventDefault();
+    this.setState({ comment: "" });
+  };
+
   render() {
     return (
       <React.Fragment>
-        <form>
+        <form onSubmit={(event) => this.handleSubmit(event)}>
           <h4>Add a Comment</h4>
           <textarea value={this.state.comment} onChange={this.handleChange} />
           <div>
