@@ -2,9 +2,9 @@
 // import ReactDOM from "react-dom";
 import { shallow } from "enzyme";
 
-import App from "../App";
-import CommentBox from "../CommentBox";
-import CommentList from "../CommentList";
+import App from "components/App";
+import CommentBox from "components/CommentBox";
+import CommentList from "components/CommentList";
 
 //* First test
 // test("renders without crashing", () => {

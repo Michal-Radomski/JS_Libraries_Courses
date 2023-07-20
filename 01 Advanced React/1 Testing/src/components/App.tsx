@@ -1,8 +1,8 @@
 import React from "react";
 
 import "../App.scss";
-import CommentBox from "./CommentBox";
-import CommentList from "./CommentList";
+import CommentBox from "components/CommentBox";
+import CommentList from "components/CommentList";
 
 function App(): JSX.Element {
   return (
