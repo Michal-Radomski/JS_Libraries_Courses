@@ -19,3 +19,10 @@ it("has a text area and a button", () => {
   expect(wrapped.find("textarea").length).toEqual(1);
   expect(wrapped.find("button").length).toEqual(1);
 });
+
+//* Test 5
+it("has a text area than users can type in", () => {
+  wrapped.find("textarea").simulate("change", {
+    target: { value: "new comment" },
+  });
+});
