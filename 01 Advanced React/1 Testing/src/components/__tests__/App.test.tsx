@@ -35,8 +35,7 @@ import CommentList from "components/CommentList";
 //   ReactDOM.unmountComponentAtNode(div);
 // });
 
-//* Test 3
-
+//* Tests 3
 let wrapped: ShallowWrapper<any, Readonly<{}>, React.Component<{}, {}, any>>;
 beforeEach(() => {
   wrapped = shallow(<App />);
