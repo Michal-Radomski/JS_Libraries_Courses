@@ -6,6 +6,7 @@ import CommentBox from "components/CommentBox";
 let wrapped: ReactWrapper<any, Readonly<{}>, React.Component<{}, {}, any>>;
 beforeEach(() => {
   wrapped = mount(<CommentBox />);
+  // console.log("wrapped:", wrapped);
 });
 
 afterEach(() => {
@@ -25,4 +26,6 @@ it("has a text area than users can type in", () => {
   wrapped.find("textarea").simulate("change", {
     target: { value: "new comment" },
   });
+  wrapped.update();
+  expect(wrapped.find("textarea").prop("value")).toEqual("new comment");
 });
