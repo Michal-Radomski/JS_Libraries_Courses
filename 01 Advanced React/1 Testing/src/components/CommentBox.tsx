@@ -1,4 +1,7 @@
 import React from "react";
+import { connect } from "react-redux";
+
+import * as actions from "actions/index";
 
 //* V1
 // const CommentBox = (): JSX.Element => {
@@ -27,7 +30,7 @@ import React from "react";
 // };
 
 //* V2
-class CommentBox extends React.Component {
+class CommentBox extends React.Component<{ saveComment: (arg0: string) => void }, {}> {
   state = { comment: "" };
 
   handleChange = (event: React.ChangeEvent<HTMLTextAreaElement>) => {
@@ -36,6 +39,7 @@ class CommentBox extends React.Component {
 
   handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
+    this.props.saveComment(this.state.comment);
     this.setState({ comment: "" });
   };
 
@@ -54,4 +58,4 @@ class CommentBox extends React.Component {
   }
 }
 
-export default CommentBox;
+export default connect(null, actions)(CommentBox);
