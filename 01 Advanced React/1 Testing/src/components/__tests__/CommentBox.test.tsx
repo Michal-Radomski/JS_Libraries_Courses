@@ -36,6 +36,8 @@ it("after submit - input is empty", () => {
     target: { value: "new comment" },
   });
   wrapped.update();
+  //* unnecessary -> above the same
+  // expect(wrapped.find("textarea").prop("value")).toEqual("new comment");
   wrapped.find("form").simulate("submit");
   wrapped.update();
   expect(wrapped.find("textarea").prop("value")).toEqual("");
