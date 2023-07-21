@@ -21,24 +21,25 @@ it("has a text area and a button", () => {
   expect(wrapped.find("button").length).toEqual(1);
 });
 
-//* Test 5
-it("has a text area than users can type in", () => {
-  wrapped.find("textarea").simulate("change", {
-    target: { value: "new comment" },
+describe("the text area", () => {
+  beforeEach(() => {
+    wrapped.find("textarea").simulate("change", {
+      target: { value: "new comment" },
+    });
+    wrapped.update();
   });
-  wrapped.update();
-  expect(wrapped.find("textarea").prop("value")).toEqual("new comment");
-});
 
-//* Test 6
-it("after submit - input is empty", () => {
-  wrapped.find("textarea").simulate("change", {
-    target: { value: "new comment" },
+  //* Test 5
+  it("has a text area than users can type in", () => {
+    expect(wrapped.find("textarea").prop("value")).toEqual("new comment");
   });
-  wrapped.update();
-  //* unnecessary -> above the same
-  // expect(wrapped.find("textarea").prop("value")).toEqual("new comment");
-  wrapped.find("form").simulate("submit");
-  wrapped.update();
-  expect(wrapped.find("textarea").prop("value")).toEqual("");
+
+  //* Test 6
+  it("after submit - input is empty", () => {
+    //* unnecessary -> above the same
+    // expect(wrapped.find("textarea").prop("value")).toEqual("new comment");
+    wrapped.find("form").simulate("submit");
+    wrapped.update();
+    expect(wrapped.find("textarea").prop("value")).toEqual("");
+  });
 });
