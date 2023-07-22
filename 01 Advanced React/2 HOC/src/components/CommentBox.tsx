@@ -1,16 +1,22 @@
 import React from "react";
 import { connect } from "react-redux";
-
+import { History } from "history";
 import * as actions from "actions/index";
 
 class CommentBox extends React.Component<
-  { auth: boolean; saveComment: (arg0: string) => void; fetchComments: () => { type: string; payload: Promise<any> } },
+  {
+    auth: boolean;
+    saveComment: (arg0: string) => void;
+    fetchComments: () => { type: string; payload: Promise<any> };
+    history: History;
+  },
   {}
 > {
   state = { comment: "" };
 
   //* Component just got rendered
   componentDidMount() {
+    // console.log(this.props.history);
     this.shouldNavigateAway();
   }
 
@@ -21,7 +27,8 @@ class CommentBox extends React.Component<
 
   shouldNavigateAway() {
     if (!this.props.auth) {
-      console.log("I need to leave");
+      // console.log("I need to leave");
+      this.props.history.push("/");
     }
   }
 
