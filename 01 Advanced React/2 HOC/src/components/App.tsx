@@ -1,13 +1,18 @@
 import React from "react";
 import { Link, Route } from "react-router-dom";
+import { connect } from "react-redux";
 
 import "../App.scss";
 import CommentBox from "components/CommentBox";
 import CommentList from "components/CommentList";
 
-class App extends React.Component {
+class App extends React.Component<{ auth: boolean }, {}> {
   renderButton(): JSX.Element {
-    return <button></button>;
+    if (this.props.auth) {
+      return <button>Sign Out</button>;
+    } else {
+      return <button>Sign In</button>;
+    }
   }
 
   renderHeader(): JSX.Element {
@@ -37,4 +42,8 @@ class App extends React.Component {
   }
 }
 
-export default App;
+const mapStateToProps = (state: RootState) => {
+  return { auth: state.auth };
+};
+
+export default connect(mapStateToProps, null)(App);
