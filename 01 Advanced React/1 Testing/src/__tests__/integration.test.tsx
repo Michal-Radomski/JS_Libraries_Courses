@@ -12,7 +12,7 @@ beforeEach(() => {
   moxios.install();
   moxios.stubRequest(URL, {
     status: 200,
-    response: [{ name: "Fetched @1" }, { name: "Fetched #2" }],
+    response: [{ name: "Fetched #1" }, { name: "Fetched #2" }, { name: "Fetched #3" }],
   });
 });
 
@@ -20,7 +20,7 @@ afterAll(() => {
   moxios.uninstall();
 });
 
-it("can fetch a list of comments and display them", () => {
+it("can fetch a list of comments and display them", (done) => {
   const wrapped = mount(
     // Attempt to render the *entire* app
     <React.Fragment>
@@ -34,7 +34,10 @@ it("can fetch a list of comments and display them", () => {
   wrapped.find(".fetch-comments").simulate("click");
 
   // Expect to find a list of comments!
-
-  expect(wrapped.find("li").length).toEqual(500);
-  wrapped.unmount();
+  setTimeout(() => {
+    wrapped.update();
+    expect(wrapped.find("li").length).toEqual(3);
+    done();
+    wrapped.unmount();
+  }, 500);
 });
