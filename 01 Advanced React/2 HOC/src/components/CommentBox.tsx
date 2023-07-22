@@ -4,10 +4,26 @@ import { connect } from "react-redux";
 import * as actions from "actions/index";
 
 class CommentBox extends React.Component<
-  { saveComment: (arg0: string) => void; fetchComments: () => { type: string; payload: Promise<any> } },
+  { auth: boolean; saveComment: (arg0: string) => void; fetchComments: () => { type: string; payload: Promise<any> } },
   {}
 > {
   state = { comment: "" };
+
+  //* Component just got rendered
+  componentDidMount() {
+    this.shouldNavigateAway();
+  }
+
+  //* Component just got updated (got new props)
+  componentDidUpdate() {
+    this.shouldNavigateAway();
+  }
+
+  shouldNavigateAway() {
+    if (!this.props.auth) {
+      console.log("I need to leave");
+    }
+  }
 
   handleChange = (event: React.ChangeEvent<HTMLTextAreaElement>) => {
     this.setState({ comment: event.target.value });
@@ -39,4 +55,8 @@ class CommentBox extends React.Component<
   }
 }
 
-export default connect(null, actions)(CommentBox);
+const mapStateToProps = (state: RootState) => {
+  return { auth: state.auth };
+};
+
+export default connect(mapStateToProps, actions)(CommentBox);
