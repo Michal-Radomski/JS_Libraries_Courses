@@ -1,4 +1,5 @@
 import React from "react";
+import { Route } from "react-router-dom";
 
 import "../App.scss";
 import CommentBox from "components/CommentBox";
@@ -8,8 +9,8 @@ function App(): JSX.Element {
   return (
     <React.Fragment>
       <div>
-        <CommentBox />
-        <CommentList />
+        <Route path="/post" component={CommentBox} />
+        <Route path="/" exact={true} component={CommentList} />
       </div>
     </React.Fragment>
   );

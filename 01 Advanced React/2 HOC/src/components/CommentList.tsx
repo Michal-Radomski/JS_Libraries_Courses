@@ -1,14 +1,6 @@
 import React from "react";
 import { connect } from "react-redux";
 
-// const CommentList = (): JSX.Element => {
-//   return (
-//     <React.Fragment>
-//       <div>Comment List</div>
-//     </React.Fragment>
-//   );
-// };
-
 class CommentList extends React.Component<{ comments: string[] }, {}> {
   renderComments = () => {
     return this.props.comments.map((comment: string) => {
@@ -20,6 +12,7 @@ class CommentList extends React.Component<{ comments: string[] }, {}> {
     return (
       <React.Fragment>
         <div>
+          <h4>Comments List</h4>
           <ul>{this.renderComments()}</ul>
         </div>
       </React.Fragment>
