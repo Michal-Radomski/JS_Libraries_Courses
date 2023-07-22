@@ -6,12 +6,12 @@ import { legacy_createStore as createStore } from "redux";
 
 import rootReducer from "reducers/index";
 
-const store = createStore(rootReducer, {});
+// const store = createStore(rootReducer, {});
 
-const Root = (props: { children: JSX.Element }): JSX.Element => {
+const Root = ({ children, initialState = {} }: { children: JSX.Element; initialState?: RootState }): JSX.Element => {
   return (
     <React.Fragment>
-      <Provider store={store}>{props.children}</Provider>
+      <Provider store={createStore(rootReducer, initialState)}>{children}</Provider>
     </React.Fragment>
   );
 };
