@@ -1,7 +1,6 @@
 // import React from "react";
 // import ReactDOM from "react-dom";
 import { ShallowWrapper, shallow } from "enzyme";
-import moxios from "moxios";
 
 import App from "components/App";
 import CommentBox from "components/CommentBox";
@@ -47,12 +46,11 @@ import CommentList from "components/CommentList";
 //* Tests 3
 let wrapped: ShallowWrapper<any, Readonly<{}>, React.Component<{}, {}, any>>;
 beforeEach(() => {
-  moxios.install();
   wrapped = shallow(<App />);
 });
 
 afterAll(() => {
-  moxios.uninstall();
+  wrapped.unmount();
 });
 
 it("shows a comment box", () => {
