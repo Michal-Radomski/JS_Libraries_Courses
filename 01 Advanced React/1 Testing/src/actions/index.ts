@@ -9,7 +9,7 @@ export function saveComment(comment: string) {
   };
 }
 
-export function fetchComment() {
+export function fetchComments() {
   const URL = "https://jsonplaceholder.typicode.com/comments";
   const response = axios.get(URL);
 
