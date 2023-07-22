@@ -21,6 +21,7 @@ afterAll(() => {
 });
 
 it("can fetch a list of comments and display them", (done) => {
+  // console.log("done:", done);
   const wrapped = mount(
     // Attempt to render the *entire* app
     <React.Fragment>
@@ -34,10 +35,12 @@ it("can fetch a list of comments and display them", (done) => {
   wrapped.find(".fetch-comments").simulate("click");
 
   // Expect to find a list of comments!
-  setTimeout(() => {
+  // setTimeout(() => {
+  // eslint-disable-next-line testing-library/await-async-utils
+  moxios.wait(() => {
     wrapped.update();
     expect(wrapped.find("li").length).toEqual(3);
     done();
     wrapped.unmount();
-  }, 500);
+  });
 });
