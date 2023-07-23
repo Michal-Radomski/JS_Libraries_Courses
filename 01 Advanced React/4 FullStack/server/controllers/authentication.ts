@@ -9,6 +9,19 @@ export const signUp: RequestHandler = async (req: Request, res: Response, next: 
   // console.log("req.body:", req.body);
   const email = req.body.email;
   const password = req.body.password;
+
+  if (!email || !password) {
+    return res.status(422).json({
+      message: "422, Please fill all the fields",
+    });
+  }
+
+  if (password.length < 8) {
+    return res.status(422).json({
+      message: "422, Password is too short",
+    });
+  }
+
   try {
     // res.send({ success: true, message: "true" });
     // See if user with given email exists
