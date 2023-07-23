@@ -33,12 +33,12 @@ app.use(
 app.use("/api", indexRouter);
 
 // Mongo DB
-// mongoose
-//   .connect(process.env.MONGO_URL as string)
-//   .then((con: { connection: { host: string } }) => {
-//     console.log(`MongoDB Database connected with HOST: ${con.connection.host}`);
-//   })
-//   .catch((error: string) => console.log("Mongo DB Error => ", error));
+mongoose
+  .connect(process.env.MONGO_URL as string, { useNewUrlParser: true, useUnifiedTopology: true })
+  .then((con: { connection: { host: string } }) => {
+    console.log(`MongoDB Database connected with HOST: ${con.connection.host}`);
+  })
+  .catch((error: string) => console.log("Mongo DB Error => ", error));
 
 // Test route
 // app.get("/", (req: Request, res: Response) => {
