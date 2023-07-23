@@ -7,7 +7,10 @@ const stateValidator =
   (next: NextFunction) =>
   (action: Action) => {
     next(action);
-    console.log(tv4.validate(getState(), stateSchema));
+    // console.log(tv4.validate(getState(), stateSchema));
+    if (!tv4.validate(getState(), stateSchema)) {
+      console.warn("Invalid state schema detected");
+    }
   };
 
 export default stateValidator;
