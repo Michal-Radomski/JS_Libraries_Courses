@@ -25,6 +25,7 @@ export const signUp: RequestHandler = async (req: Request, res: Response, next: 
     if (user) {
       return res.status(422).send({ error: "422, User already exist!" });
     }
+
     // If a user does not exist, create and save user record
     const newUser = new UserModel({ email, password });
     console.log({ newUser });
@@ -35,9 +36,8 @@ export const signUp: RequestHandler = async (req: Request, res: Response, next: 
     });
 
     // Respond to request: the user was created
-
     return res.status(201).json({
-      message: "201, User registered, please Login",
+      message: "201, User registered",
     });
   } catch (error) {
     console.log({ error });
