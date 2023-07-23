@@ -9,12 +9,15 @@ import bodyParser from "body-parser";
 import morgan from "morgan";
 import helmet from "helmet";
 
+// Import routes
+import indexRouter from "./indexRouter";
+
 // The server
 const app: Express = express();
 
 // Middlewares
 app.use(cors());
-app.use(bodyParser.json());
+app.use(bodyParser.json({ type: "*/*" }));
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(morgan("combined"));
 app.use(
@@ -27,14 +30,15 @@ app.use(
 );
 
 //Route middleware
+app.use("/api", indexRouter);
 
 // Mongo DB
 
 // Test route
-app.get("/", (req: Request, res: Response) => {
-  console.log("req.ip:", req.ip);
-  res.send("<h1 style='color:blue;text-align:center'>API is running</h1>");
-});
+// app.get("/", (req: Request, res: Response) => {
+//   console.log("req.ip:", req.ip);
+//   res.send("<h1 style='color:blue;text-align:center'>API is running</h1>");
+// });
 
 // Port
 const port = (process.env.PORT || 5000) as number;
