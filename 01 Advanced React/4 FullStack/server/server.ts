@@ -3,7 +3,7 @@ import http from "http";
 import * as dotenv from "dotenv";
 dotenv.config();
 import express, { Express, Request, Response } from "express";
-// import mongoose from "mongoose";
+import mongoose from "mongoose";
 import cors from "cors";
 import bodyParser from "body-parser";
 import morgan from "morgan";
@@ -33,6 +33,12 @@ app.use(
 app.use("/api", indexRouter);
 
 // Mongo DB
+// mongoose
+//   .connect(process.env.MONGO_URL as string)
+//   .then((con: { connection: { host: string } }) => {
+//     console.log(`MongoDB Database connected with HOST: ${con.connection.host}`);
+//   })
+//   .catch((error: string) => console.log("Mongo DB Error => ", error));
 
 // Test route
 // app.get("/", (req: Request, res: Response) => {
