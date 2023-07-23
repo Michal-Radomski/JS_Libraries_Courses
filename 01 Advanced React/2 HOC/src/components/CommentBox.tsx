@@ -3,16 +3,16 @@ import { connect } from "react-redux";
 // import { History } from "history";
 
 import * as actions from "actions/index";
+import RequireAuth from "components/RequireAuth";
 
-class CommentBox extends React.Component<
-  {
-    saveComment: (arg0: string) => void;
-    fetchComments: () => { type: string; payload: Promise<any> };
-    // auth: boolean;
-    // history: History;
-  },
-  {}
-> {
+interface Props {
+  saveComment: (arg0: string) => void;
+  fetchComments: () => { type: string; payload: Promise<any> };
+  // auth: boolean;
+  // history: History;
+}
+
+class CommentBox extends React.Component<Props | any, {}> {
   state = { comment: "" };
 
   //^ Moved to RequireAuth!
@@ -69,4 +69,4 @@ class CommentBox extends React.Component<
 //   return { auth: state.auth };
 // };
 
-export default connect(null, actions)(CommentBox);
+export default connect(null, actions)(RequireAuth(CommentBox));

@@ -2,16 +2,15 @@ import React from "react";
 import { History } from "history";
 import { connect } from "react-redux";
 
-const RequireAuth = (ChildComponent: any) => {
-  console.log("ChildComponent:", ChildComponent, typeof ChildComponent);
+interface Props {
+  auth: boolean;
+  history: History;
+}
 
-  class ComposedComponent extends React.Component<
-    {
-      auth: boolean;
-      history: History;
-    },
-    {}
-  > {
+const RequireAuth = (ChildComponent: React.ComponentType) => {
+  // console.log("ChildComponent:", ChildComponent, typeof ChildComponent);
+
+  class ComposedComponent extends React.Component<Props | any, {}> {
     //* Component just got rendered
     componentDidMount() {
       // console.log(this.props.history);
@@ -31,7 +30,7 @@ const RequireAuth = (ChildComponent: any) => {
     }
 
     render() {
-      return <ChildComponent />;
+      return <ChildComponent {...this.props} />;
     }
   }
   const mapStateToProps = (state: RootState) => {
