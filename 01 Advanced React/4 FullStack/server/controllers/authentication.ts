@@ -25,7 +25,6 @@ export const signUp: RequestHandler = async (req: Request, res: Response, next: 
   try {
     // res.send({ success: true, message: "true" });
     // See if user with given email exists
-
     const user: IModel | null = await UserModel.findOne({ email: email }, (err: Error) => {
       if (err) {
         return next(err);
