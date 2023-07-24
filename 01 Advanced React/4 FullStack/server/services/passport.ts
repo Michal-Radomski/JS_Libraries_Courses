@@ -1,5 +1,6 @@
 import passport from "passport";
 import { Strategy as JwtStrategy, ExtractJwt } from "passport-jwt";
+import { Strategy as LocalStrategy } from "passport-local";
 
 import UserModel from "../UserModel";
 const secretKey = process.env.secret_key as string;
@@ -29,6 +30,33 @@ const jwtLogin = new JwtStrategy(jwtOptions, function (payload, done) {
   });
 });
 
+// Create local strategy
+const localOptions = { usernameField: "email" };
+const localLogin = new LocalStrategy(localOptions, function (email, password, done) {
+  // Verify this email and password, call done with the user
+  // If it is the correct email and password otherwise, call done with false
+  UserModel.findOne({ email: email }, function (err, user) {
+    if (err) {
+      return done(err);
+    }
+    if (!user) {
+      return done(null, false);
+    }
+
+    // compare passwords - is `password` equal to user.password?
+    user.comparePassword(password, function (err, isMatch) {
+      if (err) {
+        return done(err);
+      }
+      if (!isMatch) {
+        return done(null, false);
+      }
+
+      return done(null, user);
+    });
+  });
+});
+
 // Tell passport to use this strategy
 passport.use(jwtLogin);
-// passport.use(localLogin);
+passport.use(localLogin);
