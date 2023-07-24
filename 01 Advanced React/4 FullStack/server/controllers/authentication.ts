@@ -2,10 +2,10 @@ import { NextFunction, Request, RequestHandler, Response } from "express";
 
 import { CustomError } from "../Interfaces";
 
-import UserModel, { IModel } from "../UserModel"; //* V1-> Mongoose Model
+import UserModel, { IModel } from "../UserModel";
 
 export const signUp: RequestHandler = async (req: Request, res: Response, next: NextFunction): Promise<any> => {
-  console.log("req.ip:", req.ip);
+  // console.log("req.ip:", req.ip);
   // console.log("req.body:", req.body);
   const email = req.body.email;
   const password = req.body.password;

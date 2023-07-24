@@ -17,16 +17,20 @@ const UserSchema: Schema = new mongoose.Schema(
 // On Save Hook, encrypt password
 UserSchema.pre("save", function (this: IModel, next) {
   // console.log("this:", this);
+  // get access to the user model
   const user = this;
   // console.log({ user });
+  // generate salt then run the callback
   bcrypt.genSalt(12, function (err, salt) {
     if (err) {
       return next(err);
     }
+    // hash (encrypt) our password using the salt
     bcrypt.hash(user.password, salt, function (err, hash) {
       if (err) {
         return next(err);
       }
+      // overwrite plaint text password with encrypted password
       user.password = hash;
       next();
     });
