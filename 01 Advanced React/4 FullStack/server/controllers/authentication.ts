@@ -1,8 +1,6 @@
 import { NextFunction, Request, RequestHandler, Response } from "express";
 import jwt from "jwt-simple";
 
-//@ import { CustomError } from "../Interfaces";
-
 import UserModel, { IModel } from "../UserModel";
 
 const secretKey = process.env.secret_key as string;
@@ -49,7 +47,7 @@ export const signUp: RequestHandler = async (req: Request, res: Response, next: 
 
     // If a user does not exist, create and save user record
     const newUser = new UserModel({ email, password });
-    console.log({ newUser });
+    // console.log({ newUser });
     newUser.save((err) => {
       if (err) {
         return next(err);
