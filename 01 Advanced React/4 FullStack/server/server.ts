@@ -2,7 +2,7 @@ import http from "http";
 
 import * as dotenv from "dotenv";
 dotenv.config();
-import express, { Express, Request, Response } from "express";
+import express, { Express } from "express";
 import mongoose from "mongoose";
 import cors from "cors";
 import bodyParser from "body-parser";
@@ -55,3 +55,6 @@ server.listen({ port: port }, () => {
   // For testing only
   console.log("Current Time:", new Date().toLocaleTimeString());
 });
+
+//* Node generate a secret key
+// console.log(require("crypto").randomBytes(256).toString("base64"));

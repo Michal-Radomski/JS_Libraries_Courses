@@ -1,8 +1,17 @@
 import { NextFunction, Request, RequestHandler, Response } from "express";
+import jwt from "jwt-simple";
 
-import { CustomError } from "../Interfaces";
+//@ import { CustomError } from "../Interfaces";
 
 import UserModel, { IModel } from "../UserModel";
+
+const secretKey = process.env.secret_key as string;
+// console.log({ secretKey });
+
+function tokenForUser(user: IModel): string {
+  const timeStamp = new Date().getTime();
+  return jwt.encode({ sub: user.id, iat: timeStamp, email: user.email }, secretKey);
+}
 
 export const signUp: RequestHandler = async (req: Request, res: Response, next: NextFunction): Promise<any> => {
   // console.log("req.ip:", req.ip);
@@ -50,6 +59,7 @@ export const signUp: RequestHandler = async (req: Request, res: Response, next: 
     // Respond to request: the user was created
     return res.status(201).json({
       message: "201, User registered",
+      token: tokenForUser(newUser),
     });
   } catch (error) {
     console.log({ error });
