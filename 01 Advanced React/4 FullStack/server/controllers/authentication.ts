@@ -64,3 +64,7 @@ export const signUp: RequestHandler = async (req: Request, res: Response, next: 
     res.status(404).json(error);
   }
 };
+
+export const getMessage: RequestHandler = async (_req: Request, res: Response): Promise<void> => {
+  await res.send({ message: "hi there!" });
+};
