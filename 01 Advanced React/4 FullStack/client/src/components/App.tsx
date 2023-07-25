@@ -1,6 +1,6 @@
 import React from "react";
 
-import "./App.scss";
+import "../styles/App.scss";
 
 const App = (): JSX.Element => {
   return <React.Fragment>App</React.Fragment>;
