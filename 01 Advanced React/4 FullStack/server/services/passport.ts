@@ -35,7 +35,9 @@ const localOptions = { usernameField: "email" };
 const localLogin = new LocalStrategy(localOptions, function (email, password, done) {
   // Verify this email and password, call done with the user
   // If it is the correct email and password otherwise, call done with false
-  UserModel.findOne({ email: email }, function (err, user) {
+  UserModel.findOne({ email: email }, function (err: Error, user: boolean | Express.User | undefined | any) {
+    // console.log({ user });
+
     if (err) {
       return done(err);
     }
@@ -43,8 +45,8 @@ const localLogin = new LocalStrategy(localOptions, function (email, password, do
       return done(null, false);
     }
 
-    // compare passwords - is `password` equal to user.password?
-    user.comparePassword(password, function (err, isMatch) {
+    // Compare passwords - is `password` equal to user.password?
+    user.comparePassword(password, user.password, function (err: Error, isMatch: boolean) {
       if (err) {
         return done(err);
       }

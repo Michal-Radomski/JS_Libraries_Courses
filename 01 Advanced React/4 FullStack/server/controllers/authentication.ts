@@ -6,6 +6,10 @@ import UserModel, { IModel } from "../UserModel";
 const secretKey = process.env.secret_key as string;
 // console.log({ secretKey });
 
+interface CustomRequest extends Request {
+  user: IModel;
+}
+
 function tokenForUser(user: IModel): string {
   const timeStamp = new Date().getTime();
   return jwt.encode({ sub: user.id, iat: timeStamp, email: user.email }, secretKey);
@@ -67,4 +71,9 @@ export const signUp: RequestHandler = async (req: Request, res: Response, next: 
 
 export const getMessage: RequestHandler = async (_req: Request, res: Response): Promise<void> => {
   await res.send({ message: "hi there!" });
+};
+
+export const signIn = async (req: CustomRequest, res: Response): Promise<void> => {
+  // console.log("req:", req);
+  await res.status(200).send({ token: tokenForUser(req.user) });
 };
