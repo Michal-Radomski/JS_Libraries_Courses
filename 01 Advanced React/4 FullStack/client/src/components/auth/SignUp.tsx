@@ -1,7 +1,7 @@
 import React from "react";
 import { reduxForm, Field } from "redux-form";
-// import { compose } from "redux";
-// import { connect } from "react-redux";
+import { compose } from "redux";
+import { connect } from "react-redux";
 import { History } from "history";
 
 interface Props {
@@ -39,4 +39,8 @@ class SignUp extends React.Component<Props, RootState> {
   }
 }
 
-export default reduxForm({ form: "signup" })(SignUp as any);
+function mapStateToProps(state: RootState) {
+  return { errorMessage: state.auth.errorMessage };
+}
+
+export default compose(connect(mapStateToProps), reduxForm({ form: "signup" }))(SignUp);

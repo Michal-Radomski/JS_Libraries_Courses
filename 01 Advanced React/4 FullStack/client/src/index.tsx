@@ -22,7 +22,7 @@ root.render(
         <App>
           <React.Fragment>
             <Route path="/" exact={true} component={Welcome} />
-            <Route path="/signup" exact={true} component={SignUp} />
+            <Route path="/signup" exact={true} component={SignUp as any} />
           </React.Fragment>
         </App>
       </Router>
