@@ -13,6 +13,7 @@ interface Props {
 
 class SignUp extends React.Component<Props, RootState> {
   onSubmit = (formProps: any) => {
+    console.log("formProps:", formProps);
     this.props.signup(formProps, () => {
       this.props.history.push("/feature");
     });

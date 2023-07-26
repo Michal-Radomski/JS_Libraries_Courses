@@ -16,16 +16,16 @@ const store = createStore(rootReducer, {}, composeWithDevTools(applyMiddleware(t
 
 const root = ReactDOM.createRoot(document.getElementById("root") as HTMLElement);
 root.render(
-  <React.StrictMode>
-    <Provider store={store}>
-      <Router>
-        <App>
-          <React.Fragment>
-            <Route path="/" exact={true} component={Welcome} />
-            <Route path="/signup" exact={true} component={SignUp as any} />
-          </React.Fragment>
-        </App>
-      </Router>
-    </Provider>
-  </React.StrictMode>
+  // <React.StrictMode>
+  <Provider store={store}>
+    <Router>
+      <App>
+        <React.Fragment>
+          <Route path="/" exact={true} component={Welcome} />
+          <Route path="/signup" exact={true} component={SignUp as any} />
+        </React.Fragment>
+      </App>
+    </Router>
+  </Provider>
+  // </React.StrictMode>
 );
