@@ -4,23 +4,26 @@ import { compose } from "redux";
 import { connect } from "react-redux";
 import { History } from "history";
 
+import * as actions from "../../actions/index";
+
 interface Props {
   history: History;
   errorMessage: string;
   handleSubmit: any;
-  signup: (arg0: any, arg1: () => void) => void;
+  signup: (arg0: { email: string; password: string }, arg1: () => void) => void;
 }
 
 class SignUp extends React.Component<Props, RootState> {
-  onSubmit = (formProps: any) => {
-    console.log("formProps:", formProps);
+  onSubmit = (formProps: { email: string; password: string }) => {
+    // console.log("formProps:", formProps);
     this.props.signup(formProps, () => {
-      this.props.history.push("/feature");
+      // this.props.history.push("/feature");
     });
   };
 
   render() {
     const { handleSubmit } = this.props;
+    // console.log({handleSubmit});
     return (
       <React.Fragment>
         <form onSubmit={handleSubmit(this.onSubmit)}>
@@ -44,4 +47,4 @@ function mapStateToProps(state: RootState) {
   return { errorMessage: state.auth.errorMessage };
 }
 
-export default compose(connect(mapStateToProps), reduxForm({ form: "signup" }))(SignUp);
+export default compose(connect(mapStateToProps, actions), reduxForm({ form: "signup" }))(SignUp);
