@@ -12,7 +12,13 @@ import SignUp from "./components/auth/SignUp";
 import rootReducer from "./reducers";
 import Feature from "./components/Feature";
 
-const store = createStore(rootReducer, {}, composeWithDevTools(applyMiddleware(reduxThunk)));
+const store = createStore(
+  rootReducer,
+  {
+    auth: { authenticated: localStorage.getItem("token") },
+  },
+  composeWithDevTools(applyMiddleware(reduxThunk))
+);
 
 const root = ReactDOM.createRoot(document.getElementById("root") as HTMLElement);
 root.render(
