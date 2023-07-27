@@ -15,8 +15,15 @@ import indexRouter from "./indexRouter";
 // The server
 const app: Express = express();
 
+const corsOptions = {
+  origin: "*",
+  methods: "GET,HEAD,PUT,PATCH,POST,DELETE",
+  // preflightContinue: false,
+  optionsSuccessStatus: 200,
+};
+
 // Middlewares
-app.use(cors());
+app.use(cors(corsOptions));
 app.use(bodyParser.json({ type: "*/*" }));
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(morgan("combined"));
