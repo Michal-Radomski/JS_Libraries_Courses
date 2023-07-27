@@ -1,6 +1,6 @@
 import axios from "axios";
 
-import { AUTH_USER } from "./types";
+import { AUTH_ERROR, AUTH_USER } from "./types";
 
 export const signup = (formProps: { email: string; password: string }) => async (dispatch: Dispatch) => {
   // console.log("dispatch:", dispatch);
@@ -13,6 +13,8 @@ export const signup = (formProps: { email: string; password: string }) => async 
     localStorage.setItem("token", token);
   } catch (error) {
     console.log({ error });
-    // dispatch({ type: AUTH_ERROR, payload: 'Email in use' });
+    dispatch({ type: AUTH_ERROR, payload: "Email in use" });
+  } finally {
+    console.log("Job done!");
   }
 };
