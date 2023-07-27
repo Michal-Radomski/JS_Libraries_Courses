@@ -9,8 +9,8 @@ import reduxThunk from "redux-thunk";
 import App from "./components/App";
 import Welcome from "./components/Welcome";
 import SignUp from "./components/auth/SignUp";
-
 import rootReducer from "./reducers";
+import Feature from "./components/Feature";
 
 const store = createStore(rootReducer, {}, composeWithDevTools(applyMiddleware(reduxThunk)));
 
@@ -22,7 +22,8 @@ root.render(
       <App>
         <React.Fragment>
           <Route path="/" exact={true} component={Welcome} />
-          <Route path="/signup" exact={true} component={SignUp as any} />
+          <Route path="/signup" component={SignUp as React.ComponentType} />
+          <Route path="/feature" component={Feature} />
         </React.Fragment>
       </App>
     </Router>
