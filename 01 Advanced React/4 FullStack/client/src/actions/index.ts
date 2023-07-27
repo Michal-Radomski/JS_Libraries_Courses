@@ -21,3 +21,11 @@ export const signup =
       console.log("Job done!");
     }
   };
+
+export const signout = () => {
+  localStorage.removeItem("token");
+  return {
+    type: AUTH_USER,
+    payload: "",
+  };
+};
