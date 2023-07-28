@@ -29,3 +29,19 @@ export const signout = () => {
     payload: "",
   };
 };
+
+export const signin =
+  (formProps: { email: string; password: string }, callback: () => void) => async (dispatch: Dispatch) => {
+    try {
+      const response = await axios.post("http://localhost:5000/api/signin", formProps);
+
+      dispatch({ type: AUTH_USER, payload: response.data.token });
+      localStorage.setItem("token", response.data.token);
+      callback();
+    } catch (error) {
+      console.log({ error });
+      dispatch({ type: AUTH_ERROR, payload: "Invalid login credentials" });
+    } finally {
+      console.log("Job done!");
+    }
+  };
