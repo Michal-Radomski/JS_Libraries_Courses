@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 import { connect } from "react-redux";
 
 class Header extends React.Component<{ authenticated: string }, {}> {
-  renderLinks() {
+  renderLinks(): JSX.Element {
     if (this.props.authenticated) {
       return (
         <div>
