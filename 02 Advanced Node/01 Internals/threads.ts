@@ -1,3 +1,5 @@
+process.env.UV_THREADPOOL_SIZE = 4 as any;
+
 import crypto from "crypto";
 
 const start = Date.now();
