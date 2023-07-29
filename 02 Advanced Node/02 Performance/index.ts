@@ -9,6 +9,11 @@ import crypto from "crypto";
 if (cluster.isMaster) {
   // Cause index.ts to be executed *again* bu in child mode
   cluster.fork();
+  cluster.fork();
+  cluster.fork();
+  cluster.fork();
+  // cluster.fork();
+  // cluster.fork();
   // cluster.fork();
   // cluster.fork();
   // cluster.fork();
