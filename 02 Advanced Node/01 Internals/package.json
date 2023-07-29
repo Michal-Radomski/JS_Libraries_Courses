@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "description": "Advanced Node Course",
   "scripts": {
-    "start": "clear && nodemon threads.ts"
+    "start": "clear && ts-node threads.ts"
   },
   "keywords": [],
   "author": "",
