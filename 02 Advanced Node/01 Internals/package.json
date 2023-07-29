@@ -3,7 +3,8 @@
   "version": "1.0.0",
   "description": "Advanced Node Course",
   "scripts": {
-    "start": "clear && ts-node threads.ts"
+    "start": "clear && ts-node threads.ts",
+    "start2": "clear && ts-node async.ts"
   },
   "keywords": [],
   "author": "",
