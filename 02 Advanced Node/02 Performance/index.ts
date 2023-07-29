@@ -1,6 +1,9 @@
+process.env.UV_THREADPOOL_SIZE = 1 as any;
+
 import http from "http";
 import cluster from "cluster";
 import express, { Express, Request, Response } from "express";
+import crypto from "crypto";
 
 // Is the file being executed in master mode?
 if (cluster.isMaster) {
@@ -15,17 +18,20 @@ if (cluster.isMaster) {
   // The server
   const app: Express = express();
 
-  function doWork(duration: number) {
-    const start = Date.now();
-    while (Date.now() - start < duration) {
-      //* do nothing
-    }
-  }
+  // function doWork(duration: number) {
+  //   const start = Date.now();
+  //   while (Date.now() - start < duration) {
+  //     //* do nothing
+  //   }
+  // }
 
   app.get("/", (req: Request, res: Response) => {
-    doWork(5000);
     console.log("req.ip:", req.ip);
-    res.send("Hi there!");
+    // doWork(5000);
+
+    crypto.pbkdf2("a", "b", 100000, 512, "sha512", (_err: Error | null, _derivedKey: Buffer) => {
+      res.send("Hi there!");
+    });
   });
 
   app.get("/fast", (req: Request, res: Response) => {
