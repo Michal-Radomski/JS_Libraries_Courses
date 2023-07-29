@@ -15,6 +15,12 @@ function shouldContinue(): boolean {
 }
 
 // Entire body executes in one "tick"
-while (shouldContinue()) {}
+while (shouldContinue()) {
+  // 1) Node looks at pendingTimers and sees if any functions are ready to be executed
+  // 2) Node looks at pendingOSTasks and pendingOperations and calls relevant callbacks
+  // 3) Pause execution . Continue when task/ timer is done/ completed.
+  // 4) Looks at pendingTimers. Call any setImmediate.
+  // 5) Handle any 'close' events.
+}
 
 // exit back to terminal
