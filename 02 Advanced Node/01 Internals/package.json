@@ -4,7 +4,8 @@
   "description": "Advanced Node Course",
   "scripts": {
     "start": "clear && ts-node threads.ts",
-    "start2": "clear && ts-node async.ts"
+    "start2": "clear && ts-node async.ts",
+    "start3": "clear && ts-node multiTask.ts"
   },
   "keywords": [],
   "author": "",
