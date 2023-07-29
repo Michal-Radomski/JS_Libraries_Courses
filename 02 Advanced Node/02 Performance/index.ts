@@ -4,7 +4,13 @@ import express, { Express, Request, Response } from "express";
 // The server
 const app: Express = express();
 
+function doWork(duration: number) {
+  const start = Date.now();
+  while (Date.now() - start < duration) {}
+}
+
 app.get("/", (req: Request, res: Response) => {
+  doWork(5000);
   console.log("req.ip:", req.ip);
   res.send("Hi there!");
 });
