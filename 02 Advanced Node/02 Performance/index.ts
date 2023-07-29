@@ -6,6 +6,9 @@ import express, { Express, Request, Response } from "express";
 if (cluster.isMaster) {
   // Cause index.ts to be executed *again* bu in child mode
   cluster.fork();
+  // cluster.fork();
+  // cluster.fork();
+  // cluster.fork();
 } else {
   // I'm as child
 
@@ -23,6 +26,11 @@ if (cluster.isMaster) {
     doWork(5000);
     console.log("req.ip:", req.ip);
     res.send("Hi there!");
+  });
+
+  app.get("/fast", (req: Request, res: Response) => {
+    console.log("req.ip:", req.ip);
+    res.send("This was fast!");
   });
 
   const port = 3000;
