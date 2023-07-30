@@ -64,10 +64,10 @@ const app: Express = express();
 app.get("/", (req: Request, res: Response) => {
   console.log("req.ip:", req.ip);
   const worker = new Worker("./worker.js");
-  console.log({ worker });
+  // console.log({ worker });
 
   worker.on("message", function (message) {
-    // console.log({ message });
+    console.log({ message });
     res.send("" + message);
   });
 
