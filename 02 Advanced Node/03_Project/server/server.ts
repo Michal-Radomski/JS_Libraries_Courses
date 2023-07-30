@@ -14,9 +14,11 @@ import passport from "passport";
 
 // Import config
 const keys = require("./config/keys");
+// console.log({ keys });
 
 // Import routes
-//! import indexRouter from "./indexRouter";
+import authRoutes from "./routes/authRoutes";
+import blogRoutes from "./routes/blogRoutes";
 
 // The server
 const app: Express = express();
@@ -46,7 +48,8 @@ app.use(passport.initialize());
 app.use(passport.session());
 
 //Route middleware
-//! app.use("/api", indexRouter);
+app.use("/api", authRoutes);
+app.use("/api", blogRoutes);
 
 // Mongo DB
 mongoose
@@ -63,7 +66,7 @@ app.get("/", (req: Request, res: Response) => {
 });
 
 // Serve static assets in production
-if (process.env.NODE_ENV === "production") {
+if (["production"].includes(process.env.NODE_ENV as string)) {
   // Set static folder
   app.use(express.static("client/build"));
 
@@ -82,3 +85,7 @@ server.listen({ port: port }, () => {
   // For testing only
   console.log("Current Time:", new Date().toLocaleTimeString());
 });
+
+//* Generate JWT secret string
+// const JWT_Secret = require("crypto").randomBytes(64).toString("hex");
+// console.log({ JWT_Secret }, JWT_Secret.length);
