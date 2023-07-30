@@ -6,3 +6,9 @@ type Fetch = typeof store.fetch;
 type Action = typeof store.action;
 type AppThunk<ReturnType = void> = ThunkAction<ReturnType, RootState, unknown, Action<string>>;
 type NextFunction = typeof store.nextFunction;
+
+interface Blog {
+  title: string;
+  content: string;
+  _id: string;
+}

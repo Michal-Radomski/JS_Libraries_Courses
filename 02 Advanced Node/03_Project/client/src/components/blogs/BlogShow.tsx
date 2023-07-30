@@ -1,15 +1,19 @@
-import React, { Component } from 'react';
-import { connect } from 'react-redux';
-import { fetchBlog } from '../../actions';
+import React from "react";
+import { connect } from "react-redux";
 
-class BlogShow extends Component {
+import { fetchBlog } from "../../actions";
+
+class BlogShow extends React.Component<
+  { fetchBlog: (arg0: string) => void; match: { params: { _id: string } }; blog: Blog },
+  {}
+> {
   componentDidMount() {
     this.props.fetchBlog(this.props.match.params._id);
   }
 
   render() {
     if (!this.props.blog) {
-      return '';
+      return "";
     }
 
     const { title, content } = this.props.blog;
@@ -23,7 +27,7 @@ class BlogShow extends Component {
   }
 }
 
-function mapStateToProps({ blogs }, ownProps) {
+function mapStateToProps({ blogs }: any, ownProps: { match: { params: { _id: string } } }) {
   return { blog: blogs[ownProps.match.params._id] };
 }
 

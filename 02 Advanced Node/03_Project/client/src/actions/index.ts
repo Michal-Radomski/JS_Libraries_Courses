@@ -14,7 +14,7 @@ export const handleToken = (token: string) => async (dispatch: Dispatch) => {
   dispatch({ type: FETCH_USER, payload: res.data });
 };
 
-export const submitBlog = (values: any, history: string[]) => async (dispatch: Dispatch) => {
+export const submitBlog = (values: { label: string; name: string }, history: string[]) => async (dispatch: Dispatch) => {
   const res = await axios.post("/api/blogs", values);
 
   history.push("/blogs");

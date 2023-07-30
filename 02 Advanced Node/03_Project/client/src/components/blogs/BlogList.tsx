@@ -1,16 +1,17 @@
-import React, { Component } from 'react';
-import map from 'lodash/map';
-import { connect } from 'react-redux';
-import { Link } from 'react-router-dom';
-import { fetchBlogs } from '../../actions';
+import React from "react";
+import map from "lodash/map";
+import { connect } from "react-redux";
+import { Link } from "react-router-dom";
 
-class BlogList extends Component {
+import { fetchBlogs } from "../../actions";
+
+class BlogList extends React.Component<{ fetchBlogs: () => void; blogs: Blog[] }, {}> {
   componentDidMount() {
     this.props.fetchBlogs();
   }
 
   renderBlogs() {
-    return map(this.props.blogs, blog => {
+    return map(this.props.blogs, (blog) => {
       return (
         <div className="card darken-1 horizontal" key={blog._id}>
           <div className="card-stacked">
@@ -32,7 +33,7 @@ class BlogList extends Component {
   }
 }
 
-function mapStateToProps({ blogs }) {
+function mapStateToProps({ blogs }: { blogs: Blog[] }) {
   return { blogs };
 }
 

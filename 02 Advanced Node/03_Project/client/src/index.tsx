@@ -7,7 +7,7 @@ import { composeWithDevTools } from "@redux-devtools/extension";
 
 import reducers from "./reducers/index";
 
-import App from "./App";
+import App from "./components/App";
 
 const container = document.getElementById("root") as HTMLDivElement;
 const root = createRoot(container);
