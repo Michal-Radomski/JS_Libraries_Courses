@@ -21,9 +21,8 @@ import authRouter from "./routes/authRouter";
 import blogRouter from "./routes/blogRouter";
 
 // Passport config
-require("./services/passport");
+require("./services/passportConfig");
 
-// The server
 const app: Express = express();
 
 // Middlewares
