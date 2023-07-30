@@ -3,7 +3,9 @@
 import http from "http";
 // import cluster from "cluster";
 import express, { Express, Request, Response } from "express";
-import crypto from "crypto";
+// import crypto from "crypto";
+// const { Worker } = require('worker_threads');
+import { Worker } from "worker_threads";
 
 //* Clustering
 // // Is the file being executed in master mode?
@@ -58,11 +60,18 @@ import crypto from "crypto";
 // The server
 const app: Express = express();
 
+//* Worker_Threads
 app.get("/", (req: Request, res: Response) => {
   console.log("req.ip:", req.ip);
-  crypto.pbkdf2("a", "b", 100000, 512, "sha512", (_err: Error | null, _derivedKey: Buffer) => {
-    res.send("Hi there!");
+  const worker = new Worker("./worker.js");
+  console.log({ worker });
+
+  worker.on("message", function (message) {
+    // console.log({ message });
+    res.send("" + message);
   });
+
+  worker.postMessage("start!");
 });
 
 app.get("/fast", (req: Request, res: Response) => {
