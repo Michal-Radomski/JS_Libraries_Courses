@@ -17,8 +17,11 @@ const keys = require("./config/keys");
 // console.log({ keys });
 
 // Import routes
-import authRoutes from "./routes/authRoutes";
-import blogRoutes from "./routes/blogRoutes";
+import authRouter from "./routes/authRouter";
+import blogRouter from "./routes/blogRouter";
+
+// Passport config
+require("./services/passport");
 
 // The server
 const app: Express = express();
@@ -48,8 +51,8 @@ app.use(passport.initialize());
 app.use(passport.session());
 
 //Route middleware
-app.use("/api", authRoutes);
-app.use("/api", blogRoutes);
+app.use("/api", authRouter);
+app.use("/api", blogRouter);
 
 // Mongo DB
 mongoose
@@ -63,7 +66,7 @@ mongoose
 app.get("/", (req: Request, res: Response) => {
   console.log("req.ip:", req.ip);
   res.send("<h1 style='color:blue;text-align:center'>API is running</h1>");
-});
+}) as express.RequestHandler;
 
 // Serve static assets in production
 if (["production"].includes(process.env.NODE_ENV as string)) {
