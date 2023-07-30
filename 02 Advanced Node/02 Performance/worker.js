@@ -1,6 +1,6 @@
 const { parentPort } = require("worker_threads");
 
-console.log({ parentPort });
+// console.log({ parentPort });
 
 parentPort.on("message", () => {
   let counter = 0;
