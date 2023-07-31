@@ -18,3 +18,5 @@ const blogSchema: Schema = new mongoose.Schema(
 );
 
 export default mongoose.model<IBlogModel>("Blog", blogSchema);
+
+// Is is possible to add another index or cache server
