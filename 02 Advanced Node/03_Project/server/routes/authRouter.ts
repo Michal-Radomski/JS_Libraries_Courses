@@ -15,13 +15,14 @@ authRouter.get("/auth/google/callback", passport.authenticate("google"), (req: R
   res.status(302).redirect("/blogs");
 }) as express.Router;
 
-authRouter.get("/auth/logout", function (req: Request, res: Response, next: NextFunction) {
-  req.logout(function (err) {
+authRouter.get("/auth/logout", async (req: Request, res: Response, next: NextFunction) => {
+  await req.logOut(async (err) => {
     if (err) {
+      console.log({ err });
       return next(err);
     }
-    res.status(302).redirect("/");
   });
+  await res.status(302).redirect("/");
 }) as express.Router;
 
 authRouter.get("/api/current_user", (req: Request, res: Response) => {

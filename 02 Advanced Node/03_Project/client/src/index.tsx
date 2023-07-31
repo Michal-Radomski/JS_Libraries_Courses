@@ -14,9 +14,10 @@ const root = createRoot(container);
 const store = createStore(rootReducer, {}, composeWithDevTools(applyMiddleware(reduxThunk)));
 
 root.render(
-  <React.StrictMode>
+  //* React.Fragment instead of React.Strict.Mode
+  <React.Fragment>
     <Provider store={store}>
       <App />
     </Provider>
-  </React.StrictMode>
+  </React.Fragment>
 );
