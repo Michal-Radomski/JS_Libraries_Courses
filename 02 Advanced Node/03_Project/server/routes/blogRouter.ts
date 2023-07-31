@@ -38,7 +38,7 @@ blogRouter.post("/api/blogs", requireLogin, async (req: CustomRequest, res: Resp
 
   try {
     await blog.save();
-    res.send(blog);
+    res.status(201).send(blog);
   } catch (err) {
     res.status(400).send(err);
   }

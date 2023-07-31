@@ -3,6 +3,7 @@ import { Strategy as GoogleStrategy } from "passport-google-oauth20";
 
 import User from "../models/UserModel";
 const keys = require("../config/keys");
+// console.log({ keys });
 
 interface CustomUser extends Express.User {
   id?: string;

@@ -1,9 +1,9 @@
-import path from "path";
+// import path from "path";
 import http from "http";
 
 import * as dotenv from "dotenv";
 dotenv.config();
-import express, { Express, Request, Response } from "express";
+import express, { Express } from "express";
 import cors from "cors";
 import bodyParser from "body-parser";
 import morgan from "morgan";
@@ -50,8 +50,8 @@ app.use(passport.initialize());
 app.use(passport.session());
 
 //Route middleware
-app.use("/api", authRouter);
-app.use("/api", blogRouter);
+app.use("", authRouter);
+app.use("", blogRouter);
 
 // Mongo DB
 mongoose
@@ -61,22 +61,22 @@ mongoose
   })
   .catch((error: string) => console.log("Mongo DB Error => ", error));
 
-// Test route
-app.get("/", (req: Request, res: Response) => {
-  console.log("req.ip:", req.ip);
-  res.send("<h1 style='color:blue;text-align:center'>API is running</h1>");
-}) as express.RequestHandler;
+//* Test route
+// app.get("/", (req: Request, res: Response) => {
+//   console.log("req.ip:", req.ip);
+//   res.send("<h1 style='color:blue;text-align:center'>API is running</h1>");
+// }) as express.RequestHandler;
 
-// Serve static assets in production
-if (["production"].includes(process.env.NODE_ENV as string)) {
-  // Set static folder
-  app.use(express.static("client/build"));
+//* Serve static assets in production
+// if (["production"].includes(process.env.NODE_ENV as string)) {
+//   // Set static folder
+//   app.use(express.static("client/build"));
 
-  app.get("/*", (req: Request, res: Response) => {
-    console.log("req.ip:", req.ip);
-    res.sendFile(path.resolve(__dirname, "client", "build", "index.html"));
-  });
-}
+//   app.get("/*", (req: Request, res: Response) => {
+//     console.log("req.ip:", req.ip);
+//     res.sendFile(path.resolve(__dirname, "client", "build", "index.html"));
+//   });
+// }
 
 // Port
 const port = (process.env.PORT || 5000) as number;
