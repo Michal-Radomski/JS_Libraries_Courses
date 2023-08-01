@@ -93,48 +93,48 @@ server.listen({ port: port }, () => {
 // console.log({ JWT_Secret }, JWT_Secret.length);
 
 //* Redis
-const redis = require("redis");
-// console.log("redis:", redis);
+// const redis = require("redis");
+// // console.log("redis:", redis);
 
-const client = redis.createClient({
-  url: `redis://:${process.env.RedisSecret}@${process.env.RedisHost}:${process.env.RedisPort}`,
-});
-// console.log({ client });
+// const client = redis.createClient({
+//   url: `redis://:${process.env.RedisSecret}@${process.env.RedisHost}:${process.env.RedisPort}`,
+// });
+// // console.log({ client });
 
-client.on("error", (err: Error) => console.log("Redis Client Error:", err));
+// client.on("error", (err: Error) => console.log("Redis Client Error:", err));
 
-const colorValues = {
-  spanish: {
-    red: "rojo",
-    orange: "naranja",
-    blue: "azul",
-  },
-  german: {
-    red: "rot",
-    orange: "orange",
-    blue: "blau",
-  },
-};
+// const colorValues = {
+//   spanish: {
+//     red: "rojo",
+//     orange: "naranja",
+//     blue: "azul",
+//   },
+//   german: {
+//     red: "rot",
+//     orange: "orange",
+//     blue: "blau",
+//   },
+// };
 
-const connectRedis = async () => {
-  await client.connect();
+// const connectRedis = async () => {
+//   await client.connect();
 
-  // await client.set("key", "value");
-  // const value = await client.get("key");
-  // await console.log({ value });
+//   // await client.set("key", "value");
+//   // const value = await client.get("key");
+//   // await console.log({ value });
 
-  // await client.hSet("german", "red", "rot");
-  // const values = await client.hGetAll("german");
-  // await console.log({ values });
-  // const value2 = await client.hGet("german", "red");
-  // await console.log({ value2 });
+//   // await client.hSet("german", "red", "rot");
+//   // const values = await client.hGetAll("german");
+//   // await console.log({ values });
+//   // const value2 = await client.hGet("german", "red");
+//   // await console.log({ value2 });
 
-  await client.set("colorValues", JSON.stringify(colorValues));
-  const colorValuesData = await client.get("colorValues");
-  const colorValuesDataParsed = await JSON.parse(colorValuesData);
-  await console.log("colorValuesDataParsed:", colorValuesDataParsed);
+//   await client.set("colorValues", JSON.stringify(colorValues));
+//   const colorValuesData = await client.get("colorValues");
+//   const colorValuesDataParsed = await JSON.parse(colorValuesData);
+//   await console.log("colorValuesDataParsed:", colorValuesDataParsed);
 
-  await client.disconnect();
-};
+//   await client.disconnect();
+// };
 
-connectRedis();
+// connectRedis();

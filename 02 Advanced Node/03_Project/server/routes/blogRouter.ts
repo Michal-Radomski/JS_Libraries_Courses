@@ -1,5 +1,6 @@
 import express, { Request, Response } from "express";
 import { Schema } from "mongoose";
+import util from "util";
 
 import { requireLogin } from "../middlewares/requireLogin";
 import Blog, { IBlogModel } from "../models/BlogModel";
@@ -23,7 +24,24 @@ blogRouter.get("/api/blogs/:id", requireLogin, async (req: CustomRequest, res: R
 }) as express.Router;
 
 blogRouter.get("/api/blogs", requireLogin, async (req: CustomRequest, res: Response): Promise<void> => {
-  const blogs = (await Blog.find({ _user: req!.user!.id! })) as IBlogModel[];
+  //* Redis
+  const redis = require("redis");
+  const redisURL = `redis://:${process.env.RedisSecret}@${process.env.RedisHost}:${process.env.RedisPort}`;
+  const client = await redis.createClient(redisURL);
+  // console.log("client:", client);
+
+  client.get = util.promisify(client.get);
+  // Overwrite existing function
+  const cachedBlogs = await client.get(req.user?.id);
+  console.log("cachedBlogs:", cachedBlogs);
+
+  // Do we have any cached data in redis?
+
+  // If yes, then respond the request and return
+
+  // If no, we need to respond to request and update our cached to store the data
+
+  const blogs = (await Blog.find({ _user: req.user?.id })) as IBlogModel[];
   res.status(200).send(blogs);
 }) as express.Router;
 
