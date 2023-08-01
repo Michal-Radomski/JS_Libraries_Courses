@@ -91,3 +91,24 @@ server.listen({ port: port }, () => {
 //* Generate JWT secret string
 // const JWT_Secret = require("crypto").randomBytes(64).toString("hex");
 // console.log({ JWT_Secret }, JWT_Secret.length);
+
+//* Redis
+const redis = require("redis");
+// console.log("redis:", redis);
+
+const client = redis.createClient({
+  url: `redis://:${process.env.RedisSecret}@127.0.0.1:6379`,
+});
+// console.log({ client });
+
+client.on("error", (err: Error) => console.log("Redis Client Error", err));
+
+const connectRedis = async () => {
+  await client.connect();
+  await client.set("key", "value");
+  const value = await client.get("key");
+  await console.log({ value });
+  await client.disconnect();
+};
+
+connectRedis();
