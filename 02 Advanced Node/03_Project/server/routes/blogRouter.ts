@@ -1,6 +1,6 @@
 import express, { Request, Response } from "express";
 import { Schema } from "mongoose";
-import util from "util";
+import { createClient } from "redis";
 
 import { requireLogin } from "../middlewares/requireLogin";
 import Blog, { IBlogModel } from "../models/BlogModel";
@@ -23,26 +23,40 @@ blogRouter.get("/api/blogs/:id", requireLogin, async (req: CustomRequest, res: R
   res.status(200).send(blog);
 }) as express.Router;
 
-blogRouter.get("/api/blogs", requireLogin, async (req: CustomRequest, res: Response): Promise<void> => {
+blogRouter.get("/api/blogs", requireLogin, async (req: CustomRequest, res: Response): Promise<any> => {
   //* Redis
-  const redis = require("redis");
-  const redisURL = `redis://:${process.env.RedisSecret}@${process.env.RedisHost}:${process.env.RedisPort}`;
-  const client = await redis.createClient(redisURL);
+  const client = createClient({
+    url: `redis://:${process.env.RedisSecret}@${process.env.RedisHost}:${process.env.RedisPort}`,
+  });
   // console.log("client:", client);
 
-  client.get = util.promisify(client.get);
-  // Overwrite existing function
-  const cachedBlogs = await client.get(req.user?.id);
-  console.log("cachedBlogs:", cachedBlogs);
+  client.on("error", (err: Error) => console.log("Redis Client Error:", err));
+  await client.connect();
 
-  // Do we have any cached data in redis?
+  //- Overwrite existing function - do wee need it???
+  // client.get = util.promisify(client.get);
 
-  // If yes, then respond the request and return
+  //* Do we have any cached data in redis?
+  const cachedBlogs = await client.get(String(req.user?.id!));
+  // console.log("cachedBlogs:", cachedBlogs);
 
-  // If no, we need to respond to request and update our cached to store the data
+  // //* Clear Redis
+  // client.flushAll();
 
-  const blogs = (await Blog.find({ _user: req.user?.id })) as IBlogModel[];
-  res.status(200).send(blogs);
+  // //* If yes, then respond the request and return
+  if (cachedBlogs) {
+    // console.log("cachedBlogs from Redis:", cachedBlogs);
+    return res.status(200).send(JSON.parse(cachedBlogs));
+  }
+
+  //* If no, we need to respond to request and update our cached to store the data
+  const blogs = await Blog.find({ _user: req.user?.id });
+  // console.log("blogs:", blogs);
+  const blogsToSet = await JSON.stringify(blogs);
+  // console.log("blogsToSet from Mongo:", blogsToSet);
+  await client.set(String(req.user?.id), blogsToSet);
+  await client.disconnect();
+  return res.status(200).send(blogs);
 }) as express.Router;
 
 blogRouter.post("/api/blogs", requireLogin, async (req: CustomRequest, res: Response): Promise<void> => {
