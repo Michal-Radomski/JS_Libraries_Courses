@@ -92,7 +92,7 @@ server.listen({ port: port }, () => {
 // const JWT_Secret = require("crypto").randomBytes(64).toString("hex");
 // console.log({ JWT_Secret }, JWT_Secret.length);
 
-//* Redis
+//^ Redis
 // const redis = require("redis");
 // // console.log("redis:", redis);
 
@@ -138,3 +138,24 @@ server.listen({ port: port }, () => {
 // };
 
 // connectRedis();
+
+//^ MongoDB native query
+// import { MongoClient, ObjectId } from "mongodb";
+
+// const url = keys.mongoURI as string;
+// const client = new MongoClient(url);
+
+// async function getData() {
+//   // Use connect method to connect to the server
+//   await client.connect();
+//   console.log("Connected successfully to server");
+//   const db = client.db();
+//   const collection = db.collection("blogs");
+//   const blogs = collection.find({ _user: new ObjectId("64c790396bd1e7588609b0e6") }).toArray();
+//   return blogs;
+// }
+
+// getData()
+//   .then((data) => console.log("data:", data))
+//   .catch((error) => console.error(error))
+//   .finally(() => client.close());
