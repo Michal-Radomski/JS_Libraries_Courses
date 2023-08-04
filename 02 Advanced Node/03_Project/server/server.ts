@@ -143,6 +143,9 @@ server.listen({ port: port }, () => {
 //   const key = await client.get("key");
 //   console.log({ key });
 
+// //* Clear Redis
+// // client.flushAll();
+
 //   await client.disconnect();
 // };
 
