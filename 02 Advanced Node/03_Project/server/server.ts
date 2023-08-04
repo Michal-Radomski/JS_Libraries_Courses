@@ -22,6 +22,8 @@ import blogRouter from "./routes/blogRouter";
 
 // Passport config
 require("./services/passportConfig");
+// Redis cache
+require("./services/cache");
 
 const app: Express = express();
 
