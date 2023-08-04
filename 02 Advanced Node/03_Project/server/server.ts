@@ -134,6 +134,13 @@ server.listen({ port: port }, () => {
 //   const colorValuesDataParsed = await JSON.parse(colorValuesData);
 //   await console.log("colorValuesDataParsed:", colorValuesDataParsed);
 
+//   await client.set("key", "value", {
+//     EX: 10,
+//     NX: true,
+//   });
+//   const key = await client.get("key");
+//   console.log({ key });
+
 //   await client.disconnect();
 // };
 
