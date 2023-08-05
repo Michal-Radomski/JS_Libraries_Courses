@@ -3,7 +3,7 @@ import { Schema } from "mongoose";
 
 import { requireLogin } from "../middlewares/requireLogin";
 import Blog, { IBlogModel } from "../models/BlogModel";
-import { clearCache } from "../services/cache";
+import { cleanCache } from "../middlewares/clearCache";
 
 const blogRouter: express.Router = express.Router();
 
@@ -11,7 +11,7 @@ interface CustomUser extends Express.User {
   id?: Schema.Types.ObjectId;
 }
 
-interface CustomRequest extends Request {
+export interface CustomRequest extends Request {
   user?: CustomUser;
 }
 
@@ -23,7 +23,7 @@ blogRouter.get("/api/blogs/:id", requireLogin, async (req: CustomRequest, res: R
   res.status(200).send(blog);
 }) as express.Router;
 
-blogRouter.get("/api/blogs", requireLogin, async (req: CustomRequest, res: Response): Promise<any> => {
+blogRouter.get("/api/blogs", requireLogin, cleanCache, async (req: CustomRequest, res: Response): Promise<any> => {
   // @ts-ignore
   const blogs = await Blog.find({ _user: req.user?.id }).cache({ key: req.user?.id });
   // console.log("blogs:", blogs);
@@ -44,9 +44,10 @@ blogRouter.post("/api/blogs", requireLogin, async (req: CustomRequest, res: Resp
     res.status(201).send(blog);
   } catch (err) {
     res.status(400).send(err);
-  } finally {
-    clearCache(req.user!.id!);
   }
+  //  finally {
+  //   clearCache(req.user!.id!);
+  // }
 }) as express.Router;
 
 export default blogRouter;

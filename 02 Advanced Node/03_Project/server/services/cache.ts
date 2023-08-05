@@ -7,8 +7,6 @@ const client = createClient({
 });
 // console.log("client:", client);
 
-// await client.connect();
-// await client.disconnect();
 client.connect();
 
 //- Overwrite existing function - do wee need it???
@@ -66,7 +64,6 @@ mongoose.Query.prototype.exec = async function () {
 
   // @ts-ignore
   client.hSet(this.hashKey, key, JSON.stringify(result), "EX", 10);
-
   return result;
 };
 
