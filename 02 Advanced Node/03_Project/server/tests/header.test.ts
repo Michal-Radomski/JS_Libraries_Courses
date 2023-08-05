@@ -9,4 +9,5 @@ test("We can launch a browser", async () => {
   const browser = await puppeteer.launch({ headless: false });
   const page = await browser.newPage();
   // console.log("page", page);
+  await page.goto("http://localhost:3000");
 });
