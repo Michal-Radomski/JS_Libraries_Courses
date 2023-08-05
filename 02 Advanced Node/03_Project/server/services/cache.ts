@@ -19,7 +19,6 @@ const exec = mongoose.Query.prototype.exec;
 
 mongoose.Query.prototype.exec = async function () {
   client.on("error", (err: Error) => console.log("Redis Client Error:", err));
-
   // console.log("I'm about to run a query");
   // console.log(this.getQuery());
   // // @ts-ignore
@@ -40,11 +39,13 @@ mongoose.Query.prototype.exec = async function () {
     console.log("cacheValue:", cacheValue);
     // const doc = JSON.parse(cacheValue);
     // return Array.isArray(doc) ? doc.map((d) => new this.model(d)) : new this.model(doc);
+    return JSON.parse(cacheValue);
   }
 
   // Otherwise, issue the query and store the result in redis
   const result = await exec.apply(this, arguments as any);
-  console.log("result:", result);
+  // console.log("result:", result);
 
+  client.set(key, JSON.stringify(result));
   return result;
 };
