@@ -17,7 +17,18 @@ client.connect();
 const exec = mongoose.Query.prototype.exec;
 // console.log({ exec });
 
+// @ts-ignore
+mongoose.Query.prototype.cache = function (_options = {}) {
+  // @ts-ignore
+  this.useCache = true;
+  return this;
+};
+
 mongoose.Query.prototype.exec = async function () {
+  // @ts-ignore
+  if (!this.useCache) {
+    return exec.apply(this, arguments as any);
+  }
   client.on("error", (err: Error) => console.log("Redis Client Error:", err));
   // console.log("I'm about to run a query");
   // console.log(this.getQuery());

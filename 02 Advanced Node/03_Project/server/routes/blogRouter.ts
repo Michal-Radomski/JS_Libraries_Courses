@@ -23,7 +23,8 @@ blogRouter.get("/api/blogs/:id", requireLogin, async (req: CustomRequest, res: R
 }) as express.Router;
 
 blogRouter.get("/api/blogs", requireLogin, async (req: CustomRequest, res: Response): Promise<any> => {
-  const blogs = await Blog.find({ _user: req.user?.id });
+  // @ts-ignore
+  const blogs = await Blog.find({ _user: req.user?.id }).cache();
   // console.log("blogs:", blogs);
   return res.status(200).send(blogs);
 }) as express.Router;
