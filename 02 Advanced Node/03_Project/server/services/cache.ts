@@ -12,15 +12,17 @@ const client = createClient({
 client.connect();
 
 //- Overwrite existing function - do wee need it???
-// client.get = util.promisify(client.get);
+// client.hGet = util.promisify(client.hGet);
 
 const exec = mongoose.Query.prototype.exec;
 // console.log({ exec });
 
 // @ts-ignore
-mongoose.Query.prototype.cache = function (_options = {}) {
+mongoose.Query.prototype.cache = function (options = {}) {
   // @ts-ignore
   this.useCache = true;
+  // @ts-ignore
+  this.hashKey = JSON.stringify(options.key || "");
   return this;
 };
 
@@ -44,7 +46,8 @@ mongoose.Query.prototype.exec = async function () {
   // console.log("key:", key);
 
   // See if we have a value for 'key' in redis
-  const cacheValue = await client.get(key);
+  // @ts-ignore
+  const cacheValue = await client.hGet(this.hashKey, key);
   // If we do, return that
   if (cacheValue) {
     // console.log("cacheValue:", cacheValue);
@@ -61,6 +64,8 @@ mongoose.Query.prototype.exec = async function () {
   const result = await exec.apply(this, arguments as any);
   // console.log("result:", result);
 
-  client.set(key, JSON.stringify(result));
+  // @ts-ignore
+  client.hSet(this.hashKey, key, JSON.stringify(result), "EX", 10);
+
   return result;
 };
