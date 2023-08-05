@@ -3,6 +3,7 @@ import { Schema } from "mongoose";
 
 import { requireLogin } from "../middlewares/requireLogin";
 import Blog, { IBlogModel } from "../models/BlogModel";
+import { clearCache } from "../services/cache";
 
 const blogRouter: express.Router = express.Router();
 
@@ -43,6 +44,8 @@ blogRouter.post("/api/blogs", requireLogin, async (req: CustomRequest, res: Resp
     res.status(201).send(blog);
   } catch (err) {
     res.status(400).send(err);
+  } finally {
+    clearCache(req.user!.id!);
   }
 }) as express.Router;
 

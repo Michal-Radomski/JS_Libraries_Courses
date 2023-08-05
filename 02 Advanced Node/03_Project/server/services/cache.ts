@@ -1,4 +1,4 @@
-import mongoose from "mongoose";
+import mongoose, { ObjectId } from "mongoose";
 import { createClient } from "redis";
 
 //* Redis
@@ -68,4 +68,8 @@ mongoose.Query.prototype.exec = async function () {
   client.hSet(this.hashKey, key, JSON.stringify(result), "EX", 10);
 
   return result;
+};
+
+export const clearCache = (hashKey: ObjectId) => {
+  client.del(JSON.stringify(hashKey));
 };
