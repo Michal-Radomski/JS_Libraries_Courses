@@ -171,3 +171,10 @@ server.listen({ port: port }, () => {
 //   .then((data) => console.log("data:", data))
 //   .catch((error) => console.error(error))
 //   .finally(() => client.close());
+
+//^ Session
+const session = process.env.myGoogleIdCookie;
+const Buffer = require("safe-buffer").Buffer;
+// console.log("Buffer:", Buffer);
+const info = Buffer.from(session, "base64").toString("utf8");
+console.log("info:", info);
