@@ -1,8 +1,6 @@
-import * as dotenv from "dotenv";
-dotenv.config();
 import puppeteer, { Browser, Page } from "puppeteer";
-import { Buffer } from "safe-buffer";
-import Keygrip from "keygrip";
+
+import { sessionFactory } from "./factories/sessionFactory";
 
 // test("Adds two numbers", () => {
 //   const sum = 1 + 2;
@@ -37,25 +35,11 @@ test("clicking login starts oauth flow", async () => {
   expect(url).toMatch(/accounts\.google\.com/);
 });
 
-test.only("when signed in, shows logout button", async () => {
-  // console.log({Buffer});
+//* test.only("when signed in, shows logout button", async () => { //* run this test only!
+test("when signed in, shows logout button", async () => {
   const id = process.env.myMondoDB_Id as string;
   // console.log({ id });
-  const sessionObject = {
-    passport: {
-      user: id,
-    },
-  };
-
-  // Import config
-  const keys = require("../config/keys");
-  const keygrip = new Keygrip([keys.cookieKey]);
-  // console.log({ keygrip });
-
-  const sessionString = Buffer.from(JSON.stringify(sessionObject)).toString("base64");
-  // console.log({ sessionString });
-  const cookieSig = keygrip.sign("session=" + sessionString);
-  // console.log({ cookieSig });
+  const { sessionString, cookieSig } = sessionFactory();
 
   await page.setCookie({ name: "session", value: sessionString });
   await page.setCookie({ name: "session.sig", value: cookieSig });
