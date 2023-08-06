@@ -3,6 +3,9 @@
   "version": "1.0.0",
   "description": "Advanced Node Course",
   "main": "sever.ts",
+  "jest": {
+    "setupTestFrameworkScriptFile": "./tests/setup.js"
+  },
   "scripts": {
     "server": "nodemon server.ts",
     "client": "BROWSER=NONE npm start --prefix ../client/",

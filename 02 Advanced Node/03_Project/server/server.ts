@@ -56,6 +56,7 @@ app.use("", authRouter);
 app.use("", blogRouter);
 
 // Mongo DB
+// mongoose.Promise = global.Promise; //* Needed for mongoose v4!
 mongoose
   .connect(keys.mongoURI as string, { useNewUrlParser: true, useUnifiedTopology: true })
   .then((con: { connection: { host: string } }) => {

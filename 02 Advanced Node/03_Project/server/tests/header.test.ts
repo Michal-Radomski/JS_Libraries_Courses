@@ -1,6 +1,8 @@
 import puppeteer, { Browser, Page } from "puppeteer";
 
 import { sessionFactory } from "./factories/sessionFactory";
+import { userFactory } from "./factories/userFactory";
+import { IUserModel } from "../models/UserModel";
 
 // test("Adds two numbers", () => {
 //   const sum = 1 + 2;
@@ -37,9 +39,9 @@ test("clicking login starts oauth flow", async () => {
 
 //* test.only("when signed in, shows logout button", async () => { //* run this test only!
 test("when signed in, shows logout button", async () => {
-  const id = process.env.myMondoDB_Id as string;
-  // console.log({ id });
-  const { sessionString, cookieSig } = sessionFactory();
+  const user = await userFactory();
+  console.log("user", user);
+  const { sessionString, cookieSig } = await sessionFactory(user as IUserModel);
 
   await page.setCookie({ name: "session", value: sessionString });
   await page.setCookie({ name: "session.sig", value: cookieSig });
