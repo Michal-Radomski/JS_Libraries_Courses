@@ -37,7 +37,7 @@ test("clicking login starts oauth flow", async () => {
   expect(url).toMatch(/accounts\.google\.com/);
 });
 
-test("when signed in, shows logout button", async () => {
+test.only("when signed in, shows logout button", async () => {
   // await page.login();
   // const text = await page.$eval('a[href="/auth/logout"]', (el: HTMLAnchorElement) => el.innerHTML);
   // expect(text).toEqual("Logout");
@@ -58,6 +58,10 @@ test("when signed in, shows logout button", async () => {
 
   const sessionString = Buffer.from(JSON.stringify(sessionObject)).toString("base64");
   // console.log({ sessionString });
-  const sig = sessionString && keygrip.sign("session=" + sessionString);
-  // console.log({ sig });
+  const cookieSig = sessionString && keygrip.sign("session=" + sessionString);
+  // console.log({ cookieSig });
+
+  await page.setCookie({ name: "session", value: sessionString });
+  await page.setCookie({ name: "session.sig", value: cookieSig });
+  await page.goto("http://localhost:3000");
 });
