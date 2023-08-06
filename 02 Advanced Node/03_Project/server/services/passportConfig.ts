@@ -10,11 +10,14 @@ interface CustomUser extends Express.User {
 }
 
 passport.serializeUser((user: CustomUser, done) => {
+  // console.log("user:", user);
   done(null, user.id);
 });
 
 passport.deserializeUser((id, done) => {
+  // console.log({ id });
   User.findById(id).then((user) => {
+    // console.log({ user });
     done(null, user);
   });
 });

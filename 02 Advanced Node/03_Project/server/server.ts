@@ -173,8 +173,20 @@ server.listen({ port: port }, () => {
 //   .finally(() => client.close());
 
 //^ Session
-const session = process.env.myGoogleIdCookie;
-const Buffer = require("safe-buffer").Buffer;
-// console.log("Buffer:", Buffer);
-const info = Buffer.from(session, "base64").toString("utf8");
-console.log("info:", info);
+// const session = process.env.myGoogleIdCookie;
+// const Buffer = require("safe-buffer").Buffer;
+// // console.log("Buffer:", Buffer);
+// const info = Buffer.from(session, "base64").toString("utf8");
+// console.log("info:", info);
+
+//^ Session Sig
+// const session = process.env.myGoogleIdCookie;
+// const Keygrip = require("keygrip");
+
+// const keygrip = new Keygrip([process.env.Dev_cookieKey]);
+// // console.log({ keygrip });
+// const sessionSig = keygrip.sign("session=" + session);
+// // console.log({ sessionSig }); //* equals session.sig
+
+// const sessionVerify = keygrip.verify("session=" + session, sessionSig);
+// console.log({ sessionVerify }); //* equals true or false
