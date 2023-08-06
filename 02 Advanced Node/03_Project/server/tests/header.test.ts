@@ -38,10 +38,6 @@ test("clicking login starts oauth flow", async () => {
 });
 
 test.only("when signed in, shows logout button", async () => {
-  // await page.login();
-  // const text = await page.$eval('a[href="/auth/logout"]', (el: HTMLAnchorElement) => el.innerHTML);
-  // expect(text).toEqual("Logout");
-
   // console.log({Buffer});
   const id = process.env.myMondoDB_Id as string;
   // console.log({ id });
@@ -58,10 +54,14 @@ test.only("when signed in, shows logout button", async () => {
 
   const sessionString = Buffer.from(JSON.stringify(sessionObject)).toString("base64");
   // console.log({ sessionString });
-  const cookieSig = sessionString && keygrip.sign("session=" + sessionString);
+  const cookieSig = keygrip.sign("session=" + sessionString);
   // console.log({ cookieSig });
 
   await page.setCookie({ name: "session", value: sessionString });
   await page.setCookie({ name: "session.sig", value: cookieSig });
   await page.goto("http://localhost:3000");
+
+  await page.waitForSelector('a[href="/auth/logout"]');
+  const text = await page.$eval('a[href="/auth/logout"]', (el: HTMLAnchorElement) => el.innerHTML);
+  expect(text).toEqual("Logout");
 });
