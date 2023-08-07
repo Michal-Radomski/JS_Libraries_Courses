@@ -25,3 +25,10 @@ class CustomPage {
     this.page.setCookie();
   }
 }
+
+const page = new Page();
+const customPage = new CustomPage(page);
+
+customPage.login();
+customPage.page.goto("localhost:3000");
+customPage.page.setCookie();
