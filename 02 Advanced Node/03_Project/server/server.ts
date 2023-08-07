@@ -1,3 +1,5 @@
+// console.log("process.env.NODE_ENV:", process.env.NODE_ENV);
+
 // import path from "path";
 import http from "http";
 

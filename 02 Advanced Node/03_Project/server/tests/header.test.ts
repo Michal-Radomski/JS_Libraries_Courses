@@ -52,3 +52,5 @@ test("when signed in, shows logout button", async () => {
   const text = await page.$eval('a[href="/auth/logout"]', (el: HTMLAnchorElement) => el.innerHTML);
   expect(text).toEqual("Logout");
 });
+
+// console.log("process.env.NODE_ENV:", process.env.NODE_ENV); //* Default Value: test !!!
