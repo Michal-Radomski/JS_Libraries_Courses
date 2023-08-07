@@ -40,8 +40,9 @@ test("clicking login starts oauth flow", async () => {
 //* test.only("when signed in, shows logout button", async () => { //* run this test only!
 test("when signed in, shows logout button", async () => {
   const user = await userFactory();
-  console.log("user", user);
+  // console.log("user:", user);
   const { sessionString, cookieSig } = await sessionFactory(user as IUserModel);
+  // console.log({ sessionString, cookieSig });
 
   await page.setCookie({ name: "session", value: sessionString });
   await page.setCookie({ name: "session.sig", value: cookieSig });

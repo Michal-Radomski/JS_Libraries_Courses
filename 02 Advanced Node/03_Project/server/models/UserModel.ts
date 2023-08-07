@@ -8,8 +8,8 @@ export interface IUserModel extends Document {
 
 const userSchema: Schema = new mongoose.Schema(
   {
-    googleId: { type: String, required: true },
-    displayName: { type: String, required: true, minlength: [3, "Min displayName length is 3 characters"] },
+    googleId: { type: String, required: false },
+    displayName: { type: String, required: false, minlength: [3, "Min displayName length is 3 characters"] },
     createdAt: { type: Date, default: Date.now },
   },
   { timestamps: true }
