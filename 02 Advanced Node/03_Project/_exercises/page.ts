@@ -26,19 +26,33 @@ class CustomPage {
   }
 }
 
-const page = new Page();
-const customPage = new CustomPage(page);
+// const page = new Page();
+// const customPage = new CustomPage(page);
 
-// customPage.login();
-// customPage.page.goto("localhost:3000");
-// customPage.page.setCookie();
+// // customPage.login();
+// // customPage.page.goto("localhost:3000");
+// // customPage.page.setCookie();
 
-const superPage = new Proxy(customPage, {
-  get: function (target, property) {
-    return target[property] || page[property];
-  },
-});
+// const superPage = new Proxy(customPage, {
+//   get: function (target, property) {
+//     return target[property] || page[property];
+//   },
+// });
 
-superPage.login();
-superPage.page.goto("localhost:3000");
-superPage.page.setCookie();
+// superPage.login();
+// superPage.page.goto("localhost:3000");
+// superPage.page.setCookie();
+
+const buildPage = () => {
+  const page = new Page();
+  const customPage = new CustomPage(page);
+
+  const superPage = new Proxy(customPage, {
+    get: function (target, property) {
+      return target[property] || page[property];
+    },
+  });
+  return superPage;
+};
+
+buildPage();
