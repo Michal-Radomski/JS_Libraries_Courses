@@ -1,20 +1,18 @@
-import { sessionFactory } from "./factories/sessionFactory";
-import { userFactory } from "./factories/userFactory";
-import { IUserModel } from "../models/UserModel";
 //* Importing CustomPage as Page!
-import Page from "./helpers/page";
+// import Page from "./helpers/page";
+const Page = require("./helpers/page");
 
 // test("Adds two numbers", () => {
 //   const sum = 1 + 2;
 //   expect(sum).toEqual(3);
 // });
 
-let page: Page | any;
+let page: any;
 // console.log({ page });
 
 beforeEach(async () => {
   page = await Page.build();
-  // console.log({ page });
+  console.log({ page });
   await page.goto("http://localhost:3000");
 });
 
@@ -36,17 +34,8 @@ test("clicking login starts oauth flow", async () => {
 });
 
 //* test.only("when signed in, shows logout button", async () => { //* run this test only!
-test("when signed in, shows logout button", async () => {
-  const user = await userFactory();
-  // console.log("user:", user);
-  const { sessionString, cookieSig } = await sessionFactory(user as IUserModel);
-  // console.log({ sessionString, cookieSig });
-
-  await page.setCookie({ name: "session", value: sessionString });
-  await page.setCookie({ name: "session.sig", value: cookieSig });
-  await page.goto("http://localhost:3000");
-
-  await page.waitForSelector('a[href="/auth/logout"]');
+test.only("when signed in, shows logout button", async () => {
+  await page.login();
   const text = await page.$eval('a[href="/auth/logout"]', (el: HTMLAnchorElement) => el.innerHTML);
   expect(text).toEqual("Logout");
 });

@@ -1,5 +1,9 @@
 import puppeteer, { Browser as BrowserInterface, Page as PageInterface } from "puppeteer";
 
+import { sessionFactory } from "../factories/sessionFactory";
+import { userFactory } from "../factories/userFactory";
+import { IUserModel } from "../../models/UserModel";
+
 export default class CustomPage {
   page: PageInterface;
 
@@ -55,6 +59,18 @@ export default class CustomPage {
 
   constructor(page: PageInterface) {
     this.page = page;
+  }
+
+  async login() {
+    const user = await userFactory();
+    // console.log("user:", user);
+    const { sessionString, cookieSig } = await sessionFactory(user as IUserModel);
+    // console.log({ sessionString, cookieSig });
+
+    await this.page.setCookie({ name: "session", value: sessionString });
+    await this.page.setCookie({ name: "session.sig", value: cookieSig });
+    await this.page.goto("http://localhost:3000");
+    await this.page.waitForSelector('a[href="/auth/logout"]');
   }
 }
 
