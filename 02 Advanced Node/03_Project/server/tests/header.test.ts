@@ -9,7 +9,6 @@ import Page from "./helpers/page";
 //   expect(sum).toEqual(3);
 // });
 
-// Todo: interface!
 let page: Page | any;
 // console.log({ page });
 
@@ -20,7 +19,7 @@ beforeEach(async () => {
 });
 
 afterEach(async () => {
-  // await page.close();
+  await page.close();
 });
 
 test("the header has the correct text", async () => {
