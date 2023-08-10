@@ -1,27 +1,26 @@
-import puppeteer, { Browser, Page } from "puppeteer";
-
 import { sessionFactory } from "./factories/sessionFactory";
 import { userFactory } from "./factories/userFactory";
 import { IUserModel } from "../models/UserModel";
+//* Importing CustomPage as Page!
+import Page from "./helpers/page";
 
 // test("Adds two numbers", () => {
 //   const sum = 1 + 2;
 //   expect(sum).toEqual(3);
 // });
 
-let page: Page;
-let browser: Browser;
+// Todo: interface!
+let page: Page | any;
+// console.log({ page });
 
 beforeEach(async () => {
-  browser = await puppeteer.launch({ headless: false });
-  page = await browser.newPage();
-  // console.log("page", page);
+  page = await Page.build();
+  // console.log({ page });
   await page.goto("http://localhost:3000");
 });
 
 afterEach(async () => {
-  await page.close();
-  await browser.close();
+  // await page.close();
 });
 
 test("the header has the correct text", async () => {

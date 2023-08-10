@@ -7,7 +7,7 @@
     "server": "NODE_ENV=dev nodemon server.ts --ignore tests",
     "client": "BROWSER=NONE npm start --prefix ../client/",
     "dev": "clear && concurrently \"npm run server\"  \"npm run client\"",
-    "test": "NODE_ENV=test jest"
+    "test": "NODE_ENV=test jest --detectOpenHandles"
   },
   "keywords": [],
   "author": "",
