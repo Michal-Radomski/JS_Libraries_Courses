@@ -7,6 +7,9 @@ const client = createClient({
 });
 // console.log("client:", client);
 
+client.on("error", (err) => console.log("Redis Client Error", err));
+client.on("connect", () => console.log("Connected to Redis-Server"));
+
 client.connect();
 
 //- Overwrite existing function - do wee need it???

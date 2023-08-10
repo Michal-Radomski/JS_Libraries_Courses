@@ -107,6 +107,7 @@ server.listen({ port: port }, () => {
 // // console.log({ client });
 
 // client.on("error", (err: Error) => console.log("Redis Client Error:", err));
+// client.on("connect", () => console.log("Connected to Redis-Server"));
 
 // const colorValues = {
 //   spanish: {
