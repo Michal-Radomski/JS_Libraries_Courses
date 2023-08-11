@@ -6,7 +6,7 @@ import { sessionFactory } from "../factories/sessionFactory";
 import { userFactory } from "../factories/userFactory";
 import { IUserModel } from "../../models/UserModel";
 
-export default class CustomPage {
+class CustomPage {
   page: PageInterface;
 
   //* V1
@@ -76,5 +76,4 @@ export default class CustomPage {
   }
 }
 
-//* export default class CustomPage above!
-// export default CustomPage;
+module.exports = CustomPage;
