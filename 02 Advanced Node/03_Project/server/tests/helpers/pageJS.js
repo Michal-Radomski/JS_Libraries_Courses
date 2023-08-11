@@ -8,20 +8,6 @@ class CustomPage {
     this.page = page;
   }
 
-  async login() {
-    const user = await userFactory();
-    const { sessionString, cookieSig } = sessionFactory(user);
-
-    await this.page.setCookie({ name: "session", value: sessionString });
-    await this.page.setCookie({ name: "session.sig", value: cookieSig });
-
-    // Refresh page
-    await this.page.goto("http://localhost:3000");
-
-    // Wait until the element appears
-    await this.page.waitForSelector('a[href="/auth/logout"]');
-  }
-
   static async build() {
     const browser = await puppeteer.launch({
       headless: false,
@@ -51,6 +37,22 @@ class CustomPage {
         return value;
       },
     });
+  }
+
+  async login() {
+    const user = await userFactory();
+    const { sessionString, cookieSig } = sessionFactory(user);
+
+    await this.page.setCookie({ name: "session", value: sessionString });
+    await this.page.setCookie({ name: "session.sig", value: cookieSig });
+    // Refresh page
+    await this.page.goto("http://localhost:3000");
+    // Wait until the element appears
+    await this.page.waitForSelector('a[href="/auth/logout"]');
+  }
+
+  async getContentsOf(selector) {
+    return this.page.$eval(selector, (el) => el.innerHTML);
   }
 }
 

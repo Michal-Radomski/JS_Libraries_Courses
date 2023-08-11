@@ -1,5 +1,6 @@
 //* Importing CustomPage as Page!
 const Page = require("./helpers/pageJS");
+// console.log("Page:", Page);
 
 // test("Adds two numbers", () => {
 //   const sum = 1 + 2;
@@ -20,7 +21,8 @@ afterEach(async () => {
 });
 
 test("the header has the correct text", async () => {
-  const text = await page.$eval("a.brand-logo", (el: HTMLAnchorElement) => el.innerHTML);
+  // const text = await page.$eval("a.brand-logo", (el: HTMLAnchorElement) => el.innerHTML);
+  const text = await page.getContentsOf("a.brand-logo");
   // console.log("text:", text);
   expect(text).toEqual("Blogster");
 });
@@ -35,7 +37,8 @@ test("clicking login starts oauth flow", async () => {
 //* test.only("when signed in, shows logout button", async () => { //* run this test only!
 test("when signed in, shows logout button", async () => {
   await page.login();
-  const text = await page.$eval('a[href="/auth/logout"]', (el: HTMLAnchorElement) => el.innerHTML);
+  // const text = await page.$eval('a[href="/auth/logout"]', (el: HTMLAnchorElement) => el.innerHTML);
+  const text = await page.getContentsOf('a[href="/auth/logout"]');
   expect(text).toEqual("Logout");
 });
 
