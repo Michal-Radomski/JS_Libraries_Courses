@@ -13,6 +13,8 @@ mongoose
 
 afterAll(async () => {
   await mongoose.disconnect();
+  //* Is it necessary?
+  // await mongoose.connection.close();
 });
 
 export const userFactory = () => {
