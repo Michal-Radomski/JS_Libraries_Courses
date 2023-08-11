@@ -13,7 +13,9 @@ afterEach(async () => {
   await customPage.close();
 });
 
-test("Adds two numbers", () => {
-  const sum = 1 + 2;
-  expect(sum).toEqual(3);
+test("when logged in, can see blog create form", async () => {
+  await customPage.login();
+  await customPage.click("a.btn-floating");
+  const label = await customPage.getContentsOf("form label");
+  expect(label).toEqual("Blog Title");
 });

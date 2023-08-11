@@ -46,7 +46,8 @@ class CustomPage {
     await this.page.setCookie({ name: "session", value: sessionString });
     await this.page.setCookie({ name: "session.sig", value: cookieSig });
     // Refresh page
-    await this.page.goto("http://localhost:3000");
+    // await this.page.goto("http://localhost:3000");
+    await this.page.goto("http://localhost:3000/blogs");
     // Wait until the element appears
     await this.page.waitForSelector('a[href="/auth/logout"]');
   }
