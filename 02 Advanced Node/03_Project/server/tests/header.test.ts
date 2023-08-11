@@ -1,18 +1,17 @@
 //* Importing CustomPage as Page!
-// import Page from "./helpers/page";
-const Page = require("./helpers/page");
+const Page = require("./helpers/pageJS");
 
 // test("Adds two numbers", () => {
 //   const sum = 1 + 2;
 //   expect(sum).toEqual(3);
 // });
 
-let page: any;
+let page: typeof Page;
 // console.log({ page });
 
 beforeEach(async () => {
   page = await Page.build();
-  console.log({ page });
+  // console.log({ page });
   await page.goto("http://localhost:3000");
 });
 
@@ -34,7 +33,7 @@ test("clicking login starts oauth flow", async () => {
 });
 
 //* test.only("when signed in, shows logout button", async () => { //* run this test only!
-test.only("when signed in, shows logout button", async () => {
+test("when signed in, shows logout button", async () => {
   await page.login();
   const text = await page.$eval('a[href="/auth/logout"]', (el: HTMLAnchorElement) => el.innerHTML);
   expect(text).toEqual("Logout");

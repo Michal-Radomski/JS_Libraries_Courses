@@ -1,3 +1,5 @@
+//* It doesn't wok!
+
 import puppeteer, { Browser as BrowserInterface, Page as PageInterface } from "puppeteer";
 
 import { sessionFactory } from "../factories/sessionFactory";
