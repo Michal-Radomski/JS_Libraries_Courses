@@ -1,0 +1,16 @@
+color: "red"
+cup: "red"
+glass: "green"
+number: 30
+five: 5
+languagesIKnow:
+  english: "very well"
+  spanish: "kind of"
+  german: "a little"
+countToFive:
+  - "one"
+  - "two"
+  - "three"
+  - "6"
+  - "7"
+  - "8"
