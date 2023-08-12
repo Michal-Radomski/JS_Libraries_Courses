@@ -38,7 +38,7 @@ describe("When logged in, we", () => {
   //   expect(label).toEqual("Blog Title");
   // });
 
-  describe("And using invalid inputs", () => {
+  describe("and using invalid inputs", () => {
     beforeEach(async () => {
       await customPage.click("form button");
     });
@@ -49,6 +49,19 @@ describe("When logged in, we", () => {
 
       expect(titleError).toEqual("You must provide a value");
       expect(contentError).toEqual("You must provide a value");
+    });
+  });
+
+  describe("and using valid inputs", () => {
+    beforeEach(async () => {
+      await customPage.type(".title input", "My Title");
+      await customPage.type(".content input", "My Content");
+      await customPage.click("form button");
+    });
+
+    test("Submitting takes user to review screen", async () => {
+      const text = await customPage.getContentsOf("h5");
+      expect(text).toEqual("Please confirm your entries");
     });
   });
 });
