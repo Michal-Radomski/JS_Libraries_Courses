@@ -78,35 +78,59 @@ describe("When logged in, we", () => {
 });
 
 describe("user is not logged in", () => {
-  test("user can't create blog post", async () => {
-    const result = await customPage.evaluate(() => {
-      return fetch("/api/blogs", {
-        method: "POST",
-        credentials: "same-origin",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({
-          title: "My title3",
-          content: "My Content3",
-        }),
-      }).then((res: Response) => res.json());
-    });
-    // console.log("result:", result);
-    expect(result).toEqual({ error: "You must log in!" });
-  });
+  //* V1
+  // test("user can't create blog post", async () => {
+  //   const result = await customPage.evaluate(() => {
+  //     return fetch("/api/blogs", {
+  //       method: "POST",
+  //       credentials: "same-origin",
+  //       headers: {
+  //         "Content-Type": "application/json",
+  //       },
+  //       body: JSON.stringify({
+  //         title: "My title3",
+  //         content: "My Content3",
+  //       }),
+  //     }).then((res: Response) => res.json());
+  //   });
+  //   // console.log("result:", result);
+  //   expect(result).toEqual({ error: "You must log in!" });
+  // });
 
-  test("user can't get a list of posts", async () => {
-    const result = await customPage.evaluate(() => {
-      return fetch("/api/blogs", {
-        method: "GET",
-        credentials: "same-origin",
-        headers: {
-          "Content-Type": "application/json",
-        },
-      }).then((res: Response) => res.json());
-    });
-    // console.log("result:", result);
-    expect(result).toEqual({ error: "You must log in!" });
+  // test("user can't get a list of posts", async () => {
+  //   const result = await customPage.evaluate(() => {
+  //     return fetch("/api/blogs", {
+  //       method: "GET",
+  //       credentials: "same-origin",
+  //       headers: {
+  //         "Content-Type": "application/json",
+  //       },
+  //     }).then((res: Response) => res.json());
+  //   });
+  //   // console.log("result:", result);
+  //   expect(result).toEqual({ error: "You must log in!" });
+  // });
+
+  //* V2 -> shorter version!
+  const actions = [
+    {
+      method: "get",
+      path: "/api/blogs",
+    },
+    {
+      method: "post",
+      path: "/api/blogs",
+      data: {
+        title: "Title 4",
+        content: "Content 4",
+      },
+    },
+  ];
+
+  test("blog related actions are prohibited", async () => {
+    const results = await customPage.execRequests(actions);
+    for (let result of results) {
+      expect(result).toEqual({ error: "You must log in!" });
+    }
   });
 });
