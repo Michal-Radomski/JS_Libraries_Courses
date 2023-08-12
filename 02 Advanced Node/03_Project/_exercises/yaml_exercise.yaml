@@ -1,4 +1,4 @@
-# YAML exercise
+# 1. -> YAML exercise
 color: "red"
 cup: "red"
 glass: "green"
@@ -16,7 +16,30 @@ countToFive:
   - "7"
   - "8"
 
-# Github actions file: .github/workflows/deploy.yaml
+# 2. -> .travis.yml
+language: node_js
+node_js:
+  - "20"
+dist: focal
+services:
+  - mongodb
+  - redis-server
+env:
+  - NODE_ENV=ci PORT=3000
+cache:
+  directories:
+    - node_modules
+    # Is it correct?
+    - ../client/node_modules
+install:
+  - npm install
+  - npm run build
+script:
+  - nohup npm run start &
+  - sleep 3
+  - npm run test
+
+# 3. -> Github actions file: .github/workflows/deploy.yaml
 name: deploy
 
 on:
