@@ -63,5 +63,16 @@ describe("When logged in, we", () => {
       const text = await customPage.getContentsOf("h5");
       expect(text).toEqual("Please confirm your entries");
     });
+
+    test("Submitting then saving adds blog to index page", async () => {
+      await customPage.click("button.green");
+      await customPage.waitForSelector(".card");
+
+      const title = await customPage.getContentsOf(".card-title");
+      const content = await customPage.getContentsOf("p");
+
+      expect(title).toEqual("My Title");
+      expect(content).toEqual("My Content");
+    });
   });
 });
