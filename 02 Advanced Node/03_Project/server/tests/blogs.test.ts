@@ -14,22 +14,41 @@ afterEach(async () => {
 });
 
 //* Test 4
-// test("when logged in, can see blog create form", async () => {
+// test("when logged in, we can see blog create form", async () => {
 //   await customPage.login();
 //   await customPage.click("a.btn-floating");
 //   const label = await customPage.getContentsOf("form label");
 //   expect(label).toEqual("Blog Title");
 // });
 
-describe("When logged in", () => {
+describe("When logged in, we", () => {
   beforeEach(async () => {
     await customPage.login();
     await customPage.click("a.btn-floating");
   });
 
   //* Test 4 moved here
-  test(" can see blog create form", async () => {
+  test("can see blog create form", async () => {
     const label = await customPage.getContentsOf("form label");
     expect(label).toEqual("Blog Title");
+  });
+  //* Test 4 -> V2
+  // it("shows a  blog create form", async () => {
+  //   const label = await customPage.getContentsOf("form label");
+  //   expect(label).toEqual("Blog Title");
+  // });
+
+  describe("And using invalid inputs", () => {
+    beforeEach(async () => {
+      await customPage.click("form button");
+    });
+
+    test("the form shows an error message", async () => {
+      const titleError = await customPage.getContentsOf(".title .red-text");
+      const contentError = await customPage.getContentsOf(".content .red-text");
+
+      expect(titleError).toEqual("You must provide a value");
+      expect(contentError).toEqual("You must provide a value");
+    });
   });
 });
