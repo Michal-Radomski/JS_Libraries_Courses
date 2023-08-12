@@ -1,5 +1,5 @@
 //* Importing CustomPage as Page!
-const Page = require("./helpers/pageJS");
+const Page = require("./helpers/pageTS");
 // console.log("Page:", Page);
 
 // test("Adds two numbers", () => {

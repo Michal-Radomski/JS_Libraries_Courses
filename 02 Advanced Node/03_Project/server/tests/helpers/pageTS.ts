@@ -1,10 +1,11 @@
-const puppeteer = require("puppeteer");
+import puppeteer, { Page as PageInterface } from "puppeteer";
 
 const { sessionFactory } = require("../factories/sessionFactory");
 const { userFactory } = require("../factories/userFactory");
 
 class CustomPage {
-  constructor(page) {
+  page: PageInterface;
+  constructor(page: PageInterface) {
     this.page = page;
   }
 
@@ -17,20 +18,20 @@ class CustomPage {
 
     return new Proxy(customPage, {
       get: (target, property, receiver) => {
-        if (target[property]) {
-          return target[property];
+        if ((target as any)[property]) {
+          return (target as any)[property];
         }
 
-        let value = browser[property];
+        let value = (browser as any)[property];
         if (value instanceof Function) {
-          return function (...args) {
+          return function (this: any, ...args: any) {
             return value.apply(this === receiver ? browser : this, args);
           };
         }
 
-        value = page[property];
+        value = (page as any)[property];
         if (value instanceof Function) {
-          return function (...args) {
+          return function (this: any, ...args: any) {
             return value.apply(this === receiver ? page : this, args);
           };
         }
@@ -52,7 +53,7 @@ class CustomPage {
     await this.page.waitForSelector('a[href="/auth/logout"]');
   }
 
-  async getContentsOf(selector) {
+  async getContentsOf(selector: string) {
     return this.page.$eval(selector, (el) => el.innerHTML);
   }
 }

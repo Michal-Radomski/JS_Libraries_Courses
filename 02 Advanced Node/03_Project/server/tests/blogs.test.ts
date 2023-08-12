@@ -1,4 +1,4 @@
-const CustomPage = require("./helpers/pageJS");
+const CustomPage = require("./helpers/pageTS");
 
 let customPage: typeof CustomPage;
 // console.log({ page });
