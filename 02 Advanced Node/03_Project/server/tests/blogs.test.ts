@@ -95,4 +95,18 @@ describe("user is not logged in", () => {
     // console.log("result:", result);
     expect(result).toEqual({ error: "You must log in!" });
   });
+
+  test("user can't get a list of posts", async () => {
+    const result = await customPage.evaluate(() => {
+      return fetch("/api/blogs", {
+        method: "GET",
+        credentials: "same-origin",
+        headers: {
+          "Content-Type": "application/json",
+        },
+      }).then((res: Response) => res.json());
+    });
+    // console.log("result:", result);
+    expect(result).toEqual({ error: "You must log in!" });
+  });
 });

@@ -1,5 +1,5 @@
 () => {
-  fetch("/api/blogs", {
+  return fetch("/api/blogs", {
     method: "POST",
     credentials: "same-origin",
     headers: {
@@ -13,7 +13,7 @@
 };
 
 () => {
-  fetch("/api/blogs", {
+  return fetch("/api/blogs", {
     method: "GET",
     credentials: "same-origin",
     headers: {
