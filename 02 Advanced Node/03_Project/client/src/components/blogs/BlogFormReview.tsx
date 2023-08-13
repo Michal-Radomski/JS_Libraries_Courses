@@ -24,6 +24,8 @@ class BlogFormReview extends React.Component<
     });
   }
 
+  state = { file: null };
+
   renderButtons() {
     const { onCancel } = this.props;
 
@@ -42,10 +44,13 @@ class BlogFormReview extends React.Component<
 
   onSubmit(event: React.FormEvent<HTMLFormElement>) {
     event.preventDefault();
-
     const { submitBlog, history, formValues } = this.props;
-
     submitBlog(formValues, history);
+  }
+
+  onFileChange(event: React.FormEvent<HTMLInputElement>) {
+    // console.log("(event.target as HTMLInputElement).files!:", (event.target as HTMLInputElement).files!);
+    this.setState({ file: (event.target as HTMLInputElement).files![0] });
   }
 
   render() {
@@ -54,6 +59,10 @@ class BlogFormReview extends React.Component<
         <h5>Please confirm your entries</h5>
         {this.renderFields()}
 
+        <h5>Add An Image</h5>
+        <input onChange={this.onFileChange.bind(this)} type="file" accept="image/*" />
+        <br />
+        <br />
         {this.renderButtons()}
       </form>
     );
