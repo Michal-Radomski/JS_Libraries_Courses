@@ -45,7 +45,7 @@ class BlogFormReview extends React.Component<
   onSubmit(event: React.FormEvent<HTMLFormElement>) {
     event.preventDefault();
     const { submitBlog, history, formValues } = this.props;
-    submitBlog(formValues, history);
+    submitBlog(formValues, this.state.file, history);
   }
 
   onFileChange(event: React.FormEvent<HTMLInputElement>) {
@@ -60,7 +60,8 @@ class BlogFormReview extends React.Component<
         {this.renderFields()}
 
         <h5>Add An Image</h5>
-        <input onChange={this.onFileChange.bind(this)} type="file" accept="image/*" />
+        <input onChange={this.onFileChange.bind(this)} type="file" accept="image/*" multiple={false} />
+
         <br />
         <br />
         {this.renderButtons()}
