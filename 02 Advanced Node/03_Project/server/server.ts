@@ -21,6 +21,7 @@ const keys = require("./config/keys");
 // Import routes
 import authRouter from "./routes/authRouter";
 import blogRouter from "./routes/blogRouter";
+import uploadRouter from "./routes/uploadRouter";
 
 // Passport config
 require("./services/passportConfig");
@@ -56,6 +57,7 @@ app.use(passport.session());
 //Route middleware
 app.use("", authRouter);
 app.use("", blogRouter);
+app.use("", uploadRouter);
 
 // Mongo DB
 // mongoose.Promise = global.Promise; //* Needed for mongoose v4!
