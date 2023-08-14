@@ -28,3 +28,4 @@ dist/
 Temp/
 0 Diagrams/
 .github/
+AWS_S3_config.json
