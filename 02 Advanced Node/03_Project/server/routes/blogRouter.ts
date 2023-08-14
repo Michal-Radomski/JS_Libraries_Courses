@@ -31,9 +31,11 @@ blogRouter.get("/api/blogs", requireLogin, cleanCache, async (req: CustomRequest
 }) as express.Router;
 
 blogRouter.post("/api/blogs", requireLogin, async (req: CustomRequest, res: Response): Promise<void> => {
-  const { title, content } = req.body;
+  const { title, content, imageUrl } = req.body;
+  // console.log({ imageUrl });
 
   const blog: IBlogModel = new Blog({
+    imageUrl,
     title,
     content,
     _user: req!.user!.id,

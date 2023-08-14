@@ -8,6 +8,7 @@ type AppThunk<ReturnType = void> = ThunkAction<ReturnType, RootState, unknown, A
 type NextFunction = typeof store.nextFunction;
 
 interface Blog {
+  imageUrl: string;
   title: string;
   content: string;
   _id: string;

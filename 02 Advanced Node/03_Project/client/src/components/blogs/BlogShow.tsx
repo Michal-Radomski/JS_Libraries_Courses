@@ -9,6 +9,13 @@ class BlogShow extends React.Component<
 > {
   componentDidMount() {
     this.props.fetchBlog(this.props.match.params._id);
+    // console.log(process.env.REACT_APP_amazon_AWS_S3_bucketName);
+  }
+
+  renderImage() {
+    if (this.props.blog.imageUrl) {
+      return <img alt="Blog pic" src={`${process.env.REACT_APP_amazon_AWS_S3_bucketName}` + this.props.blog.imageUrl} />;
+    }
   }
 
   render() {
@@ -22,6 +29,7 @@ class BlogShow extends React.Component<
       <div>
         <h3>{title}</h3>
         <p>{content}</p>
+        {this.renderImage()}
       </div>
     );
   }

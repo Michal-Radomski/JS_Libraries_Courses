@@ -28,13 +28,13 @@ export interface CustomRequest extends Request {
 uploadRouter.get("/api/upload", requireLogin, async (req: CustomRequest, res: Response) => {
   console.log("req.ip:", req.ip);
 
-  const key = `${req.user!.id!}/${uuidv4()}.jpeg`;
+  const key = `${req.user!.id!}/${uuidv4()}.jpgg`;
   // console.log("key:", key);
 
   const command = new PutObjectCommand({
     Bucket: process.env.AWS_Bucket_Name,
     Key: key,
-    ContentType: "image/jpeg",
+    ContentType: "image/jpg",
   });
   // console.log("command:", command);
 

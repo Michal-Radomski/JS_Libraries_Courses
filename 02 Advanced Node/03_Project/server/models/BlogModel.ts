@@ -5,6 +5,7 @@ export interface IBlogModel extends Document {
   content: String;
   createdAt: Date;
   _user: Schema.Types.ObjectId;
+  imageUrl: String;
 }
 
 const blogSchema: Schema = new mongoose.Schema(
@@ -13,6 +14,7 @@ const blogSchema: Schema = new mongoose.Schema(
     content: { type: String, required: true, minlength: [3, "Min displayName length is 3 characters"] },
     createdAt: { type: Date, default: Date.now },
     _user: { type: Schema.Types.ObjectId, ref: "User" },
+    imageUrl: { type: String, required: false },
   },
   { timestamps: true }
 );

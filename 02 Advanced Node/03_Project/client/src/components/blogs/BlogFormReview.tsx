@@ -60,7 +60,7 @@ class BlogFormReview extends React.Component<
         {this.renderFields()}
 
         <h5>Add An Image</h5>
-        <input onChange={this.onFileChange.bind(this)} type="file" accept="image/jpeg" multiple={false} />
+        <input onChange={this.onFileChange.bind(this)} type="file" accept="image/jpg" multiple={false} />
 
         <br />
         <br />
