@@ -28,7 +28,7 @@ export interface CustomRequest extends Request {
 uploadRouter.get("/api/upload", requireLogin, async (req: CustomRequest, res: Response) => {
   console.log("req.ip:", req.ip);
 
-  const key = `${req.user!.id!}/${uuidv4()}.jpgg`;
+  const key = `${req.user!.id!}/${uuidv4()}.jpg`;
   // console.log("key:", key);
 
   const command = new PutObjectCommand({
