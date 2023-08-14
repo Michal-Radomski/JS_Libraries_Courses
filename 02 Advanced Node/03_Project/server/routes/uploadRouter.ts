@@ -29,19 +29,19 @@ uploadRouter.get("/api/upload", requireLogin, async (req: CustomRequest, res: Re
   console.log("req.ip:", req.ip);
 
   const key = `${req.user!.id!}/${uuidv4()}.jpeg`;
-  console.log("key:", key);
+  // console.log("key:", key);
 
   const command = new PutObjectCommand({
     Bucket: process.env.AWS_Bucket_Name,
     Key: key,
     ContentType: "image/jpeg",
   });
-  console.log("command:", command);
+  // console.log("command:", command);
 
   const url = await getSignedUrl(client, command, { expiresIn: 180 });
-  console.log({ url });
+  // console.log({ url });
 
-  await res.send(url);
+  await res.status(200).send({ url, key });
 }) as Router;
 
 export default uploadRouter;

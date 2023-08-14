@@ -14,12 +14,25 @@ export const handleToken = (token: string) => async (dispatch: Dispatch) => {
   dispatch({ type: FETCH_USER, payload: res.data });
 };
 
-export const submitBlog = (values: { label: string; name: string }, history: string[]) => async (dispatch: Dispatch) => {
-  const res = await axios.post("/api/blogs", values);
+export const submitBlog =
+  (values: { label: string; name: string }, file: File, history: string[]) => async (dispatch: Dispatch) => {
+    const uploadConfig = await axios.get("/api/upload");
+    console.log({ uploadConfig });
 
-  history.push("/blogs");
-  dispatch({ type: FETCH_BLOG, payload: res.data });
-};
+    await axios.put(uploadConfig.data.url, file, {
+      headers: {
+        "Content-Type": file.type,
+      },
+    });
+
+    const res = await axios.post("/api/blogs", {
+      ...values,
+      imageUrl: uploadConfig.data.key,
+    });
+
+    history.push("/blogs");
+    dispatch({ type: FETCH_BLOG, payload: res.data });
+  };
 
 export const fetchBlogs = () => async (dispatch: Dispatch) => {
   const res = await axios.get("/api/blogs");
