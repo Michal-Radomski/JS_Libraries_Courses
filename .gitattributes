@@ -1,2 +1,4 @@
 *.yaml linguist-language=yaml
+*.yaml linguist-language=true
 *.yml linguist-language=yaml
+*.yml linguist-language=true
