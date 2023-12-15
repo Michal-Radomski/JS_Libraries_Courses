@@ -9,7 +9,7 @@ const Wrapper = styled.div`
   }
   .underline {
     width: 5rem;
-    height: 0.25rem;
+    height: 0.5rem;
     background: var(--primary);
     margin: 0 auto;
   }
@@ -21,10 +21,11 @@ const Wrapper = styled.div`
   }
 `;
 
-const ComplexTitle = ({ title }: { title: string }): JSX.Element => {
+const ComplexTitle = ({ title, className }: { title: string; className?: string }): JSX.Element => {
+  // console.log("className:", className);
   return (
     <React.Fragment>
-      <Wrapper>
+      <Wrapper className={className}>
         <h1>{title}</h1>
         <div className="underline"></div>
         <div className="box">Box</div>
@@ -33,4 +34,7 @@ const ComplexTitle = ({ title }: { title: string }): JSX.Element => {
   );
 };
 
-export default ComplexTitle;
+const ComplexTitleWrapper = styled(ComplexTitle)`
+  border: 5px solid lime;
+`;
+export default ComplexTitleWrapper;
