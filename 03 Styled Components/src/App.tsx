@@ -2,6 +2,8 @@ import React from "react";
 import styled from "styled-components";
 import { Button } from "@material-ui/core";
 
+import ComplexTitle from "./components/ComplexTitle";
+
 const ButtonSC = styled.button({ color: "red", backgroundColor: "lightyellow" });
 const Button2SC = styled.button<{ $special?: string }>`
   color: blue;
@@ -36,6 +38,7 @@ function App(): JSX.Element {
           StyledButton
         </StyledButton>
       </div>
+      <ComplexTitle title="App Title" />
     </React.Fragment>
   );
 }
