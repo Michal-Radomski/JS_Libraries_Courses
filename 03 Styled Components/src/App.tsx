@@ -1,10 +1,21 @@
 import React from "react";
 import styled from "styled-components";
+import { Button } from "@material-ui/core";
 
-const Button = styled.button({ color: "red", backgroundColor: "yellow" });
-const Button2 = styled.button`
+const ButtonSC = styled.button({ color: "red", backgroundColor: "lightyellow" });
+const Button2SC = styled.button<{ $special?: string }>`
   color: blue;
-  background-color: yellow;
+  color: ${(props) => props.$special};
+  background-color: lightyellow;
+`;
+
+const Button3SC = styled(Button2SC)`
+  background-color: orange;
+`;
+
+const StyledButton = styled(Button)`
+  text-transform: capitalize !important;
+  background-color: lime !important;
 `;
 
 function App(): JSX.Element {
@@ -12,8 +23,18 @@ function App(): JSX.Element {
     <React.Fragment>
       <div style={{ padding: "2rem" }}>
         <h1>Styled Components </h1>
-        <Button>Button</Button>
-        <Button2>Button2</Button2>
+        <ButtonSC>ButtonSC</ButtonSC>
+        <Button2SC>Button2SC</Button2SC>
+        <Button2SC $special="green">Button2SC Green</Button2SC>
+        <Button2SC $special="deeppink">Button2SC DeepPink</Button2SC>
+        <Button3SC>Button3SC</Button3SC>
+
+        <Button variant="contained" color="secondary">
+          Button
+        </Button>
+        <StyledButton variant="contained" color="secondary">
+          StyledButton
+        </StyledButton>
       </div>
     </React.Fragment>
   );
