@@ -3,7 +3,7 @@ import styled from "styled-components";
 import { Button } from "@material-ui/core";
 
 // import ComplexTitle from "./components/ComplexTitle";
-import ComplexTitleWrapper from "./components/ComplexTitle";
+import ComplexTitleWrapper from "./components/ComplexTitleWrapper";
 
 const ButtonSC = styled.button({ color: "red", backgroundColor: "lightyellow" });
 const Button2SC = styled.button<{ $special?: string }>`

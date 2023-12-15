@@ -25,7 +25,7 @@ const ComplexTitle = ({ title, className }: { title: string; className?: string 
   // console.log("className:", className);
   return (
     <React.Fragment>
-      <Wrapper className={className}>
+      <Wrapper className={`${className} bg-grey`}>
         <h1>{title}</h1>
         <div className="underline"></div>
         <div className="box">Box</div>
