@@ -4,6 +4,7 @@ import { Button } from "@material-ui/core";
 
 // import ComplexTitle from "./components/ComplexTitle";
 import ComplexTitleWrapper from "./components/ComplexTitleWrapper";
+import Card from "./components/Card";
 
 const ButtonSC = styled.button({ color: "red", backgroundColor: "lightyellow" });
 const Button2SC = styled.button<{ $special?: string }>`
@@ -40,6 +41,9 @@ function App(): JSX.Element {
         </StyledButton>
       </div>
       <ComplexTitleWrapper title="App Title2" />
+      <br />
+      <br />
+      <Card />
     </React.Fragment>
   );
 }
