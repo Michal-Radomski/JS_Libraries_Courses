@@ -1,6 +1,6 @@
 import React from "react";
 import styled, { ThemeProvider } from "styled-components";
-import { Button } from "@material-ui/core";
+import { Button } from "@mui/material";
 
 // import ComplexTitle from "./components/ComplexTitle";
 import ComplexTitleWrapper from "./components/ComplexTitleWrapper";
@@ -60,7 +60,7 @@ function App(): JSX.Element {
         </Button3SC>
 
         <Button variant="contained" color="secondary">
-          Button
+          MUI Button
         </Button>
         <StyledButton variant="contained" color="secondary">
           StyledButton
