@@ -5,7 +5,9 @@ const fruits = ["orange", "apple", "banana", "peach"];
 
 const Item = styled.li<{ $odd: boolean }>`
   list-style-type: none;
+
   ${({ $odd }) => {
+    // console.log("$odd:", $odd);
     return $odd
       ? css`
           color: white;

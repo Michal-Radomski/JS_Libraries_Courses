@@ -10,6 +10,7 @@ import Loader from "./components/Loader";
 import { DefaultButton, HipsterButton } from "./components/Buttons";
 import Form from "./components/Form";
 import List from "./components/List";
+import Products from "./components/Products";
 
 const ButtonSC = styled.button({ color: "red", backgroundColor: "lightyellow" });
 const Button2SC = styled.button<{ $special?: string }>`
@@ -52,6 +53,7 @@ function App(): JSX.Element {
   return (
     <React.Fragment>
       <GlobalStyles />
+      <Products />
       <List />
       <Form />
       <DefaultButton $large={true}>Default Button</DefaultButton>
