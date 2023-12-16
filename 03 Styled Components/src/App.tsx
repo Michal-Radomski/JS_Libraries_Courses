@@ -17,6 +17,7 @@ const Button2SC = styled.button<{ $special?: string }>`
 
 const Button3SC = styled(Button2SC)`
   background-color: orange;
+  text-decoration: none;
 `;
 
 const StyledButton = styled(Button)`
@@ -54,7 +55,9 @@ function App(): JSX.Element {
         <Button2SC>Button2SC</Button2SC>
         <Button2SC $special="green">Button2SC Green</Button2SC>
         <Button2SC $special="deeppink">Button2SC DeepPink</Button2SC>
-        <Button3SC>Button3SC</Button3SC>
+        <Button3SC as="a" href="https://www.google.com" target="_blank">
+          Button3SC - Link
+        </Button3SC>
 
         <Button variant="contained" color="secondary">
           Button

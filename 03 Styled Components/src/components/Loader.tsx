@@ -6,8 +6,8 @@ to{
  transform:rotate(360deg);
 }
 `;
+
 const Loading = styled.div`
-  width: 100%;
   margin: 1rem auto;
   width: 6rem;
   height: 6rem;
