@@ -1,11 +1,12 @@
 import React from "react";
-import styled from "styled-components";
+import styled, { ThemeProvider } from "styled-components";
 import { Button } from "@material-ui/core";
 
 // import ComplexTitle from "./components/ComplexTitle";
 import ComplexTitleWrapper from "./components/ComplexTitleWrapper";
 import Card from "./components/Card";
 import GlobalStyles from "./GlobalStyles";
+import Loader from "./components/Loader";
 
 const ButtonSC = styled.button({ color: "red", backgroundColor: "lightyellow" });
 const Button2SC = styled.button<{ $special?: string }>`
@@ -23,7 +24,27 @@ const StyledButton = styled(Button)`
   background-color: lime !important;
 `;
 
+const BaseTheme = {
+  color: "#444",
+  background: "#ddd",
+};
+const DarkTheme = {
+  background: "#444",
+  color: "#ddd",
+};
+
+const Container = styled.div`
+  padding: 2rem;
+  width: 100%;
+  min-height: 5rem;
+  text-align: center;
+  color: ${(props) => props.theme.color};
+  background: ${(props) => props.theme.background};
+`;
+
 function App(): JSX.Element {
+  const [baseTheme, setBaseTheme] = React.useState<boolean>(true);
+
   return (
     <React.Fragment>
       <GlobalStyles />
@@ -46,6 +67,13 @@ function App(): JSX.Element {
       <br />
       <br />
       <Card />
+      <ThemeProvider theme={baseTheme ? BaseTheme : DarkTheme}>
+        <Container>
+          <h1>Hello World!</h1>
+          <button onClick={() => setBaseTheme(!baseTheme)}>Change Theme</button>
+        </Container>
+      </ThemeProvider>
+      <Loader />
     </React.Fragment>
   );
 }
