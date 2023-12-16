@@ -2,7 +2,7 @@ import React from "react";
 import styled, { css } from "styled-components";
 
 const Button = styled.button.attrs((props) => {
-  console.log(1, "props:", props);
+  // console.log(1, "props:", props);
   return { type: props.type || "button" };
 })`
   background: var(--primary);
@@ -24,7 +24,7 @@ const Button = styled.button.attrs((props) => {
 `;
 
 const BasicInput = styled.input.attrs((props) => {
-  console.log(2, "props:", props);
+  // console.log(2, "props:", props);
   return {
     type: props.type || "text",
     placeholder: props.placeholder || "please enter value",
@@ -41,21 +41,15 @@ const BasicInput = styled.input.attrs((props) => {
 const Form = (): JSX.Element => {
   return (
     <React.Fragment>
-      <div>
+      <div style={{ width: "80%", margin: "0 auto" }}>
         <h2>some random stuff</h2>
+        {/* type="button"  unnecessary */}
         <Button>click me</Button>
-        <form
-        // css={`
-        //   width: 300px;
-        //   background: #fff;
-        //   padding: 2rem;
-        //   margin-top: 1rem;
-        // `}
-        >
+        <form>
           <h2>Form</h2>
           <BasicInput />
           <BasicInput />
-          <BasicInput />
+          <BasicInput type="password" placeholder="enter password" />
           <BasicInput type="email" placeholder="enter email" />
           <Button type="submit">submit here</Button>
         </form>
