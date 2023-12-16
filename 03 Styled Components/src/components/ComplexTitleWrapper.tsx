@@ -1,6 +1,8 @@
 import React from "react";
 import styled from "styled-components";
 
+import { colors, setupBorder } from "../utils";
+
 const Wrapper = styled.div`
   h1 {
     text-transform: capitalize;
@@ -10,12 +12,14 @@ const Wrapper = styled.div`
   .underline {
     width: 5rem;
     height: 0.5rem;
-    background: var(--primary);
+    /* background: var(--primary); */
+    background: ${colors.primary};
     margin: 0 auto;
   }
   .box {
     height: auto;
-    border: var(--mainBorder);
+    /* border: var(--mainBorder); */
+    border: ${setupBorder({ width: 5, type: "solid", color: "deeppink" })};
     font-weight: bold;
     padding: 1rem;
   }
