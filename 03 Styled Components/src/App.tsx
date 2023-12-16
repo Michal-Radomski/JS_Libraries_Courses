@@ -5,6 +5,7 @@ import { Button } from "@material-ui/core";
 // import ComplexTitle from "./components/ComplexTitle";
 import ComplexTitleWrapper from "./components/ComplexTitleWrapper";
 import Card from "./components/Card";
+import GlobalStyles from "./GlobalStyles";
 
 const ButtonSC = styled.button({ color: "red", backgroundColor: "lightyellow" });
 const Button2SC = styled.button<{ $special?: string }>`
@@ -25,6 +26,7 @@ const StyledButton = styled(Button)`
 function App(): JSX.Element {
   return (
     <React.Fragment>
+      <GlobalStyles />
       <div style={{ padding: "2rem" }}>
         <h1>Styled Components </h1>
         <ButtonSC>ButtonSC</ButtonSC>
