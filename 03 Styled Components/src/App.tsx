@@ -7,6 +7,7 @@ import ComplexTitleWrapper from "./components/ComplexTitleWrapper";
 import Card from "./components/Card";
 import GlobalStyles from "./GlobalStyles";
 import Loader from "./components/Loader";
+import { DefaultButton, HipsterButton } from "./components/Buttons";
 
 const ButtonSC = styled.button({ color: "red", backgroundColor: "lightyellow" });
 const Button2SC = styled.button<{ $special?: string }>`
@@ -49,6 +50,8 @@ function App(): JSX.Element {
   return (
     <React.Fragment>
       <GlobalStyles />
+      <DefaultButton $large={true}>Default Button</DefaultButton>
+      <HipsterButton $large={false}>Hipster Button</HipsterButton>
       <div style={{ padding: "2rem" }}>
         <h1>Styled Components </h1>
         <ButtonSC>ButtonSC</ButtonSC>
