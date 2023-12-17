@@ -1,5 +1,6 @@
 import React from "react";
 import { RouterProvider, createBrowserRouter } from "react-router-dom";
+// import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 
 import "./App.scss";
 import Home from "./components/Home";
@@ -7,6 +8,8 @@ import Example from "./components/Example";
 import AppLayout from "components/AppLayout";
 import Todos, { todosAction, todosDeleteAction, todosLoader } from "components/Todos";
 import TodoDetails, { todosDetailsLoader } from "components/TodoDetails";
+// import Todos from "components/Todos";
+// import TodoDetails from "components/TodoDetails";
 
 const router = createBrowserRouter([
   {
@@ -49,6 +52,7 @@ const App: React.FunctionComponent = (): JSX.Element => {
   return (
     <React.Fragment>
       <RouterProvider router={router} />
+      {/* <Router> */}
       <br />
       <br />
       Counter: {counter}
@@ -56,6 +60,7 @@ const App: React.FunctionComponent = (): JSX.Element => {
       PrevState: {prevCounter}
       <br />
       <button
+        className="btn btn-success"
         onClick={() =>
           setCounter((prev) => {
             setPrevCounter(prev);
@@ -63,10 +68,10 @@ const App: React.FunctionComponent = (): JSX.Element => {
           })
         }
       >
-        {" "}
-        +{" "}
+        {" + "}
       </button>
       <button
+        className="btn btn-primary"
         onClick={() =>
           setCounter((prev) => {
             setPrevCounter(prev);
@@ -74,9 +79,17 @@ const App: React.FunctionComponent = (): JSX.Element => {
           })
         }
       >
-        {" "}
-        -{" "}
+        {" - "}
       </button>
+      {/* <Routes>
+          <Route element={<AppLayout />}>
+            <Route path={"/"} element={<Home />} />
+            <Route path={"/example"} element={<Example />} />
+            <Route path={"/todos"} element={<Todos />} />
+            <Route path={"/todos/:id"} element={<TodoDetails />} />
+          </Route>
+        </Routes>
+      </Router> */}
     </React.Fragment>
   );
 };
