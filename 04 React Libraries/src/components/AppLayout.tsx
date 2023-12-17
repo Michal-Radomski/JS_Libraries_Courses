@@ -8,6 +8,7 @@ const AppLayout: React.FunctionComponent = (): JSX.Element => {
       <div style={{ display: "flex", gap: 16 }}>
         <NavLink to={"/"}>Home</NavLink>
         <NavLink to={"/example"}>Example</NavLink>
+        <NavLink to={"/todos"}>Todos</NavLink>
       </div>
       <Outlet />
       <footer>Footer</footer>

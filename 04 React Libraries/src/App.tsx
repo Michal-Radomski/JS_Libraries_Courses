@@ -5,6 +5,8 @@ import "./App.scss";
 import Home from "./components/Home";
 import Example from "./components/Example";
 import AppLayout from "components/AppLayout";
+import Todos, { todosLoader } from "components/Todos";
+import TodoDetails, { todosDetailsLoader } from "components/TodoDetails";
 
 const router = createBrowserRouter([
   {
@@ -18,23 +20,55 @@ const router = createBrowserRouter([
         path: "/example",
         element: <Example />,
       },
+      {
+        path: "/todos",
+        element: <Todos />,
+        loader: todosLoader,
+      },
+      {
+        path: "/todos/:id",
+        element: <TodoDetails />,
+        loader: todosDetailsLoader,
+      },
     ],
   },
 ]);
 
 const App: React.FunctionComponent = (): JSX.Element => {
   const [counter, setCounter] = React.useState<number>(0);
+  const [prevCounter, setPrevCounter] = React.useState<number>();
 
   return (
     <React.Fragment>
       <RouterProvider router={router} />
       <br />
       <br />
-      <br />
       Counter: {counter}
       <br />
-      <button onClick={() => setCounter((prev) => prev + 1)}> + </button>
-      <button onClick={() => setCounter((prev) => prev - 1)}> - </button>
+      PrevState: {prevCounter}
+      <br />
+      <button
+        onClick={() =>
+          setCounter((prev) => {
+            setPrevCounter(prev);
+            return prev + 1;
+          })
+        }
+      >
+        {" "}
+        +{" "}
+      </button>
+      <button
+        onClick={() =>
+          setCounter((prev) => {
+            setPrevCounter(prev);
+            return prev - 1;
+          })
+        }
+      >
+        {" "}
+        -{" "}
+      </button>
     </React.Fragment>
   );
 };
