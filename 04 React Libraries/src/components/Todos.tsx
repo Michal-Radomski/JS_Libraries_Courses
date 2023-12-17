@@ -29,7 +29,10 @@ const Todos = (): JSX.Element => {
         {todos.map((todo: Todo) => {
           return (
             <li key={todo.id} style={{ display: "flex" }}>
-              <Link to={`/todos/${todo.id}`}>{`${todo.id} ${todo.title}`}</Link>
+              {/* //* Link with more features */}
+              <Link to={`/todos/${todo.id}`} className="btn btn-link">{`${todo.id} ${todo.title}`}</Link>
+              {/* //* Normal link */}
+              {/* <NavLink to={`/todos/${todo.id}`}>{`${todo.id} ${todo.title}`}</NavLink> */}
               <Form method={"delete"} action={`/todos/${todo.id}/delete`}>
                 <input type={"submit"} value={"x"} className="btn btn-danger" />
               </Form>
