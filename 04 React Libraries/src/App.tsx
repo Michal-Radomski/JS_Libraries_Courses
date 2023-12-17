@@ -5,7 +5,7 @@ import "./App.scss";
 import Home from "./components/Home";
 import Example from "./components/Example";
 import AppLayout from "components/AppLayout";
-import Todos, { todosLoader } from "components/Todos";
+import Todos, { todosAction, todosDeleteAction, todosLoader } from "components/Todos";
 import TodoDetails, { todosDetailsLoader } from "components/TodoDetails";
 
 const router = createBrowserRouter([
@@ -24,6 +24,14 @@ const router = createBrowserRouter([
         path: "/todos",
         element: <Todos />,
         loader: todosLoader,
+        action: todosAction,
+        children: [
+          {
+            path: ":id/delete",
+            element: null,
+            action: todosDeleteAction,
+          },
+        ],
       },
       {
         path: "/todos/:id",
