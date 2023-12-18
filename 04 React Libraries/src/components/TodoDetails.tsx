@@ -1,5 +1,6 @@
+import useQueryParams from "hooks/useQueryParams";
 import React from "react";
-import { LoaderFunction, useLoaderData, useMatch, useParams } from "react-router-dom";
+import { LoaderFunction, useLoaderData, useSearchParams } from "react-router-dom";
 
 export const todosDetailsLoader: LoaderFunction = async ({ params }) => {
   // console.log("params:", params);
@@ -7,18 +8,25 @@ export const todosDetailsLoader: LoaderFunction = async ({ params }) => {
 };
 
 const TodoDetails = (): JSX.Element => {
+  const [searchParams, setSearchParams] = useSearchParams();
+  // console.log("searchParams.get('text'):", searchParams.get("text"));
+  console.log("searchParams", searchParams);
+
   // const params = useParams();
   // console.log("params:", params);
-  const { id } = useParams<{ id: string }>() as { id: string };
-  console.log({ id });
+  // const { id } = useParams<{ id: string }>() as { id: string };
+  // console.log({ id });
 
-  const isExample = useMatch("/todos/:id");
-  // console.log("isExample:", isExample);
-  if (isExample) {
-    console.log("Math");
-  } else {
-    console.log("Not Match");
-  }
+  // const isExample = useMatch("/todos/:id");
+  // // console.log("isExample:", isExample);
+  // if (isExample) {
+  //   console.log("Math");
+  // } else {
+  //   console.log("Not Match");
+  // }
+
+  const query = useQueryParams();
+  console.log("query:", query);
 
   const todoDetails = useLoaderData() as Todo;
   return (
@@ -26,6 +34,18 @@ const TodoDetails = (): JSX.Element => {
       <p>Todos details</p>
       <h2>Todo Id: {todoDetails.id}</h2>
       <h3>Todo Title: {todoDetails.title}</h3>
+
+      <button
+        onClick={() =>
+          setSearchParams([
+            ["param1", "param1"],
+            ["param2", "param2"],
+            ["param3", "param3"],
+          ])
+        }
+      >
+        Set Search Params
+      </button>
     </React.Fragment>
   );
 };
