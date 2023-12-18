@@ -1,5 +1,5 @@
 import React from "react";
-import { LoaderFunction, useLoaderData, useMatch } from "react-router-dom";
+import { LoaderFunction, useLoaderData, useMatch, useParams } from "react-router-dom";
 
 export const todosDetailsLoader: LoaderFunction = async ({ params }) => {
   // console.log("params:", params);
@@ -7,6 +7,11 @@ export const todosDetailsLoader: LoaderFunction = async ({ params }) => {
 };
 
 const TodoDetails = (): JSX.Element => {
+  // const params = useParams();
+  // console.log("params:", params);
+  const { id } = useParams<{ id: string }>() as { id: string };
+  console.log({ id });
+
   const isExample = useMatch("/todos/:id");
   // console.log("isExample:", isExample);
   if (isExample) {
