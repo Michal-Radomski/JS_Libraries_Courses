@@ -1,6 +1,7 @@
 import React from "react";
 import { RouterProvider, createBrowserRouter } from "react-router-dom";
 // import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
+import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 
 import "./App.scss";
 import Home from "./components/Home";
@@ -8,8 +9,12 @@ import Example from "./components/Example";
 import AppLayout from "components/AppLayout";
 import Todos, { todosAction, todosDeleteAction, todosLoader } from "components/Todos";
 import TodoDetails, { todosDetailsLoader } from "components/TodoDetails";
+
 // import Todos from "components/Todos";
 // import TodoDetails from "components/TodoDetails";
+
+const queryClient = new QueryClient();
+console.log("queryClient:", queryClient);
 
 const router = createBrowserRouter([
   {
@@ -51,39 +56,40 @@ const App: React.FunctionComponent = (): JSX.Element => {
 
   return (
     <React.Fragment>
-      <RouterProvider router={router} />
-      {/* <Router> */}
-      <br />
-      <br />
-      Counter: {counter}
-      <br />
-      PrevState: {prevCounter}
-      <br />
-      <div className="btn-group" role="group">
-        <button
-          className="btn btn-success"
-          onClick={() =>
-            setCounter((prev) => {
-              setPrevCounter(prev);
-              return prev + 1;
-            })
-          }
-        >
-          {" + "}
-        </button>
-        <button
-          className="btn btn-primary"
-          onClick={() =>
-            setCounter((prev) => {
-              setPrevCounter(prev);
-              return prev - 1;
-            })
-          }
-        >
-          {" - "}
-        </button>
-      </div>
-      {/* <Routes>
+      <QueryClientProvider client={queryClient}>
+        <RouterProvider router={router} />
+        {/* <Router> */}
+        <br />
+        <br />
+        Counter: {counter}
+        <br />
+        PrevState: {prevCounter}
+        <br />
+        <div className="btn-group" role="group">
+          <button
+            className="btn btn-success"
+            onClick={() =>
+              setCounter((prev) => {
+                setPrevCounter(prev);
+                return prev + 1;
+              })
+            }
+          >
+            {" + "}
+          </button>
+          <button
+            className="btn btn-primary"
+            onClick={() =>
+              setCounter((prev) => {
+                setPrevCounter(prev);
+                return prev - 1;
+              })
+            }
+          >
+            {" - "}
+          </button>
+        </div>
+        {/* <Routes>
           <Route element={<AppLayout />}>
             <Route path={"/"} element={<Home />} />
             <Route path={"/example"} element={<Example />} />
@@ -92,6 +98,7 @@ const App: React.FunctionComponent = (): JSX.Element => {
           </Route>
         </Routes>
       </Router> */}
+      </QueryClientProvider>
     </React.Fragment>
   );
 };

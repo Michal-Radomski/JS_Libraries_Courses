@@ -1,6 +1,7 @@
-import useQueryParams from "hooks/useQueryParams";
 import React from "react";
 import { LoaderFunction, useLoaderData, useNavigate, useSearchParams } from "react-router-dom";
+
+import useQueryParams from "hooks/useQueryParams";
 
 export const todosDetailsLoader: LoaderFunction = async ({ params }) => {
   // console.log("params:", params);
@@ -37,7 +38,6 @@ const TodoDetails = (): JSX.Element => {
       <h3>Todo Title: {todoDetails.title}</h3>
 
       <div className="btn-group" role="group">
-        {" "}
         <button
           className="btn btn-warning"
           onClick={() =>
