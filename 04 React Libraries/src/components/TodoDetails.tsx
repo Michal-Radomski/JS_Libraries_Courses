@@ -1,6 +1,6 @@
 import useQueryParams from "hooks/useQueryParams";
 import React from "react";
-import { LoaderFunction, useLoaderData, useSearchParams } from "react-router-dom";
+import { LoaderFunction, useLoaderData, useNavigate, useSearchParams } from "react-router-dom";
 
 export const todosDetailsLoader: LoaderFunction = async ({ params }) => {
   // console.log("params:", params);
@@ -8,6 +8,7 @@ export const todosDetailsLoader: LoaderFunction = async ({ params }) => {
 };
 
 const TodoDetails = (): JSX.Element => {
+  const navigate = useNavigate();
   const [searchParams, setSearchParams] = useSearchParams();
   // console.log("searchParams.get('text'):", searchParams.get("text"));
   console.log("searchParams", searchParams);
@@ -35,17 +36,35 @@ const TodoDetails = (): JSX.Element => {
       <h2>Todo Id: {todoDetails.id}</h2>
       <h3>Todo Title: {todoDetails.title}</h3>
 
-      <button
-        onClick={() =>
-          setSearchParams([
-            ["param1", "param1"],
-            ["param2", "param2"],
-            ["param3", "param3"],
-          ])
-        }
-      >
-        Set Search Params
-      </button>
+      <div className="btn-group" role="group">
+        {" "}
+        <button
+          className="btn btn-warning"
+          onClick={() =>
+            setSearchParams([
+              ["param1", "param1"],
+              ["param2", "param2"],
+              ["param3", "param3"],
+            ])
+          }
+        >
+          Set Search Params
+        </button>
+        <button onClick={() => navigate("/todos")} className="btn btn-secondary">
+          Go to Todos
+        </button>
+        <button
+          onClick={() =>
+            navigate("/", {
+              // state: "hello",
+              replace: true,
+            })
+          }
+          className="btn btn-info"
+        >
+          Go Home
+        </button>
+      </div>
     </React.Fragment>
   );
 };

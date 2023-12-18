@@ -59,28 +59,30 @@ const App: React.FunctionComponent = (): JSX.Element => {
       <br />
       PrevState: {prevCounter}
       <br />
-      <button
-        className="btn btn-success"
-        onClick={() =>
-          setCounter((prev) => {
-            setPrevCounter(prev);
-            return prev + 1;
-          })
-        }
-      >
-        {" + "}
-      </button>
-      <button
-        className="btn btn-primary"
-        onClick={() =>
-          setCounter((prev) => {
-            setPrevCounter(prev);
-            return prev - 1;
-          })
-        }
-      >
-        {" - "}
-      </button>
+      <div className="btn-group" role="group">
+        <button
+          className="btn btn-success"
+          onClick={() =>
+            setCounter((prev) => {
+              setPrevCounter(prev);
+              return prev + 1;
+            })
+          }
+        >
+          {" + "}
+        </button>
+        <button
+          className="btn btn-primary"
+          onClick={() =>
+            setCounter((prev) => {
+              setPrevCounter(prev);
+              return prev - 1;
+            })
+          }
+        >
+          {" - "}
+        </button>
+      </div>
       {/* <Routes>
           <Route element={<AppLayout />}>
             <Route path={"/"} element={<Home />} />
