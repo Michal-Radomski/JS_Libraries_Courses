@@ -15,7 +15,11 @@ import TodoDetails from "components/TodoDetails";
 // import Todos from "components/Todos";
 // import TodoDetails from "components/TodoDetails";
 
-const queryClient = new QueryClient();
+const queryClient = new QueryClient({
+  defaultOptions: {
+    queries: { retry: true },
+  },
+});
 // console.log("queryClient:", queryClient);
 
 //* V1
