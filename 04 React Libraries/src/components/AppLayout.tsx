@@ -25,6 +25,19 @@ const AppLayout: React.FunctionComponent = (): JSX.Element => {
         >
           Todos
         </NavLink>
+        <NavLink
+          to={"/todos-paginated"}
+          className={({ isActive }) => `${isActive ? "active" : ""} link`}
+          style={({ isActive, isPending, isTransitioning }) => {
+            return {
+              fontWeight: isActive ? "bold" : "",
+              color: isPending ? "red" : "green",
+              viewTransitionName: isTransitioning ? "slide" : "",
+            };
+          }}
+        >
+          Todos-Paginated
+        </NavLink>
       </div>
       <Outlet />
       <footer>Footer</footer>
