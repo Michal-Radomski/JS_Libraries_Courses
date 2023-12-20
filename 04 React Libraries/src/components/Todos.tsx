@@ -8,6 +8,10 @@ const Todos = (): JSX.Element => {
   const { data: todos, isLoading: isTodoLoading } = useTodosApi.getAll();
   // console.log("todos:", todos);
 
+  const [newTodoTitle, setNewTodoTitle] = React.useState<string>("");
+  const { mutate: postTodo } = useTodosApi.post();
+  const { mutate: deleteTodo } = useTodosApi.delete();
+
   return (
     <React.Fragment>
       <h1>Todos List</h1>
@@ -19,11 +23,18 @@ const Todos = (): JSX.Element => {
             return (
               <li key={todo.id} style={{ display: "flex" }}>
                 <Link to={`/todos/${todo.id}`} className="btn btn-link">{`${todo.id} ${todo.title}`}</Link>
+                <button onClick={() => deleteTodo({ id: todo.id })} className="btn btn-danger">
+                  Delete
+                </button>
               </li>
             );
           })}
         </ul>
       )}
+      <input value={newTodoTitle} onChange={(event) => setNewTodoTitle(event.target.value)} />
+      <button onClick={() => postTodo({ title: newTodoTitle })} className="btn btn-success">
+        Create new
+      </button>
     </React.Fragment>
   );
 };
