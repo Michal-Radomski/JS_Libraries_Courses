@@ -1,5 +1,6 @@
 import axios, { AxiosRequestConfig, RawAxiosRequestHeaders } from "axios";
-// import { parseLinkHeader } from "utils/network";
+
+import { parseLinkHeader } from "./network";
 
 interface CallOptions {
   path: string;
@@ -37,10 +38,9 @@ const call =
 
     return await axios(url, config)
       .then(({ data, headers }) => {
-        // if (paginated) {
-        //   return { data, pagination: headers.link && parseLinkHeader(headers.link) };
-        // }
-
+        if (paginated) {
+          return { data, pagination: headers.link && parseLinkHeader(headers.link) };
+        }
         return data;
       })
       .catch((error) => {
