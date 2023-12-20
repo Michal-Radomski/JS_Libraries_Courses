@@ -14,6 +14,8 @@ const useGetAll = () => {
         path: "/todos",
       }),
     // initialData: [{ id: 0, title: "FAKE TODO" }],
+    placeholderData: [{ id: 0, title: "FAKE TODO" }],
+    staleTime: 1000,
   });
 };
 
