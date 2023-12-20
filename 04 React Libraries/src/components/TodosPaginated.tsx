@@ -14,26 +14,24 @@ const TodosPaginated = (): JSX.Element => {
 
   return (
     <React.Fragment>
-      <div>
-        <h1>Todos list (page {page})</h1>
-        {isTodoLoading ? (
-          <h2 style={{ color: "deeppink" }}>Loading...</h2>
-        ) : (
-          <ul style={{ listStyleType: "none" }}>
-            {todos?.data.map((todo) => (
-              <li key={todo.id}>
-                <Link to={generatePath("/todos/:id", { id: todo.id.toString() })}>{todo.title}</Link>
-              </li>
-            ))}
-          </ul>
-        )}
-        <div style={{ display: "flex", gap: 16, justifyContent: "center" }}>
-          {pagesArray?.map((page, index: number) => (
-            <button onClick={() => setQueryParams([["page", page.toString()]])} key={index}>
-              {page}
-            </button>
+      <h1>Todos list (page {page})</h1>
+      {isTodoLoading ? (
+        <h2 style={{ color: "deeppink" }}>Loading...</h2>
+      ) : (
+        <ul style={{ listStyleType: "none" }}>
+          {todos?.data.map((todo) => (
+            <li key={todo.id}>
+              <Link to={generatePath("/todos/:id", { id: todo.id.toString() })}>{todo.title}</Link>
+            </li>
           ))}
-        </div>
+        </ul>
+      )}
+      <div style={{ display: "flex", gap: 16, justifyContent: "center" }}>
+        {pagesArray?.map((page, index: number) => (
+          <button onClick={() => setQueryParams([["page", page.toString()]])} key={index}>
+            {page}
+          </button>
+        ))}
       </div>
     </React.Fragment>
   );

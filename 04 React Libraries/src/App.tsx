@@ -12,6 +12,7 @@ import AppLayout from "components/AppLayout";
 import Todos from "components/Todos";
 import TodoDetails from "components/TodoDetails";
 import TodosPaginated from "components/TodosPaginated";
+import TodosInfinite from "components/TodosInfinite";
 
 // import Todos from "components/Todos";
 // import TodoDetails from "components/TodoDetails";
@@ -78,6 +79,10 @@ const router = createBrowserRouter([
       {
         path: "/todos-paginated",
         element: <TodosPaginated />,
+      },
+      {
+        path: "/todos-infinite",
+        element: <TodosInfinite />,
       },
       {
         path: "/todos/:id",

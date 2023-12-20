@@ -1,4 +1,4 @@
-import { UseQueryOptions, useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
+import { UseQueryOptions, useInfiniteQuery, useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 import { AxiosError } from "axios";
 
 import client from "utils/client";
@@ -40,25 +40,26 @@ const useGetAllPaginated = (page: number, perPage?: number) => {
   });
 };
 
-// const useGetAllInfinite = (perPage?: number) => {
-//   return useInfiniteQuery<PaginatedData<Todo>, AxiosError, Todo[]>({
-//     queryKey: [TODOS_KEY, "infinite"],
-//     queryFn: ({ pageParam }) =>
-//       client.get({
-//         path: "/todos",
-//         paginated: true,
-//         params: {
-//           _page: pageParam || 1,
-//           _limit: perPage || DEFAULT_PER_PAGE,
-//         },
-//       }),
-//     getNextPageParam: (lastPage) => lastPage.pagination.next?._page,
-//     select: ({ pages, pageParams }) => ({
-//       pages: pages.map((page) => page.data),
-//       pageParams,
-//     }),
-//   });
-// };
+const useGetAllInfinite = (perPage?: number) => {
+  return useInfiniteQuery<PaginatedData<Todo>, AxiosError, Todo[]>({
+    queryKey: [TODOS_KEY, "infinite"],
+    queryFn: ({ pageParam }) =>
+      client.get({
+        path: "/todos",
+        paginated: true,
+        params: {
+          _page: pageParam || 1,
+          _limit: perPage || DEFAULT_PER_PAGE,
+        },
+      }),
+    getNextPageParam: (lastPage) => lastPage.pagination.next?._page,
+    // @ts-ignore
+    select: ({ pages, pageParams }) => ({
+      pages: pages.map((page) => page.data),
+      pageParams,
+    }),
+  });
+};
 
 const usePost = () => {
   const queryClient = useQueryClient();
@@ -97,7 +98,7 @@ const useDelete = () => {
 export default {
   getAll: useGetAll,
   getAllPaginated: useGetAllPaginated,
-  // getAllInfinite: useGetAllInfinite,
+  getAllInfinite: useGetAllInfinite,
   get: useGet,
   post: usePost,
   delete: useDelete,

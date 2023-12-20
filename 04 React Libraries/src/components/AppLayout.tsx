@@ -38,6 +38,19 @@ const AppLayout: React.FunctionComponent = (): JSX.Element => {
         >
           Todos-Paginated
         </NavLink>
+        <NavLink
+          to={"/todos-infinite"}
+          className={({ isActive }) => `${isActive ? "active" : ""} link`}
+          style={({ isActive, isPending, isTransitioning }) => {
+            return {
+              fontWeight: isActive ? "bold" : "",
+              color: isPending ? "red" : "green",
+              viewTransitionName: isTransitioning ? "slide" : "",
+            };
+          }}
+        >
+          Todos-Infinite
+        </NavLink>
       </div>
       <Outlet />
       <footer>Footer</footer>
