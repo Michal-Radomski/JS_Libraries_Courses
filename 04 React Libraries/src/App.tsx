@@ -2,6 +2,7 @@ import React from "react";
 import { RouterProvider, createBrowserRouter } from "react-router-dom";
 // import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
+import { RecoilRoot } from "recoil";
 
 import "./App.scss";
 import Home from "./components/Home";
@@ -13,6 +14,7 @@ import Todos from "components/Todos";
 import TodoDetails from "components/TodoDetails";
 import TodosPaginated from "components/TodosPaginated";
 import TodosInfinite from "components/TodosInfinite";
+import Counter from "components/Counter";
 
 // import Todos from "components/Todos";
 // import TodoDetails from "components/TodoDetails";
@@ -88,20 +90,26 @@ const router = createBrowserRouter([
         path: "/todos/:id",
         element: <TodoDetails />,
       },
+      {
+        path: "/counter",
+        element: <Counter />,
+      },
     ],
   },
 ]);
 
 const App: React.FunctionComponent = (): JSX.Element => {
-  const [counter, setCounter] = React.useState<number>(0);
-  const [prevCounter, setPrevCounter] = React.useState<number>();
+  // const [counter, setCounter] = React.useState<number>(0);
+  // const [prevCounter, setPrevCounter] = React.useState<number>();
 
   return (
     <React.Fragment>
-      <QueryClientProvider client={queryClient}>
-        <RouterProvider router={router} />
-        {/* <Router> */}
-        <br />
+      <RecoilRoot>
+        <QueryClientProvider client={queryClient}>
+          <RouterProvider router={router} />
+          {/* <Router> */}
+
+          {/* <br />
         <br />
         Counter: {counter}
         <br />
@@ -130,8 +138,9 @@ const App: React.FunctionComponent = (): JSX.Element => {
           >
             {" - "}
           </button>
-        </div>
-        {/* <Routes>
+        </div> */}
+
+          {/* <Routes>
           <Route element={<AppLayout />}>
             <Route path={"/"} element={<Home />} />
             <Route path={"/example"} element={<Example />} />
@@ -140,7 +149,8 @@ const App: React.FunctionComponent = (): JSX.Element => {
           </Route>
         </Routes>
       </Router> */}
-      </QueryClientProvider>
+        </QueryClientProvider>
+      </RecoilRoot>
     </React.Fragment>
   );
 };
