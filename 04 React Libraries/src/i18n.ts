@@ -14,7 +14,7 @@ i18next
       backends: [I18NextLocalStorageBackend, I18NextHttpBackend],
       backendOptions: [
         {
-          prefix: "i18next-course",
+          prefix: "i18next-course/",
           expirationTime: 30 * 24 * 60 * 60 * 1000, // 1 month
           defaultVersion: "1",
           storage: window.localStorage,
@@ -23,6 +23,7 @@ i18next
       ],
     },
     fallbackLng: "en",
+    // lng: "en",
     interpolation: { escapeValue: false },
   })
   .catch((err) => console.error({ err }));
