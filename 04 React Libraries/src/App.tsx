@@ -15,6 +15,7 @@ import TodoDetails from "components/TodoDetails";
 import TodosPaginated from "components/TodosPaginated";
 import TodosInfinite from "components/TodosInfinite";
 import Counter from "components/Counter";
+import I18nTest from "components/I18nTest";
 
 // import Todos from "components/Todos";
 // import TodoDetails from "components/TodoDetails";
@@ -93,6 +94,10 @@ const router = createBrowserRouter([
       {
         path: "/counter",
         element: <Counter />,
+      },
+      {
+        path: "/i18n_test",
+        element: <I18nTest />,
       },
     ],
   },

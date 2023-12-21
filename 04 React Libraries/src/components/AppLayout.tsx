@@ -9,6 +9,9 @@ const AppLayout: React.FunctionComponent = (): JSX.Element => {
         <NavLink to={"/"} className={({ isActive }) => `${isActive ? "active" : ""} link`}>
           Home
         </NavLink>
+        <NavLink to={"/i18n_test"} className={({ isActive }) => `${isActive ? "active" : ""} link`}>
+          I18n-Test
+        </NavLink>
         <NavLink to={"/counter"} className={({ isActive }) => `${isActive ? "active" : ""} link`}>
           Counter
         </NavLink>
