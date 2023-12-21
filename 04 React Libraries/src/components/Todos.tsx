@@ -1,10 +1,13 @@
 //* V2 React Query
 import React from "react";
 import { Link } from "react-router-dom";
+import { useQueryClient } from "@tanstack/react-query";
 
-import useTodosApi from "hooks/useTodosApi";
+import useTodosApi, { TODOS_KEY } from "hooks/useTodosApi";
+import client from "utils/client";
 
 const Todos = (): JSX.Element => {
+  const queryClient = useQueryClient();
   const { data: todos, isLoading: isTodoLoading } = useTodosApi.getAll();
   // console.log("todos:", todos);
 
@@ -22,7 +25,17 @@ const Todos = (): JSX.Element => {
           {todos?.map((todo: Todo) => {
             return (
               <li key={todo.id} style={{ display: "flex" }}>
-                <Link to={`/todos/${todo.id}`} className="btn btn-link">{`${todo.id} ${todo.title}`}</Link>
+                <Link
+                  to={`/todos/${todo.id}`}
+                  className="btn btn-link"
+                  onMouseOver={() => {
+                    // console.log("prefetching todo.id:", todo.id);
+                    queryClient.prefetchQuery({
+                      queryKey: [TODOS_KEY, todo.id],
+                      queryFn: () => client.get({ path: `/todos/${todo.id}` }),
+                    });
+                  }}
+                >{`${todo.id} ${todo.title}`}</Link>
                 <button onClick={() => deleteTodo({ id: todo.id })} className="btn btn-danger">
                   Delete
                 </button>
