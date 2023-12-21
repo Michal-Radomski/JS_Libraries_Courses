@@ -7,10 +7,12 @@ import { counterAndTextState } from "atoms/counter";
 
 const Counter = (): JSX.Element => {
   const inputAndText = useRecoilValue(counterAndTextState);
+  // console.log("inputAndText:", inputAndText);
 
   return (
     <React.Fragment>
-      <span>{inputAndText}</span>
+      <h1>Counter</h1>
+      <p>{inputAndText}</p>
       <CounterButtons />
       <InputText />
     </React.Fragment>

@@ -19,9 +19,10 @@ const counterAndTextState = selector<string>({
   get: ({ get }) => {
     const counter = get(counterState);
     const inputText = get(inputTextState);
-
-    return `${counter} : ${inputText}`;
+    return `Counter: ${counter} | Text: ${inputText}`;
   },
 });
+
+// console.log({ counterState, inputTextState, counterAndTextState });
 
 export { counterState, inputTextState, counterAndTextState };
