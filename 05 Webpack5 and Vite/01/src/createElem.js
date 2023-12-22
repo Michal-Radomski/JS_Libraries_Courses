@@ -3,3 +3,7 @@ export function createElem(tag, innerText) {
   elem.innerText = innerText;
   document.body.append(elem);
 }
+
+export function deadCode() {
+  return "deadCodeTreeShaking";
+}
