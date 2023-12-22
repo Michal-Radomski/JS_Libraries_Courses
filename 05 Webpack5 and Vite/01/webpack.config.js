@@ -13,6 +13,27 @@ module.exports = {
   entry: {
     main: "./entry.js",
   },
+
+  //entry:'./entry.js',// [] {}
+  //entry:['./entry.js','./entryTwo.js'],
+
+  //   entry:{
+  //     pageOne:{
+  //         import:'./entry.js',
+  //         filename:'./PageOne/[name].js',
+  //         dependOn:'shared'
+  //     },
+  //     pageTwo:{
+  //         import:'./entryTwo.js',
+  //         dependOn:'shared'
+  //     },
+  //     shared:'./shared.js'
+  // },
+
+  optimization: {
+    minimize: true, // default to true under prod. mode
+    // minimizer:['...', new plugin()] // JS, CSS, HTML
+  },
   output: {
     iife: true,
     clean: true,
