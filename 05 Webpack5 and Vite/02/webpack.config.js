@@ -1,10 +1,22 @@
 const path = require("path");
 const html = require("html-webpack-plugin");
+const webpack = require("webpack");
 
 module.exports = {
   context: path.resolve(__dirname, "src"),
   mode: "production",
-  entry: "./entry.js",
+  //entry:'./entry.js',
+  entry: {
+    pageOne: {
+      import: "./entry.js",
+      dependOn: "shared",
+    },
+    pageTwo: {
+      import: "./entryTwo.js",
+      dependOn: "shared",
+    },
+    shared: "lodash",
+  },
   optimization: {
     chunkIds: "named",
     splitChunks: {
@@ -13,8 +25,24 @@ module.exports = {
     },
   },
   plugins: [
+    new webpack.ProvidePlugin({
+      _: "lodash",
+      join: ["lodash", "join"],
+      func: "./functions.js",
+      default_func: ["./functions.js", "default"],
+      sayHi: ["./functions.js", "sayHi"],
+    }),
     new html({
-      filename: "index.html",
+      filename: "pageOne.html",
+      chunks: ["pageOne", "shared"],
+      minify: false, // true under prod. mode
+      inject: "body", // default head
+      title: "by htmlWebpackPlugin",
+      template: "./tpl.html",
+    }),
+    new html({
+      filename: "pageTwo.html",
+      chunks: ["pageTwo", "shared"],
       minify: false, // true under prod. mode
       inject: "body", // default head
       title: "by htmlWebpackPlugin",
