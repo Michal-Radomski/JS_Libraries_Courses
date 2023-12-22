@@ -36,15 +36,15 @@ module.exports = {
         watch: true,
         publicPath: "/",
       },
-      // {
-      //   directory: path.resolve(__dirname, "style"),
-      //   watch: false,
-      //   publicPath: "/style/",
-      //   serveIndex: false, // default to true
-      //   staticOptions: {
-      //     index: "about.html",
-      //   },
-      // },
+      {
+        directory: path.resolve(__dirname, "style"),
+        watch: false,
+        publicPath: "/style/",
+        serveIndex: false, // default to true
+        staticOptions: {
+          index: "about.html",
+        },
+      },
     ],
   },
 };
