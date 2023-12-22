@@ -8,6 +8,7 @@ module.exports = {
     chunkIds: "named",
     splitChunks: {
       minSize: 2000, // bytes
+      chunks: "async", // async, all, initial
     },
   },
   output: {
