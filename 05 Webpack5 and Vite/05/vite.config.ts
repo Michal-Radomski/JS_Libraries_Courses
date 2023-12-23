@@ -1,7 +1,7 @@
-const path = require("path");
-const { defineConfig } = require("vite");
+import path from "path";
+import { defineConfig } from "vite";
 
-module.exports = defineConfig({
+export default defineConfig({
   //mode
   //root:process.cwd(),
   root: path.resolve(__dirname, "src"), // ./ -> process.cwd()
