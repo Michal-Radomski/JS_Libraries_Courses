@@ -17,6 +17,7 @@ module.exports = {
     // chunkFilename: "[id].chunk.js",
     assetModuleFilename: "assets/[name].[hash][ext]",
     path: path.resolve(__dirname, "dist"),
+    // publicPath: "/orange/",
   },
   module: {
     rules: [
@@ -68,6 +69,7 @@ module.exports = {
       title: "Asset Modules",
       minify: false,
       favicon: "./assets/favicon.ico",
+      // publicPath: "/html",
     }),
   ],
 };
