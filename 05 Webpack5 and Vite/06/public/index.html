@@ -2,13 +2,16 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
-    <link rel="icon" type="image/svg+xml" href="/vite.svg" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Vite + TS Course</title>
+    <title>Document</title>
   </head>
   <body>
-    <script src="
-      https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
-    <script type="module" src="/src/main.ts"></script>
+    <script src="/main.js"></script>
+    <script>
+      console.log("mylib:", mylib);
+      mylib.createElem("h1", mylib.default);
+      console.log(mylib.product);
+    </script>
   </body>
 </html>
