@@ -17,6 +17,6 @@ img.src = London;
 p.innerText = Txt;
 
 import test from "../assets/test.js?url"; //* Additional suffix
-let script = document.createElement("script");
+const script = document.createElement("script");
 script.src = test;
 document.head.append(script);
