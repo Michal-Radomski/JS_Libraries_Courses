@@ -1,0 +1,30 @@
+@import url("./button.scss");
+@import url("./frame.scss");
+@import url("./header_footer.scss");
+
+body,
+p,
+span,
+div,
+h1,
+h2,
+h3,
+h4,
+h5,
+a,
+li,
+ul,
+ol,
+img,
+button {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+#main {
+  padding-top: 90px;
+  padding-bottom: 70px;
+}
+body {
+  background-image: url("../assets/bg.svg");
+}
