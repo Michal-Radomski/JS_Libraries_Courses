@@ -17,3 +17,9 @@ btn.onclick = () => {
     click();
   });
 };
+
+import about from "./assets/about.html";
+let link = document.createElement("a");
+link.innerText = "About Page";
+link.href = about;
+document.getElementById("frame").append(link);

@@ -14,10 +14,18 @@ module.exports = {
   module: {
     rules: [
       {
+        test: /\.html$/i,
+        type: "asset/resource",
+        generator: {
+          filename: "[name][ext]",
+          publicPath: "/",
+        },
+        exclude: [path.resolve(__dirname, "./src/template/tpl.html")],
+      },
+      {
         test: /\.txt$/i,
         type: "asset/source", //* raw-loader
       },
-
       {
         test: /\.svg$/i,
         type: "asset/inline", //* url-loader -> smaller files
