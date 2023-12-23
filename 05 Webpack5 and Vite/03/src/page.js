@@ -10,3 +10,10 @@ p.innerText = Txt;
 // document.body.style.backgroundImage = `url(${bg})`;
 
 import "./css/page.css";
+
+let btn = document.getElementById("click");
+btn.onclick = () => {
+  import("./click.js").then(({ default: click }) => {
+    click();
+  });
+};

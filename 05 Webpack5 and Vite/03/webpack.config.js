@@ -22,7 +22,8 @@ module.exports = {
     rules: [
       {
         test: /\.css$/i,
-        use: ["style-loader", "css-loader"], //* This order is required!
+        // use: ["style-loader", "css-loader"], //* This order is required!
+        use: [css.loader, "css-loader"],
       },
       {
         test: /\.txt$/i,
