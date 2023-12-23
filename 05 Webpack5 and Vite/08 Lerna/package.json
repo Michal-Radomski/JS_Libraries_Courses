@@ -1,0 +1,22 @@
+{
+  "name": "08",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "start": "lerna run --parallel start",
+    "build": "lerna run build"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "lerna": "^5.6.2"
+  },
+  "workspaces": {
+    "packages": [
+      "local",
+      "remote"
+    ]
+  }
+}
