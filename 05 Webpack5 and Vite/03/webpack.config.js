@@ -26,6 +26,10 @@ module.exports = {
         use: [css.loader, "css-loader"],
       },
       {
+        test: /\.scss$/i,
+        use: [css.loader, "css-loader", "sass-loader"],
+      },
+      {
         test: /\.txt$/i,
         type: "asset/source", //* raw-loader
       },
