@@ -12,7 +12,11 @@ const config: webpack.Configuration = {
     extensions: [".ts", ".tsx", ".js"],
   },
   module: {
-    rules: [{ test: /\.([cm]?ts|tsx)$/, loader: "ts-loader" }],
+    rules: [
+      { test: /\.([cm]?ts|tsx)$/, loader: "ts-loader" },
+      { test: /\.(ttf)$/, type: "asset/resource" },
+      { test: /\.(png|jpg)$/, type: "asset/resource" },
+    ],
   },
   mode: "none",
 };
