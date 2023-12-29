@@ -1,12 +1,14 @@
-const path = require("path");
+import path from "path";
+import webpack from "webpack";
+import "webpack-dev-server";
 
 const HtmlWebpackPlugin = require("html-webpack-plugin");
-module.exports = {
+
+const config: webpack.Configuration = {
   mode: "development",
   entry: "./src/main.tsx",
   devtool: "inline-source-map",
-  output: { path: path.join(__dirname, "/dist"), filename: "bundle.js" },
-  devtool: "inline-source-map",
+  output: { path: path.join(__dirname, "/dist"), filename: "bundle.js", clean: true },
   devServer: { static: "./dist", port: 3000, open: false },
   module: {
     rules: [
@@ -25,3 +27,5 @@ module.exports = {
   resolve: { extensions: [".tsx", ".ts", ".js", "jsx"] },
   plugins: [new HtmlWebpackPlugin({ template: "./public/index.html", favicon: "./public/favicon.svg" })],
 };
+
+export default config;
