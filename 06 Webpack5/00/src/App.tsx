@@ -5,7 +5,7 @@ import "./App.scss";
 function App(): JSX.Element {
   return (
     <React.Fragment>
-      <h1 style={{ textAlign: "center" }}>App</h1>
+      <h1 className="text-center text-muted">App</h1>
     </React.Fragment>
   );
 }

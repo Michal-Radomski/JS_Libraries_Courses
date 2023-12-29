@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "description": "custom webpack configuration",
   "scripts": {
-    "start": "webpack-dev-server --open --mode development --hot",
+    "start": "webpack-dev-server --mode development --hot",
     "build": "webpack --mode production"
   },
   "keywords": [],
