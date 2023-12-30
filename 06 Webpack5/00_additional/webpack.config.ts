@@ -13,15 +13,24 @@ const config: webpack.Configuration = {
   module: {
     rules: [
       {
-        test: /\.(png|svg|jpg|jpeg|gif)$/i,
+        test: /\.(png|jpg|jpeg|gif|ttf)$/i,
         type: "asset/resource",
       },
+      { test: /\.(svg)$/, type: "asset/inline" },
+      { test: /\.css$/, use: ["style-loader", "css-loader"] },
       {
         test: /\.s[ac]ss$/i,
         use: ["style-loader", "css-loader", "sass-loader"],
       },
-      { test: /\.jsx?$/, exclude: /node_modules/, loader: "babel-loader" },
-      { test: /\.tsx?$/, use: "ts-loader", exclude: /node_modules/ },
+      //* V1
+      // { test: /\.jsx?$/, exclude: /node_modules/, loader: "babel-loader" },
+      // { test: /\.tsx?$/, use: "ts-loader", exclude: /node_modules/ },
+      //* V2
+      {
+        test: /\.(jsx?|tsx?)$/,
+        exclude: /node_modules/,
+        use: { loader: "babel-loader" },
+      },
     ],
   },
   resolve: { extensions: [".tsx", ".ts", ".js", "jsx"] },
