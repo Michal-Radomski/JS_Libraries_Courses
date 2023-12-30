@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "description": "",
   "scripts": {
-    "build": "clear && TS_NODE_PROJECT=\"tsconfig-for-webpack-config.json\" webpack"
+    "build": "clear && webpack --config webpack.config.ts"
   },
   "keywords": [],
   "author": "",
@@ -17,7 +17,6 @@
     "style-loader": "^3.3.3",
     "ts-loader": "^9.5.1",
     "ts-node": "^10.9.2",
-    "tsconfig-paths": "^4.2.0",
     "typescript": "^5.3.3",
     "webpack": "^5.89.0",
     "webpack-cli": "^5.1.4"
