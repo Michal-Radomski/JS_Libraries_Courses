@@ -28,6 +28,8 @@ const config: webpack.Configuration = {
       // },
       { test: /\.(png|jpg)$/, type: "asset/resource" },
       { test: /\.txt/, type: "asset/source" },
+      { test: /\.css$/, use: ["style-loader", "css-loader"] },
+      { test: /\.s[ac]ss$/i, use: ["style-loader", "css-loader", "sass-loader"] },
     ],
   },
   mode: "none",

@@ -1,0 +1,24 @@
+$primary-color: green;
+$secondary-color: white;
+
+.hello-world-button {
+  font-size: 20px;
+  padding: 7px 15px;
+  background: $primary-color;
+  color: $secondary-color;
+  outline: none;
+  cursor: pointer;
+  &:hover {
+    color: $primary-color;
+    background-color: $secondary-color;
+  }
+}
+
+.hello-world-text {
+  color: $primary-color;
+  font-weight: bold;
+  &:hover {
+    color: $secondary-color;
+    background-color: $primary-color;
+  }
+}
