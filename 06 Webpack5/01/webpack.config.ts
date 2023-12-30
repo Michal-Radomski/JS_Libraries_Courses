@@ -1,5 +1,7 @@
 import path from "path";
 import webpack from "webpack";
+import TerserPlugin from "terser-webpack-plugin";
+import MiniCssExtractPlugin from "mini-css-extract-plugin";
 
 const config: webpack.Configuration = {
   entry: "./src/index.ts",
@@ -12,6 +14,7 @@ const config: webpack.Configuration = {
   resolve: {
     extensions: [".ts", ".js"],
   },
+  mode: "none",
   module: {
     rules: [
       {
@@ -43,7 +46,13 @@ const config: webpack.Configuration = {
       { test: /\.s[ac]ss$/i, use: ["style-loader", "css-loader", "sass-loader"] },
     ],
   },
-  mode: "none",
+
+  plugins: [
+    new TerserPlugin(),
+    new MiniCssExtractPlugin({
+      filename: "styles.css",
+    }),
+  ],
 };
 
 export default config;
