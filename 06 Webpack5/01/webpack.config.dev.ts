@@ -1,6 +1,7 @@
 import path from "path";
 import webpack from "webpack";
 import HtmlWebpackPlugin from "html-webpack-plugin";
+import "webpack-dev-server";
 
 const config: webpack.Configuration = {
   entry: "./src/index.ts",
@@ -12,6 +13,17 @@ const config: webpack.Configuration = {
   },
   resolve: {
     extensions: [".ts", ".js"],
+  },
+  devServer: {
+    port: 3000,
+    open: false,
+    static: {
+      directory: path.resolve(__dirname, "./dist"),
+    },
+    devMiddleware: {
+      index: "index.html",
+      writeToDisk: true,
+    },
   },
   mode: "development",
   module: {
