@@ -20,6 +20,7 @@ const config: webpack.Configuration = {
   mode: "none",
   module: {
     rules: [
+      { test: /\.hbs$/, use: ["handlebars-loader"] },
       {
         test: /\.(js|ts)$/,
         exclude: /node_modules/,
@@ -60,12 +61,15 @@ const config: webpack.Configuration = {
     //   cleanOnceBeforeBuildPatterns: ["**/*", path.join(process.cwd(), "dist/**/*")],
     // }),
     new HtmlWebpackPlugin({
-      template: "./index.html",
-      favicon: "./favicon.svg",
-      // title: "Webpack 5 Course",
-      // meta: {
-      //   description: "Webpack 5 Course",
-      // },
+      // template: "./index.html",
+      // favicon: "./favicon.svg",
+
+      template: "./src/index.hbs",
+      favicon: "./src/assets/favicon.svg",
+      title: "Webpack 5 Course HBS",
+      meta: {
+        description: "Webpack 5 Course HBS",
+      },
     }),
   ],
 };
