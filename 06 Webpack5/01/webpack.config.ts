@@ -17,7 +17,7 @@ const config: webpack.Configuration = {
   resolve: {
     extensions: [".ts", ".js"],
   },
-  mode: "none",
+  mode: "development",
   module: {
     rules: [
       { test: /\.hbs$/, use: ["handlebars-loader"] },
