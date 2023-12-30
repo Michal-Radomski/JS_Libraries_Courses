@@ -3,7 +3,9 @@
   "version": "1.0.0",
   "description": "",
   "scripts": {
-    "build": "clear && webpack --config webpack.config.ts"
+    "build-old": "clear && webpack --config webpack.config.ts",
+    "dev": "clear && webpack serve --config webpack.config.dev.ts --hot",
+    "build": "clear && webpack --config webpack.config.prod.ts"
   },
   "keywords": [],
   "author": "",
