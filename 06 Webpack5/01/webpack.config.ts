@@ -2,14 +2,17 @@ import path from "path";
 import webpack from "webpack";
 import TerserPlugin from "terser-webpack-plugin";
 import MiniCssExtractPlugin from "mini-css-extract-plugin";
+// import { CleanWebpackPlugin } from "clean-webpack-plugin";
+import HtmlWebpackPlugin from "html-webpack-plugin";
 
 const config: webpack.Configuration = {
   entry: "./src/index.ts",
   output: {
-    filename: "bundle.js",
+    filename: "bundle.[contenthash].js",
     path: path.resolve(__dirname, "./dist"),
-    publicPath: "dist/",
-    clean: true,
+    // publicPath: "dist/",
+    publicPath: "",
+    clean: true, //* or CleanWebpackPlugin
   },
   resolve: {
     extensions: [".ts", ".js"],
@@ -51,7 +54,18 @@ const config: webpack.Configuration = {
   plugins: [
     new TerserPlugin(),
     new MiniCssExtractPlugin({
-      filename: "styles.css",
+      filename: "styles.[contenthash].css",
+    }),
+    // new CleanWebpackPlugin({
+    //   cleanOnceBeforeBuildPatterns: ["**/*", path.join(process.cwd(), "dist/**/*")],
+    // }),
+    new HtmlWebpackPlugin({
+      template: "./index.html",
+      favicon: "./favicon.svg",
+      // title: "Webpack 5 Course",
+      // meta: {
+      //   description: "Webpack 5 Course",
+      // },
     }),
   ],
 };
