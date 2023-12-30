@@ -1,7 +1,9 @@
 import Kiwi from "./assets/kiwi.jpg";
 import Favicon from "./assets/favicon.svg";
+import altText from "./assets/altText.txt";
 
 // console.log("Kiwi:", Kiwi, typeof Kiwi);
+// console.log("altText:", altText, typeof altText);
 
 function addImage() {
   const body = document.querySelector("body") as HTMLBodyElement;
@@ -17,6 +19,12 @@ function addImage() {
   img2.width = 300;
   img2.src = Favicon;
   body.appendChild(img2);
+
+  const p = document.createElement("p");
+  // const text = document.createTextNode(altText as string);
+  // p.appendChild(text);
+  p.textContent = altText as string;
+  body.appendChild(p);
 }
 
 export default addImage;

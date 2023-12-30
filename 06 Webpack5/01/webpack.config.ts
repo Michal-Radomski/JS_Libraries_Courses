@@ -17,7 +17,17 @@ const config: webpack.Configuration = {
       { test: /\.([cm]?ts|tsx)$/, loader: "ts-loader" },
       { test: /\.(ttf)$/, type: "asset/resource" },
       { test: /\.(svg)$/, type: "asset/inline" }, //* For small images like svg files
+      // {
+      //   test: /\.(png|jpg)$/,
+      //   type: "asset",
+      //   parser: {
+      //     dataUrlCondition: {
+      //       maxSize: 3 * 1024,
+      //     },
+      //   },
+      // },
       { test: /\.(png|jpg)$/, type: "asset/resource" },
+      { test: /\.txt/, type: "asset/source" },
     ],
   },
   mode: "none",

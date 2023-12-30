@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "description": "",
   "scripts": {
-    "build": "TS_NODE_PROJECT=\"tsconfig-for-webpack-config.json\" webpack"
+    "build": "clear && TS_NODE_PROJECT=\"tsconfig-for-webpack-config.json\" webpack"
   },
   "keywords": [],
   "author": "",
