@@ -14,7 +14,18 @@ const config: webpack.Configuration = {
   },
   module: {
     rules: [
-      { test: /\.([cm]?ts|tsx)$/, loader: "ts-loader" },
+      {
+        test: /\.(js|ts)$/,
+        exclude: /node_modules/,
+        use: {
+          loader: "babel-loader",
+          options: {
+            presets: ["@babel/preset-env", "@babel/preset-typescript"],
+            plugins: ["@babel/plugin-transform-class-properties"],
+          },
+        },
+      },
+      // { test: /\.ts$/, loader: "ts-loader", exclude: /node_modules/ },
       { test: /\.(ttf)$/, type: "asset/resource" },
       { test: /\.(svg)$/, type: "asset/inline" }, //* For small images like svg files
       // {
