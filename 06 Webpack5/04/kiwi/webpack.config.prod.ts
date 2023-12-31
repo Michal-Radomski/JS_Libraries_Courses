@@ -9,7 +9,8 @@ const config: webpack.Configuration = {
   output: {
     filename: "[name].[contenthash].js",
     path: path.resolve(__dirname, "./dist"),
-    publicPath: "",
+    // publicPath: "",
+    publicPath: "http://localhost:3001/",
     clean: true,
   },
   resolve: {
@@ -50,8 +51,12 @@ const config: webpack.Configuration = {
     }),
     new ModuleFederationPlugin({
       name: "KiwiApp",
-      remotes: {
-        HelloWorldApp: "HelloWorldApp@http://localhost:3000/remoteEntry.js",
+      // remotes: {
+      //   HelloWorldApp: "HelloWorldApp@http://localhost:3000/remoteEntry.js",
+      // },
+      filename: "remoteEntry.js",
+      exposes: {
+        "./KiwiPage": "./src/components/KiwiPage.ts",
       },
     }),
   ],

@@ -55,6 +55,7 @@ const config: webpack.Configuration = {
       filename: "remoteEntry.js",
       exposes: {
         "./HelloWorldButton": "./src/components/hello-world-button/HelloWorldButton.ts",
+        "./HelloWorldPage": "./src/components/HelloWorldPage.ts",
       },
     }),
   ],
