@@ -2,13 +2,15 @@ import path from "path";
 import webpack from "webpack";
 import HtmlWebpackPlugin from "html-webpack-plugin";
 import "webpack-dev-server";
+const { ModuleFederationPlugin } = require("webpack").container;
 
 const config: webpack.Configuration = {
   entry: "./src/hello-world.ts",
   output: {
     filename: "[name].bundle.js",
     path: path.resolve(__dirname, "./dist"),
-    publicPath: "",
+    // publicPath: "",
+    publicPath: "http://localhost:3000/",
     clean: true,
   },
   resolve: {
@@ -54,6 +56,13 @@ const config: webpack.Configuration = {
       title: "Hello World",
       meta: {
         description: "Hello World",
+      },
+    }),
+    new ModuleFederationPlugin({
+      name: "HelloWorldApp",
+      filename: "remoteEntry.js",
+      exposes: {
+        "./HelloWorldButton": "./src/components/hello-world-button/HelloWorldButton.ts",
       },
     }),
   ],

@@ -2,6 +2,7 @@ import path from "path";
 import webpack from "webpack";
 import HtmlWebpackPlugin from "html-webpack-plugin";
 import "webpack-dev-server";
+const { ModuleFederationPlugin } = require("webpack").container;
 
 const config: webpack.Configuration = {
   entry: "./src/kiwi.ts",
@@ -53,6 +54,12 @@ const config: webpack.Configuration = {
       title: "Kiwi",
       meta: {
         description: "Kiwi",
+      },
+    }),
+    new ModuleFederationPlugin({
+      name: "KiwiApp",
+      remotes: {
+        HelloWorldApp: "HelloWorldApp@http://localhost:3000/remoteEntry.js",
       },
     }),
   ],
