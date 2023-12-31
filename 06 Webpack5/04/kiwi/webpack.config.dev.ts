@@ -2,7 +2,11 @@ import path from "path";
 import webpack from "webpack";
 import HtmlWebpackPlugin from "html-webpack-plugin";
 import "webpack-dev-server";
-const { ModuleFederationPlugin } = require("webpack").container;
+
+// const { ModuleFederationPlugin } = require("webpack").container;
+const {
+  container: { ModuleFederationPlugin },
+} = webpack;
 
 const config: webpack.Configuration = {
   entry: "./src/kiwi.ts",

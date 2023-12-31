@@ -2,7 +2,11 @@ import path from "path";
 import webpack from "webpack";
 import MiniCssExtractPlugin from "mini-css-extract-plugin";
 import HtmlWebpackPlugin from "html-webpack-plugin";
-const { ModuleFederationPlugin } = require("webpack").container;
+
+// const { ModuleFederationPlugin } = require("webpack").container;
+const {
+  container: { ModuleFederationPlugin },
+} = webpack;
 
 const config: webpack.Configuration = {
   entry: "./src/kiwi.ts",

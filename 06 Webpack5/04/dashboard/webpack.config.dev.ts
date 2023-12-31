@@ -1,7 +1,7 @@
 import path from "path";
 import webpack from "webpack";
-import MiniCssExtractPlugin from "mini-css-extract-plugin";
 import HtmlWebpackPlugin from "html-webpack-plugin";
+import "webpack-dev-server";
 
 // const { ModuleFederationPlugin } = require("webpack").container;
 const {
@@ -9,21 +9,34 @@ const {
 } = webpack;
 
 const config: webpack.Configuration = {
-  entry: "./src/hello-world.ts",
+  entry: "./src/dashboard.ts",
   output: {
-    filename: "[name].[contenthash].js",
+    filename: "[name].bundle.js",
     path: path.resolve(__dirname, "./dist"),
     // publicPath: "",
-    publicPath: "http://localhost:3000/",
+    publicPath: "http://localhost:5000/",
     clean: true,
   },
   resolve: {
     extensions: [".ts", ".js"],
   },
-  mode: "production",
+  devServer: {
+    port: 5000,
+    open: false,
+    static: {
+      directory: path.resolve(__dirname, "./dist"),
+    },
+    devMiddleware: {
+      index: "index.html",
+      writeToDisk: true,
+    },
+    historyApiFallback: {
+      index: "index.html",
+    },
+  },
+  mode: "development",
   module: {
     rules: [
-      { test: /\.hbs$/, use: ["handlebars-loader"] },
       {
         test: /\.(js|ts)$/,
         exclude: /node_modules/,
@@ -36,30 +49,25 @@ const config: webpack.Configuration = {
         },
       },
       { test: /\.(svg)$/, type: "asset/inline" },
-      { test: /\.txt/, type: "asset/source" },
-      { test: /\.s[ac]ss$/i, use: [MiniCssExtractPlugin.loader, "css-loader", "sass-loader"] },
+      { test: /\.hbs$/, use: ["handlebars-loader"] },
     ],
   },
   plugins: [
-    new MiniCssExtractPlugin({
-      filename: "[name].[contenthash].css",
-    }),
     new HtmlWebpackPlugin({
-      filename: "index.html",
-      minify: true,
       template: "./src/page-template.hbs",
       favicon: "./src/assets/favicon.svg",
-      title: "Hello World",
+      filename: "index.html",
+      minify: true,
+      title: "Dashboard",
       meta: {
-        description: "Hello World",
+        description: "Dashboard",
       },
     }),
     new ModuleFederationPlugin({
-      name: "HelloWorldApp",
-      filename: "remoteEntry.js",
-      exposes: {
-        "./HelloWorldButton": "./src/components/hello-world-button/HelloWorldButton.ts",
-        "./HelloWorldPage": "./src/components/HelloWorldPage.ts",
+      name: "App",
+      remotes: {
+        HelloWorldApp: "HelloWorldApp@http://localhost:3000/remoteEntry.js",
+        KiwiApp: "KiwiApp@http://localhost:3001/remoteEntry.js",
       },
     }),
   ],
