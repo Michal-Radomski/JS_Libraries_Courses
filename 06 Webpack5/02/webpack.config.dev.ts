@@ -4,9 +4,12 @@ import HtmlWebpackPlugin from "html-webpack-plugin";
 import "webpack-dev-server";
 
 const config: webpack.Configuration = {
-  entry: "./src/index.ts",
+  entry: {
+    "hello-world": "./src/hello-world.ts",
+    kiwi: "./src/kiwi.ts",
+  },
   output: {
-    filename: "bundle.js",
+    filename: "[name].bundle.js",
     path: path.resolve(__dirname, "./dist"),
     publicPath: "",
     clean: true,
@@ -21,7 +24,8 @@ const config: webpack.Configuration = {
       directory: path.resolve(__dirname, "./dist"),
     },
     devMiddleware: {
-      index: "index.html",
+      index: "hello-world.html",
+      // index: "kiwi.html",
       writeToDisk: true,
     },
   },
@@ -47,14 +51,27 @@ const config: webpack.Configuration = {
       { test: /\.s[ac]ss$/i, use: ["style-loader", "css-loader", "sass-loader"] },
     ],
   },
-
   plugins: [
     new HtmlWebpackPlugin({
-      template: "./src/index.hbs",
+      chunks: ["hello-world"],
+      filename: "hello-world.html",
+      minify: true,
+      template: "./src/page-template.hbs",
       favicon: "./src/assets/favicon.svg",
-      title: "Webpack 5 Course",
+      title: "Hello World",
       meta: {
-        description: "Webpack 5 Course",
+        description: "Hello World",
+      },
+    }),
+    new HtmlWebpackPlugin({
+      chunks: ["kiwi"],
+      filename: "kiwi.html",
+      minify: true,
+      template: "./src/page-template.hbs",
+      favicon: "./src/assets/favicon.svg",
+      title: "Kiwi",
+      meta: {
+        description: "Kiwi",
       },
     }),
   ],

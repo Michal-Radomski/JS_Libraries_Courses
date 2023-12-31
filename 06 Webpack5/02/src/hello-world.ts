@@ -3,7 +3,7 @@ import HelloWorldButton from "./components/hello-world-button/HelloWorldButton";
 import Heading from "./components/heading/Heading";
 
 const heading = new Heading();
-heading.render();
+heading.render("hello-world");
 
 addImage();
 

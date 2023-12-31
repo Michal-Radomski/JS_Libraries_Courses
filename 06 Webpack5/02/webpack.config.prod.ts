@@ -4,9 +4,13 @@ import MiniCssExtractPlugin from "mini-css-extract-plugin";
 import HtmlWebpackPlugin from "html-webpack-plugin";
 
 const config: webpack.Configuration = {
-  entry: "./src/index.ts",
+  entry: {
+    "hello-world": "./src/hello-world.ts",
+    kiwi: "./src/kiwi.ts",
+  },
   output: {
-    filename: "bundle.[contenthash].js",
+    // filename: "[name].[contenthash].js",
+    filename: "[id].[contenthash].js",
     path: path.resolve(__dirname, "./dist"),
     publicPath: "",
     clean: true,
@@ -15,6 +19,12 @@ const config: webpack.Configuration = {
     extensions: [".ts", ".js"],
   },
   mode: "production",
+  optimization: {
+    splitChunks: {
+      chunks: "all", //* If we install lodash that is used for every page!
+      minSize: 20000, //* Default value
+    },
+  },
   module: {
     rules: [
       { test: /\.hbs$/, use: ["handlebars-loader"] },
@@ -36,17 +46,30 @@ const config: webpack.Configuration = {
       { test: /\.s[ac]ss$/i, use: [MiniCssExtractPlugin.loader, "css-loader", "sass-loader"] },
     ],
   },
-
   plugins: [
     new MiniCssExtractPlugin({
-      filename: "styles.[contenthash].css",
+      filename: "[name].[contenthash].css",
     }),
     new HtmlWebpackPlugin({
-      template: "./src/index.hbs",
+      chunks: ["hello-world"],
+      filename: "hello-world.html",
+      minify: true,
+      template: "./src/page-template.hbs",
       favicon: "./src/assets/favicon.svg",
-      title: "Webpack 5 Course",
+      title: "Hello World",
       meta: {
-        description: "Webpack 5 Course",
+        description: "Hello World",
+      },
+    }),
+    new HtmlWebpackPlugin({
+      chunks: ["kiwi"],
+      filename: "kiwi.html",
+      minify: true,
+      template: "./src/page-template.hbs",
+      favicon: "./src/assets/favicon.svg",
+      title: "Kiwi",
+      meta: {
+        description: "Kiwi",
       },
     }),
   ],
