@@ -4,6 +4,7 @@ import Heading from "./components/heading/Heading";
 
 const heading = new Heading();
 heading.render();
+heading.render2();
 
 addImage();
 
