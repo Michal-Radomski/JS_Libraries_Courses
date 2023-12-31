@@ -6,12 +6,12 @@ heading.render("kiwi");
 const kiwiImage = new KiwiImage();
 kiwiImage.render();
 
-//* Module Federation
-// import("HelloWorldApp/HelloWorldButton").then((HelloWorldButtonModule) => {
-//   // console.log("HelloWorldButtonModule:", HelloWorldButtonModule);
-//   const HelloWorldButton = HelloWorldButtonModule.default;
-//   // console.log("HelloWorldButton:", HelloWorldButton);
-//   const helloWorldButton = new HelloWorldButton();
-//   // console.log("helloWorldButton:", helloWorldButton);
-//   helloWorldButton.render();
-// });
+//* Module Federation - from HelloWorld
+import("HelloWorldApp/HelloWorldButton").then((HelloWorldButtonModule) => {
+  // console.log("HelloWorldButtonModule:", HelloWorldButtonModule);
+  const HelloWorldButton = HelloWorldButtonModule.default;
+  // console.log("HelloWorldButton:", HelloWorldButton);
+  const helloWorldButton = new HelloWorldButton();
+  // console.log("helloWorldButton:", helloWorldButton);
+  helloWorldButton.render();
+});

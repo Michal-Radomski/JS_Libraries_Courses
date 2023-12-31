@@ -12,3 +12,4 @@ declare module "*.txt" {}
 
 declare module "KiwiApp/KiwiPage";
 declare module "HelloWorldApp/HelloWorldPage";
+declare module "HelloWorldApp/HelloWorldButton";

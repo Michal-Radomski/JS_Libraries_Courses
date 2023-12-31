@@ -9,4 +9,5 @@ declare module "*.svg" {
 }
 
 declare module "*.txt" {}
-// declare module "HelloWorldApp/HelloWorldButton";
+
+declare module "HelloWorldApp/HelloWorldButton";

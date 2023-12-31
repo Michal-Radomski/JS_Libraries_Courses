@@ -55,9 +55,9 @@ const config: webpack.Configuration = {
     }),
     new ModuleFederationPlugin({
       name: "KiwiApp",
-      // remotes: {
-      //   HelloWorldApp: "HelloWorldApp@http://localhost:3000/remoteEntry.js",
-      // },
+      remotes: {
+        HelloWorldApp: "HelloWorldApp@http://localhost:3000/remoteEntry.js",
+      },
       filename: "remoteEntry.js",
       exposes: {
         "./KiwiPage": "./src/components/KiwiPage.ts",
