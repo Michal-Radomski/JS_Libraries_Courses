@@ -34,10 +34,10 @@ const config: webpack.Configuration = {
       },
       // { test: /\.ts$/, loader: "ts-loader", exclude: /node_modules/ },
       { test: /\.(ttf)$/, type: "asset/resource" },
-      { test: /\.(svg)$/, type: "asset/inline" }, //* For small images like svg files
+      { test: /\.(svg)$/, type: "asset/inline" }, //* For small images like svg files -> data:image/jpeg;base64!
       // {
       //   test: /\.(png|jpg)$/,
-      //   type: "asset",
+      //   type: "asset", //* Webpack decides which method to choose!
       //   parser: {
       //     dataUrlCondition: {
       //       maxSize: 3 * 1024,
@@ -45,7 +45,7 @@ const config: webpack.Configuration = {
       //   },
       // },
       { test: /\.(png|jpg)$/, type: "asset/resource" },
-      { test: /\.txt/, type: "asset/source" },
+      { test: /\.txt/, type: "asset/source" }, //* .txt files!
       // { test: /\.css$/, use: ["style-loader", "css-loader"] },
       // { test: /\.s[ac]ss$/i, use: ["style-loader", "css-loader", "sass-loader"] },
       { test: /\.s[ac]ss$/i, use: [MiniCssExtractPlugin.loader, "css-loader", "sass-loader"] },
