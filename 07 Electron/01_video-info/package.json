@@ -1,0 +1,15 @@
+{
+  "name": "01_video-info",
+  "version": "1.0.0",
+  "main": "index.ts",
+  "scripts": {
+    "start": ""
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "description": "",
+  "dependencies": {
+    "electron": "^30.0.2"
+  }
+}
