@@ -5,11 +5,35 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Electron Course</title>
 
-    <!-- Bootstrap5.2 -->
+    <!-- Bootstrap 5.2 CSS -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet" />
   </head>
 
-  <body>
-    <h1>Video Info</h1>
+  <body class="container-fluid">
+    <h1>Video Info2</h1>
+    <form>
+      <div>
+        <label>Select a video</label>
+        <input type="file" accept="video/*" class="btn btn-primary" />
+      </div>
+      <button type="submit">Get Info</button>
+    </form>
+
+    <script>
+      const electron = require("electron");
+      const { ipcRenderer } = electron;
+      // console.log("ipcRenderer:", ipcRenderer);
+
+      document.querySelector("form").addEventListener("submit", (event) => {
+        event.preventDefault();
+        const { path } = document.querySelector("input").files[0];
+        // console.log("path:", path);
+        ipcRenderer.send("video:submit", path);
+      });
+
+      ipcRenderer.on("video:metadata", (event, duration) => {
+        document.querySelector("#result").innerHTML = `Video is ${duration} seconds`;
+      });
+    </script>
   </body>
 </html>
