@@ -2,4 +2,8 @@ import electron from "electron";
 // console.log("electron:", electron);
 
 const { app } = electron;
-console.log("app:", app);
+// console.log("app:", app);
+
+app.on("ready", () => {
+  console.log("App is ready");
+});

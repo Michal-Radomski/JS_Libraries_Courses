@@ -1,9 +1,11 @@
 {
   "name": "01_video-info",
   "version": "1.0.0",
-  "main": "index.ts",
+  "main": "build/index.js",
   "scripts": {
-    "start": ""
+    "prestart": "npm run compile",
+    "start": "electron .",
+    "compile": "tsc && cp index.html build/"
   },
   "keywords": [],
   "author": "",
@@ -11,5 +13,8 @@
   "description": "",
   "dependencies": {
     "electron": "^30.0.2"
+  },
+  "devDependencies": {
+    "typescript": "^5.4.5"
   }
 }
