@@ -13,3 +13,7 @@ Files created during Udemy.com different JS libraries courses:
 5. [Webpack 5 and Vite](https://www.udemy.com/course/webpack-5-vite)
 
 6. [Webpack 5](https://www.udemy.com/course/webpack-from-beginner-to-advanced)
+
+7. [Electron](https://www.udemy.com/course/electron-react-tutorial)
+
+8. [jQuery](https://www.udemy.com/course/draft/2632296)
