@@ -1,0 +1,20 @@
+{
+  "name": "02_todos",
+  "version": "1.0.0",
+  "main": "build/index.js",
+  "scripts": {
+    "prestart": "npm run compile",
+    "start": "electron .",
+    "compile": "tsc && cp index.html build/"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "description": "",
+  "dependencies": {
+    "electron": "^30.0.2"
+  },
+  "devDependencies": {
+    "typescript": "^5.4.5"
+  }
+}
