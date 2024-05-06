@@ -30,3 +30,4 @@ Temp/
 .github/
 AWS_S3_config.json
 kiwi.jpg
+*.mp4
