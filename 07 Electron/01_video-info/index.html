@@ -21,19 +21,24 @@
     <h1 id="result"></h1>
 
     <script>
-      const electron = require("electron");
-      const { ipcRenderer } = electron;
+      // const electron = require("electron");
+      // const { ipcRenderer } = electron;
       // console.log("ipcRenderer:", ipcRenderer);
 
       document.querySelector("form").addEventListener("submit", (event) => {
         event.preventDefault();
         const { path } = document.querySelector("input").files[0];
         // console.log("path:", path);
-        ipcRenderer.send("video:submit", path);
+        // ipcRenderer.send("video:submit", path);
+        window.electron.submitVideo(path);
       });
 
-      ipcRenderer.on("video:metadata", (event, duration) => {
-        document.querySelector("#result").innerHTML = `Video is ${duration} seconds`;
+      // ipcRenderer.on("video:metadata", (event, duration) => {
+      //   document.querySelector("#result").innerHTML = `Video is ${duration} seconds`;
+      // });
+
+      window.electron.receiveVideoMetadata((duration) => {
+        document.querySelector("#result").innerHTML = `Video is ${duration} seconds long.`;
       });
     </script>
   </body>
