@@ -13,4 +13,30 @@ app.on("ready", () => {
   Menu.setApplicationMenu(mainMenu);
 });
 
-const menuTemplate = [{ label: "File" }];
+const menuTemplate = [
+  {
+    label: "File",
+    submenu: [
+      { label: "New ToDo" },
+      {
+        label: "Quit",
+        // accelerator: "Ctrl+Q",
+        // accelerator: (() => {
+        //   if (process.platform === "darwin") {
+        //     return "Command+Q";
+        //   } else {
+        //     return "Ctrl+Q";
+        //   }
+        // })(),
+        accelerator: process.platform === "darwin" ? "Command+Q" : "Ctrl+Q",
+        click: () => app.quit(),
+      },
+    ],
+  },
+];
+
+if (process.platform === "darwin") {
+  menuTemplate.unshift({} as any);
+}
+
+// console.log("process.platform:", process.platform);
