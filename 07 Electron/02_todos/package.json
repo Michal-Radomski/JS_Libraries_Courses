@@ -5,7 +5,7 @@
   "scripts": {
     "prestart": "npm run compile",
     "start": "electron .",
-    "compile": "tsc && cp index.html build/"
+    "compile": "tsc && cp *.html build/"
   },
   "keywords": [],
   "author": "",
