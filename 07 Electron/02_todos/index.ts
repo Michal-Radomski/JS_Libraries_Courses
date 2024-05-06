@@ -13,11 +13,26 @@ app.on("ready", () => {
   Menu.setApplicationMenu(mainMenu);
 });
 
+const createAddWindow = (): void => {
+  let addWindow: electron.BrowserWindow | null = new BrowserWindow({
+    webPreferences: { nodeIntegration: true, contextIsolation: false },
+    width: 300,
+    height: 200,
+    title: "Add New Todo",
+  });
+  // addWindow.loadURL(`file://${__dirname}/add.html`);
+  // addWindow.on("closed", () => (addWindow = null));
+};
+
 const menuTemplate = [
   {
     label: "File",
     submenu: [
-      { label: "New ToDo" },
+      {
+        label: "New ToDo",
+
+        click: () => createAddWindow(),
+      },
       {
         label: "Quit",
         // accelerator: "Ctrl+Q",
