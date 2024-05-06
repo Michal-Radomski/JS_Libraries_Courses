@@ -20,8 +20,8 @@ const createAddWindow = (): void => {
     height: 200,
     title: "Add New Todo",
   });
-  // addWindow.loadURL(`file://${__dirname}/add.html`);
-  // addWindow.on("closed", () => (addWindow = null));
+  addWindow.loadURL(`file://${__dirname}/add.html`);
+  addWindow.on("closed", () => (addWindow = null));
 };
 
 const menuTemplate = [
