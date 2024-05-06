@@ -7,14 +7,15 @@ const { app, BrowserWindow, ipcMain } = electron;
 
 app.on("ready", () => {
   // console.log("App is ready");
-  const mainWindow = new BrowserWindow({
+  const mainWindow: electron.BrowserWindow = new BrowserWindow({
     webPreferences: { nodeIntegration: true, contextIsolation: false },
   });
   // console.log("mainWindow:", mainWindow);
   mainWindow.loadURL(`file://${__dirname}/index.html`);
 
-  ipcMain.on("video:submit", (_event, path: string) => {
-    ffmpeg.ffprobe(path, (_err, metadata) => {
+  ipcMain.on("video:submit", (_event: Electron.IpcMainEvent, path: string) => {
+    ffmpeg.ffprobe(path, (_error: Error, metadata: ffmpeg.FfprobeData) => {
+      // console.log("metadata:", metadata);
       mainWindow.webContents.send("video:metadata", metadata.format.duration);
     });
   });
