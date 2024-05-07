@@ -17,6 +17,7 @@ app.on("ready", () => {
 });
 
 const createAddWindow = (): void => {
+  //* Garbage Collection! - addWindow is overwritten
   addWindow = new BrowserWindow({
     webPreferences: { nodeIntegration: true, contextIsolation: false },
     width: 300,
@@ -24,7 +25,7 @@ const createAddWindow = (): void => {
     title: "Add New Todo",
   });
   addWindow.loadURL(`file://${__dirname}/add.html`);
-  addWindow.on("closed", () => (addWindow = null));
+  addWindow.on("closed", () => (addWindow = null)); //* Garbage Collection!
 };
 
 ipcMain.on("todo:add", (_event: electron.IpcMainEvent, todo: string): void => {
