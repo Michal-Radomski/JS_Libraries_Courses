@@ -31,7 +31,6 @@ const menuTemplate = [
     submenu: [
       {
         label: "New ToDo",
-
         click: () => createAddWindow(),
       },
       {
@@ -49,10 +48,27 @@ const menuTemplate = [
       },
     ],
   },
-];
+] as (Electron.MenuItemConstructorOptions | Electron.MenuItem)[];
 
 if (process.platform === "darwin") {
   menuTemplate.unshift({} as any);
 }
 
 // console.log("process.platform:", process.platform);
+
+if (process.env.NODE_ENV !== "production") {
+  menuTemplate.push({
+    label: "View",
+    submenu: [
+      { role: "reload" },
+      {
+        label: "Toggle Developer Tools",
+        accelerator: process.platform === "darwin" ? "Command+Alt+I" : "Ctrl+Shift+I",
+        click(_item: Electron.MenuItem, focusedWindow: Electron.BrowserWindow | any) {
+          // console.log("focusedWindow:", focusedWindow);
+          focusedWindow?.toggleDevTools();
+        },
+      },
+    ],
+  });
+}
