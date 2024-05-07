@@ -1,9 +1,11 @@
 import electron from "electron";
 
-const { app, BrowserWindow, Menu } = electron;
+const { app, BrowserWindow, Menu, ipcMain } = electron;
+
+let mainWindow: electron.BrowserWindow, addWindow: electron.BrowserWindow | null;
 
 app.on("ready", () => {
-  const mainWindow = new BrowserWindow({
+  mainWindow = new BrowserWindow({
     webPreferences: { nodeIntegration: true, contextIsolation: false },
   });
 
@@ -15,7 +17,7 @@ app.on("ready", () => {
 });
 
 const createAddWindow = (): void => {
-  let addWindow: electron.BrowserWindow | null = new BrowserWindow({
+  addWindow = new BrowserWindow({
     webPreferences: { nodeIntegration: true, contextIsolation: false },
     width: 300,
     height: 200,
@@ -24,6 +26,11 @@ const createAddWindow = (): void => {
   addWindow.loadURL(`file://${__dirname}/add.html`);
   addWindow.on("closed", () => (addWindow = null));
 };
+
+ipcMain.on("todo:add", (_event: electron.IpcMainEvent, todo: string): void => {
+  mainWindow.webContents.send("todo:add", todo);
+  addWindow?.close();
+});
 
 const menuTemplate = [
   {
@@ -48,7 +55,7 @@ const menuTemplate = [
       },
     ],
   },
-] as (Electron.MenuItemConstructorOptions | Electron.MenuItem)[];
+] as (electron.MenuItemConstructorOptions | electron.MenuItem)[];
 
 if (process.platform === "darwin") {
   menuTemplate.unshift({} as any);
@@ -64,7 +71,7 @@ if (process.env.NODE_ENV !== "production") {
       {
         label: "Toggle Developer Tools",
         accelerator: process.platform === "darwin" ? "Command+Alt+I" : "Ctrl+Shift+I",
-        click(_item: Electron.MenuItem, focusedWindow: Electron.BrowserWindow | any) {
+        click(_item: electron.MenuItem, focusedWindow: electron.BrowserWindow | any) {
           // console.log("focusedWindow:", focusedWindow);
           focusedWindow?.toggleDevTools();
         },

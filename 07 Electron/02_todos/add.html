@@ -28,6 +28,7 @@
         event.preventDefault();
 
         const { value } = document.querySelector("input");
+        // console.log({ value });
         ipcRenderer.send("todo:add", value);
       });
     </script>
