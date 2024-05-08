@@ -6,7 +6,12 @@ let mainWindow: electron.BrowserWindow, addWindow: electron.BrowserWindow | null
 
 app.on("ready", () => {
   mainWindow = new BrowserWindow({
-    webPreferences: { nodeIntegration: true, contextIsolation: false },
+    // webPreferences: { nodeIntegration: true, contextIsolation: false },
+    webPreferences: {
+      nodeIntegration: false,
+      contextIsolation: true,
+      preload: `${__dirname}/preload.js`,
+    },
   });
 
   mainWindow.loadURL(`file://${__dirname}/main.html`);
@@ -19,10 +24,15 @@ app.on("ready", () => {
 const createAddWindow = (): void => {
   //* Garbage Collection! - addWindow is overwritten
   addWindow = new BrowserWindow({
-    webPreferences: { nodeIntegration: true, contextIsolation: false },
+    // webPreferences: { nodeIntegration: true, contextIsolation: false },
     width: 300,
     height: 200,
     title: "Add New Todo",
+    webPreferences: {
+      nodeIntegration: false,
+      contextIsolation: true,
+      preload: `${__dirname}/preload.js`,
+    },
   });
   addWindow.loadURL(`file://${__dirname}/add.html`);
   addWindow.on("closed", () => (addWindow = null)); //* Garbage Collection!

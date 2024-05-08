@@ -15,19 +15,30 @@
     <ul></ul>
 
     <script>
-      const electron = require("electron");
-      const { ipcRenderer } = electron;
+      // const electron = require("electron");
+      // const { ipcRenderer } = electron;
       const list = document.querySelector("ul");
 
-      ipcRenderer.on("todo:add", (event, todo) => {
+      // ipcRenderer.on("todo:add", (event, todo) => {
+      //   const li = document.createElement("li");
+      //   const text = document.createTextNode(todo);
+
+      //   li.appendChild(text);
+      //   list.appendChild(li);
+      // });
+
+      // ipcRenderer.on("todo:clear", () => {
+      //   list.innerHTML = "";
+      // });
+
+      window.api.on("todo:add", (todo) => {
         const li = document.createElement("li");
         const text = document.createTextNode(todo);
-
         li.appendChild(text);
         list.appendChild(li);
       });
 
-      ipcRenderer.on("todo:clear", () => {
+      window.api.on("todo:clear", () => {
         list.innerHTML = "";
       });
     </script>
