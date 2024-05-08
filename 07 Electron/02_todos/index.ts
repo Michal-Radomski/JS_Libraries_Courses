@@ -42,6 +42,12 @@ const menuTemplate = [
         click: () => createAddWindow(),
       },
       {
+        label: "Clear Todos",
+        click() {
+          mainWindow.webContents.send("todo:clear");
+        },
+      },
+      {
         label: "Quit",
         // accelerator: "Ctrl+Q",
         // accelerator: (() => {
