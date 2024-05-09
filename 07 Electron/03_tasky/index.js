@@ -10,8 +10,9 @@ app.on("ready", () => {
   mainWindow = new BrowserWindow({
     height: 500,
     width: 300,
-    frame: true,
+    frame: false,
     resizable: false,
+    show: false,
   });
   mainWindow.loadURL(`file://${__dirname}/src/index.html`);
 
@@ -19,4 +20,12 @@ app.on("ready", () => {
   const iconName = process.platform === "win32" || "linux" ? "windows-icon.png" : "iconTemplate.png";
   const iconPath = path.join(__dirname, `./src/assets/${iconName}`);
   tray = new Tray(iconPath);
+  tray.on("click", (_event, bounds) => {
+    console.log(bounds);
+    if (mainWindow.isVisible()) {
+      mainWindow.hide();
+    } else {
+      mainWindow.show();
+    }
+  });
 });
