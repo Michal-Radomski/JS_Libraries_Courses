@@ -20,20 +20,21 @@ app.on("ready", () => {
   const iconName = process.platform === "win32" || "linux" ? "windows-icon.png" : "iconTemplate.png";
   const iconPath = path.join(__dirname, `./src/assets/${iconName}`);
   tray = new Tray(iconPath);
-  tray.on("click", (_event, _bounds) => {
-    // console.log(_bounds);
-    // const { x, y } = _bounds;
+  tray.on("click", (_event, bounds) => {
+    // console.log(bounds);
+    // const { x, y } = bounds;
     // console.log({ x, y, height, width });
 
-    const { x } = electron.screen.getCursorScreenPoint();
+    const { x, y } = process.platform === "linux" ? electron.screen.getCursorScreenPoint() : bounds;
     const { height, width } = mainWindow.getBounds();
 
     if (mainWindow.isVisible()) {
       mainWindow.hide();
     } else {
+      const yPosition = process.platform === "darwin" ? y : process.platform === "linux" ? 0 : y - height;
       mainWindow.setBounds({
         x: x - width / 2,
-        y: 0,
+        y: yPosition,
         height: height,
         width: width,
       });
