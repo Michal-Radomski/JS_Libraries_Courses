@@ -4,7 +4,7 @@ const { BrowserWindow } = electron;
 class MainWindow extends BrowserWindow {
   constructor(url) {
     super({
-      //* Only here - don't do in this way!
+      //* Only here - don't do it in this way!
       height: 500,
       width: 300,
       frame: false,
