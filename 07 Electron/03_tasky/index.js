@@ -2,8 +2,9 @@ const electron = require("electron");
 const path = require("path");
 
 const TimerTray = require("./app/timer_tray");
+const MainWindow = require("./app/main_window");
 
-const { app, BrowserWindow } = electron;
+const { app } = electron;
 
 let mainWindow;
 let tray;
@@ -11,18 +12,7 @@ let tray;
 app.on("ready", () => {
   // app.dock.hide();
 
-  mainWindow = new BrowserWindow({
-    height: 500,
-    width: 300,
-    frame: false,
-    resizable: false,
-    show: false,
-    skipTaskbar: true,
-  });
-  mainWindow.loadURL(`file://${__dirname}/src/index.html`);
-  mainWindow.on("blur", () => {
-    mainWindow.hide();
-  });
+  mainWindow = new MainWindow(`file://${__dirname}/src/index.html`);
 
   process.platform === "win32" || "linux" ? mainWindow.setSkipTaskbar(true) : app.dock.hide();
 
