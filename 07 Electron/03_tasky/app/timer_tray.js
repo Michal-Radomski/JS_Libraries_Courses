@@ -8,7 +8,7 @@ class TimerTray extends Tray {
     this.setToolTip("Timer App");
     this.mainWindow = mainWindow;
     this.on("click", this.onClick.bind(this));
-    this.on("right-click", this.onRightClick.bind(this));
+    this.on("right-click", this.onRightClick.bind(this)); //* Doesn't work on Linux
   }
 
   onClick(_event, bounds) {
