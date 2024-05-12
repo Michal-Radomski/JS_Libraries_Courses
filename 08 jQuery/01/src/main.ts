@@ -116,16 +116,25 @@ declare global {
 //   }
 // });
 
+// $(document).ready(function () {
+//   const inputSelOne = $("input[value$='One']").css("background-color", "#cc99ff"); //* ends with a specified value
+//   const inputSelThree = $("input[value$='Three']").css("background-color", "blue");
+
+//   const inputSelTwo = $("input[value^='InputTwo']").css("background-color", "blue"); //* starts with a specified value
+
+//   $(inputSelOne).each(function () {
+//     $(this).addClass("border");
+//     $(inputSelThree).addClass("border");
+//   });
+
+//   inputSelTwo.css("background-color", "orangered");
+// });
+
+//* Filters for selectors
 $(document).ready(function () {
-  const inputSelOne = $("input[value$='One']").css("background-color", "#cc99ff"); //* ends with a specified value
-  const inputSelThree = $("input[value$='Three']").css("background-color", "blue");
-
-  const inputSelTwo = $("input[value^='InputTwo']").css("background-color", "blue"); //* starts with a specified value
-
-  $(inputSelOne).each(function () {
-    $(this).addClass("border");
-    $(inputSelThree).addClass("border");
-  });
-
-  inputSelTwo.css("background-color", "orangered");
+  const selection = function (): void {
+    $(".row div:first").css("background-color", "#b3ffff"); //* First div in row class
+    $(".row div:last").css("background-color", "yellow"); //* Last div in row class
+  };
+  selection();
 });
