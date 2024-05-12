@@ -62,13 +62,31 @@ declare global {
 //   });
 // });
 
+// $(document).ready(function () {
+//   const idName = $("[id=nameOne]");
+//   const className = $("[class=nameTwo]");
+
+//   idName.css("background-color", "CadetBlue");
+
+//   className.each(function () {
+//     $(this).css("background-color", "#b3ffff");
+//   });
+// });
+
+// $(document).ready(function () {
+//   $("div[class!='myName']").each(function () {
+//     $(this).css("background-color", "#b3ffff");
+//   });
+// });
+
 $(document).ready(function () {
-  const idName = $("[id=nameOne]");
-  const className = $("[class=nameTwo]");
+  const notMyName = function () {
+    $("div[class!='myName']").css("background-color", "#b3ffff");
+  };
 
-  idName.css("background-color", "CadetBlue");
-
-  className.each(function () {
-    $(this).css("background-color", "#b3ffff");
-  });
+  const myTitleOne = function () {
+    $("p[title|='myTitleOne']").css({ "background-color": "#13473e", color: "yellow" }); //* starts with myTitleOne
+  };
+  notMyName();
+  myTitleOne();
 });
