@@ -79,14 +79,53 @@ declare global {
 //   });
 // });
 
-$(document).ready(function () {
-  const notMyName = function () {
-    $("div[class!='myName']").css("background-color", "#b3ffff");
-  };
+// $(document).ready(function () {
+//   const notMyName = function () {
+//     $("div[class!='myName']").css("background-color", "#b3ffff");
+//   };
 
-  const myTitleOne = function () {
-    $("p[title|='myTitleOne']").css({ "background-color": "#13473e", color: "yellow" }); //* starts with myTitleOne
-  };
-  notMyName();
-  myTitleOne();
+//   const myTitleOne = function () {
+//     $("p[title|='myTitleOne']").css({ "background-color": "#13473e", color: "yellow" }); //* starts with "myTitleOne"
+//   };
+//   notMyName();
+//   myTitleOne();
+// });
+
+// $(document).ready(function () {
+//   // const withEach = $("input[name='input']");
+
+//   // $(withEach).each(function () {
+//   //   $(this).css("background-color", "red");
+//   // });
+
+//   $("input[name*='input']").css("background-color", "blue"); //* contains value "input"
+// });
+
+// $(document).ready(function () {
+//   const checkOne = $("input[name~='input']"); //* contains a space-separated list of words
+//   const checkTwo = $("input[name~='inputTwo']");
+
+//   checkOne.css("background-color", "DarkCyan");
+//   checkTwo.css("background-color", "DarkCyan");
+
+//   //you need the rgb color, to use the color check
+//   if (checkOne.css("background-color") === "rgb(0, 139, 139)") {
+//     alert("matching");
+//   } else {
+//     alert("no mating");
+//   }
+// });
+
+$(document).ready(function () {
+  const inputSelOne = $("input[value$='One']").css("background-color", "#cc99ff"); //* ends with a specified value
+  const inputSelThree = $("input[value$='Three']").css("background-color", "blue");
+
+  const inputSelTwo = $("input[value^='InputTwo']").css("background-color", "blue"); //* starts with a specified value
+
+  $(inputSelOne).each(function () {
+    $(this).addClass("border");
+    $(inputSelThree).addClass("border");
+  });
+
+  inputSelTwo.css("background-color", "orangered");
 });
