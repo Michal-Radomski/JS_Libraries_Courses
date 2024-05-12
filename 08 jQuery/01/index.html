@@ -38,6 +38,37 @@
       <p id="p-id">Lorem, ipsum dolor sit amet consectetur adipisicing elit. Earum, vitae.</p>
     </div>
 
+    <div class="container">
+      <h2>Color the table!</h2>
+      <p>Click on the buttons to color the row which you want!</p>
+
+      <table class="table">
+        <thead>
+          <tr>
+            <th>First name</th>
+            <th>Last name</th>
+            <th>Birthday</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr class="bob">
+            <td>Bob</td>
+            <td>Miller</td>
+            <td>01.09.1980</td>
+          </tr>
+          <tr class="carol">
+            <td>Carol</td>
+            <td>Miller</td>
+            <td>12.12.1981</td>
+          </tr>
+        </tbody>
+      </table>
+
+      <button type="button" class="btn btn-secondary" id="bob">bob</button>
+      <button type="button" class="btn btn-secondary" id="carol">carol</button>
+      <button type="button" class="btn btn-secondary" id="bg">change bg</button>
+    </div>
+
     <!-- main.ts -->
     <div id="root"></div>
     <script type="module" src="/src/main.ts"></script>
