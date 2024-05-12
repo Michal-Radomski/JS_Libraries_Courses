@@ -10,6 +10,22 @@ declare global {
 //   console.log("Hello World!");
 // });
 
+// $(document).ready(function () {
+//   $("*").css("background-color", "#b3ffff");
+// });
+
+// $(document).ready(function () {
+//   $("p").css("background-color", "#b3ffff");
+// });
+
+// $(document).ready(function () {
+//   $(".container-fluid").css("background-color", "#b3ffff");
+// });
+
 $(document).ready(function () {
-  $("*").css("background-color", "#b3ffff");
+  $("#p-id").css("background-color", "#b3ffff");
+});
+
+$(document).ready(function () {
+  $("h1, p").css("background-color", "#b3ffff");
 });
