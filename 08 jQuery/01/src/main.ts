@@ -164,6 +164,15 @@ $(document).ready(function () {
   $("div:contains('My')").css("color", "deeppink");
 });
 
+// $(document).ready(function () {
+//   $("td:empty:first").css("background-color", "#cc99ff");
+// });
+
+// $(document).ready(function () {
+//   //eq count from 0,1,2
+//   $("table:has(tr) tr:eq(1)").css("background-color", "#cc99ff");
+// });
+
 $(document).ready(function () {
-  $("td:empty:first").css("background-color", "#cc99ff");
+  $("div:parent:last").css("background-color", "#cc99ff");
 });
