@@ -143,10 +143,15 @@ declare global {
 //   $("input:not(:checked) + span").css("background-color", "#b3ffff");
 // });
 
+// $(document).ready(() => {
+//   $("tr:even").css("background-color", "red"); //* Starts with 0!
+//   $("tr:odd").css("background-color", "#b3ffff"); //* Starts with 0!
+//   $("tr:eq(0)").css("color", "yellow"); //* Starts with 0! (equal)
+//   $("tr:gt(3)").css("color", "yellow"); //* Starts with 0! (greater than)
+//   $("tr:lt(3)").css("text-decoration", "underline"); //* Starts with 0! (less than)
+// });
+
 $(document).ready(function () {
-  $("tr:even").css("background-color", "red"); //* Starts with 0!
-  $("tr:odd").css("background-color", "#b3ffff"); //* Starts with 0!
-  $("tr:eq(0)").css("color", "yellow"); //* Starts with 0! (equal)
-  $("tr:gt(3)").css("color", "yellow"); //* Starts with 0! (greater than)
-  $("tr:lt(3)").css("color", "yellow"); //* Starts with 0! (less than)
+  $(".focusMe").focus();
+  $(":focus").css("background-color", "#b3ffff");
 });
