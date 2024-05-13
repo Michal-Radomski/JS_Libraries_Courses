@@ -151,7 +151,19 @@ declare global {
 //   $("tr:lt(3)").css("text-decoration", "underline"); //* Starts with 0! (less than)
 // });
 
+// $(document).ready(function () {
+//   $(".focusMe").focus();
+//   $(":focus").css("background-color", "#b3ffff");
+// });
+
 $(document).ready(function () {
-  $(".focusMe").focus();
-  $(":focus").css("background-color", "#b3ffff");
+  $(":header").css("background-color", "lightyellow");
+});
+
+$(document).ready(function () {
+  $("div:contains('My')").css("color", "deeppink");
+});
+
+$(document).ready(function () {
+  $("td:empty:first").css("background-color", "#cc99ff");
 });
