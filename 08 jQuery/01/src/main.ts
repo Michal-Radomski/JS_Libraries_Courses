@@ -173,6 +173,10 @@ $(document).ready(function () {
 //   $("table:has(tr) tr:eq(1)").css("background-color", "#cc99ff");
 // });
 
+// $(document).ready(function () {
+//   $("div:parent:last").css("background-color", "#cc99ff");
+// });
+
 $(document).ready(function () {
-  $("div:parent:last").css("background-color", "#cc99ff");
+  $(":text").css("background-color", "#339966");
 });
