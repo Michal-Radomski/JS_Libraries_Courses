@@ -131,10 +131,18 @@ declare global {
 // });
 
 //* Filters for selectors
+// $(document).ready(function () {
+//   const selection = function (): void {
+//     $(".row div:first").css("background-color", "#b3ffff"); //* First div in row class
+//     $(".row div:last").css("background-color", "yellow"); //* Last div in row class
+//   };
+//   selection();
+// });
+
+// $(document).ready(function () {
+//   $("input:not(:checked) + span").css("background-color", "#b3ffff");
+// });
+
 $(document).ready(function () {
-  const selection = function (): void {
-    $(".row div:first").css("background-color", "#b3ffff"); //* First div in row class
-    $(".row div:last").css("background-color", "yellow"); //* Last div in row class
-  };
-  selection();
+  $("tr:odd [id=select]").css("background-color", "#b3ffff");
 });
