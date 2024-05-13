@@ -144,5 +144,9 @@ declare global {
 // });
 
 $(document).ready(function () {
-  $("tr:odd [id=select]").css("background-color", "#b3ffff");
+  $("tr:even").css("background-color", "red"); //* Starts with 0!
+  $("tr:odd").css("background-color", "#b3ffff"); //* Starts with 0!
+  $("tr:eq(0)").css("color", "yellow"); //* Starts with 0! (equal)
+  $("tr:gt(3)").css("color", "yellow"); //* Starts with 0! (greater than)
+  $("tr:lt(3)").css("color", "yellow"); //* Starts with 0! (less than)
 });
