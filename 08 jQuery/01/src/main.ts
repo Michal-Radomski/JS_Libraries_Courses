@@ -196,9 +196,15 @@ $(document).ready(function () {
 //   $(":selected").css("color", "magenta");
 // });
 
-$(document).ready(() => {
-  $("div:visible").click(function () {
-    console.log("this:", this);
-    $(this).css("background", "violet");
-  });
+// $(document).ready(() => {
+//   $("div:visible").click(function () {
+//     console.log("this:", this);
+//     $(this).css("background", "violet");
+//   });
+// });
+
+//* Child filters
+$(document).ready(function () {
+  $("li:first-child").addClass("custom_border").css("background-color", "#339966");
+  $("li:last-child").css("background-color", "pink");
 });
