@@ -183,15 +183,22 @@ $(document).ready(function () {
 //   $("form").wrap("<div class='borderColor'></div>");
 // });
 
-$(document).ready(function () {
-  $(":text").css("background-color", "#339966");
-  $(":password").css("background-color", "red");
-  $(":reset").css("background-color", "yellow");
-  $(":checkbox").wrap("<div style='border: 2px solid red'></div>");
-  $(":submit").css("background-color", "orange");
-  $(":radio").wrap("<div style='border: 2px dashed cyan'></div>");
-  $(":disabled").css("background-color", "pink");
-  $(":enabled").css("color", "dimgray");
-  // $(":checked").wrap("<div style='border: 2px dashed blue'></div>");
-  $(":selected").css("color", "magenta");
+// $(document).ready(function () {
+//   $(":text").css("background-color", "#339966");
+//   $(":password").css("background-color", "red");
+//   $(":reset").css("background-color", "yellow");
+//   $(":checkbox").wrap("<div style='border: 2px solid red'></div>");
+//   $(":submit").css("background-color", "orange");
+//   $(":radio").wrap("<div style='border: 2px dashed cyan'></div>");
+//   $(":disabled").css("background-color", "pink");
+//   $(":enabled").css("color", "dimgray");
+//   // $(":checked").wrap("<div style='border: 2px dashed blue'></div>");
+//   $(":selected").css("color", "magenta");
+// });
+
+$(document).ready(() => {
+  $("div:visible").click(function () {
+    console.log("this:", this);
+    $(this).css("background", "violet");
+  });
 });
