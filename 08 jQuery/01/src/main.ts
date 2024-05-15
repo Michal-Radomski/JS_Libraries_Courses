@@ -177,6 +177,12 @@ $(document).ready(function () {
 //   $("div:parent:last").css("background-color", "#cc99ff");
 // });
 
+// $(document).ready(function () {
+//   $(":button, :input").addClass("btn1");
+//   $("#bnt1ID").wrap("<div class='borderColor'></div>");
+//   $("form").wrap("<div class='borderColor'></div>");
+// });
+
 $(document).ready(function () {
   $(":text").css("background-color", "#339966");
 });
