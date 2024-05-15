@@ -189,4 +189,5 @@ $(document).ready(function () {
   $(":reset").css("background-color", "yellow");
   $(":checkbox").wrap("<div style='border: 2px solid red'></div>");
   $(":submit").css("background-color", "orange");
+  $(":radio").wrap("<div style='border: 2px dashed cyan'></div>");
 });
