@@ -185,4 +185,8 @@ $(document).ready(function () {
 
 $(document).ready(function () {
   $(":text").css("background-color", "#339966");
+  $(":password").css("background-color", "red");
+  $(":reset").css("background-color", "yellow");
+  $(":checkbox").wrap("<div style='border: 2px solid red'></div>");
+  $(":submit").css("background-color", "orange");
 });
