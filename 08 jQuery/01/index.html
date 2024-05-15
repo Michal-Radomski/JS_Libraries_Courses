@@ -203,12 +203,25 @@
       <input type="password" name="password" />
       <input type="reset" name="reset" />
       <input type="checkbox" name="checkbox_1" value="checkbox_1" />
-      <input type="checkbox" name="checkbox_2" value="checkbox_2" />
+      <input type="checkbox" name="checkbox_2" value="checkbox_2" checked />
       <input type="checkbox" name="checkbox_3" value="checkbox_3" />
       <input type="submit" name="submit" />
       <input type="radio" name="radio_input" value="radio_1" />
       <input type="radio" name="radio_input" value="radio_2" />
-      <input type="radio" name="radio_input" value="radio_3" />
+      <input type="radio" name="radio_input" value="radio_3" checked />
+      <input type="text" name="lastName" disabled />
+      <button disabled>Disabled</button>
+    </form>
+
+    <form>
+      <label for="cars">Choose a car:</label>
+
+      <select id="cars">
+        <option value="volvo">Volvo</option>
+        <option value="saab">Saab</option>
+        <option value="vw">VW</option>
+        <option value="audi" selected>Audi</option>
+      </select>
     </form>
 
     <!-- main.ts -->

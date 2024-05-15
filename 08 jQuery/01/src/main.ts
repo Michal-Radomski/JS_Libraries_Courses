@@ -190,4 +190,8 @@ $(document).ready(function () {
   $(":checkbox").wrap("<div style='border: 2px solid red'></div>");
   $(":submit").css("background-color", "orange");
   $(":radio").wrap("<div style='border: 2px dashed cyan'></div>");
+  $(":disabled").css("background-color", "pink");
+  $(":enabled").css("color", "dimgray");
+  // $(":checked").wrap("<div style='border: 2px dashed blue'></div>");
+  $(":selected").css("color", "magenta");
 });
