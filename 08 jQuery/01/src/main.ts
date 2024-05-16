@@ -249,13 +249,17 @@ $(document).ready(function () {
 //   $("ul").find("li").eq(1).css("color", "maroon");
 // });
 
-$(function () {
-  // $("button").click(function () {
-  //   $("p.clone").clone().appendTo("body");
-  // });
+// $(function () {
+//   $("button").click(function () {
+//     $("p.clone").clone().appendTo("body");
+//   });
 
-  //* The same as above
-  $("button").on("click", function () {
-    $("p.clone").clone().appendTo("body");
-  });
+//   //* The same as above
+//   $("button").on("click", function () {
+//     $("p.clone").clone().appendTo("body");
+//   });
+// });
+
+$(function () {
+  $("p").has("span").css("background-color", "yellow");
 });
