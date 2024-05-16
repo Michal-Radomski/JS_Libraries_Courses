@@ -204,13 +204,21 @@ $(document).ready(function () {
 // });
 
 //* Child filters
-$(document).ready(function () {
-  $("li:first-child").addClass("custom_border").css("background-color", "#339966");
-  $("li:last-child").css("background-color", "pink");
-  $("li:nth-child(3)").css("background-color", "red");
-  $("li:nth-child(even)").css("color", "blue");
-  $("p:only-child").css("color", "blue");
-  $("p:first-of-type").css("text-decoration", "underline");
-  $("p:last-of-type").css("font-weight", "bold");
-  $("p:nth-of-type(1)").css("font-style", "italic");
+// $(document).ready(function () {
+//   $("li:first-child").addClass("custom_border").css("background-color", "#339966");
+//   $("li:last-child").css("background-color", "pink");
+//   $("li:nth-child(3)").css("background-color", "red");
+//   $("li:nth-child(even)").css("color", "blue");
+//   $("p:only-child").css("color", "blue");
+//   $("p:first-of-type").css("text-decoration", "underline");
+//   $("p:last-of-type").css("font-weight", "bold");
+//   $("p:nth-of-type(1)").css("font-style", "italic");
+// });
+
+//* Traversing
+//@ jQuery v3 new shorter syntax!
+//* $(document).ready(function () {}); = $(function () {});
+
+$(function () {
+  $(".mainDIV, #myList").css({ border: "5px solid pink", padding: "10px" }).children().addClass("custom_border");
 });
