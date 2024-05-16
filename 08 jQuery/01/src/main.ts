@@ -230,13 +230,17 @@ $(document).ready(function () {
 //   $("li.find").next().css("border", "2px solid blue");
 // });
 
+// $(function () {
+//   $("li.start").nextUntil("li.stop").css({ color: "red", border: "2px solid red" });
+//   $("li.start").parent().css({ border: "2px solid blue" });
+//   // $("li.start").parents().css({ color: "darkmagenta" });
+//   // $("li.start").parentsUntil("div").css({ color: "darkmagenta" });
+//   // $("li.start").prev().css({ border: "2px solid green" });
+//   $("li.start").prevAll().css({ border: "2px solid green" });
+//   // $("li.stop").prevUntil("li.start").css({ "font-size": "125%" });
+//   $("li.stop").siblings().css({ "font-style": "italic" });
+// });
+
 $(function () {
-  $("li.start").nextUntil("li.stop").css({ color: "red", border: "2px solid red" });
-  $("li.start").parent().css({ border: "2px solid blue" });
-  // $("li.start").parents().css({ color: "darkmagenta" });
-  // $("li.start").parentsUntil("div").css({ color: "darkmagenta" });
-  // $("li.start").prev().css({ border: "2px solid green" });
-  $("li.start").prevAll().css({ border: "2px solid green" });
-  // $("li.stop").prevUntil("li.start").css({ "font-size": "125%" });
-  $("li.stop").siblings().css({ "font-style": "italic" });
+  $("li").add("p").css("background-color", "red");
 });
