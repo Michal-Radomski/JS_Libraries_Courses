@@ -260,6 +260,16 @@ $(document).ready(function () {
 //   });
 // });
 
+// $(function () {
+//   $("p").has("span").css("background-color", "yellow");
+// });
+
 $(function () {
-  $("p").has("span").css("background-color", "yellow");
+  const result = [] as string[];
+  //index for order (0,1,3) and element for the pushed item
+  //.text function formats the output in readable format
+  $("li").map(function (_index, element) {
+    result.push($(element).text());
+  });
+  alert(result);
 });
