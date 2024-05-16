@@ -264,12 +264,21 @@ $(document).ready(function () {
 //   $("p").has("span").css("background-color", "yellow");
 // });
 
+// $(function () {
+//   const result = [] as string[];
+//   $("li").map(function (_index, element) {
+//     result.push($(element).text());
+//   });
+//   alert(result);
+// });
+
+// $(function () {
+//   $("li").not("li.not").css("background-color", "orangered");
+// });
+
 $(function () {
-  const result = [] as string[];
-  //index for order (0,1,3) and element for the pushed item
-  //.text function formats the output in readable format
-  $("li").map(function (_index, element) {
-    result.push($(element).text());
+  $("input").on("click", function () {
+    // console.log($(this).attr("value", "added value"));
+    $(this).attr("value", "added value");
   });
-  alert(result);
 });
