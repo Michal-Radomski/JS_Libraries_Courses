@@ -241,10 +241,21 @@ $(document).ready(function () {
 //   $("li.stop").siblings().css({ "font-style": "italic" });
 // });
 
+// $(function () {
+//   $("li").add("p").css("background-color", "red");
+//   $("li").first().css("background-color", "red");
+//   $("li").last().css("background-color", "cyan");
+//   $("li").filter(":contains(2)").css("background-color", "yellow");
+//   $("ul").find("li").eq(1).css("color", "maroon");
+// });
+
 $(function () {
-  $("li").add("p").css("background-color", "red");
-  $("li").first().css("background-color", "red");
-  $("li").last().css("background-color", "cyan");
-  $("li").filter(":contains(2)").css("background-color", "yellow");
-  $("ul").find("li").eq(1).css("color", "maroon");
+  // $("button").click(function () {
+  //   $("p.clone").clone().appendTo("body");
+  // });
+
+  //* The same as above
+  $("button").on("click", function () {
+    $("p.clone").clone().appendTo("body");
+  });
 });
