@@ -209,4 +209,8 @@ $(document).ready(function () {
   $("li:last-child").css("background-color", "pink");
   $("li:nth-child(3)").css("background-color", "red");
   $("li:nth-child(even)").css("color", "blue");
+  $("p:only-child").css("color", "blue");
+  $("p:first-of-type").css("text-decoration", "underline");
+  $("p:last-of-type").css("font-weight", "bold");
+  $("p:nth-of-type(1)").css("font-style", "italic");
 });
