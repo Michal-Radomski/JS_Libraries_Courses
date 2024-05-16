@@ -224,6 +224,8 @@ $(document).ready(function () {
 // });
 
 $(function () {
-  $("li").closest("#myList").css("background-color", "#339966");
+  $("li").closest("#myList").css("background-color", "lightgrey");
   $("div").filter(".innerDivOne").css("background-color", "red");
+  $("ul").find(".find").css("border", "2px solid red");
+  $("li.find").next().css("border", "2px solid blue");
 });
