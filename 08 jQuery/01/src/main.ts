@@ -219,6 +219,11 @@ $(document).ready(function () {
 //@ jQuery v3 new shorter syntax!
 //* $(document).ready(function () {}); = $(function () {});
 
+// $(function () {
+//   $(".mainDIV, #myList").css({ border: "5px solid pink", padding: "10px" }).children().addClass("custom_border");
+// });
+
 $(function () {
-  $(".mainDIV, #myList").css({ border: "5px solid pink", padding: "10px" }).children().addClass("custom_border");
+  $("li").closest("#myList").css("background-color", "#339966");
+  $("div").filter(".innerDivOne").css("background-color", "red");
 });
