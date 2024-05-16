@@ -207,4 +207,6 @@ $(document).ready(function () {
 $(document).ready(function () {
   $("li:first-child").addClass("custom_border").css("background-color", "#339966");
   $("li:last-child").css("background-color", "pink");
+  $("li:nth-child(3)").css("background-color", "red");
+  $("li:nth-child(even)").css("color", "blue");
 });
