@@ -223,9 +223,20 @@ $(document).ready(function () {
 //   $(".mainDIV, #myList").css({ border: "5px solid pink", padding: "10px" }).children().addClass("custom_border");
 // });
 
+// $(function () {
+//   $("li").closest("#myList").css("background-color", "lightgrey");
+//   $("div").filter(".innerDivOne").css("background-color", "red");
+//   $("ul").find(".find").css("border", "2px solid red");
+//   $("li.find").next().css("border", "2px solid blue");
+// });
+
 $(function () {
-  $("li").closest("#myList").css("background-color", "lightgrey");
-  $("div").filter(".innerDivOne").css("background-color", "red");
-  $("ul").find(".find").css("border", "2px solid red");
-  $("li.find").next().css("border", "2px solid blue");
+  $("li.start").nextUntil("li.stop").css({ color: "red", border: "2px solid red" });
+  $("li.start").parent().css({ border: "2px solid blue" });
+  // $("li.start").parents().css({ color: "darkmagenta" });
+  // $("li.start").parentsUntil("div").css({ color: "darkmagenta" });
+  // $("li.start").prev().css({ border: "2px solid green" });
+  $("li.start").prevAll().css({ border: "2px solid green" });
+  // $("li.stop").prevUntil("li.start").css({ "font-size": "125%" });
+  $("li.stop").siblings().css({ "font-style": "italic" });
 });
