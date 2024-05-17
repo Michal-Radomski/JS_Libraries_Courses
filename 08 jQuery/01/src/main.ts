@@ -306,8 +306,14 @@ $(document).ready(function () {
 //   $("p.text").html("Hello <b>world</b>!");
 // });
 
+// $(document).ready(function () {
+//   $("button").click(function () {
+//     $("div.empty").empty();
+//   });
+// });
+
 $(document).ready(function () {
-  $("button").click(function () {
-    $("div.empty").empty();
+  $("li").click(function () {
+    alert($(this).index());
   });
 });
