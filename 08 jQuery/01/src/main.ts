@@ -282,3 +282,9 @@ $(function () {
     $(this).attr("value", "added value");
   });
 });
+
+$(function () {
+  $("input[value='info2']").on("click", function () {
+    $(this).removeAttr("value");
+  });
+});
