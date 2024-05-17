@@ -312,8 +312,14 @@ $(document).ready(function () {
 //   });
 // });
 
+// $(document).ready(function () {
+//   $("li").click(function () {
+//     alert($(this).index());
+//   });
+// });
+
 $(document).ready(function () {
-  $("li").click(function () {
-    alert($(this).index());
+  $("button").click(function () {
+    $("p").after("<p>Hello world!</p>");
   });
 });
