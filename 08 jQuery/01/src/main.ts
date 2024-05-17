@@ -276,15 +276,38 @@ $(document).ready(function () {
 //   $("li").not("li.not").css("background-color", "orangered");
 // });
 
-$(function () {
-  $("input").on("click", function () {
-    // console.log($(this).attr("value", "added value"));
-    $(this).attr("value", "added value");
-  });
-});
+// $(function () {
+//   $("input").on("click", function () {
+//     // console.log($(this).attr("value", "added value"));
+//     $(this).attr("value", "added value");
+//   });
+// });
 
-$(function () {
-  $("input[value='info2']").on("click", function () {
-    $(this).removeAttr("value");
+// $(function () {
+//   $("input[value='info2']").on("click", function () {
+//     $(this).removeAttr("value");
+//   });
+// });
+
+// $(document).ready(function () {
+//   $("#btn2").click(function () {
+//     $("#btn2").prop("disabled", true);
+//     $("ol").append("<li>Appended item</li>");
+//   });
+// });
+
+// $(document).ready(function () {
+//   $("button").click(function () {
+//     $("p.text").text("Hello world!");
+//   });
+// });
+
+// $("button").click(function () {
+//   $("p.text").html("Hello <b>world</b>!");
+// });
+
+$(document).ready(function () {
+  $("button").click(function () {
+    $("div.empty").empty();
   });
 });
