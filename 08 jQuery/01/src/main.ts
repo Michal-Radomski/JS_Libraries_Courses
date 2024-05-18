@@ -331,16 +331,34 @@ $(document).ready(function () {
 //   $(".myDiv").before("<p style='color: orange'>I am new inserted!</p>");
 // });
 
+// $(function () {
+//   $("#btn1").click(function () {
+//     $(".textadded").prepend("added Text: ");
+//   });
+
+//   $("#btn2").click(function () {
+//     $(".myDiv").prepend("<p>added paragraph!</p>");
+//   });
+
+//   $("#btn3").click(function () {
+//     $(".myDiv").remove();
+//   });
+// });
+
+// $(function () {
+//   $("#btn1").click(function () {
+//     $("<p>replaced!</p>").replaceAll(".myDiv");
+//   });
+// });
+
 $(function () {
+  //wrapAll we wrap the p tags in the DOM
   $("#btn1").click(function () {
-    $(".textadded").prepend("added Text: ");
+    $("p").wrapAll("<b><i></i></b>");
   });
 
+  //every single click unwraps one tag, at first the <b> and then the <i>
   $("#btn2").click(function () {
-    $(".myDiv").prepend("<p>added paragraph!</p>");
-  });
-
-  $("#btn3").click(function () {
-    $(".myDiv").remove();
+    $("p").unwrap();
   });
 });
