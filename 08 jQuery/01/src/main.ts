@@ -409,14 +409,30 @@ $(document).ready(function () {
 //   });
 // });
 
-$(function () {
-  $("button").click(function () {
-    const pos = $("p").position();
-    $("p").offsetParent().addClass("custom_style");
-    console.log("pos:", pos);
-  });
+// $(function () {
+//   $("button").click(function () {
+//     const pos = $("p").position();
+//     console.log("pos1:", pos);
+//     $("p").offsetParent().addClass("custom_style");
+//     console.log("pos2:", pos);
+//   });
 
-  $("#removeClass").click(function () {
-    $("p").offsetParent().removeClass("custom_style");
+//   $("#removeClass").click(function () {
+//     $("p").offsetParent().removeClass("custom_style");
+//   });
+// });
+
+$(function () {
+  $(".hideElement").click(function () {
+    $(".custom_style").hide();
+  });
+  $(".showElement").click(function () {
+    $(".custom_style").show();
+  });
+});
+
+$(function () {
+  $(".toggleElement").click(function () {
+    $(".toggle_me").toggle();
   });
 });

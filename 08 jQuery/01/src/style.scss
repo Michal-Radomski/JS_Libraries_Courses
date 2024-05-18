@@ -99,21 +99,25 @@ body {
 //   margin: 10px;
 // }
 
-.firstDiv {
-  border: 1px solid #999966;
-  width: 40%;
-  position: absolute;
-  left: 50px;
-  top: 50px;
-}
+// .firstDiv {
+//   border: 1px solid #999966;
+//   width: 40%;
+//   position: absolute;
+//   left: 50px;
+//   top: 50px;
+// }
 
-.secondDiv {
-  /* this border of 1px is added to the margin of 20px */
-  border: 1px solid #ccccff;
-  margin: 20px;
-  background-color: #ccccff;
-}
+// .secondDiv {
+//   /* this border of 1px is added to the margin of 20px */
+//   border: 1px solid #ccccff;
+//   margin: 20px;
+//   background-color: #ccccff;
+// }
+
+// .custom_style {
+//   background-color: #cab8b8;
+// }
 
 .custom_style {
-  background-color: #cab8b8;
+  border: 10px solid #666699;
 }
