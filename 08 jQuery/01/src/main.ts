@@ -473,9 +473,18 @@ $(document).ready(function () {
 // });
 
 //* Event Handling
-$(function () {
-  //test means in this case our e -> for event
-  $("body").mousemove(function (test) {
-    $("div.position").text("X: " + test.pageX + ", Y: " + test.pageY);
+// $(function () {
+//   //test means in this case our e -> for event
+//   $("body").mousemove(function (test) {
+//     $("div.position").text("X: " + test.pageX + ", Y: " + test.pageY);
+//   });
+// });
+
+$(document).ready(function () {
+  $("p").mouseenter(function () {
+    $("p").css("background-color", "yellow");
+  });
+  $("p").mouseleave(function () {
+    $("p").css("background-color", "lightgrey");
   });
 });
