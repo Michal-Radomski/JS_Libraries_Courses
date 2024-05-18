@@ -480,11 +480,26 @@ $(document).ready(function () {
 //   });
 // });
 
+// $(document).ready(function () {
+//   $("p").mouseenter(function () {
+//     $("p").css("background-color", "yellow");
+//   });
+//   $("p").mouseleave(function () {
+//     $("p").css("background-color", "lightgrey");
+//   });
+// });
+
+// $(function () {
+//   $("p").on("click mouseover mouseout", function (event) {
+//     $("#outcome").html("event.type: " + event.type);
+//   });
+// });
+
 $(document).ready(function () {
-  $("p").mouseenter(function () {
-    $("p").css("background-color", "yellow");
+  $("div").mouseup(function () {
+    $(this).after("<p style='color:green;'>Mouse button released.</p>");
   });
-  $("p").mouseleave(function () {
-    $("p").css("background-color", "lightgrey");
+  $("div").mousedown(function () {
+    $(this).after("<p style='color:purple;'>Mouse button pressed down.</p>");
   });
 });
