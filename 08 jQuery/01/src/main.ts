@@ -402,9 +402,21 @@ $(document).ready(function () {
 //   $("#width").text("width: " + sizeOfDiv.width());
 // });
 
-$(document).ready(function () {
+// $(document).ready(function () {
+//   $("button").click(function () {
+//     const x = $("p").offset();
+//     alert("Top: " + x?.top + " Left: " + x?.left);
+//   });
+// });
+
+$(function () {
   $("button").click(function () {
-    const x = $("p").offset();
-    alert("Top: " + x?.top + " Left: " + x?.left);
+    const pos = $("p").position();
+    $("p").offsetParent().addClass("custom_style");
+    console.log("pos:", pos);
+  });
+
+  $("#removeClass").click(function () {
+    $("p").offsetParent().removeClass("custom_style");
   });
 });
