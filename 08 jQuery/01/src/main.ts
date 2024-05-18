@@ -422,17 +422,32 @@ $(document).ready(function () {
 //   });
 // });
 
-$(function () {
-  $(".hideElement").click(function () {
-    $(".custom_style").hide();
-  });
-  $(".showElement").click(function () {
-    $(".custom_style").show();
-  });
-});
+// $(function () {
+//   $(".hideElement").click(function () {
+//     $(".custom_style").hide();
+//   });
+//   $(".showElement").click(function () {
+//     $(".custom_style").show();
+//   });
+// });
+
+// $(function () {
+//   $(".toggleElement").click(function () {
+//     $(".toggle_me").toggle();
+//   });
+// });
+
+// $(document).ready(function () {
+//   $(".btn1").click(function () {
+//     $("p").fadeOut(1000);
+//   });
+//   $(".btn2").click(function () {
+//     $("p").fadeIn(1000);
+//   });
+// });
 
 $(function () {
-  $(".toggleElement").click(function () {
-    $(".toggle_me").toggle();
+  $("#divOne").click(function () {
+    $("#divTwo").delay(Number("10")).fadeIn();
   });
 });

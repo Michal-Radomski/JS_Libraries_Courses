@@ -118,6 +118,20 @@ body {
 //   background-color: #cab8b8;
 // }
 
-.custom_style {
-  border: 10px solid #666699;
+// .custom_style {
+//   border: 10px solid #666699;
+// }
+
+#divOne,
+#divTwo {
+  padding: 5px;
+  text-align: center;
+  background-color: #666699;
+  border: solid 1px #6666ff;
+}
+
+#divTwo,
+#divThree {
+  padding: 20px;
+  display: none;
 }
