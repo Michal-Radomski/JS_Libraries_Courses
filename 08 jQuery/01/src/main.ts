@@ -351,14 +351,34 @@ $(document).ready(function () {
 //   });
 // });
 
-$(function () {
-  //wrapAll we wrap the p tags in the DOM
-  $("#btn1").click(function () {
-    $("p").wrapAll("<b><i></i></b>");
-  });
+// $(function () {
+//   //wrapAll we wrap the p tags in the DOM
+//   $("#btn1").click(function () {
+//     $("p").wrapAll("<b><i></i></b>");
+//   });
 
-  //every single click unwraps one tag, at first the <b> and then the <i>
-  $("#btn2").click(function () {
-    $("p").unwrap();
+//   //every single click unwraps one tag, at first the <b> and then the <i>
+//   $("#btn2").click(function () {
+//     $("p").unwrap();
+//   });
+// });
+
+// $(function () {
+//   //true -> class is existing
+//   const hasTheClass = $("#myDiv").hasClass("color");
+//   console.log({ hasTheClass });
+
+//   //false -> class isn't existing
+//   const hasTheClassTwo = $("#myDivTwo").hasClass("colorME");
+//   console.log({ hasTheClassTwo });
+// });
+
+// $(document).ready(function () {
+//   $("div p").last().css("background-color", "yellow");
+// });
+
+$(document).ready(function () {
+  $("button").click(function () {
+    $("p").toggleClass("main");
   });
 });
