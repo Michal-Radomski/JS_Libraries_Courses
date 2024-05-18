@@ -517,11 +517,32 @@ $(document).ready(function () {
 //   });
 // });
 
+// $(document).ready(function () {
+//   $("input").keydown(function () {
+//     $("input").css("background-color", "yellow");
+//   });
+//   $("input").keyup(function () {
+//     $("input").css("background-color", "pink");
+//   });
+// });
+
+// $(document).ready(function () {
+//   $("h1, h2, p").click(function (event) {
+//     // alert(event.currentTarget === this);
+//     console.log("event.currentTarget:", event.currentTarget);
+//   });
+// });
+
+// $(document).ready(function () {
+//   $("p").each(function (i) {
+//     $(this).on("click", { x: i }, function (event) {
+//       alert("The " + $(this).index() + ". paragraph has data: " + event.data.x);
+//     });
+//   });
+// });
+
 $(document).ready(function () {
-  $("input").keydown(function () {
-    $("input").css("background-color", "yellow");
-  });
-  $("input").keyup(function () {
-    $("input").css("background-color", "pink");
+  $("input").keydown(function (event) {
+    $("div").html("Key: " + event.which);
   });
 });
