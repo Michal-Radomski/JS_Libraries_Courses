@@ -541,8 +541,21 @@ $(document).ready(function () {
 //   });
 // });
 
+// $(document).ready(function () {
+//   $("input").keydown(function (event) {
+//     $("div").html("Key: " + event.which);
+//   });
+// });
+
+// $(document).ready(function () {
+//   $("div").click(function (event) {
+//     event.stopImmediatePropagation();
+//     alert("Was event.stopImmediatePropagation() called: " + event.isImmediatePropagationStopped());
+//   });
+// });
+
 $(document).ready(function () {
-  $("input").keydown(function (event) {
-    $("div").html("Key: " + event.which);
+  $("a").click(function (event) {
+    event.preventDefault();
   });
 });
