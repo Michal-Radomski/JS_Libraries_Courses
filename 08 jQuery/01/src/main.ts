@@ -495,11 +495,33 @@ $(document).ready(function () {
 //   });
 // });
 
+// $(document).ready(function () {
+//   $("div").mouseup(function () {
+//     $(this).after("<p style='color:green;'>Mouse button released.</p>");
+//   });
+//   $("div").mousedown(function () {
+//     $(this).after("<p style='color:purple;'>Mouse button pressed down.</p>");
+//   });
+// });
+
+// $(document).ready(function () {
+//   $("p").dblclick(function () {
+//     alert("The paragraph was double-clicked.");
+//   });
+// });
+
+// $(document).ready(function () {
+//   let i = 0;
+//   $("input").keypress(function () {
+//     $("span").text((i += 1));
+//   });
+// });
+
 $(document).ready(function () {
-  $("div").mouseup(function () {
-    $(this).after("<p style='color:green;'>Mouse button released.</p>");
+  $("input").keydown(function () {
+    $("input").css("background-color", "yellow");
   });
-  $("div").mousedown(function () {
-    $(this).after("<p style='color:purple;'>Mouse button pressed down.</p>");
+  $("input").keyup(function () {
+    $("input").css("background-color", "pink");
   });
 });
