@@ -318,8 +318,15 @@ $(document).ready(function () {
 //   });
 // });
 
-$(document).ready(function () {
-  $("button").click(function () {
-    $("p").after("<p>Hello world!</p>");
-  });
+// $(document).ready(function () {
+//   $("button").click(function () {
+//     $("p").after("<p>Hello world!</p>");
+//   });
+// });
+
+$(function () {
+  $("<span style='color:red'> I am added!</span>").appendTo("p");
+  $("<p style='color: blue'>I am new inserted!</p>").insertAfter(".myDivTwo");
+  $("<p style='color: green'>I am new inserted!</p>").insertBefore(".myDivTwo");
+  $(".myDiv").before("<p style='color: orange'>I am new inserted!</p>");
 });
