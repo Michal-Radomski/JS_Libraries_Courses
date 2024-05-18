@@ -452,10 +452,30 @@ $(document).ready(function () {
 //   });
 // });
 
+// $(function () {
+//   $("#divOne").click(function () {
+//     //fadeTo("fast", 0.2) -> the last value of 0.2 is the opacity value
+//     $("#divTwo").fadeToggle("fast").fadeTo("fast", 0.2);
+//     $("#divThree").fadeToggle(1000);
+//   });
+// });
+
+// $(function () {
+//   $("#animate").click(function () {
+//     //the maximum height which is possible to get during the animation -> 1000px
+//     //6000 is the speed
+//     $(".animateDiv").animate({ height: 1000 }, 6000);
+//   });
+
+//   $("#stop_animation").click(function () {
+//     $(".animateDiv").stop();
+//   });
+// });
+
+//* Event Handling
 $(function () {
-  $("#divOne").click(function () {
-    //fadeTo("fast", 0.2) -> the last value of 0.2 is the opacity value
-    $("#divTwo").fadeToggle("fast").fadeTo("fast", 0.2);
-    $("#divThree").fadeToggle(1000);
+  //test means in this case our e -> for event
+  $("body").mousemove(function (test) {
+    $("div.position").text("X: " + test.pageX + ", Y: " + test.pageY);
   });
 });
