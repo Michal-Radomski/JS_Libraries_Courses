@@ -386,12 +386,25 @@ $(document).ready(function () {
 // });
 
 //* CSS
-$(function () {
-  const myDiv = $("div#height");
-  const showit = $("#show");
+// $(function () {
+//   const myDiv = $("div#height");
+//   const showit = $("#show");
 
-  myDiv.one("click", function () {
-    $(this).height(20).css("background-color", "#669999");
-    showit.appendTo("p").text("innerHeight: " + myDiv.innerHeight());
+//   myDiv.one("click", function () {
+//     $(this).height(20).css("background-color", "#669999");
+//     showit.appendTo("p").text("innerHeight: " + myDiv.innerHeight());
+//   });
+// });
+
+// $(function () {
+//   const sizeOfDiv = $("#test");
+//   $("#outerHeight").text("outerHeight: " + sizeOfDiv.outerHeight());
+//   $("#width").text("width: " + sizeOfDiv.width());
+// });
+
+$(document).ready(function () {
+  $("button").click(function () {
+    const x = $("p").offset();
+    alert("Top: " + x?.top + " Left: " + x?.left);
   });
 });
