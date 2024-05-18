@@ -446,8 +446,16 @@ $(document).ready(function () {
 //   });
 // });
 
+// $(function () {
+//   $("#divOne").click(function () {
+//     $("#divTwo").delay(Number("10")).fadeIn();
+//   });
+// });
+
 $(function () {
   $("#divOne").click(function () {
-    $("#divTwo").delay(Number("10")).fadeIn();
+    //fadeTo("fast", 0.2) -> the last value of 0.2 is the opacity value
+    $("#divTwo").fadeToggle("fast").fadeTo("fast", 0.2);
+    $("#divThree").fadeToggle(1000);
   });
 });
