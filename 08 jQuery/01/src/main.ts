@@ -554,8 +554,10 @@ $(document).ready(function () {
 //   });
 // });
 
-$(document).ready(function () {
-  $("a").click(function (event) {
-    event.preventDefault();
-  });
-});
+// $(document).ready(function () {
+//   $("a").click(function (event) {
+//     event.preventDefault();
+//   });
+// });
+
+//* Accessors
