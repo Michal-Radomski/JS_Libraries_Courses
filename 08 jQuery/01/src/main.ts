@@ -324,9 +324,23 @@ $(document).ready(function () {
 //   });
 // });
 
+// $(function () {
+//   $("<span style='color:red'> I am added!</span>").appendTo("p");
+//   $("<p style='color: blue'>I am new inserted!</p>").insertAfter(".myDivTwo");
+//   $("<p style='color: green'>I am new inserted!</p>").insertBefore(".myDivTwo");
+//   $(".myDiv").before("<p style='color: orange'>I am new inserted!</p>");
+// });
+
 $(function () {
-  $("<span style='color:red'> I am added!</span>").appendTo("p");
-  $("<p style='color: blue'>I am new inserted!</p>").insertAfter(".myDivTwo");
-  $("<p style='color: green'>I am new inserted!</p>").insertBefore(".myDivTwo");
-  $(".myDiv").before("<p style='color: orange'>I am new inserted!</p>");
+  $("#btn1").click(function () {
+    $(".textadded").prepend("added Text: ");
+  });
+
+  $("#btn2").click(function () {
+    $(".myDiv").prepend("<p>added paragraph!</p>");
+  });
+
+  $("#btn3").click(function () {
+    $(".myDiv").remove();
+  });
 });
