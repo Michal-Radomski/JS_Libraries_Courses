@@ -276,6 +276,7 @@ $(document).ready(function () {
 //   $("li").not("li.not").css("background-color", "orangered");
 // });
 
+//* Data Storage
 // $(function () {
 //   $("input").on("click", function () {
 //     // console.log($(this).attr("value", "added value"));
@@ -289,6 +290,7 @@ $(document).ready(function () {
 //   });
 // });
 
+//* DOM
 // $(document).ready(function () {
 //   $("#btn2").click(function () {
 //     $("#btn2").prop("disabled", true);
@@ -377,8 +379,19 @@ $(document).ready(function () {
 //   $("div p").last().css("background-color", "yellow");
 // });
 
-$(document).ready(function () {
-  $("button").click(function () {
-    $("p").toggleClass("main");
+// $(document).ready(function () {
+//   $("button").click(function () {
+//     $("p").toggleClass("main");
+//   });
+// });
+
+//* CSS
+$(function () {
+  const myDiv = $("div#height");
+  const showit = $("#show");
+
+  myDiv.one("click", function () {
+    $(this).height(20).css("background-color", "#669999");
+    showit.appendTo("p").text("innerHeight: " + myDiv.innerHeight());
   });
 });
