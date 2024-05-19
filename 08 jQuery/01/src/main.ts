@@ -511,7 +511,7 @@ $(document).ready(function () {
 // });
 
 // $(document).ready(function () {
-//   let i = 0;
+//   const i = 0;
 //   $("input").keypress(function () {
 //     $("span").text((i += 1));
 //   });
@@ -580,7 +580,7 @@ $(document).ready(function () {
 // $(document).ready(function () {
 //   $("button").click(function () {
 //     const x = $("li").toArray();
-//     for (let i = 0; i < x.length; i++) {
+//     for (const i = 0; i < x.length; i++) {
 //       console.log(x[i].innerHTML);
 //     }
 //   });
@@ -685,23 +685,57 @@ $(document).ready(function () {
 //   console.log("deferred.state():", deferred.state());
 // });
 
+// $(function () {
+//   const deferred = $.Deferred();
+
+//   // Using .fail() to switch the state of the object to be rejected
+//   deferred.fail(function (error) {
+//     console.log("this is a fail with the message" + error);
+//   });
+//   //call of the fail call backs with reject
+//   deferred.reject(" Error Code x-77712");
+
+//   if (deferred.state() == "pending") {
+//     console.log("I am pending");
+//   } else if (deferred.state() == "resolved") {
+//     console.log("I am resolved");
+//   } else if (deferred.state() == "rejected") {
+//     console.log("I am rejected");
+//   } else {
+//     console.log("No other option");
+//   }
+// });
+
+// $(function () {
+//   $("button").click(function () {
+//     const deferred = $.Deferred();
+
+//     deferred.done(function () {
+//       $("#testOne").css("color", "red");
+//     });
+//     deferred.resolve();
+
+//     if (deferred.state() == "resolved") {
+//       console.log("I am resolved");
+//     } else {
+//       console.log("no information");
+//     }
+//   });
+// });
+
 $(function () {
   const deferred = $.Deferred();
 
-  // Using .fail() to switch the state of the object to be rejected
-  deferred.fail(function (error) {
-    console.log("this is a fail with the message" + error);
+  $("button").click(function () {
+    $.get("nofile.php", function (data) {
+      alert(data);
+      if (deferred.state() == "pending") {
+        console.log("I am pending");
+      } else {
+        console.log("No other options");
+      }
+    }).always(function () {
+      alert("completed or not");
+    });
   });
-  //call of the fail call backs with reject
-  deferred.reject(" Error Code x-77712");
-
-  if (deferred.state() == "pending") {
-    console.log("I am pending");
-  } else if (deferred.state() == "resolved") {
-    console.log("I am resolved");
-  } else if (deferred.state() == "rejected") {
-    console.log("I am rejected");
-  } else {
-    console.log("No other option");
-  }
 });
