@@ -792,13 +792,29 @@ $(document).ready(function () {
 // });
 
 //*  Ajax and jQuery
-$("button").click(function () {
-  $.ajax({
-    // Url: the path for the file
-    url: "information.txt",
-    // Success: after the file was successfully loaded
-    success: function (result) {
-      $("#showNewTxt").text(result).addClass("intro");
-    },
+// $("button").click(function () {
+//   $.ajax({
+//     // Url: the path for the file
+//     url: "information.txt",
+//     // Success: after the file was successfully loaded
+//     success: function (result) {
+//       $("#showNewTxt").text(result).addClass("intro");
+//     },
+//   }).done(function (msg: string) {
+//     console.log("Job dane: " + msg);
+//   });
+// });
+
+$(document).ready(function () {
+  $("button").click(function () {
+    $.ajaxSetup({
+      url: "information.txt",
+      success: function (result) {
+        $("#showNewTxt").text(result).addClass("intro");
+      },
+    });
+    $.ajax().done(function (msg: string) {
+      console.log("Job dane: " + msg);
+    });
   });
 });
