@@ -805,16 +805,29 @@ $(document).ready(function () {
 //   });
 // });
 
+// $(document).ready(function () {
+//   $("button").click(function () {
+//     //* Not recommended
+//     $.ajaxSetup({
+//       url: "information.txt",
+//       success: function (result) {
+//         $("#showNewTxt").text(result).addClass("intro");
+//       },
+//     });
+//     $.ajax().done(function (msg: string) {
+//       console.log("Job dane: " + msg);
+//     });
+//   });
+// });
+
+// $(document).ready(function () {
+//   $("button").click(function () {
+//     $("p#showNewTxt").load("information.txt");
+//   });
+// });
+
 $(document).ready(function () {
   $("button").click(function () {
-    $.ajaxSetup({
-      url: "information.txt",
-      success: function (result) {
-        $("#showNewTxt").text(result).addClass("intro");
-      },
-    });
-    $.ajax().done(function (msg: string) {
-      console.log("Job dane: " + msg);
-    });
+    $.getScript("test.js");
   });
 });
