@@ -561,10 +561,29 @@ $(document).ready(function () {
 // });
 
 //* Accessors
-$(document).ready(function () {
-  $("button").click(function () {
-    $("li").each(function () {
-      console.log("$(this).text():", $(this).text());
-    });
-  });
+// $(document).ready(function () {
+//   $("button").click(function () {
+//     $("li").each(function () {
+//       console.log("$(this).text():", $(this).text());
+//     });
+//   });
+// });
+
+// $(document).ready(function () {
+//   $("button").click(function () {
+//     $.get("p", function (data, status) {
+//       console.log("Data: " + data + "\nStatus: " + status);
+//     });
+//   });
+// });
+
+$("button").click(function () {
+  const x = $("li").toArray();
+  for (let i = 0; i < x.length; i++) {
+    console.log(x[i].innerHTML);
+  }
+});
+
+$("button").click(function () {
+  console.log('$("li").length:', $("li").length);
 });
