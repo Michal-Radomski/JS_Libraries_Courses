@@ -862,8 +862,48 @@ $(document).ready(function () {
 //   });
 // });
 
-$(document).ready(function () {
-  $("button").click(function () {
-    $("div").text($("form").serialize());
+// $(document).ready(function () {
+//   $("button").click(function () {
+//     $("div").text($("form").serialize());
+//   });
+// });
+
+$(function () {
+  $("#btn1").click(function () {
+    $.when($.ajax("ajax.txt"), $.ajax("ajax2.txt"))
+      .then(function (data1, data2) {
+        $("#info1")
+          .html(data1[0] + " - " + data2[0])
+          .append("<span>info1</span>")
+          .addClass("alert alert-success");
+      })
+      .done(function () {
+        $("h1").html("done btn1");
+      })
+      .fail(function () {
+        alert("Error");
+      })
+      .always(function () {
+        alert("Finished request");
+      });
+  });
+
+  $("#btn2").click(function () {
+    $.when($.get("ajax.txt"), $.ajax("ajax2.txt"))
+      .then(function (data1, data2) {
+        $("#info2")
+          .html(data1[0] + " - " + data2[0])
+          .append("<span>info2</span>")
+          .addClass("alert alert-success");
+      })
+      .done(function () {
+        $("h1").html("done btn2");
+      })
+      .fail(function () {
+        alert("Error");
+      })
+      .always(function () {
+        alert("Finished request");
+      });
   });
 });
