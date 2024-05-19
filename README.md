@@ -17,3 +17,7 @@ Files created during Udemy.com different JS libraries courses:
 7. [Electron](https://www.udemy.com/course/electron-react-tutorial)
 
 8. [jQuery](https://www.udemy.com/course/draft/2632296)
+
+9. [Deno](https://www.udemy.com/course/deno-complete-guide-to-build-rest-api-jwt-crud-mongodb)
+
+10. [Ionic React](https://www.udemy.com/course/ionic-react)
