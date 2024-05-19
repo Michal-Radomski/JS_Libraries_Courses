@@ -679,8 +679,29 @@ $(document).ready(function () {
 // });
 
 //* Deferred and Promise
+// $(function () {
+//   const deferred = $.Deferred();
+//   //every deferred object has by default the status pending
+//   console.log("deferred.state():", deferred.state());
+// });
+
 $(function () {
   const deferred = $.Deferred();
-  //every deferred object has by default the status pending
-  console.log("deferred.state():", deferred.state());
+
+  // Using .fail() to switch the state of the object to be rejected
+  deferred.fail(function (error) {
+    console.log("this is a fail with the message" + error);
+  });
+  //call of the fail call backs with reject
+  deferred.reject(" Error Code x-77712");
+
+  if (deferred.state() == "pending") {
+    console.log("I am pending");
+  } else if (deferred.state() == "resolved") {
+    console.log("I am resolved");
+  } else if (deferred.state() == "rejected") {
+    console.log("I am rejected");
+  } else {
+    console.log("No other option");
+  }
 });
