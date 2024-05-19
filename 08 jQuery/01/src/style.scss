@@ -165,11 +165,16 @@ body {
 //   border-color: #999;
 // }
 
-.custom_style,
-.custom_style_one {
-  border: 10px solid #666699;
-}
+// .custom_style,
+// .custom_style_one {
+//   border: 10px solid #666699;
+// }
 
-.custom_style_two {
-  border: 10px solid #999966;
+// .custom_style_two {
+//   border: 10px solid #999966;
+// }
+
+.intro {
+  border-style: solid;
+  border-color: #999;
 }

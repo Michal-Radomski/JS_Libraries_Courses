@@ -773,20 +773,32 @@ $(document).ready(function () {
 //   });
 // });
 
-$(function () {
-  const promiseOne = $.get("testOne.php");
-  const promiseTwo = $.get("testTwo.php");
-  const promiseThree = $.get("testThree.php");
+// $(function () {
+//   const promiseOne = $.get("testOne.php");
+//   const promiseTwo = $.get("testTwo.php");
+//   const promiseThree = $.get("testThree.php");
 
-  const myPromise = $.when(promiseOne, promiseTwo, promiseThree);
+//   const myPromise = $.when(promiseOne, promiseTwo, promiseThree);
 
-  myPromise.done(function () {
-    console.log("request successful");
+//   myPromise.done(function () {
+//     console.log("request successful");
+//   });
+
+//   myPromise.fail(function () {
+//     console.log("request failed");
+//   });
+
+//   $(".custom_style, .custom_style_one, .custom_style_two").fadeIn(2000);
+// });
+
+//*  Ajax and jQuery
+$("button").click(function () {
+  $.ajax({
+    // Url: the path for the file
+    url: "information.txt",
+    // Success: after the file was successfully loaded
+    success: function (result) {
+      $("#showNewTxt").text(result).addClass("intro");
+    },
   });
-
-  myPromise.fail(function () {
-    console.log("request failed");
-  });
-
-  $(".custom_style, .custom_style_one, .custom_style_two").fadeIn(2000);
 });
