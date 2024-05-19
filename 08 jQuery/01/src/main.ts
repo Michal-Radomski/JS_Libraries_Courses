@@ -826,8 +826,24 @@ $(document).ready(function () {
 //   });
 // });
 
+// $(document).ready(function () {
+//   $("button").click(function () {
+//     $.getScript("test.js");
+//   });
+// });
+
 $(document).ready(function () {
-  $("button").click(function () {
-    $.getScript("test.js");
+  $.getJSON("test.json", function (data) {
+    const items: string[] = [];
+    $.each(data, function (key: string, val: string) {
+      items.push("<li id='" + key + "'>" + val + "</li>");
+    });
+
+    console.log("items: ", items);
+
+    $("<ul/>", {
+      class: "my-new-list",
+      html: items.join(""),
+    }).appendTo("body");
   });
 });
