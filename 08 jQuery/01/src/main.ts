@@ -561,3 +561,10 @@ $(document).ready(function () {
 // });
 
 //* Accessors
+$(document).ready(function () {
+  $("button").click(function () {
+    $("li").each(function () {
+      console.log("$(this).text():", $(this).text());
+    });
+  });
+});
