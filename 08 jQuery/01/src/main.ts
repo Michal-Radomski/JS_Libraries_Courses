@@ -658,11 +658,29 @@ $(document).ready(function () {
 // // Test to establish if the callbacks have been called
 // console.log("callbacks.fired():", callbacks.fired());
 
-$(document).ready(function () {
-  $("button#disable").click(function () {
-    $("input").prop("disabled", true);
-  });
-  $("button#enable").click(function () {
-    $("input").prop("disabled", false);
-  });
+// $(document).ready(function () {
+//   $("button#disable").click(function () {
+//     $("input").prop("disabled", true);
+//   });
+//   $("button#enable").click(function () {
+//     $("input").prop("disabled", false);
+//   });
+// });
+
+// $(function () {
+//   const myCallback = $.Callbacks("once");
+
+//   myCallback.add(function (value: string) {
+//     console.log("hello", value);
+//   });
+
+//   myCallback.fire("World");
+//   myCallback.fire("and hello universe!");
+// });
+
+//* Deferred and Promise
+$(function () {
+  const deferred = $.Deferred();
+  //every deferred object has by default the status pending
+  console.log("deferred.state():", deferred.state());
 });
