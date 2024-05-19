@@ -577,13 +577,56 @@ $(document).ready(function () {
 //   });
 // });
 
-$("button").click(function () {
-  const x = $("li").toArray();
-  for (let i = 0; i < x.length; i++) {
-    console.log(x[i].innerHTML);
-  }
-});
+// $(document).ready(function () {
+//   $("button").click(function () {
+//     const x = $("li").toArray();
+//     for (let i = 0; i < x.length; i++) {
+//       console.log(x[i].innerHTML);
+//     }
+//   });
+//   $("button").click(function () {
+//     console.log('$("li").length:', $("li").length);
+//   });
+// });
 
-$("button").click(function () {
-  console.log('$("li").length:', $("li").length);
+// $(document).ready(function () {
+//   $("p").click(function () {
+//     if ($("p").parent().is("div")) {
+//       console.log("Parent of p is div");
+//     }
+//   });
+// });
+
+//* Callbacks
+$(function () {
+  // First function to add
+  const myCallback = function (value: string) {
+    const divOne = $(".custom_style");
+    divOne.show();
+    console.log("myCallback: " + value);
+  };
+
+  // Second function to add
+  const myCallbackTwo = function (value: string) {
+    const divTwo = $(".custom_style");
+    divTwo.show();
+    console.log("myCallbackTwo: " + value);
+  };
+
+  // Object for callback
+  const callbacks = $.Callbacks();
+  // Add the function to the list object
+  callbacks.add(myCallback);
+  // Use the stored information of the list object
+  callbacks.fire("success");
+
+  /* tidy the room :)  -> removing the last information to make place for the next
+  one  */
+
+  setTimeout(() => {
+    callbacks.remove(myCallback);
+
+    callbacks.add(myCallbackTwo);
+    callbacks.fire("success two");
+  }, 1000);
 });
