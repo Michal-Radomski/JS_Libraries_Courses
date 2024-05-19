@@ -832,18 +832,38 @@ $(document).ready(function () {
 //   });
 // });
 
+// $(document).ready(function () {
+//   $.getJSON("test.json", function (data) {
+//     const items: string[] = [];
+//     $.each(data, function (key: string, val: string) {
+//       items.push("<li id='" + key + "'>" + val + "</li>");
+//     });
+
+//     console.log("items: ", items);
+
+//     $("<ul/>", {
+//       class: "my-new-list",
+//       html: items.join(""),
+//     }).appendTo("body");
+//   });
+// });
+
+// $(function () {
+//   $("button:first").click(function () {
+//     $.get("information.txt", function (data) {
+//       $("#btn1").html(data);
+//     });
+//   });
+
+//   $("button:eq(1)").click(function () {
+//     $.post("information.txt", function (data) {
+//       $("#btn2").html(data);
+//     });
+//   });
+// });
+
 $(document).ready(function () {
-  $.getJSON("test.json", function (data) {
-    const items: string[] = [];
-    $.each(data, function (key: string, val: string) {
-      items.push("<li id='" + key + "'>" + val + "</li>");
-    });
-
-    console.log("items: ", items);
-
-    $("<ul/>", {
-      class: "my-new-list",
-      html: items.join(""),
-    }).appendTo("body");
+  $("button").click(function () {
+    $("div").text($("form").serialize());
   });
 });
