@@ -723,19 +723,34 @@ $(document).ready(function () {
 //   });
 // });
 
-$(function () {
-  const deferred = $.Deferred();
+// $(function () {
+//   const deferred = $.Deferred();
 
-  $("button").click(function () {
-    $.get("nofile.php", function (data) {
-      alert(data);
-      if (deferred.state() == "pending") {
-        console.log("I am pending");
-      } else {
-        console.log("No other options");
-      }
-    }).always(function () {
-      alert("completed or not");
-    });
+//   $("button").click(function () {
+//     $.get("nofile.php", function (data) {
+//       alert(data);
+//       if (deferred.state() == "pending") {
+//         console.log("I am pending");
+//       } else {
+//         console.log("No other options");
+//       }
+//     }).always(function () {
+//       alert("completed or not");
+//     });
+//   });
+// });
+
+$(function () {
+  $("#btn").click(function () {
+    $("#lorem").fadeIn(1000);
+    $("#ipsum").fadeIn(1500);
+
+    // Multiple referencing possible with .promise().done().done()
+    $("#lorem, #ipsum")
+      .promise()
+      .done(() => {
+        $(this).addClass("pstyle");
+        $("p").append(" Executed");
+      });
   });
 });
