@@ -631,18 +631,38 @@ $(document).ready(function () {
 //   }, 1000);
 // });
 
-$(function () {
-  const myFunction = function (valueOne: string, valueTwo: string, valueThree: string) {
-    console.log("Received: " + valueOne + valueTwo + valueThree);
-  };
+// $(function () {
+//   const myFunction = function (valueOne: string, valueTwo: string, valueThree: string) {
+//     console.log("Received: " + valueOne + valueTwo + valueThree);
+//   };
+//   const callbacks = $.Callbacks();
+//   callbacks.add(myFunction);
+//   callbacks.empty();
+//   console.log("callbacks.has(myFunction):", callbacks.has(myFunction));
+//   callbacks.fireWith(window, ["TestOne", "TestTwo", "TestThree"]);
+// });
 
-  const callbacks = $.Callbacks();
+// A sample logging function to be added to a callbacks list
+// const foo = function (value: string) {
+//   console.log("foo:" + value);
+// };
+// const callbacks = $.Callbacks();
 
-  callbacks.add(myFunction);
+// // Add the function "foo" to the list
+// callbacks.add(foo);
 
-  callbacks.empty();
+// // Fire the items on the list
+// callbacks.fire("hello"); // Outputs: "foo: hello"
+// callbacks.fire("world"); // Outputs: "foo: world"
 
-  console.log("callbacks.has(myFunction):", callbacks.has(myFunction));
+// // Test to establish if the callbacks have been called
+// console.log("callbacks.fired():", callbacks.fired());
 
-  callbacks.fireWith(window, ["TestOne", "TestTwo", "TestThree"]);
+$(document).ready(function () {
+  $("button#disable").click(function () {
+    $("input").prop("disabled", true);
+  });
+  $("button#enable").click(function () {
+    $("input").prop("disabled", false);
+  });
 });
