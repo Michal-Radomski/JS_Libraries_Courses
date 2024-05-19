@@ -740,17 +740,53 @@ $(document).ready(function () {
 //   });
 // });
 
-$(function () {
-  $("#btn").click(function () {
-    $("#lorem").fadeIn(1000);
-    $("#ipsum").fadeIn(1500);
+// $(function () {
+//   $("#btn").click(function () {
+//     $("#lorem").fadeIn(1000);
+//     $("#ipsum").fadeIn(1500);
 
-    // Multiple referencing possible with .promise().done().done()
-    $("#lorem, #ipsum")
-      .promise()
-      .done(() => {
-        $(this).addClass("pstyle");
-        $("p").append(" Executed");
-      });
+//     // Multiple referencing possible with .promise().done().done()
+//     $("#lorem, #ipsum")
+//       .promise()
+//       .done(() => {
+//         $(this).addClass("pstyle");
+//         $("p").append(" Executed");
+//       });
+//   });
+// });
+
+// $(function () {
+//   function consoleInfo() {
+//     console.log("function executed");
+//   }
+
+//   const color = () => {
+//     $(this).css("background-color", "#cc99ff");
+//   };
+
+//   function helloWorld() {
+//     console.log("helloWorld");
+//   }
+
+//   $("#btn").click(function () {
+//     $("#lorem").promise().done([consoleInfo, color, helloWorld]);
+//   });
+// });
+
+$(function () {
+  const promiseOne = $.get("testOne.php");
+  const promiseTwo = $.get("testTwo.php");
+  const promiseThree = $.get("testThree.php");
+
+  const myPromise = $.when(promiseOne, promiseTwo, promiseThree);
+
+  myPromise.done(function () {
+    console.log("request successful");
   });
+
+  myPromise.fail(function () {
+    console.log("request failed");
+  });
+
+  $(".custom_style, .custom_style_one, .custom_style_two").fadeIn(2000);
 });

@@ -157,10 +157,19 @@ body {
 //   border: 10px solid #999966;
 // }
 
-p {
-  display: none;
+// p {
+//   display: none;
+// }
+// .pstyle {
+//   border-style: solid;
+//   border-color: #999;
+// }
+
+.custom_style,
+.custom_style_one {
+  border: 10px solid #666699;
 }
-.pstyle {
-  border-style: solid;
-  border-color: #999;
+
+.custom_style_two {
+  border: 10px solid #999966;
 }
