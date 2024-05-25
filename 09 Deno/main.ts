@@ -9,6 +9,7 @@ const app = new Application();
 // console.log("app:", app);
 
 // app.use((ctx, next) => {
+//   console.log("ctx:", ctx)
 //   ctx.response.body = "Hello Deno";
 //   next();
 // });

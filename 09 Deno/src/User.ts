@@ -1,10 +1,8 @@
-import { ObjectId } from "https://deno.land/x/mongo@LATEST_VERSION/mod.ts";
+import { ObjectId } from "https://deno.land/x/mongo@v0.33.0/mod.ts";
 
-interface UserSchema {
+export interface UserSchema {
   _id: ObjectId;
   username: string;
   password: string;
 }
 
-const db = client.database("test");
-const users = db.collection<UserSchema>("users");
