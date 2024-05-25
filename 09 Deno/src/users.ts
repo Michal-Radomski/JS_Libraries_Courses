@@ -3,28 +3,16 @@ import {UserSchema} from "./User.ts"
 
 const Users = db.collection<UserSchema>("users")
 
-export const signUp = async({request, response}:{request:any, response:any}) => {
- 
+export const signUp = async(ctx:Context) => {
 
-  const body = await request.body(); //Returns { type: "json", value: Promise { <pending> } }
-    if (!request.hasBody) {
-      response.status = 400;
-      response.body = { message: "No data provided" };
-      return;
-    }
-    const values = await body.value;
-console.log(values)
-
-
-
-
-
-
-  // const {username, password} = await request.body.value
+  const reqBody = await ctx.request.body.json()
+  // console.log(reqBody, typeof reqBody);
+  
+  const {username, password} = reqBody
   // console.log({username, password})
+  const _id = await Users.insertOne({username, password})
+  // console.log({_id})
 
-  // const _id = await Users.insertOne({username, password})
-
-  // response.status = 201;
-  // response.body={message: "User is successfully registered:", userId: _id, username, password}
+  ctx.response.status = 201;
+  ctx.response.body={message: "User is successfully registered:", userId: _id, username, password}
 }
