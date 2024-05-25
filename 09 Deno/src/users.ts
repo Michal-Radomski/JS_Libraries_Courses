@@ -4,6 +4,7 @@ import { create } from "https://deno.land/x/djwt@v2.8/mod.ts";
 import db from "./DB.ts";
 import { UserSchema } from "./User.ts";
 import { key } from "./key.ts";
+// console.log("key:", key);
 
 const Users = db.collection<UserSchema>("users");
 
