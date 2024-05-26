@@ -21,3 +21,12 @@ export const createTask = async ({ request, response }: { request: Request; resp
   response.body = { message: "Task is Created", id: _id, name, isCompleted };
   return;
 };
+
+export const getTasks = async ({ request, response }: { request: Request; response: Response }) => {
+  console.log("request.ip", request.ip);
+
+  const allTasks = await tasks.find({}).toArray();
+  response.status = 200;
+  response.body = { tasks: allTasks };
+  return;
+};

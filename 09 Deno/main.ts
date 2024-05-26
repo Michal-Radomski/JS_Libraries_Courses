@@ -1,4 +1,5 @@
 //* deno run --allow-net main.ts
+//* nodemon --watch src --signal SIGHUP --exec deno run --allow-all --unstable --inspect main.ts (nodemon instead of denon)!
 
 import { Application } from "https://deno.land/x/oak/mod.ts";
 
