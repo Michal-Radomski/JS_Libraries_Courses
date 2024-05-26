@@ -1,7 +1,7 @@
 import { Router } from "https://deno.land/x/oak/mod.ts";
 
 import { signUp, signIn } from "./users.ts";
-import { createTask, getTasks, getTaskById, updateTaskById } from "./task.ts";
+import { createTask, getTasks, getTaskById, updateTaskById, deleteTask } from "./task.ts";
 
 const router = new Router();
 
@@ -18,5 +18,7 @@ router.get("/api/tasks", getTasks);
 router.get("/api/tasks/:taskId", getTaskById);
 
 router.put("/api/tasks/:taskId", updateTaskById);
+
+router.delete("/api/tasks/:taskId", deleteTask);
 
 export default router;

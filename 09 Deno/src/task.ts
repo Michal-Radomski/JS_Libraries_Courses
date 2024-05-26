@@ -81,3 +81,21 @@ export const updateTaskById = async ({
   response.body = { message: "Task updated successfully updated", task };
   return;
 };
+
+export const deleteTask = async ({
+  params,
+  response,
+}: {
+  params: { taskId: string };
+  response: Response;
+}): Promise<void> => {
+  const taskId = params.taskId;
+  // console.log({ taskId });
+
+  const task = await tasks.deleteOne({ _id: new ObjectId(taskId) });
+  // console.log({ task });
+
+  response.status = 200;
+  response.body = { message: "Task updated successfully deleted", task };
+  return;
+};
