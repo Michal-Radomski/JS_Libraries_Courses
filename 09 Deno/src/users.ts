@@ -8,7 +8,7 @@ import { key } from "./key.ts";
 
 const Users = db.collection<UserSchema>("users");
 
-export const signUp = async (ctx: Context) => {
+export const signUp = async (ctx: Context): Promise<void> => {
   const reqBody = await ctx.request.body.json();
   // console.log(reqBody, typeof reqBody);
 
@@ -25,7 +25,7 @@ export const signUp = async (ctx: Context) => {
   ctx.response.body = { message: "User is successfully registered:", userId: _id, username, password };
 };
 
-export const signIn = async ({ request, response }: { request: Request; response: Response }) => {
+export const signIn = async ({ request, response }: { request: Request; response: Response }): Promise<void> => {
   const reqBody = await request.body.json();
   // console.log(reqBody, typeof reqBody);
 

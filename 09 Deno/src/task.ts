@@ -5,7 +5,7 @@ import { TaskSchema } from "./Task.ts";
 
 const tasks = db.collection<TaskSchema>("tasks");
 
-export const createTask = async ({ request, response }: { request: Request; response: Response }) => {
+export const createTask = async ({ request, response }: { request: Request; response: Response }): Promise<void> => {
   const reqBody = await request.body.json();
   // console.log(reqBody, typeof reqBody);
 
@@ -53,5 +53,31 @@ export const getTaskById = async ({
 
   response.status = 200;
   response.body = { task: task };
+  return;
+};
+
+export const updateTaskById = async ({
+  params,
+  request,
+  response,
+}: {
+  params: { taskId: string };
+  request: Request;
+  response: Response;
+}): Promise<void> => {
+  const taskId = params.taskId;
+  // console.log({ taskId });
+
+  const reqBody = await request.body.json();
+  // console.log(reqBody, typeof reqBody);
+
+  const { name, isCompleted } = reqBody;
+  // console.log({ name, isCompleted });
+
+  const task = await tasks.updateOne({ _id: new ObjectId(taskId) }, { $set: { name: name, isCompleted: isCompleted } });
+  // console.log({ task });
+
+  response.status = 200;
+  response.body = { message: "Task updated successfully updated", task };
   return;
 };

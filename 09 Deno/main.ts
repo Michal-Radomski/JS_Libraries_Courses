@@ -3,7 +3,7 @@
 
 import { Application } from "https://deno.land/x/oak/mod.ts";
 
-import router from "./src/Routes.ts";
+import router from "./src/routes.ts";
 
 const port = 8000;
 const app = new Application();
