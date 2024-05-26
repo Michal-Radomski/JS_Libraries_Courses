@@ -2,10 +2,17 @@
 //* nodemon --watch src --signal SIGHUP --exec deno run --allow-all --unstable --inspect main.ts (nodemon instead of denon)!
 
 import { Application } from "https://deno.land/x/oak/mod.ts";
+import { load } from "https://deno.land/std@0.224.0/dotenv/mod.ts";
 
 import router from "./src/routes.ts";
 
-const port = 8000;
+const env = await load();
+// console.log("env:", env);
+
+const port = env["PORT"];
+Deno.env.set("port", "port");
+// console.log({ port });
+
 const app = new Application();
 // console.log("app:", app);
 

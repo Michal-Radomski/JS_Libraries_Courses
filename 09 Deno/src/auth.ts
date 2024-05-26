@@ -17,7 +17,7 @@ export const authorized = async (ctx: Context, next: () => Promise<void>): Promi
     }
 
     const jwt = auth.split(" ")[1];
-    console.log("jwt:", jwt);
+    // console.log("jwt:", jwt);
 
     if (!jwt) {
       ctx.response.status = 401;
@@ -26,7 +26,7 @@ export const authorized = async (ctx: Context, next: () => Promise<void>): Promi
     }
 
     const payload = await verify(jwt, key);
-    console.log({ payload });
+    // console.log({ payload });
 
     if (!payload) {
       throw new Error("Payload not Found");
