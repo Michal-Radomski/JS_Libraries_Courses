@@ -22,11 +22,36 @@ export const createTask = async ({ request, response }: { request: Request; resp
   return;
 };
 
-export const getTasks = async ({ request, response }: { request: Request; response: Response }) => {
-  console.log("request.ip", request.ip);
+export const getTasks = async ({ request, response }: { request: Request; response: Response }): Promise<void> => {
+  console.log("request.ip:", request.ip);
 
   const allTasks = await tasks.find({}).toArray();
   response.status = 200;
   response.body = { tasks: allTasks };
+  return;
+};
+
+export const getTaskById = async ({
+  params,
+  response,
+}: {
+  params: { taskId: string };
+  response: Response;
+}): Promise<void> => {
+  // console.log("params:", params);
+
+  const taskId = params.taskId;
+  // console.log({ taskId });
+
+  const task = await tasks.findOne({ _id: new ObjectId(taskId) });
+
+  if (!task) {
+    response.status = 404;
+    response.body = { message: `No task with this id: ${taskId}` };
+    return;
+  }
+
+  response.status = 200;
+  response.body = { task: task };
   return;
 };
