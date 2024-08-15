@@ -1,0 +1,36 @@
+There are a few key considerations when deciding whether to use Create React App (CRA) or set up a custom Webpack configuration for building a React app with TypeScript:
+
+## When to Use Create React App (CRA)
+
+- **If you want a quick setup with minimal configuration**, CRA is a great choice. It provides a pre-configured development environment with TypeScript support out of the box[1].
+
+- **CRA is ideal for learning purposes or small projects** where you don't need to customize the build process extensively[1].
+
+- **If you're new to React and TypeScript**, starting with CRA allows you to focus on learning the core concepts without getting bogged down in build tool configuration[1].
+
+## When to Use Custom Webpack Configuration
+
+- **If you need more control over the build process or want to customize the configuration**, setting up a custom Webpack configuration is the way to go[2].
+
+- **For larger, more complex projects** that require specific optimizations or integrations, a custom Webpack setup provides the flexibility to tailor the build to your needs[2].
+
+- **If you're using a library or framework that requires specific Webpack configuration**, you'll need to set up a custom configuration[2].
+
+- **When you want to use newer language features or experimental syntax** that may not be supported by the version of TypeScript bundled with CRA, a custom setup allows you to upgrade the TypeScript compiler[3].
+
+- **If you want to use a specific version of Webpack or other build tools**, a custom configuration gives you that control[3].
+
+## Alternatives to Consider
+
+- **CRACO (Create React App Configuration Override)** allows you to customize a CRA project without ejecting, providing a middle ground between CRA and a full custom setup[4].
+
+- **Vite** is a fast, modern build tool that can be used with TypeScript and React. It provides a simpler configuration than Webpack while still allowing customization[4].
+
+In summary, CRA is great for quick starts and learning, while custom Webpack configurations offer more control and flexibility for larger, more complex projects. CRACO and Vite provide alternatives that balance ease of use with customization options.
+
+Citations:
+[1] https://stackoverflow.com/questions/63280109/how-to-update-webpack-config-for-a-react-project-created-using-create-react-app
+[2] https://www.fullstackfoundations.com/blog/react18-typescript-webpack-vanilla-setup
+[3] https://www.dhiwise.com/post/typescript-with-vite-cra-custom-webpack-and-craco
+[4] https://dev.to/shivampawar/setup-react-application-using-typescript-and-webpack-2kn6
+[5] https://jsramblings.com/create-a-react-and-typescript-app-with-webpack/
