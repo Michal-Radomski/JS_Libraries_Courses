@@ -2,20 +2,16 @@
 
 Files created during Udemy.com different JS libraries courses:
 
-1. [Advanced React and Redux](https://www.udemy.com/course/react-redux-tutorial)
+1. [Styled Components](https://www.udemy.com/course/styled-components-tutorial-and-project-course)
 
-2. [Node JS: Advanced Concepts](https://www.udemy.com/course/advanced-node-for-developers)
+2. [React Libraries](https://www.udemy.com/course/master-react-libraries-with-customerly-codebase)
 
-3. [Styled Components](https://www.udemy.com/course/styled-components-tutorial-and-project-course)
+3. [Webpack 5 and Vite](https://www.udemy.com/course/webpack-5-vite)
 
-4. [React Libraries](https://www.udemy.com/course/master-react-libraries-with-customerly-codebase)
+4. [Webpack 5](https://www.udemy.com/course/webpack-from-beginner-to-advanced)
 
-5. [Webpack 5 and Vite](https://www.udemy.com/course/webpack-5-vite)
+5. [Electron](https://www.udemy.com/course/electron-react-tutorial)
 
-6. [Webpack 5](https://www.udemy.com/course/webpack-from-beginner-to-advanced)
+6. [jQuery](https://www.udemy.com/course/draft/2632296)
 
-7. [Electron](https://www.udemy.com/course/electron-react-tutorial)
-
-8. [jQuery](https://www.udemy.com/course/draft/2632296)
-
-9. [Deno](https://www.udemy.com/course/deno-complete-guide-to-build-rest-api-jwt-crud-mongodb)
+7. [Deno](https://www.udemy.com/course/deno-complete-guide-to-build-rest-api-jwt-crud-mongodb)
