@@ -15,3 +15,5 @@ Files created during Udemy.com different JS libraries courses:
 6. [jQuery](https://www.udemy.com/course/draft/2632296)
 
 7. [Deno](https://www.udemy.com/course/deno-complete-guide-to-build-rest-api-jwt-crud-mongodb)
+
+8. [React Query / TanStack Query](https://www.udemy.com/course/learn-react-query)
