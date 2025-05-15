@@ -11,23 +11,25 @@ const Posts = (): React.JSX.Element => {
 
   const queryClient: QueryClient = useQueryClient();
 
-  const deleteMutation: UseMutationResult<ObjectI, Error, string, unknown> = useMutation({
-    mutationFn: (postId: string) => deletePost(postId),
+  const deleteMutation: UseMutationResult<ObjectI, Error, number, unknown> = useMutation({
+    mutationFn: (postId: number) => deletePost(postId),
   });
 
-  const updateMutation: UseMutationResult<ObjectI, Error, string, unknown> = useMutation({
-    mutationFn: (postId: string) => updatePost(postId),
+  const updateMutation: UseMutationResult<ObjectI, Error, number, unknown> = useMutation({
+    mutationFn: (postId: number) => updatePost(postId),
   });
 
   const { data, isError, error, isLoading } = useQuery({
     queryKey: ["posts", currentPage],
     queryFn: () => fetchPosts(currentPage),
-    staleTime: 2000, // 2 seconds
+    staleTime: 2000, //* 2 seconds
+    gcTime: 5 * 1000 * 60, //* garbage collection time
+    retry: true,
   });
 
   React.useEffect(() => {
     if (currentPage < maxPostPage) {
-      const nextPage = currentPage + 1;
+      const nextPage: number = currentPage + 1;
       queryClient.prefetchQuery({
         queryKey: ["posts", nextPage],
         queryFn: () => fetchPosts(nextPage),
@@ -51,23 +53,41 @@ const Posts = (): React.JSX.Element => {
   return (
     <React.Fragment>
       <ul>
-        {data?.map((post: Post) => (
-          <li key={post.id} className="post-title" onClick={() => setSelectedPost(post)}>
+        {data?.map((post:Post):JSX.Element => (
+          <li
+            key={post.id}
+            className="post-title"
+            onClick={() => {
+              deleteMutation.reset();
+              updateMutation.reset();
+              setSelectedPost(post);
+            }}
+          >
             {post.title}
           </li>
         ))}
       </ul>
       <div className="pages">
-        <button disabled onClick={() => {}}>
+        <button
+          disabled={currentPage <= 1}
+          onClick={() => {
+            setCurrentPage((previousValue) => previousValue - 1);
+          }}
+        >
           Previous page
         </button>
-        <span>Page {currentPage + 1}</span>
-        <button disabled onClick={() => {}}>
+        <span>Page {currentPage}</span>
+        <button
+          disabled={currentPage >= maxPostPage}
+          onClick={() => {
+            setCurrentPage((previousValue) => previousValue + 1);
+          }}
+        >
           Next page
         </button>
       </div>
       <hr />
-      {selectedPost && <PostDetail post={selectedPost} />}
+      {selectedPost ? <PostDetail post={selectedPost} deleteMutation={deleteMutation} updateMutation={updateMutation} /> : null}
     </React.Fragment>
   );
 };
