@@ -20,7 +20,7 @@ const Posts = (): React.JSX.Element => {
   });
 
   const { data, isError, error, isLoading } = useQuery({
-    queryKey: ["posts", currentPage],
+    queryKey: ["posts", currentPage], //* Dependency Array
     queryFn: () => fetchPosts(currentPage),
     staleTime: 2000, //* 2 seconds
     gcTime: 5 * 1000 * 60, //* garbage collection time
@@ -53,25 +53,27 @@ const Posts = (): React.JSX.Element => {
   return (
     <React.Fragment>
       <ul>
-        {data?.map((post:Post):JSX.Element => (
-          <li
-            key={post.id}
-            className="post-title"
-            onClick={() => {
-              deleteMutation.reset();
-              updateMutation.reset();
-              setSelectedPost(post);
-            }}
-          >
-            {post.title}
-          </li>
-        ))}
+        {data?.map(
+          (post: Post): React.JSX.Element => (
+            <li
+              key={post.id}
+              className="post-title"
+              onClick={() => {
+                deleteMutation.reset();
+                updateMutation.reset();
+                setSelectedPost(post);
+              }}
+            >
+              {post.title}
+            </li>
+          )
+        )}
       </ul>
       <div className="pages">
         <button
           disabled={currentPage <= 1}
           onClick={() => {
-            setCurrentPage((previousValue) => previousValue - 1);
+            setCurrentPage((previousValue: number) => previousValue - 1);
           }}
         >
           Previous page
@@ -80,14 +82,16 @@ const Posts = (): React.JSX.Element => {
         <button
           disabled={currentPage >= maxPostPage}
           onClick={() => {
-            setCurrentPage((previousValue) => previousValue + 1);
+            setCurrentPage((previousValue: number) => previousValue + 1);
           }}
         >
           Next page
         </button>
       </div>
       <hr />
-      {selectedPost ? <PostDetail post={selectedPost} deleteMutation={deleteMutation} updateMutation={updateMutation} /> : null}
+      {selectedPost ? (
+        <PostDetail post={selectedPost} deleteMutation={deleteMutation} updateMutation={updateMutation} />
+      ) : null}
     </React.Fragment>
   );
 };

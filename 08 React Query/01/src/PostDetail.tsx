@@ -13,7 +13,7 @@ const PostDetail = ({
   updateMutation: UseMutationResult<ObjectI, Error, number, unknown>;
 }): React.JSX.Element => {
   const { data, isLoading, isError, error } = useQuery({
-    queryKey: ["comments", post.id],
+    queryKey: ["comments", post.id], //* Dependency Array
     queryFn: () => fetchComments(post.id),
   });
 
@@ -23,10 +23,10 @@ const PostDetail = ({
 
   if (isError) {
     return (
-      <>
+      <React.Fragment>
         <h3>Error</h3>
         <p>{error.toString()}</p>
-      </>
+      </React.Fragment>
     );
   }
 
