@@ -1,5 +1,5 @@
 import React from "react";
-import { useQuery, useQueryClient, useMutation, QueryClient } from "@tanstack/react-query";
+import { useQuery, useQueryClient, useMutation, QueryClient, type UseMutationResult } from "@tanstack/react-query";
 
 import { fetchPosts, deletePost, updatePost } from "./api";
 import PostDetail from "./PostDetail";
@@ -11,12 +11,18 @@ const Posts = (): React.JSX.Element => {
 
   const queryClient: QueryClient = useQueryClient();
 
-  const deleteMutation = useMutation({
+  const deleteMutation: UseMutationResult<ObjectI, Error, string, unknown> = useMutation({
     mutationFn: (postId: string) => deletePost(postId),
   });
 
-  const updateMutation = useMutation({
+  const updateMutation: UseMutationResult<ObjectI, Error, string, unknown> = useMutation({
     mutationFn: (postId: string) => updatePost(postId),
+  });
+
+  const { data, isError, error, isLoading } = useQuery({
+    queryKey: ["posts", currentPage],
+    queryFn: () => fetchPosts(currentPage),
+    staleTime: 2000, // 2 seconds
   });
 
   React.useEffect(() => {
@@ -29,20 +35,16 @@ const Posts = (): React.JSX.Element => {
     }
   }, [currentPage, queryClient]);
 
-  const { data, isError, error, isLoading } = useQuery({
-    queryKey: ["posts", currentPage],
-    queryFn: () => fetchPosts(currentPage),
-    staleTime: 2000, // 2 seconds
-  });
   if (isLoading) {
     return <h3>Loading...</h3>;
   }
+
   if (isError) {
     return (
-      <>
+      <React.Fragment>
         <h3>Oops, something went wrong</h3>
         <p>{error.toString()}</p>
-      </>
+      </React.Fragment>
     );
   }
 
