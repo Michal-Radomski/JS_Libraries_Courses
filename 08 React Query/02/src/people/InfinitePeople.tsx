@@ -1,6 +1,5 @@
-/* eslint-disable @typescript-eslint/no-explicit-any */
 import React from "react";
-import { useInfiniteQuery } from "@tanstack/react-query";
+import { useInfiniteQuery, type DefinedInitialDataInfiniteOptions, type InfiniteData } from "@tanstack/react-query";
 import InfiniteScroll from "react-infinite-scroller";
 
 import { Person } from "./Person";
@@ -15,10 +14,10 @@ export function InfinitePeople(): JSX.Element {
   const { data, fetchNextPage, hasNextPage, isFetching, isLoading, isError, error } = useInfiniteQuery({
     queryKey: ["sw-people"],
     queryFn: ({ pageParam = initialUrl }) => fetchUrl(pageParam as string),
-    getNextPageParam: (lastPage: { next: boolean }) => {
-      return lastPage.next || undefined;
+    getNextPageParam: (lastPage: { next: string }) => {
+      return lastPage.next || null;
     },
-  } as any);
+  } as unknown as DefinedInitialDataInfiniteOptions<{ next: string }, Error, InfiniteData<{ next: string }, unknown>, string[], string>);
 
   if (isLoading) {
     return <div className="loading">Loading...</div>;
@@ -39,9 +38,10 @@ export function InfinitePeople(): JSX.Element {
           }
         }}
         hasMore={hasNextPage}
-        initialLoad={false} // Note: add `initialLoad={false}` to avoid double-load of page 2.
+        initialLoad={false} //* Note: add `initialLoad={false}` to avoid double-load of page 2.
       >
-        {data.pages.map((pageData: any) => {
+        {/*  eslint-disable-next-line @typescript-eslint/no-explicit-any */}
+        {data?.pages?.map((pageData: any) => {
           return (pageData?.results as Person[])?.map((person: Person) => {
             return <Person key={person.name} name={person.name} hairColor={person.hair_color} eyeColor={person.eye_color} />;
           });

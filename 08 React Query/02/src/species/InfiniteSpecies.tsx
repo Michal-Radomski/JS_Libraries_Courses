@@ -1,7 +1,6 @@
-/* eslint-disable @typescript-eslint/no-explicit-any */
 import React from "react";
+import { useInfiniteQuery, type DefinedInitialDataInfiniteOptions, type InfiniteData } from "@tanstack/react-query";
 import InfiniteScroll from "react-infinite-scroller";
-import { useInfiniteQuery } from "@tanstack/react-query";
 
 import { Species } from "./Species";
 
@@ -15,8 +14,9 @@ export function InfiniteSpecies(): React.JSX.Element {
   const { data, fetchNextPage, hasNextPage, isLoading, isFetching, isError, error } = useInfiniteQuery({
     queryKey: ["sw-species"],
     queryFn: ({ pageParam = initialUrl }) => fetchUrl(pageParam),
-    getNextPageParam: (lastPage: { next: boolean }) => lastPage.next || undefined,
-  } as any);
+    getNextPageParam: (lastPage: { next: string }) => lastPage.next || null,
+  } as unknown as DefinedInitialDataInfiniteOptions<{ next: string }, Error, InfiniteData<{ next: string }, unknown>, string[], string>);
+  // console.log("data:", data);
 
   if (isLoading) {
     return <div className="loading">Loading...</div>;
@@ -35,9 +35,10 @@ export function InfiniteSpecies(): React.JSX.Element {
           if (!isFetching) fetchNextPage();
         }}
         hasMore={hasNextPage}
-        initialLoad={false} // Note: add `initialLoad={false}` to avoid double-load of page 2.
+        // initialLoad={false} //* Note: add `initialLoad={false}` to avoid double-load of page 2.
       >
-        {data.pages.map((pageData: any) => {
+        {/*  eslint-disable-next-line @typescript-eslint/no-explicit-any */}
+        {data?.pages?.map((pageData: any) => {
           return (pageData?.results as Spece[]).map((species: Spece) => {
             return (
               <Species
