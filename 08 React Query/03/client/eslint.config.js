@@ -1,3 +1,5 @@
+// Todo: @tanstack/eslint-plugin-query/recommended doesn't work!
+
 import js from "@eslint/js";
 import globals from "globals";
 import reactHooks from "eslint-plugin-react-hooks";
