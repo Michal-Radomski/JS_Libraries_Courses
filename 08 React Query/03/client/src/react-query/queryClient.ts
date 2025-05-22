@@ -28,14 +28,14 @@ export const queryClientOptions: QueryClientConfig = {
     },
   },
   queryCache: new QueryCache({
-    onError: (error) => {
-      const title = createTitle(error.message, "query");
+    onError: (error: Error) => {
+      const title: string = createTitle(error.message, "query");
       errorHandler(title);
     },
   }),
   mutationCache: new MutationCache({
-    onError: (error) => {
-      const title = createTitle(error.message, "mutation");
+    onError: (error: Error) => {
+      const title: string = createTitle(error.message, "mutation");
       errorHandler(title);
     },
   }),
