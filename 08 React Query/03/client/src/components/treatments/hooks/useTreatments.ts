@@ -18,6 +18,11 @@ export function useTreatments(): Treatment[] {
   const { data = fallback } = useQuery({
     queryKey: [queryKeys.treatments],
     queryFn: getTreatments,
+    // staleTime: 600 * 1000, //* 10 minutes
+    // gcTime: 900 * 1000, //* 15 minutes
+    // refetchOnMount: false,
+    // refetchOnWindowFocus: false,
+    // refetchOnReconnect: false,
   });
   return data;
 }
