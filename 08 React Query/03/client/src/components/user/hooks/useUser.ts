@@ -26,6 +26,7 @@ export function useUser() {
   // call useQuery to update user data from server
   const { data: user } = useQuery({
     enabled: !!userId,
+    // enabled: Boolean(userId),
     queryKey: generateUserKey(userId, userToken),
     queryFn: () => getUser(userId, userToken),
     staleTime: Infinity,
