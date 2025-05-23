@@ -22,8 +22,8 @@ function errorHandler(title: string) {
 export const queryClientOptions: QueryClientConfig = {
   defaultOptions: {
     queries: {
-      staleTime: 600000, // 10 minutes
-      gcTime: 900000, // 15 minutes
+      staleTime: 600 * 1000, // 10 minutes
+      gcTime: 900 * 1000, // 15 minutes
       refetchOnWindowFocus: false,
     },
   },

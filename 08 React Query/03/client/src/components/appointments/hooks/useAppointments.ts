@@ -13,7 +13,7 @@ import { queryKeys } from "@/react-query/constants";
 // for useQuery and prefetchQuery
 const commonOptions = {
   staleTime: 0,
-  gcTime: 30000, // 5 minutes
+  gcTime: 300 * 1000, // 5 minutes
 };
 
 // for useQuery call
@@ -91,7 +91,7 @@ export function useAppointments() {
     queryFn: () => getAppointments(monthYear.year, monthYear.month),
     select: (data) => selectFn(data, showAll),
     refetchOnWindowFocus: true,
-    refetchInterval: 60000, // every minute
+    refetchInterval: 60 * 1000, // every minute
     ...commonOptions,
   });
 
