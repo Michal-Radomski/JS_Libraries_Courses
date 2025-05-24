@@ -13,6 +13,7 @@ test("filter appointments by availability", async () => {
   const { result } = renderHook(() => useAppointments(), {
     wrapper: createQueryClientWrapper(),
   });
+  // console.log("result:", result);
 
   // wait for appointments to populate
   await waitFor(() => expect(getAppointmentCount(result.current.appointments)).toBeGreaterThan(0));
