@@ -23,7 +23,7 @@ export function Appointment({ appointmentData }: AppointmentProps) {
   const reserveAppointment = useReserveAppointment();
   const [textColor, bgColor] = getAppointmentColor(appointmentData, userId);
 
-  const clickable = isClickable(userId, appointmentData);
+  const clickable: boolean = isClickable(userId, appointmentData);
   let onAppointmentClick: undefined | (() => void);
   let hoverCss = {};
 
