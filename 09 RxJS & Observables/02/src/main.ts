@@ -1,4 +1,4 @@
-import { Observable, Subscriber } from "rxjs";
+import { Observable, Subscriber, Subscription } from "rxjs";
 
 //* Empty Observable
 // const observable$ = new Observable<string>((_subscriber) => {
@@ -55,24 +55,45 @@ import { Observable, Subscriber } from "rxjs";
 // console.log("After subscribe");
 
 //* Error Notification
-const observable$ = new Observable<string>((subscriber: Subscriber<string>) => {
-  console.log("Observable executed");
-  subscriber.next("Alice");
-  subscriber.next("Ben");
-  setTimeout(() => {
-    subscriber.next("Charlie");
+// const observable$ = new Observable<string>((subscriber: Subscriber<string>) => {
+//   console.log("Observable executed");
+//   subscriber.next("Alice");
+//   subscriber.next("Ben");
+//   setTimeout(() => {
+//     subscriber.next("Charlie");
+//   }, 2000);
+//   setTimeout(() => subscriber.error(new Error("Failure")), 4000);
+
+//   return () => {
+//     console.log("Teardown");
+//   };
+// });
+
+// console.log("Before subscribe");
+// observable$.subscribe({
+//   next: (value: string) => console.log({ value }),
+//   error: (err: Error) => console.log("err.message:", err.message),
+//   complete: () => console.log("Completed"),
+// });
+// console.log("After subscribe");
+
+//* Cancellation - Unsubscribe
+const interval$ = new Observable<number>((subscriber: Subscriber<number>) => {
+  let counter = 1;
+
+  const intervalId = setInterval(() => {
+    console.log("Emitted", { counter });
+    subscriber.next(counter++);
   }, 2000);
-  setTimeout(() => subscriber.error(new Error("Failure")), 4000);
 
   return () => {
-    console.log("Teardown");
+    clearInterval(intervalId);
   };
 });
 
-console.log("Before subscribe");
-observable$.subscribe({
-  next: (value: string) => console.log({ value }),
-  error: (err: Error) => console.log("err.message:", err.message),
-  complete: () => console.log("Completed"),
-});
-console.log("After subscribe");
+const subscription: Subscription = interval$.subscribe((value: number) => console.log({ value }));
+
+setTimeout(() => {
+  console.log("Unsubscribe");
+  subscription.unsubscribe();
+}, 7000);
