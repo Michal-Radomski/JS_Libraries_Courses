@@ -1,5 +1,5 @@
 import { Observable, Subscriber } from "rxjs";
-import { ajax } from "rxjs/ajax";
+import { ajax, AjaxResponse } from "rxjs/ajax";
 
 //* Cold - HTTP Request
 const getRandom = (): number => {
@@ -10,11 +10,11 @@ const getRandom = (): number => {
 
 const ajax$ = ajax<any>(`https://jsonplaceholder.typicode.com/posts/${getRandom()}`);
 
-ajax$.subscribe((data) => console.log("Sub 1:", data.response.title));
+ajax$.subscribe((data: AjaxResponse<any>) => console.log("Sub 1:", data.response.title));
 
-ajax$.subscribe((data) => console.log("Sub 2:", data.response.title));
+ajax$.subscribe((data: AjaxResponse<any>) => console.log("Sub 2:", data.response.title));
 
-ajax$.subscribe((data) => console.log("Sub 3:", data.response.title));
+ajax$.subscribe((data: AjaxResponse<any>) => console.log("Sub 3:", data.response.title));
 
 //* Hot - HTTP Request
 const helloButton = document.querySelector("button#hello") as HTMLButtonElement;
