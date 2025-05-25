@@ -86,6 +86,7 @@ const interval$ = new Observable<number>((subscriber: Subscriber<number>) => {
     subscriber.next(counter++);
   }, 2000);
 
+  // Teardown
   return () => {
     clearInterval(intervalId);
   };
