@@ -1,23 +1,13 @@
-import { Observable, of } from "rxjs";
+import { name$, storeDataOnServer, storeDataOnServerError } from "./external";
 
-import "./style.scss";
+name$.subscribe((value: string) => console.log(1, { value }));
 
-export const name$: Observable<string> = of("Alice", "Ben", "Charlie");
+storeDataOnServer("Some value").subscribe({
+  next: (value) => console.log(2, { value }),
+  error: (err) => console.log("Error when saving:", err.message),
+});
 
-export function storeDataOnServer(data: string): Observable<string> {
-  return new Observable((subscriber) => {
-    setTimeout(() => {
-      subscriber.next(`Saved successfully: ${data}`);
-      subscriber.complete();
-    }, 5000);
-  });
-}
-
-export function storeDataOnServerError(data: string): Observable<string> {
-  console.log("data:", data);
-  return new Observable((subscriber) => {
-    setTimeout(() => {
-      subscriber.error(new Error("Failure!"));
-    }, 5000);
-  });
-}
+storeDataOnServerError("Some value").subscribe({
+  next: (value) => console.log(3, { value }),
+  error: (err) => console.log("Error when saving:", err.message),
+});
