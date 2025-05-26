@@ -1,4 +1,4 @@
-import { from, Observable, of, Subscriber } from "rxjs";
+import { from, fromEvent, Observable, of, Subscriber, Subscription } from "rxjs";
 
 //* Off
 of("Alice", "Ben", "Charlie").subscribe((value: string) => console.log(1, { value }));
@@ -49,3 +49,31 @@ observableFromPromise$.subscribe({
   error: (err) => console.log("Error:", err),
   complete: () => console.log("Completed"),
 });
+
+//* fromEvent
+const triggerButton = document.querySelector("button#trigger") as HTMLButtonElement;
+
+const subscription: Subscription = fromEvent<MouseEvent>(triggerButton, "click").subscribe((event) =>
+  console.log(event.type, event.x, event.y)
+);
+
+const triggerClick$ = new Observable<MouseEvent>((subscriber) => {
+  const clickHandlerFn = (event: MouseEvent) => {
+    console.log("Event callback executed");
+    subscriber.next(event);
+  };
+
+  triggerButton.addEventListener("click", clickHandlerFn);
+
+  return () => {
+    triggerButton.removeEventListener("click", clickHandlerFn);
+  };
+});
+
+const subscription2: Subscription = triggerClick$.subscribe((event) => console.log(event.type, event.x, event.y));
+
+setTimeout(() => {
+  console.log("Unsubscribe");
+  subscription.unsubscribe();
+  subscription2.unsubscribe();
+}, 5000);
