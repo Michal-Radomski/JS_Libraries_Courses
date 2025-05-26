@@ -1,4 +1,4 @@
-import { forkJoin, from, fromEvent, interval, Observable, of, Subscriber, Subscription, timer } from "rxjs";
+import { combineLatest, forkJoin, from, fromEvent, interval, Observable, of, Subscriber, Subscription, timer } from "rxjs";
 import { ajax } from "rxjs/ajax";
 
 //* Off
@@ -181,4 +181,31 @@ setTimeout(() => {
     next: (value) => console.log(value),
     error: (err) => console.log("Error:", err),
   });
+}
+
+{
+  //* CombineLatest
+  const temperatureInput = document.getElementById("temperature-input") as HTMLInputElement;
+  const conversionDropdown = document.getElementById("conversion-dropdown") as HTMLSelectElement;
+  const resultText = document.getElementById("result-text") as HTMLParagraphElement;
+
+  const temperatureInputEvent$ = fromEvent(temperatureInput, "input");
+  const conversionInputEvent$ = fromEvent(conversionDropdown, "input");
+
+  combineLatest([temperatureInputEvent$, conversionInputEvent$]).subscribe(
+    ([temperatureInputEvent, conversionInputEvent]) => {
+      const temperature = Number(temperatureInputEvent.target!["value" as keyof typeof temperatureInputEvent.target]);
+      const conversion = conversionInputEvent.target!["value" as keyof typeof temperatureInputEvent.target] as string;
+      // console.log("conversion:", conversion);
+
+      let result!: number;
+      if (conversion === "f-to-c") {
+        result = ((temperature - 32) * 5) / 9;
+      } else if (conversion === "c-to-f") {
+        result = (temperature * 9) / 5 + 32;
+      }
+
+      resultText.innerText = String(result);
+    }
+  );
 }
