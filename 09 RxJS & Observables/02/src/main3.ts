@@ -1,4 +1,4 @@
-import { from, fromEvent, Observable, of, Subscriber, Subscription } from "rxjs";
+import { from, fromEvent, interval, Observable, of, Subscriber, Subscription, timer } from "rxjs";
 
 //* Off
 of("Alice", "Ben", "Charlie").subscribe((value: string) => console.log(1, { value }));
@@ -77,3 +77,64 @@ setTimeout(() => {
   subscription.unsubscribe();
   subscription2.unsubscribe();
 }, 5000);
+
+{
+  //* Timer
+  console.log("App started");
+
+  timer(2000).subscribe({
+    next: (value) => console.log({ value }),
+    complete: () => console.log("Completed"),
+  });
+
+  const timer$ = new Observable<number>((subscriber) => {
+    const timeoutId = setTimeout(() => {
+      console.log("Timeout!");
+      subscriber.next(0);
+      subscriber.complete();
+    }, 2000);
+
+    return () => clearTimeout(timeoutId);
+  });
+
+  const subscription = timer$.subscribe({
+    next: (value) => console.log(value),
+    complete: () => console.log("Completed"),
+  });
+
+  setTimeout(() => {
+    subscription.unsubscribe();
+    console.log("Unsubscribe");
+  }, 1000);
+}
+
+{
+  //* Interval
+  console.log("App started2");
+
+  const interval$ = new Observable<number>((subscriber) => {
+    let counter = 0;
+
+    const intervalId = setInterval(() => {
+      console.log("Timeout!");
+      subscriber.next(counter++);
+    }, 1000);
+
+    return () => clearInterval(intervalId);
+  });
+
+  interval(1000).subscribe({
+    next: (value) => console.log(value),
+    complete: () => console.log("Completed"),
+  });
+
+  const subscription = interval$.subscribe({
+    next: (value) => console.log(value),
+    complete: () => console.log("Completed"),
+  });
+
+  setTimeout(() => {
+    subscription.unsubscribe();
+    console.log("Unsubscribe");
+  }, 5000);
+}
