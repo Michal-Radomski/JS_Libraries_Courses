@@ -19,6 +19,7 @@ names$.subscribe({
   complete: () => console.log("Completed"),
 });
 
+//* The same as of!
 function ourOwnOf(...args: string[]): Observable<string> {
   return new Observable<string>((subscriber) => {
     for (let i = 0; i < args.length; i++) {
