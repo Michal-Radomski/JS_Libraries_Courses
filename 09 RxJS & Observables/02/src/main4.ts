@@ -1,4 +1,4 @@
-import { debounceTime, filter, from, fromEvent, map, Observable, of, tap } from "rxjs";
+import { catchError, debounceTime, EMPTY, filter, from, fromEvent, map, Observable, of, tap } from "rxjs";
 
 {
   //* Filter
@@ -74,4 +74,27 @@ import { debounceTime, filter, from, fromEvent, map, Observable, of, tap } from 
       map((event) => event.target!["value" as keyof typeof event.target])
     )
     .subscribe((value) => console.log({ value }));
+}
+
+{
+  //* CatchError
+  const failingHttpRequest$ = new Observable((subscriber) => {
+    setTimeout(() => {
+      subscriber.error(new Error("Timeout"));
+    }, 3000);
+  });
+
+  console.log("App started3");
+
+  failingHttpRequest$
+    .pipe(
+      catchError((error) => {
+        console.log("error:", error);
+        return EMPTY;
+      })
+    )
+    .subscribe({
+      next: (value) => console.log(value),
+      complete: () => console.log("Completed"),
+    });
 }
