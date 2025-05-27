@@ -1,4 +1,4 @@
-import { catchError, debounceTime, EMPTY, filter, from, fromEvent, map, Observable, of, tap } from "rxjs";
+import { catchError, concatMap, debounceTime, EMPTY, filter, from, fromEvent, map, Observable, of, tap } from "rxjs";
 
 {
   //* Filter
@@ -84,7 +84,7 @@ import { catchError, debounceTime, EMPTY, filter, from, fromEvent, map, Observab
     }, 3000);
   });
 
-  console.log("App started3");
+  console.log("App started_3");
 
   failingHttpRequest$
     .pipe(
@@ -97,4 +97,22 @@ import { catchError, debounceTime, EMPTY, filter, from, fromEvent, map, Observab
       next: (value) => console.log(value),
       complete: () => console.log("Completed"),
     });
+}
+
+{
+  //* ConcatMap
+  const source$ = new Observable((subscriber) => {
+    setTimeout(() => subscriber.next("A"), 2000);
+    setTimeout(() => subscriber.next("B"), 5000);
+  });
+
+  console.log("App has started_4");
+  source$
+    .pipe(
+      concatMap((value) => {
+        console.log({ value });
+        return of(1, 2);
+      })
+    )
+    .subscribe((value) => console.log({ value }));
 }
