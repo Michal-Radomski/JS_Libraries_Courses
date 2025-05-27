@@ -1,4 +1,4 @@
-import { filter, from, map, Observable } from "rxjs";
+import { debounceTime, filter, from, fromEvent, map, Observable, of, tap } from "rxjs";
 
 {
   //* Filter
@@ -49,4 +49,29 @@ import { filter, from, map, Observable } from "rxjs";
 
   example2.subscribe((val) => console.log({ val }));
   // Output: "Joe", "Frank", "Ryan"
+}
+
+{
+  //* Tap
+  of(1, 7, 3, 6, 2)
+    .pipe(
+      filter((value) => value > 5),
+      map((value) => value * 2),
+      tap({
+        next: (value) => console.log("Spy:", value),
+      })
+    )
+    .subscribe((value) => console.log("Output:", { value }));
+}
+
+{
+  //* DebounceTime
+  const sliderInput = document.querySelector("input#slider") as HTMLInputElement;
+
+  fromEvent(sliderInput, "input")
+    .pipe(
+      debounceTime(2000),
+      map((event) => event.target!["value" as keyof typeof event.target])
+    )
+    .subscribe((value) => console.log({ value }));
 }
