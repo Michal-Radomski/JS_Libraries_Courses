@@ -1,4 +1,4 @@
-import { filter, Observable } from "rxjs";
+import { filter, from, map, Observable } from "rxjs";
 
 {
   //* Filter
@@ -24,4 +24,29 @@ import { filter, Observable } from "rxjs";
       console.log(2, "item:", item);
     },
   });
+}
+
+{
+  //* Map
+  // Create an observable from an array of numbers
+  const source = from([1, 2, 3, 4, 5]);
+
+  // Use map to add 10 to each emitted value
+  const example = source.pipe(map((val) => val + 10));
+
+  // Subscribe to the observable and log the transformed values
+  example.subscribe((val) => console.log({ val }));
+  // Output: 11, 12, 13, 14, 15
+
+  const source2 = from([
+    { name: "Joe", age: 30 },
+    { name: "Frank", age: 20 },
+    { name: "Ryan", age: 50 },
+  ]);
+
+  // Map to extract the 'name' property from each object
+  const example2 = source2.pipe(map(({ name }) => name));
+
+  example2.subscribe((val) => console.log({ val }));
+  // Output: "Joe", "Frank", "Ryan"
 }
