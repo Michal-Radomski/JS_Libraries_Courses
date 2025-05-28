@@ -32,10 +32,10 @@ export const TypicalForm = (): React.JSX.Element => {
       mobile: "",
     };
 
-    if (values.customerName == "") {
+    if (values.customerName === "") {
       tempErrors.customerName = "Customer name is required.";
     }
-    if (values.mobile == "") {
+    if (values.mobile === "") {
       tempErrors.mobile = "Mobile number is required.";
     }
     setErrors(tempErrors);
@@ -45,8 +45,11 @@ export const TypicalForm = (): React.JSX.Element => {
 
   const onSubmit = (e: React.SyntheticEvent<HTMLFormElement>): void => {
     e.preventDefault();
-    if (validateFormData()) console.log("form data", values);
-    else console.log("form is invalid");
+    if (validateFormData()) {
+      console.log("form data", values);
+    } else {
+      console.log("form is invalid");
+    }
   };
 
   return (

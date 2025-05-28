@@ -2,14 +2,14 @@ import React from "react";
 
 import "./App.scss";
 import { FoodDeliveryForm } from "./FoodDeliveryForm";
-import { TypicalForm } from "./TypicalForm";
+// import { TypicalForm } from "./TypicalForm";
 
 const App = (): React.JSX.Element => {
   return (
     <React.Fragment>
       <div className="container">
         <div className="mx-5">
-          <TypicalForm />
+          {/* <TypicalForm /> */}
           <FoodDeliveryForm />
         </div>
       </div>
