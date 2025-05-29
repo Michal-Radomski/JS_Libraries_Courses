@@ -4,14 +4,24 @@ import { useForm, type FieldErrors } from "react-hook-form";
 import { getRenderCount } from "./utils/getRenderCount";
 
 type FoodDeliveryFormType = {
+  orderNo: number;
   customerName: string;
   mobile: string;
+  email: string;
 };
 
 const RenderCount: () => React.JSX.Element = getRenderCount();
 
 export const FoodDeliveryForm = (): React.JSX.Element => {
-  const { register, handleSubmit } = useForm<FoodDeliveryFormType>();
+  //* Register contains: onChange, onBlur, name and ref!
+  const { register, handleSubmit } = useForm<FoodDeliveryFormType>({
+    defaultValues: {
+      orderNo: new Date().valueOf(),
+      customerName: "",
+      mobile: "",
+      email: "",
+    },
+  });
   // console.log("useForm():", useForm());
   // console.log("(register('customerName'):", register("customerName"));
   // console.log("handleSubmit:", handleSubmit);
@@ -33,29 +43,41 @@ export const FoodDeliveryForm = (): React.JSX.Element => {
       <form autoComplete="off" onSubmit={handleSubmit(onSubmit, onError)}>
         <RenderCount />
 
-        <div className="form-floating mb-3">
-          <input
-            type="text"
-            className="form-control"
-            placeholder="Customer Name"
-            {...register("customerName", {
-              required: "Customer name is required.",
-              value: "initialValue",
-            })} //* Contains: onChange, onBlur, name and ref!
-          />
-          <label>Customer Name</label>
+        <div className="row mb-2">
+          <div className="col">
+            <div className="form-floating">
+              <input
+                type="text"
+                className="form-control"
+                placeholder="#Order No."
+                disabled={true}
+                {...register("orderNo")}
+              />
+              <label>#Order No.</label>
+            </div>
+          </div>
+          <div className="col">
+            <div className="form-floating">
+              <input type="text" className="form-control" placeholder="Mobile" {...register("mobile")} />
+              <label>Mobile</label>
+            </div>
+          </div>
         </div>
-        <div className="form-floating mb-3">
-          <input
-            type="text"
-            className="form-control"
-            placeholder="Mobile"
-            {...register("mobile", {
-              required: "Mobile number is required.",
-            })}
-          />
-          <label>Mobile</label>
+        <div className="row mb-2">
+          <div className="col">
+            <div className="form-floating">
+              <input type="text" className="form-control" placeholder="Customer Name" {...register("customerName")} />
+              <label>Customer Name</label>
+            </div>
+          </div>
+          <div className="col">
+            <div className="form-floating">
+              <input type="email" className="form-control" placeholder="Email" {...register("email")} />
+              <label>Email</label>
+            </div>
+          </div>
         </div>
+
         <button type="submit" className="btn btn-primary">
           Submit
         </button>
