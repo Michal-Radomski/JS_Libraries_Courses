@@ -46,19 +46,28 @@ export const FoodDeliveryForm = (): React.JSX.Element => {
         <div className="row mb-2">
           <div className="col">
             <div className="form-floating">
-              <input
-                type="text"
-                className="form-control"
-                placeholder="#Order No."
-                disabled={true}
-                {...register("orderNo")}
-              />
+              <input type="text" className="form-control" placeholder="#Order No." disabled {...register("orderNo")} />
               <label>#Order No.</label>
             </div>
           </div>
           <div className="col">
             <div className="form-floating">
-              <input type="text" className="form-control" placeholder="Mobile" {...register("mobile")} />
+              <input
+                type="text"
+                className="form-control"
+                placeholder="Mobile"
+                {...register("mobile", {
+                  minLength: {
+                    value: 10,
+                    message: "Must be 10 digits.",
+                  },
+                  maxLength: {
+                    value: 10,
+                    message: "Must be 10 digits.",
+                  },
+                  required: "This field is required.",
+                })}
+              />
               <label>Mobile</label>
             </div>
           </div>
@@ -66,13 +75,31 @@ export const FoodDeliveryForm = (): React.JSX.Element => {
         <div className="row mb-2">
           <div className="col">
             <div className="form-floating">
-              <input type="text" className="form-control" placeholder="Customer Name" {...register("customerName")} />
+              <input
+                type="text"
+                className="form-control"
+                placeholder="Customer Name"
+                {...register("customerName", {
+                  required: "This field is required.",
+                  // value: "initialValue",
+                })}
+              />
               <label>Customer Name</label>
             </div>
           </div>
           <div className="col">
             <div className="form-floating">
-              <input type="email" className="form-control" placeholder="Email" {...register("email")} />
+              <input
+                type="email"
+                className="form-control"
+                placeholder="Email"
+                {...register("email", {
+                  pattern: {
+                    value: /^[^\s@]+@[^\s@]+\.[^\s@]+$/,
+                    message: "Incorrect email format.",
+                  },
+                })}
+              />
               <label>Email</label>
             </div>
           </div>
