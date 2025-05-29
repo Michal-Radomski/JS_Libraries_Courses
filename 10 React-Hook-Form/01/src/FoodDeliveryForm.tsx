@@ -14,7 +14,16 @@ const RenderCount: () => React.JSX.Element = getRenderCount();
 
 export const FoodDeliveryForm = (): React.JSX.Element => {
   //* Register contains: onChange, onBlur, name and ref!
-  const { register, handleSubmit } = useForm<FoodDeliveryFormType>({
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+  } = useForm<FoodDeliveryFormType>({
+    mode: "onSubmit",
+    reValidateMode: "onChange",
+    shouldFocusError: true,
+    delayError: 500,
+    criteriaMode: "all",
     defaultValues: {
       orderNo: new Date().valueOf(),
       customerName: "",
@@ -40,7 +49,7 @@ export const FoodDeliveryForm = (): React.JSX.Element => {
 
   return (
     <React.Fragment>
-      <form autoComplete="off" onSubmit={handleSubmit(onSubmit, onError)}>
+      <form autoComplete="off" onSubmit={handleSubmit(onSubmit, onError)} noValidate={true}>
         <RenderCount />
 
         <div className="row mb-2">
@@ -69,6 +78,7 @@ export const FoodDeliveryForm = (): React.JSX.Element => {
                 })}
               />
               <label>Mobile</label>
+              {errors.mobile ? <div className="error-feedback">{errors.mobile?.message}</div> : null}
             </div>
           </div>
         </div>
@@ -81,10 +91,12 @@ export const FoodDeliveryForm = (): React.JSX.Element => {
                 placeholder="Customer Name"
                 {...register("customerName", {
                   required: "This field is required.",
+                  // required: true,
                   // value: "initialValue",
                 })}
               />
               <label>Customer Name</label>
+              {errors.customerName ? <div className="error-feedback">{errors.customerName?.message}</div> : null}
             </div>
           </div>
           <div className="col">
@@ -101,11 +113,12 @@ export const FoodDeliveryForm = (): React.JSX.Element => {
                 })}
               />
               <label>Email</label>
+              {errors.email ? <div className="error-feedback">{errors.email?.message}</div> : null}
             </div>
           </div>
         </div>
 
-        <button type="submit" className="btn btn-primary">
+        <button type="submit" className="btn btn-primary w-100">
           Submit
         </button>
       </form>
