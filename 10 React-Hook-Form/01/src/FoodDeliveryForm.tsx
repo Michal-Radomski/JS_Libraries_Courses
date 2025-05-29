@@ -110,6 +110,17 @@ export const FoodDeliveryForm = (): React.JSX.Element => {
                     value: /^[^\s@]+@[^\s@]+\.[^\s@]+$/,
                     message: "Incorrect email format.",
                   },
+                  validate: {
+                    notFake: (value: string) => {
+                      return value !== "email@gmail.com" || "Particular email is blocked.";
+                    },
+                    notFromBlackListedDomain: (value: string, _values: FoodDeliveryFormType) => {
+                      // console.log("_values:", _values);
+                      return (
+                        (!value.endsWith("@xyz.com") && !value.endsWith("@example.com")) || "This domain is not supported."
+                      );
+                    },
+                  },
                 })}
               />
               <label>Email</label>
