@@ -1,10 +1,14 @@
 import React from "react";
 import { useForm, type FieldErrors } from "react-hook-form";
 
+import { getRenderCount } from "./utils/getRenderCount";
+
 type FoodDeliveryFormType = {
   customerName: string;
   mobile: string;
 };
+
+const RenderCount: () => React.JSX.Element = getRenderCount();
 
 export const FoodDeliveryForm = (): React.JSX.Element => {
   const { register, handleSubmit } = useForm<FoodDeliveryFormType>();
@@ -27,6 +31,8 @@ export const FoodDeliveryForm = (): React.JSX.Element => {
   return (
     <React.Fragment>
       <form autoComplete="off" onSubmit={handleSubmit(onSubmit, onError)}>
+        <RenderCount />
+
         <div className="form-floating mb-3">
           <input
             type="text"

@@ -1,5 +1,7 @@
 import React from "react";
 
+// import { getRenderCount } from "./utils/getRenderCount";
+
 type FoodDeliveryFormType = {
   customerName: string;
   mobile: string;
@@ -10,11 +12,14 @@ type FoodDeliveryFormErrorType = {
   mobile: string;
 };
 
+// const RenderCount: () => React.JSX.Element = getRenderCount();
+
 export const TypicalForm = (): React.JSX.Element => {
   const [values, setValues] = React.useState<FoodDeliveryFormType>({
     customerName: "",
     mobile: "",
   });
+  // console.log("values:", values);
   const [errors, setErrors] = React.useState<FoodDeliveryFormErrorType>({
     customerName: "",
     mobile: "",
@@ -55,6 +60,7 @@ export const TypicalForm = (): React.JSX.Element => {
   return (
     <React.Fragment>
       <form autoComplete="off" onSubmit={onSubmit}>
+        {/* <RenderCount /> */}
         <div className="form-floating mb-3">
           <input
             type="text"
