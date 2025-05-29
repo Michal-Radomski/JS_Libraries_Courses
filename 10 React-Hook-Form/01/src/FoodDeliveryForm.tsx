@@ -8,7 +8,14 @@ type FoodDeliveryFormType = {
 
 export const FoodDeliveryForm = (): React.JSX.Element => {
   const { register, handleSubmit } = useForm<FoodDeliveryFormType>();
+  // console.log("useForm():", useForm());
+  // console.log("(register('customerName'):", register("customerName"));
+  // console.log("handleSubmit:", handleSubmit);
 
+  // const customerName = register("customerName");
+  // console.log("customerName:", customerName);
+
+  //* event.preventDefault() not needed!
   const onSubmit = (formData: FoodDeliveryFormType): void => {
     console.log("form data", formData);
   };
@@ -27,7 +34,8 @@ export const FoodDeliveryForm = (): React.JSX.Element => {
             placeholder="Customer Name"
             {...register("customerName", {
               required: "Customer name is required.",
-            })}
+              value: "initialValue",
+            })} //* Contains: onChange, onBlur, name and ref!
           />
           <label>Customer Name</label>
         </div>
