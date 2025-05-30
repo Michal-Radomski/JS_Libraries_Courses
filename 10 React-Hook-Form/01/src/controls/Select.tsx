@@ -17,9 +17,9 @@ export const Select = React.forwardRef(
       <React.Fragment>
         <div className="form-floating">
           <select className={`form-select ${className}`} ref={ref} {...other}>
-            {options.map((x, indx) => (
-              <option key={indx} value={typeof x == "string" ? x : x.value}>
-                {typeof x == "string" ? x : x.text}
+            {options.map((elem: SelectOptionType, index: number) => (
+              <option key={index} value={typeof elem === "string" ? elem : elem.value}>
+                {typeof elem == "string" ? elem : elem.text}
               </option>
             ))}
           </select>
