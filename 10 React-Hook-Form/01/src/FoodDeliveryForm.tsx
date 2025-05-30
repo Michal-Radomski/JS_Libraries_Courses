@@ -39,7 +39,13 @@ export const FoodDeliveryForm = (): React.JSX.Element => {
   // const customerName = register("customerName");
   // console.log("customerName:", customerName);
 
-  const { handleSubmit } = methods;
+  const {
+    handleSubmit,
+    formState: { isValid, isValidating, isDirty, isReady, errors },
+    formState,
+  } = methods;
+  console.log({ isValid, isValidating, isDirty, isReady, errors });
+  console.log("formState:", formState);
 
   //* event.preventDefault() not needed!
   const onSubmit = (formData: FoodDeliveryFormType): void => {
@@ -52,20 +58,22 @@ export const FoodDeliveryForm = (): React.JSX.Element => {
 
   //* V2
   return (
-    <form autoComplete="off" noValidate onSubmit={handleSubmit(onSubmit, onError)}>
-      <RenderCount />
+    <React.Fragment>
+      <form autoComplete="off" noValidate onSubmit={handleSubmit(onSubmit, onError)}>
+        <RenderCount />
 
-      <FormProvider {...methods}>
-        <FoodDeliverMaster />
-        <div>list of ordered food items</div>
-        <CheckoutForm />
-        <DeliveryAddressForm />
-      </FormProvider>
+        <FormProvider {...methods}>
+          <FoodDeliverMaster />
+          <div>list of ordered food items</div>
+          <CheckoutForm />
+          <DeliveryAddressForm />
+        </FormProvider>
 
-      <button type="submit" className="btn btn-primary">
-        Submit
-      </button>
-    </form>
+        <button type="submit" className="btn btn-primary">
+          Submit
+        </button>
+      </form>
+    </React.Fragment>
   );
 
   //* V1
