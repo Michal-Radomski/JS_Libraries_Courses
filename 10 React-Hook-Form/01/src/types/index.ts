@@ -7,4 +7,10 @@ export type FoodDeliveryFormType = {
   email: string;
   paymentMethod: string;
   deliveryIn: number;
+  address: {
+    streetAddress: string;
+    landmark: string;
+    city: string;
+    state: string;
+  };
 };
