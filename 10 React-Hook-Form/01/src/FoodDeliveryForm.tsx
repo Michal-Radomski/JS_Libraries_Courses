@@ -1,35 +1,21 @@
 import React from "react";
-import { useForm, type FieldErrors } from "react-hook-form";
+import { FormProvider, useForm, type FieldErrors, type UseFormReturn } from "react-hook-form";
 
 import { getRenderCount } from "./utils/getRenderCount";
-import type { FoodDeliveryFormType, SelectOptionType } from "./types";
+import type { FoodDeliveryFormType } from "./types";
 import { TextField } from "./controls/TextField";
-import { Select } from "./controls/Select";
-
-const paymentOptions: SelectOptionType[] = [
-  { value: "", text: "Select" },
-  { value: "online", text: "Paid Online" },
-  { value: "COD", text: "Cash On Delivery" },
-];
-
-const deliveryInOptions: SelectOptionType[] = [
-  { value: 0, text: "Select" },
-  { value: 30, text: "Half an Hour" },
-  { value: 60, text: "1 Hour" },
-  { value: 120, text: "2 Hour" },
-  { value: 180, text: "3 Hour" },
-];
+import { CheckoutForm } from "./CheckOutForm";
 
 const RenderCount: () => React.JSX.Element = getRenderCount();
 
 export const FoodDeliveryForm = (): React.JSX.Element => {
   //* Register contains: onChange, onBlur, name and ref!
-  const {
-    register,
-    handleSubmit,
-    formState: { errors },
-  } = useForm<FoodDeliveryFormType>({
+  const methods: UseFormReturn<FoodDeliveryFormType> = useForm<FoodDeliveryFormType>({
     mode: "onChange",
+    reValidateMode: "onChange",
+    shouldFocusError: true,
+    delayError: 500,
+    criteriaMode: "all",
     defaultValues: {
       orderNo: new Date().valueOf(),
       customerName: "",
@@ -51,6 +37,12 @@ export const FoodDeliveryForm = (): React.JSX.Element => {
 
   // const customerName = register("customerName");
   // console.log("customerName:", customerName);
+
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+  } = methods;
 
   //* event.preventDefault() not needed!
   const onSubmit = (formData: FoodDeliveryFormType): void => {
@@ -171,27 +163,10 @@ export const FoodDeliveryForm = (): React.JSX.Element => {
         </div>
 
         <div>list of ordered food items</div>
-        <div className="text-start fw-bold mt-4 mb-2">Checkout Details</div>
-        <div className="row mb-2">
-          <div className="col">
-            <Select
-              label="Payment Method"
-              options={paymentOptions}
-              {...register("paymentMethod", {
-                required: "This field is required.",
-              })}
-              error={errors.paymentMethod}
-            />
-          </div>
-          <div className="col">
-            <Select
-              label="Delivery Within"
-              options={deliveryInOptions}
-              {...register("deliveryIn")}
-              error={errors.deliveryIn}
-            />
-          </div>
-        </div>
+        <FormProvider {...methods}>
+          <CheckoutForm />
+        </FormProvider>
+
         <div className="text-start fw-bold mt-4 mb-2">Delivery Address</div>
         <div className="row mb-3">
           <div className="col">
