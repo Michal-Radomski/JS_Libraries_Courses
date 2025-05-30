@@ -62,10 +62,11 @@ export const FoodDeliveryForm = (): React.JSX.Element => {
 
         <div className="row mb-2">
           <div className="col">
-            <div className="form-floating">
+            {/* <div className="form-floating">
               <input type="text" className="form-control" placeholder="#Order No." disabled {...register("orderNo")} />
               <label>#Order No.</label>
-            </div>
+            </div> */}
+            <TextField label="#Order No." disabled {...register("orderNo")} />
           </div>
           <div className="col">
             {/* <div className="form-floating">
@@ -90,6 +91,7 @@ export const FoodDeliveryForm = (): React.JSX.Element => {
             </div> */}
             <TextField
               label="Mobile"
+              className="border-success"
               {...register("mobile", {
                 required: "This field is required.",
               })}
