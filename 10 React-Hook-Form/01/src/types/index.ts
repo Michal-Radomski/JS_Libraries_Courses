@@ -3,17 +3,23 @@ export type CheckoutFormType = {
   deliveryIn: number;
 };
 
+export type DeliveryAddressFormType = {
+  streetAddress: string;
+  landmark: string;
+  city: string;
+  state: string;
+};
+
 export type FoodDeliveryFormType = {
+  address: DeliveryAddressFormType;
+} & FoodDeliverMasterType &
+  CheckoutFormType;
+
+export type FoodDeliverMasterType = {
   orderNo: number;
   customerName: string;
   mobile: string;
   email: string;
-  address: {
-    streetAddress: string;
-    landmark: string;
-    city: string;
-    state: string;
-  };
-} & CheckoutFormType;
+};
 
 export type SelectOptionType = string | { value: string; text: string } | { value: number; text: string };
