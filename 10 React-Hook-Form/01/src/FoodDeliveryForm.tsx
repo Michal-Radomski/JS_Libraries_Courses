@@ -2,13 +2,23 @@ import React from "react";
 import { useForm, type FieldErrors } from "react-hook-form";
 
 import { getRenderCount } from "./utils/getRenderCount";
+import type { FoodDeliveryFormType, SelectOptionType } from "./types";
+import { TextField } from "./controls/TextField";
+import { Select } from "./controls/Select";
 
-type FoodDeliveryFormType = {
-  orderNo: number;
-  customerName: string;
-  mobile: string;
-  email: string;
-};
+const paymentOptions: SelectOptionType[] = [
+  { value: "", text: "Select" },
+  { value: "online", text: "Paid Online" },
+  { value: "COD", text: "Cash On Delivery" },
+];
+
+const deliveryInOptions: SelectOptionType[] = [
+  { value: 0, text: "Select" },
+  { value: 30, text: "Half an Hour" },
+  { value: 60, text: "1 Hour" },
+  { value: 120, text: "2 Hour" },
+  { value: 180, text: "3 Hour" },
+];
 
 const RenderCount: () => React.JSX.Element = getRenderCount();
 
@@ -19,16 +29,14 @@ export const FoodDeliveryForm = (): React.JSX.Element => {
     handleSubmit,
     formState: { errors },
   } = useForm<FoodDeliveryFormType>({
-    mode: "onSubmit",
-    reValidateMode: "onChange",
-    shouldFocusError: true,
-    delayError: 500,
-    criteriaMode: "all",
+    mode: "onChange",
     defaultValues: {
       orderNo: new Date().valueOf(),
       customerName: "",
       mobile: "",
       email: "",
+      paymentMethod: "",
+      deliveryIn: 0,
     },
   });
   // console.log("useForm():", useForm());
@@ -60,7 +68,7 @@ export const FoodDeliveryForm = (): React.JSX.Element => {
             </div>
           </div>
           <div className="col">
-            <div className="form-floating">
+            {/* <div className="form-floating">
               <input
                 type="text"
                 className="form-control"
@@ -79,12 +87,19 @@ export const FoodDeliveryForm = (): React.JSX.Element => {
               />
               <label>Mobile</label>
               {errors.mobile ? <div className="error-feedback">{errors.mobile?.message}</div> : null}
-            </div>
+            </div> */}
+            <TextField
+              label="Mobile"
+              {...register("mobile", {
+                required: "This field is required.",
+              })}
+              error={errors.mobile}
+            />
           </div>
         </div>
         <div className="row mb-2">
           <div className="col">
-            <div className="form-floating">
+            {/* <div className="form-floating">
               <input
                 type="text"
                 className="form-control"
@@ -97,10 +112,17 @@ export const FoodDeliveryForm = (): React.JSX.Element => {
               />
               <label>Customer Name</label>
               {errors.customerName ? <div className="error-feedback">{errors.customerName?.message}</div> : null}
-            </div>
+            </div> */}
+            <TextField
+              label="Customer Name"
+              {...register("customerName", {
+                required: "This field is required.",
+              })}
+              error={errors.customerName}
+            />
           </div>
           <div className="col">
-            <div className="form-floating">
+            {/* <div className="form-floating">
               <input
                 type="email"
                 className="form-control"
@@ -125,9 +147,43 @@ export const FoodDeliveryForm = (): React.JSX.Element => {
               />
               <label>Email</label>
               {errors.email ? <div className="error-feedback">{errors.email?.message}</div> : null}
-            </div>
+            </div> */}
+            <TextField
+              type="email"
+              label="Email"
+              {...register("email", {
+                pattern: {
+                  value: /^[^\s@]+@[^\s@]+\.[^\s@]+$/,
+                  message: "Incorrect email format.",
+                },
+              })}
+              error={errors.email}
+            />
           </div>
         </div>
+
+        <div>list of ordered food items</div>
+        <div className="row mb-2">
+          <div className="col">
+            <Select
+              label="Payment Method"
+              options={paymentOptions}
+              {...register("paymentMethod", {
+                required: "This field is required.",
+              })}
+              error={errors.paymentMethod}
+            />
+          </div>
+          <div className="col">
+            <Select
+              label="Delivery Within"
+              options={deliveryInOptions}
+              {...register("deliveryIn")}
+              error={errors.deliveryIn}
+            />
+          </div>
+        </div>
+        <div>delivery address</div>
 
         <button type="submit" className="btn btn-primary w-100">
           Submit
