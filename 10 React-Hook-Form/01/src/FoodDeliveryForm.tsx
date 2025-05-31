@@ -50,9 +50,22 @@ export const FoodDeliveryForm = (): React.JSX.Element => {
   const {
     handleSubmit,
     control,
+    watch,
     // formState: { isSubmitting },
     // getFieldState,
   } = methods;
+
+  // const paymentMethod = watch("paymentMethod");
+  // React.useEffect(() => {
+  //   if (paymentMethod === "online") {
+  //     alert("please verify the transaction.");
+  //   }
+  // }, [paymentMethod]);
+
+  React.useEffect(() => {
+    const subscription = watch((value, { name, type }) => console.log({ value, name, type }));
+    return () => subscription.unsubscribe();
+  }, [watch]);
 
   //* event.preventDefault() not needed!
   const onSubmit = async (formData: FoodDeliveryFormType): Promise<void> => {
