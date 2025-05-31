@@ -53,6 +53,8 @@ export const FoodDeliveryForm = (): React.JSX.Element => {
     // watch,
     // formState: { isSubmitting },
     // getFieldState,
+    // getValues,
+    // setValue,
   } = methods;
 
   // const paymentMethod = watch("paymentMethod");
@@ -67,6 +69,15 @@ export const FoodDeliveryForm = (): React.JSX.Element => {
   //   return () => subscription.unsubscribe();
   // }, [watch]);
 
+  // const onDemo = () => {
+  //   // console.log(getValues())
+  //   setValue("email", "email123", {
+  //     shouldValidate: true,
+  //     shouldDirty: true,
+  //     shouldTouch: true,
+  //   });
+  // };
+
   //* event.preventDefault() not needed!
   const onSubmit = async (formData: FoodDeliveryFormType): Promise<void> => {
     // Add a delay
@@ -77,6 +88,7 @@ export const FoodDeliveryForm = (): React.JSX.Element => {
   const onError = (errors: FieldErrors): void => {
     console.log("validation errors", errors);
     // console.log(getFieldState("address.city"));
+    // console.log(getValues(["customerName", "email"]));
   };
 
   //* V2
@@ -96,6 +108,7 @@ export const FoodDeliveryForm = (): React.JSX.Element => {
           // isSubmitting={isSubmitting}
           control={control}
           className="btn-primary"
+          // onClick={onDemo}
         />
       </form>
     </React.Fragment>
