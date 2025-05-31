@@ -1,5 +1,5 @@
 import React from "react";
-import { useFormContext } from "react-hook-form";
+import { useFormContext, useFormState } from "react-hook-form";
 
 import { Select } from "../controls/Select";
 import type { CheckoutFormType, SelectOptionType } from "../types";
@@ -24,8 +24,13 @@ const RenderCount: () => React.JSX.Element = getRenderCount();
 export const CheckoutForm = (): React.JSX.Element => {
   const {
     register,
-    formState: { errors },
+    // formState: { errors },
   } = useFormContext<CheckoutFormType>();
+
+  const { errors } = useFormState<CheckoutFormType>({
+    name: ["paymentMethod", "deliveryIn"],
+    exact: true,
+  });
 
   return (
     <React.Fragment>

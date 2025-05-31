@@ -1,5 +1,5 @@
 import React from "react";
-import { useFormContext } from "react-hook-form";
+import { useFormContext, useFormState } from "react-hook-form";
 
 import type { DeliveryAddressFormType } from "../types";
 import { TextField } from "../controls/TextField";
@@ -10,8 +10,12 @@ const RenderCount: () => React.JSX.Element = getRenderCount();
 export const DeliveryAddressForm = (): React.JSX.Element => {
   const {
     register,
-    formState: { errors },
+    // formState: { errors },
   } = useFormContext<{ address: DeliveryAddressFormType }>();
+
+  const { errors } = useFormState<{ address: DeliveryAddressFormType }>({
+    name: "address",
+  });
 
   return (
     <React.Fragment>
