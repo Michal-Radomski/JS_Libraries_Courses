@@ -3,6 +3,9 @@ import { useFormContext } from "react-hook-form";
 
 import type { DeliveryAddressFormType } from "../types";
 import { TextField } from "../controls/TextField";
+import { getRenderCount } from "../utils/getRenderCount";
+
+const RenderCount: () => React.JSX.Element = getRenderCount();
 
 export const DeliveryAddressForm = (): React.JSX.Element => {
   const {
@@ -12,6 +15,8 @@ export const DeliveryAddressForm = (): React.JSX.Element => {
 
   return (
     <React.Fragment>
+      <RenderCount />
+
       <div className="text-start fw-bold mt-4 mb-2">Delivery Address</div>
       <div className="row mb-3">
         <div className="col">

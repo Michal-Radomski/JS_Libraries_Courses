@@ -68,6 +68,7 @@ export const FoodDeliveryForm = (): React.JSX.Element => {
     <React.Fragment>
       <form autoComplete="off" noValidate onSubmit={handleSubmit(onSubmit, onError)}>
         <RenderCount />
+        {/* <span>submitCount: {submitCount}</span> */}
 
         <FormProvider {...methods}>
           <FoodDeliverMaster />

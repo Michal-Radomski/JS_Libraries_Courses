@@ -3,6 +3,7 @@ import { useFormContext } from "react-hook-form";
 
 import { Select } from "../controls/Select";
 import type { CheckoutFormType, SelectOptionType } from "../types";
+import { getRenderCount } from "../utils/getRenderCount";
 
 const paymentOptions: SelectOptionType[] = [
   { value: "", text: "Select" },
@@ -18,6 +19,8 @@ const deliveryInOptions: SelectOptionType[] = [
   { value: 180, text: "3 Hour" },
 ];
 
+const RenderCount: () => React.JSX.Element = getRenderCount();
+
 export const CheckoutForm = (): React.JSX.Element => {
   const {
     register,
@@ -26,6 +29,8 @@ export const CheckoutForm = (): React.JSX.Element => {
 
   return (
     <React.Fragment>
+      <RenderCount />
+
       <div className="text-start fw-bold mt-4 mb-2">Checkout Details</div>
       <div className="row mb-2">
         <div className="col">

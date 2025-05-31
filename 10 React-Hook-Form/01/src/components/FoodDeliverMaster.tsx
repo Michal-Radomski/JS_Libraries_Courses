@@ -3,6 +3,9 @@ import { useFormContext } from "react-hook-form";
 
 import { TextField } from "../controls/TextField";
 import type { FoodDeliverMasterType } from "../types";
+import { getRenderCount } from "../utils/getRenderCount";
+
+const RenderCount: () => React.JSX.Element = getRenderCount();
 
 export const FoodDeliverMaster = (): React.JSX.Element => {
   const {
@@ -12,6 +15,8 @@ export const FoodDeliverMaster = (): React.JSX.Element => {
 
   return (
     <React.Fragment>
+      <RenderCount />
+
       <div className="row mb-2">
         <div className="col">
           <TextField label="#Order No." disabled {...register("orderNo")} />

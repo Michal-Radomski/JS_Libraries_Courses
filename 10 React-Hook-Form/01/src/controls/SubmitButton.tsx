@@ -11,7 +11,7 @@ export default function SubmitButton(props: SubmitButtonProps): React.JSX.Elemen
     <button
       type="submit"
       className={`btn ${className} w-100`}
-      disabled={isSubmitting == undefined ? false : isSubmitting}
+      disabled={isSubmitting === undefined ? false : isSubmitting}
       {...other}
     >
       {isSubmitting === undefined || isSubmitting === false ? (
