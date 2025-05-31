@@ -32,6 +32,13 @@ export const CheckoutForm = (): React.JSX.Element => {
     exact: true,
   });
 
+  // const paymentMethod = useWatch({ name: "paymentMethod" });
+  // React.useEffect(() => {
+  //   if (paymentMethod == "online") {
+  //     alert("please verify the transaction.");
+  //   }
+  // }, [paymentMethod]);
+
   return (
     <React.Fragment>
       <RenderCount />
