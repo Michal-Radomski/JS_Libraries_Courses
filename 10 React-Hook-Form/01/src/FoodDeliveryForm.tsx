@@ -49,7 +49,8 @@ export const FoodDeliveryForm = (): React.JSX.Element => {
   // console.log("formState:", formState);
   const {
     handleSubmit,
-    formState: { isSubmitting },
+    control,
+    // formState: { isSubmitting },
   } = methods;
 
   //* event.preventDefault() not needed!
@@ -69,15 +70,18 @@ export const FoodDeliveryForm = (): React.JSX.Element => {
       <form autoComplete="off" noValidate onSubmit={handleSubmit(onSubmit, onError)}>
         <RenderCount />
         {/* <span>submitCount: {submitCount}</span> */}
-
         <FormProvider {...methods}>
           <FoodDeliverMaster />
           <div>list of ordered food items</div>
           <CheckoutForm />
           <DeliveryAddressForm />
         </FormProvider>
-
-        <SubmitButton value="Submit" isSubmitting={isSubmitting} className="btn-primary" />
+        <SubmitButton
+          value="Submit"
+          // isSubmitting={isSubmitting}
+          control={control}
+          className="btn-primary"
+        />
       </form>
     </React.Fragment>
   );
