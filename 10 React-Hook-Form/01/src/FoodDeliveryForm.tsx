@@ -6,6 +6,7 @@ import type { FoodDeliveryFormType } from "./types";
 import { CheckoutForm } from "./components/CheckOutForm";
 import { FoodDeliverMaster } from "./components/FoodDeliverMaster";
 import { DeliveryAddressForm } from "./components/DeliveryAddressForm";
+import SubmitButton from "./controls/SubmitButton";
 
 const RenderCount: () => React.JSX.Element = getRenderCount();
 
@@ -39,16 +40,22 @@ export const FoodDeliveryForm = (): React.JSX.Element => {
   // const customerName = register("customerName");
   // console.log("customerName:", customerName);
 
+  // const {
+  //   handleSubmit,
+  //   formState: { isValid, isValidating, isDirty, isReady, errors },
+  //   formState,
+  // } = methods;
+  // console.log({ isValid, isValidating, isDirty, isReady, errors });
+  // console.log("formState:", formState);
   const {
     handleSubmit,
-    formState: { isValid, isValidating, isDirty, isReady, errors },
-    formState,
+    formState: { isSubmitting },
   } = methods;
-  console.log({ isValid, isValidating, isDirty, isReady, errors });
-  console.log("formState:", formState);
 
   //* event.preventDefault() not needed!
-  const onSubmit = (formData: FoodDeliveryFormType): void => {
+  const onSubmit = async (formData: FoodDeliveryFormType): Promise<void> => {
+    // Add a delay
+    await new Promise((resolve) => setTimeout(resolve, 3000));
     console.log("form data", formData);
   };
 
@@ -69,9 +76,7 @@ export const FoodDeliveryForm = (): React.JSX.Element => {
           <DeliveryAddressForm />
         </FormProvider>
 
-        <button type="submit" className="btn btn-primary">
-          Submit
-        </button>
+        <SubmitButton value="Submit" isSubmitting={isSubmitting} className="btn-primary" />
       </form>
     </React.Fragment>
   );
