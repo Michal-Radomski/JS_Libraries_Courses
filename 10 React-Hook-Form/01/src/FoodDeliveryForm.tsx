@@ -108,8 +108,10 @@ export const FoodDeliveryForm = (): React.JSX.Element => {
           // isSubmitting={isSubmitting}
           control={control}
           className="btn-primary"
-          // onClick={onDemo}
         />
+        {/* <button className="btn btn-secondary ms-2" onClick={onDemo} type="button">
+          Demo
+        </button> */}
       </form>
     </React.Fragment>
   );
