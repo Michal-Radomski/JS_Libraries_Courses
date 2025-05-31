@@ -10,12 +10,14 @@ const RenderCount: () => React.JSX.Element = getRenderCount();
 export const DeliveryAddressForm = (): React.JSX.Element => {
   const {
     register,
+    getFieldState,
     // formState: { errors },
   } = useFormContext<{ address: DeliveryAddressFormType }>();
 
   const { errors } = useFormState<{ address: DeliveryAddressFormType }>({
     name: "address",
   });
+  // console.log({ touchedFields });
 
   return (
     <React.Fragment>
@@ -50,6 +52,8 @@ export const DeliveryAddressForm = (): React.JSX.Element => {
           <TextField label="State" {...register("address.state")} />
         </div>
       </div>
+
+      <div>{getFieldState("address").isTouched ? "address node is touched" : null}</div>
     </React.Fragment>
   );
 };

@@ -51,6 +51,7 @@ export const FoodDeliveryForm = (): React.JSX.Element => {
     handleSubmit,
     control,
     // formState: { isSubmitting },
+    // getFieldState,
   } = methods;
 
   //* event.preventDefault() not needed!
@@ -62,6 +63,7 @@ export const FoodDeliveryForm = (): React.JSX.Element => {
 
   const onError = (errors: FieldErrors): void => {
     console.log("validation errors", errors);
+    // console.log(getFieldState("address.city"));
   };
 
   //* V2
