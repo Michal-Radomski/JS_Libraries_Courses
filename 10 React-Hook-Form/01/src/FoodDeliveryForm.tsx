@@ -4,10 +4,10 @@ import { FormProvider, useForm, type FieldErrors, type UseFormReturn } from "rea
 import { getRenderCount } from "./utils/getRenderCount";
 import type { FoodDeliveryFormType } from "./types";
 import { CheckoutForm } from "./components/CheckOutForm";
-import { FoodDeliverMaster } from "./components/FoodDeliverMaster";
+import { MasterFoodDeliveryForm } from "./components/MasterFoodDeliveryForm";
 import { DeliveryAddressForm } from "./components/DeliveryAddressForm";
 import SubmitButton from "./controls/SubmitButton";
-import FoodItems from "./components/FoodItems";
+import OrderedFoodItems from "./components/OrderedFoodItems";
 
 const RenderCount: () => React.JSX.Element = getRenderCount();
 
@@ -22,7 +22,10 @@ export const FoodDeliveryForm = (): React.JSX.Element => {
       email: "",
       paymentMethod: "",
       deliveryIn: 0,
-      foodItems: [{ name: "Chicken Tender" }, { name: "Sweet Potato Fries" }],
+      foodItems: [
+        { name: "", quantity: 0 },
+        { name: "", quantity: 0 },
+      ],
       address: {
         streetAddress: "",
         landmark: "",
@@ -97,8 +100,8 @@ export const FoodDeliveryForm = (): React.JSX.Element => {
         <RenderCount />
         {/* <span>submitCount: {submitCount}</span> */}
         <FormProvider {...methods}>
-          <FoodDeliverMaster />
-          <FoodItems />
+          <MasterFoodDeliveryForm />
+          <OrderedFoodItems />
           <CheckoutForm />
           <DeliveryAddressForm />
         </FormProvider>

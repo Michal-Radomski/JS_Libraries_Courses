@@ -2,18 +2,18 @@ import React from "react";
 import { useFormContext, useFormState } from "react-hook-form";
 
 import { TextField } from "../controls/TextField";
-import type { FoodDeliverMasterFormType } from "../types";
+import type { MasterFoodDeliveryFormType } from "../types";
 import { getRenderCount } from "../utils/getRenderCount";
 
 const RenderCount: () => React.JSX.Element = getRenderCount();
 
-export const FoodDeliverMaster = (): React.JSX.Element => {
+export const MasterFoodDeliveryForm = (): React.JSX.Element => {
   const {
     register,
     // formState: { errors },
-  } = useFormContext<FoodDeliverMasterFormType>();
+  } = useFormContext<MasterFoodDeliveryFormType>();
 
-  const { errors } = useFormState<FoodDeliverMasterFormType>({
+  const { errors } = useFormState<MasterFoodDeliveryFormType>({
     name: ["orderNo", "customerName", "mobile", "email"],
     exact: true,
   });

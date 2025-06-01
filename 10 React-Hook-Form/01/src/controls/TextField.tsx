@@ -2,7 +2,7 @@ import React, { type ForwardedRef } from "react";
 import type { FieldError } from "react-hook-form";
 
 type TextFieldProps = React.InputHTMLAttributes<HTMLInputElement> & {
-  label: string;
+  label?: string;
   error?: FieldError | undefined;
 };
 
