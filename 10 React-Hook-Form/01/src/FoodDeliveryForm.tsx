@@ -7,6 +7,7 @@ import { CheckoutForm } from "./components/CheckOutForm";
 import { FoodDeliverMaster } from "./components/FoodDeliverMaster";
 import { DeliveryAddressForm } from "./components/DeliveryAddressForm";
 import SubmitButton from "./controls/SubmitButton";
+import FoodItems from "./components/FoodItems";
 
 const RenderCount: () => React.JSX.Element = getRenderCount();
 
@@ -14,10 +15,6 @@ export const FoodDeliveryForm = (): React.JSX.Element => {
   //* Register contains: onChange, onBlur, name and ref!
   const methods: UseFormReturn<FoodDeliveryFormType> = useForm<FoodDeliveryFormType>({
     mode: "onChange",
-    reValidateMode: "onChange",
-    shouldFocusError: true,
-    delayError: 500,
-    criteriaMode: "all",
     defaultValues: {
       orderNo: new Date().valueOf(),
       customerName: "",
@@ -25,6 +22,7 @@ export const FoodDeliveryForm = (): React.JSX.Element => {
       email: "",
       paymentMethod: "",
       deliveryIn: 0,
+      foodItems: [{ name: "Chicken Tender" }, { name: "Sweet Potato Fries" }],
       address: {
         streetAddress: "",
         landmark: "",
@@ -33,6 +31,7 @@ export const FoodDeliveryForm = (): React.JSX.Element => {
       },
     },
   });
+
   // console.log("useForm():", useForm());
   // console.log("(register('customerName'):", register("customerName"));
   // console.log("handleSubmit:", handleSubmit);
@@ -99,7 +98,7 @@ export const FoodDeliveryForm = (): React.JSX.Element => {
         {/* <span>submitCount: {submitCount}</span> */}
         <FormProvider {...methods}>
           <FoodDeliverMaster />
-          <div>list of ordered food items</div>
+          <FoodItems />
           <CheckoutForm />
           <DeliveryAddressForm />
         </FormProvider>

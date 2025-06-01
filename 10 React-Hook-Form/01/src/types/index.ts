@@ -10,8 +10,11 @@ export type DeliveryAddressFormType = {
   state: string;
 };
 
+export type FoodItemType = { name: string };
+
 export type FoodDeliveryFormType = {
   address: DeliveryAddressFormType;
+  foodItems: FoodItemType[];
 } & FoodDeliverMasterFormType &
   CheckoutFormType;
 
