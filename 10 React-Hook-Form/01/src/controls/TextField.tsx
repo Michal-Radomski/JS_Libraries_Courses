@@ -12,9 +12,9 @@ export const TextField = React.forwardRef(
 
     return (
       <React.Fragment>
-        <div className="form-floating">
+        <div className={label ? "form-floating" : ""}>
           <input type={type} className={`form-control ${className}`} placeholder={label} ref={ref} {...other} />
-          <label>{label}</label>
+          {label ? <label>{label}</label> : null}
           {error ? <div className="error-feedback">{error.message}</div> : null}
         </div>
       </React.Fragment>
