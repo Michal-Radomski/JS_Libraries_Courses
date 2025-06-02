@@ -18,3 +18,13 @@ const ORDER_KEY = "order";
 export const createOrder = (order: FoodDeliveryFormType): void => {
   localStorage.setItem(ORDER_KEY, JSON.stringify(order));
 };
+
+export const fetchLastOrder = async (): Promise<FoodDeliveryFormType> => {
+  await new Promise((resolve) => setTimeout(resolve, 2000));
+  const order = localStorage.getItem(ORDER_KEY);
+  if (order === null) {
+    return null as any;
+  } else {
+    return JSON.parse(order) as FoodDeliveryFormType;
+  }
+};

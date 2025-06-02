@@ -8,29 +8,43 @@ import { MasterFoodDeliveryForm } from "./components/MasterFoodDeliveryForm";
 import { DeliveryAddressForm } from "./components/DeliveryAddressForm";
 import SubmitButton from "./controls/SubmitButton";
 import OrderedFoodItems from "./components/OrderedFoodItems";
-import { createOrder } from "./db";
+import { createOrder, fetchLastOrder } from "./db";
+import FormLoader from "./common/FormLoader";
 
 const RenderCount: () => React.JSX.Element = getRenderCount();
+
+const id: number = 1;
+
+const defaultValues: FoodDeliveryFormType = {
+  orderId: 0,
+  orderNo: new Date().valueOf(),
+  customerName: "",
+  mobile: "",
+  email: "",
+  placedOn: new Date(),
+  gTotal: 0,
+  paymentMethod: "",
+  deliveryIn: 0,
+  foodItems: [{ foodId: 0, price: 0, quantity: 0, totalPrice: 0 }],
+  address: {
+    streetAddress: "",
+    landmark: "",
+    city: "",
+    state: "",
+  },
+};
 
 export const FoodDeliveryForm = (): React.JSX.Element => {
   //* Register contains: onChange, onBlur, name and ref!
   const methods: UseFormReturn<FoodDeliveryFormType> = useForm<FoodDeliveryFormType>({
     mode: "onChange",
-    defaultValues: {
-      orderNo: new Date().valueOf(),
-      customerName: "",
-      mobile: "",
-      email: "",
-      gTotal: 0,
-      paymentMethod: "",
-      deliveryIn: 0,
-      foodItems: [{ foodId: 0, price: 0, quantity: 0, totalPrice: 0 }],
-      address: {
-        streetAddress: "",
-        landmark: "",
-        city: "",
-        state: "",
-      },
+    defaultValues: async (): Promise<FoodDeliveryFormType> => {
+      if (id === 0) {
+        return new Promise((resolve) => resolve(defaultValues));
+      } else {
+        const tempOrder = await fetchLastOrder();
+        return new Promise((resolve) => resolve(tempOrder ? tempOrder : defaultValues));
+      }
     },
   });
 
@@ -103,6 +117,8 @@ export const FoodDeliveryForm = (): React.JSX.Element => {
       <form autoComplete="off" noValidate onSubmit={handleSubmit(onSubmit, onError)}>
         <RenderCount />
         {/* <span>submitCount: {submitCount}</span> */}
+        <FormLoader control={control} />
+
         <FormProvider {...methods}>
           <MasterFoodDeliveryForm />
           <OrderedFoodItems />
