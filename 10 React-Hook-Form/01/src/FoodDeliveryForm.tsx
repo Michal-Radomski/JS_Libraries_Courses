@@ -55,6 +55,7 @@ export const FoodDeliveryForm = (): React.JSX.Element => {
     // getFieldState,
     // getValues,
     // setValue,
+    // setFocus
   } = methods;
 
   // const paymentMethod = watch("paymentMethod");
@@ -70,12 +71,13 @@ export const FoodDeliveryForm = (): React.JSX.Element => {
   // }, [watch]);
 
   // const onDemo = () => {
-  //   // console.log(getValues())
-  //   setValue("email", "email123", {
-  //     shouldValidate: true,
-  //     shouldDirty: true,
-  //     shouldTouch: true,
-  //   });
+  // console.log(getValues())
+  // setValue("email", "email123", {
+  //   shouldValidate: true,
+  //   shouldDirty: true,
+  //   shouldTouch: true,
+  // });
+  // setFocus("customerName", { shouldSelect: true })
   // };
 
   //* event.preventDefault() not needed!

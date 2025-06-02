@@ -25,7 +25,7 @@ export default function OrderedFoodItems(): React.JSX.Element {
     setFoodOptions([{ value: 0, text: "Select" }, ...tempOptions]);
   }, []);
 
-  const { register, setValue, getValues } = useFormContext<
+  const { register, setValue, getValues, trigger } = useFormContext<
     { gTotal: number } & {
       foodItems: OrderedFoodItemType[];
     }
@@ -127,11 +127,12 @@ export default function OrderedFoodItems(): React.JSX.Element {
                     },
                     onChange: (e) => {
                       onFoodChange(e, index);
+                      trigger(`foodItems.${index}.quantity`);
                     },
                   })}
                 />
               </td>
-              <td className="text-start align-middle">{"$" + getValues(`foodItems.${index}.price`)}</td>
+              <td className="text-start pt-3">{"$" + getValues(`foodItems.${index}.price`)}</td>
               <td>
                 <TextField
                   type="number"
@@ -140,6 +141,17 @@ export default function OrderedFoodItems(): React.JSX.Element {
                   {...register(`foodItems.${index}.quantity` as const, {
                     valueAsNumber: true,
                     required: "< 1.",
+                    validate: {
+                      notMoreThanStock: async (value: number) => {
+                        //add a delay
+                        await new Promise((resolve) => setTimeout(resolve, 1000));
+                        if (value && value > 9) {
+                          return "OOS.";
+                        } else {
+                          return true;
+                        }
+                      },
+                    },
                     min: {
                       value: 1,
                       message: "< 1.",
@@ -150,7 +162,7 @@ export default function OrderedFoodItems(): React.JSX.Element {
                   })}
                 />
               </td>
-              <td className="text-start align-middle">{"$" + getValues(`foodItems.${index}.totalPrice`)}</td>
+              <td className="text-start pt-3">{"$" + getValues(`foodItems.${index}.totalPrice`)}</td>
               <td>
                 <button type="button" className="btn btn-sm btn-outline-danger" onClick={() => onRowDelete(index)}>
                   DEL
