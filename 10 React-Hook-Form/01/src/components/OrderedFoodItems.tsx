@@ -17,7 +17,7 @@ export default function OrderedFoodItems(): React.JSX.Element {
 
   React.useEffect(() => {
     const tempList: FoodType[] = getFoodItems();
-    const tempOptions: SelectOptionType[] = tempList.map((x: FoodType) => ({
+    const tempOptions: SelectOptionType[] = tempList.map((x) => ({
       value: x.foodId,
       text: x.name,
     }));
@@ -25,9 +25,11 @@ export default function OrderedFoodItems(): React.JSX.Element {
     setFoodOptions([{ value: 0, text: "Select" }, ...tempOptions]);
   }, []);
 
-  const { register, setValue, getValues } = useFormContext<{
-    foodItems: OrderedFoodItemType[];
-  }>();
+  const { register, setValue, getValues } = useFormContext<
+    { gTotal: number } & {
+      foodItems: OrderedFoodItemType[];
+    }
+  >();
 
   const { errors } = useFormState<{ foodItems: OrderedFoodItemType[] }>({
     name: "foodItems",
@@ -45,9 +47,22 @@ export default function OrderedFoodItems(): React.JSX.Element {
     },
   });
 
-  useWatch<{
-    foodItems: OrderedFoodItemType[];
-  }>({ name: "foodItems" });
+  const selectedFoodItems: OrderedFoodItemType[] = useWatch({
+    name: "foodItems",
+  });
+  useWatch({ name: "gTotal" });
+
+  const updateGTotal = React.useCallback((): void => {
+    let gTotal = 0;
+    if (selectedFoodItems && selectedFoodItems.length > 0) {
+      gTotal = selectedFoodItems.reduce((sum, curr) => sum + curr.totalPrice, 0);
+    }
+    setValue("gTotal", roundTo2DecimalPoint(gTotal));
+  }, [selectedFoodItems, setValue]);
+
+  React.useEffect(() => {
+    updateGTotal();
+  }, [selectedFoodItems, updateGTotal]);
 
   const onRowAdd = (): void => {
     append({ foodId: 0, price: 0, quantity: 0, totalPrice: 0 });
@@ -72,10 +87,10 @@ export default function OrderedFoodItems(): React.JSX.Element {
   const updateRowTotalPrice = (rowIndex: number): void => {
     const { price, quantity } = getValues(`foodItems.${rowIndex}`);
     let totalPrice = 0;
-    if (quantity && quantity > 0) totalPrice = price * quantity;
-    {
-      setValue(`foodItems.${rowIndex}.totalPrice`, roundTo2DecimalPoint(totalPrice));
+    if (quantity && quantity > 0) {
+      totalPrice = price * quantity;
     }
+    setValue(`foodItems.${rowIndex}.totalPrice`, roundTo2DecimalPoint(totalPrice));
   };
 
   return (
@@ -83,13 +98,13 @@ export default function OrderedFoodItems(): React.JSX.Element {
       <RenderCount />
 
       <div className="text-start fw-bold mt-4">Ordered Food Items</div>
-      <table className="table table-borderless table-hover">
+      <table id="foodItems" className="table table-borderless table-hover">
         <thead>
           <tr>
             <th>Food</th>
-            <th>Price</th>
+            <th className="text-start">Price</th>
             <th>Quantity</th>
-            <th>Total Price</th>
+            <th className="text-start">T. Price</th>
             <th>
               <button type="button" className="btn btn-sm btn-secondary" onClick={onRowAdd}>
                 + Add
@@ -116,7 +131,7 @@ export default function OrderedFoodItems(): React.JSX.Element {
                   })}
                 />
               </td>
-              <td>{"$" + getValues(`foodItems.${index}.price`)}</td>
+              <td className="text-start align-middle">{"$" + getValues(`foodItems.${index}.price`)}</td>
               <td>
                 <TextField
                   type="number"
@@ -135,7 +150,7 @@ export default function OrderedFoodItems(): React.JSX.Element {
                   })}
                 />
               </td>
-              <td>{"$" + getValues(`foodItems.${index}.totalPrice`)}</td>
+              <td className="text-start align-middle">{"$" + getValues(`foodItems.${index}.totalPrice`)}</td>
               <td>
                 <button type="button" className="btn btn-sm btn-outline-danger" onClick={() => onRowDelete(index)}>
                   DEL
@@ -144,15 +159,24 @@ export default function OrderedFoodItems(): React.JSX.Element {
             </tr>
           ))}
         </tbody>
-        {errors.foodItems?.root && (
-          <tfoot>
+
+        <tfoot>
+          {fields && fields.length > 0 && (
+            <tr className="border-top">
+              <td colSpan={2}></td>
+              <td>G. Total</td>
+              <td className="text-start align-middle">{"$" + getValues("gTotal")}</td>
+              <td></td>
+            </tr>
+          )}
+          {errors.foodItems?.root && (
             <tr>
               <td colSpan={5}>
                 <span className="error-feedback">{errors.foodItems?.root?.message}</span>
               </td>
             </tr>
-          </tfoot>
-        )}
+          )}
+        </tfoot>
       </table>
     </React.Fragment>
   );

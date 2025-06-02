@@ -20,6 +20,7 @@ export const FoodDeliveryForm = (): React.JSX.Element => {
       customerName: "",
       mobile: "",
       email: "",
+      gTotal: 0,
       paymentMethod: "",
       deliveryIn: 0,
       foodItems: [{ foodId: 0, price: 0, quantity: 0, totalPrice: 0 }],

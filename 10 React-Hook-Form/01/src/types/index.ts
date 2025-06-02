@@ -27,6 +27,7 @@ export type MasterFoodDeliveryFormType = {
   customerName: string;
   mobile: string;
   email: string;
+  gTotal: number;
 };
 
 export type OrderedFoodItemType = {
