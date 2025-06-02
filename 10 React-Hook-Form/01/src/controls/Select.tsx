@@ -23,7 +23,7 @@ export const Select = React.forwardRef(
               </option>
             ))}
           </select>
-          <label>{label}</label>
+          {label ? <label>{label}</label> : null}
           {error ? <div className="error-feedback">{error.message}</div> : null}
         </div>
       </React.Fragment>
