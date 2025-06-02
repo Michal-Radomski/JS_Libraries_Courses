@@ -8,6 +8,7 @@ import { MasterFoodDeliveryForm } from "./components/MasterFoodDeliveryForm";
 import { DeliveryAddressForm } from "./components/DeliveryAddressForm";
 import SubmitButton from "./controls/SubmitButton";
 import OrderedFoodItems from "./components/OrderedFoodItems";
+import { createOrder } from "./db";
 
 const RenderCount: () => React.JSX.Element = getRenderCount();
 
@@ -82,9 +83,12 @@ export const FoodDeliveryForm = (): React.JSX.Element => {
 
   //* event.preventDefault() not needed!
   const onSubmit = async (formData: FoodDeliveryFormType): Promise<void> => {
-    // Add a delay
-    await new Promise((resolve) => setTimeout(resolve, 3000));
-    console.log("form data", formData);
+    //add a delay
+    await new Promise((resolve) => setTimeout(resolve, 1500));
+    formData.orderId = 1;
+    formData.placedOn = new Date();
+    createOrder(formData);
+    console.log("submitted form data", formData);
   };
 
   const onError = (errors: FieldErrors): void => {
