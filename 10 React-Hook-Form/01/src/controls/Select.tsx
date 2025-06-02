@@ -4,7 +4,7 @@ import { type FieldError } from "react-hook-form";
 import type { SelectOptionType } from "../types";
 
 type SelectFieldProps = React.SelectHTMLAttributes<HTMLSelectElement> & {
-  label: string;
+  label?: string;
   error?: FieldError | undefined;
   options: SelectOptionType[];
 };
@@ -15,11 +15,11 @@ export const Select = React.forwardRef(
 
     return (
       <React.Fragment>
-        <div className="form-floating">
+        <div className={label ? "form-floating" : ""}>
           <select className={`form-select ${className}`} ref={ref} {...other}>
             {options.map((elem: SelectOptionType, index: number) => (
               <option key={index} value={typeof elem === "string" ? elem : elem.value}>
-                {typeof elem == "string" ? elem : elem.text}
+                {typeof elem === "string" ? elem : elem.text}
               </option>
             ))}
           </select>

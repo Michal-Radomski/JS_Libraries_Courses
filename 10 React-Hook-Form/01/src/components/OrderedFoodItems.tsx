@@ -3,12 +3,27 @@ import { useFieldArray, useFormContext, useFormState } from "react-hook-form";
 
 import { TextField } from "../controls/TextField";
 import { getRenderCount } from "../utils/getRenderCount";
-import type { OrderedFoodItemType } from "../types";
+import type { FoodType, OrderedFoodItemType, SelectOptionType } from "../types";
+import { Select } from "../controls/Select";
+import { getFoodItems } from "../db";
 
 const RenderCount: () => React.JSX.Element = getRenderCount();
 
 //* V2
 export default function OrderedFoodItems(): React.JSX.Element {
+  const [, setFoodList] = React.useState<FoodType[]>([]);
+  const [foodOptions, setFoodOptions] = React.useState<SelectOptionType[]>([]);
+
+  React.useEffect(() => {
+    const tempList: FoodType[] = getFoodItems();
+    const tempOptions: SelectOptionType[] = tempList.map((x: FoodType) => ({
+      value: x.foodId,
+      text: x.name,
+    }));
+    setFoodList(tempList);
+    setFoodOptions([{ value: 0, text: "Select" }, ...tempOptions]);
+  }, []);
+
   const { register } = useFormContext<{
     foodItems: OrderedFoodItemType[];
   }>();
@@ -30,7 +45,7 @@ export default function OrderedFoodItems(): React.JSX.Element {
   });
 
   const onRowAdd = (): void => {
-    append({ name: "Food", quantity: 1 });
+    append({ foodId: 0, price: 0, quantity: 0, totalPrice: 0 });
   };
 
   const onRowDelete = (index: number): void => {
@@ -41,11 +56,14 @@ export default function OrderedFoodItems(): React.JSX.Element {
     <React.Fragment>
       <RenderCount />
 
+      <div className="text-start fw-bold mt-4">Ordered Food Items</div>
       <table className="table table-borderless table-hover">
         <thead>
           <tr>
             <th>Food</th>
+            <th>Price</th>
             <th>Quantity</th>
+            <th>Total Price</th>
             <th>
               <button type="button" className="btn btn-sm btn-secondary" onClick={onRowAdd}>
                 + Add
@@ -57,16 +75,13 @@ export default function OrderedFoodItems(): React.JSX.Element {
           {fields.map((field, index) => (
             <tr key={field.id}>
               <td>
-                <TextField
-                  {...register(`foodItems.${index}.name` as const, {
-                    required: "This field is required.",
-                  })}
-                  error={errors.foodItems && errors.foodItems[index]?.name}
-                />
+                <Select options={foodOptions} {...register(`foodItems.${index}.foodId` as const)} />
               </td>
+              <td>price</td>
               <td>
                 <TextField type="number" min={0} {...register(`foodItems.${index}.quantity` as const)} />
               </td>
+              <td>total price</td>
               <td>
                 <button type="button" className="btn btn-sm btn-outline-danger" onClick={() => onRowDelete(index)}>
                   DEL
@@ -75,15 +90,15 @@ export default function OrderedFoodItems(): React.JSX.Element {
             </tr>
           ))}
         </tbody>
-        {errors.foodItems?.root && (
+        {errors.foodItems?.root ? (
           <tfoot>
             <tr>
-              <td colSpan={3}>
+              <td colSpan={5}>
                 <span className="error-feedback">{errors.foodItems?.root?.message}</span>
               </td>
             </tr>
           </tfoot>
-        )}
+        ) : null}
       </table>
     </React.Fragment>
   );
