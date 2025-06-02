@@ -1,17 +1,18 @@
 import React from "react";
-import { useFieldArray, useFormContext, useFormState } from "react-hook-form";
+import { useFieldArray, useFormContext, useFormState, useWatch } from "react-hook-form";
 
 import { TextField } from "../controls/TextField";
 import { getRenderCount } from "../utils/getRenderCount";
 import type { FoodType, OrderedFoodItemType, SelectOptionType } from "../types";
 import { Select } from "../controls/Select";
 import { getFoodItems } from "../db";
+import { roundTo2DecimalPoint } from "../utils";
 
 const RenderCount: () => React.JSX.Element = getRenderCount();
 
 //* V2
 export default function OrderedFoodItems(): React.JSX.Element {
-  const [, setFoodList] = React.useState<FoodType[]>([]);
+  const [foodList, setFoodList] = React.useState<FoodType[]>([]);
   const [foodOptions, setFoodOptions] = React.useState<SelectOptionType[]>([]);
 
   React.useEffect(() => {
@@ -24,7 +25,7 @@ export default function OrderedFoodItems(): React.JSX.Element {
     setFoodOptions([{ value: 0, text: "Select" }, ...tempOptions]);
   }, []);
 
-  const { register } = useFormContext<{
+  const { register, setValue, getValues } = useFormContext<{
     foodItems: OrderedFoodItemType[];
   }>();
 
@@ -44,12 +45,37 @@ export default function OrderedFoodItems(): React.JSX.Element {
     },
   });
 
+  useWatch<{
+    foodItems: OrderedFoodItemType[];
+  }>({ name: "foodItems" });
+
   const onRowAdd = (): void => {
     append({ foodId: 0, price: 0, quantity: 0, totalPrice: 0 });
   };
 
   const onRowDelete = (index: number): void => {
     remove(index);
+  };
+
+  const onFoodChange = (e: React.ChangeEvent<HTMLSelectElement>, rowIndex: number): void => {
+    const foodId = parseInt(e.target.value);
+    let price: number;
+    if (foodId === 0) {
+      price = 0;
+    } else {
+      price = foodList.find((x: FoodType) => x.foodId === foodId)?.price || 0;
+    }
+    setValue(`foodItems.${rowIndex}.price`, price);
+    updateRowTotalPrice(rowIndex);
+  };
+
+  const updateRowTotalPrice = (rowIndex: number): void => {
+    const { price, quantity } = getValues(`foodItems.${rowIndex}`);
+    let totalPrice = 0;
+    if (quantity && quantity > 0) totalPrice = price * quantity;
+    {
+      setValue(`foodItems.${rowIndex}.totalPrice`, roundTo2DecimalPoint(totalPrice));
+    }
   };
 
   return (
@@ -84,10 +110,13 @@ export default function OrderedFoodItems(): React.JSX.Element {
                       value: 1,
                       message: "Select food.",
                     },
+                    onChange: (e) => {
+                      onFoodChange(e, index);
+                    },
                   })}
                 />
               </td>
-              <td>price</td>
+              <td>{"$" + getValues(`foodItems.${index}.price`)}</td>
               <td>
                 <TextField
                   type="number"
@@ -100,10 +129,13 @@ export default function OrderedFoodItems(): React.JSX.Element {
                       value: 1,
                       message: "< 1.",
                     },
+                    onChange: () => {
+                      updateRowTotalPrice(index);
+                    },
                   })}
                 />
               </td>
-              <td>total price</td>
+              <td>{"$" + getValues(`foodItems.${index}.totalPrice`)}</td>
               <td>
                 <button type="button" className="btn btn-sm btn-outline-danger" onClick={() => onRowDelete(index)}>
                   DEL
@@ -112,7 +144,7 @@ export default function OrderedFoodItems(): React.JSX.Element {
             </tr>
           ))}
         </tbody>
-        {errors.foodItems?.root ? (
+        {errors.foodItems?.root && (
           <tfoot>
             <tr>
               <td colSpan={5}>
@@ -120,7 +152,7 @@ export default function OrderedFoodItems(): React.JSX.Element {
               </td>
             </tr>
           </tfoot>
-        ) : null}
+        )}
       </table>
     </React.Fragment>
   );
