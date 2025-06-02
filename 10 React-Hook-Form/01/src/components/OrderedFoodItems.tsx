@@ -75,11 +75,33 @@ export default function OrderedFoodItems(): React.JSX.Element {
           {fields.map((field, index) => (
             <tr key={field.id}>
               <td>
-                <Select options={foodOptions} {...register(`foodItems.${index}.foodId` as const)} />
+                <Select
+                  options={foodOptions}
+                  error={errors.foodItems && errors.foodItems[index]?.foodId}
+                  {...register(`foodItems.${index}.foodId` as const, {
+                    valueAsNumber: true,
+                    min: {
+                      value: 1,
+                      message: "Select food.",
+                    },
+                  })}
+                />
               </td>
               <td>price</td>
               <td>
-                <TextField type="number" min={0} {...register(`foodItems.${index}.quantity` as const)} />
+                <TextField
+                  type="number"
+                  min={0}
+                  error={errors.foodItems && errors.foodItems[index]?.quantity}
+                  {...register(`foodItems.${index}.quantity` as const, {
+                    valueAsNumber: true,
+                    required: "< 1.",
+                    min: {
+                      value: 1,
+                      message: "< 1.",
+                    },
+                  })}
+                />
               </td>
               <td>total price</td>
               <td>

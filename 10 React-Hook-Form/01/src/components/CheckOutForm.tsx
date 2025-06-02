@@ -59,7 +59,9 @@ export const CheckoutForm = (): React.JSX.Element => {
           <Select
             label="Delivery Within"
             options={deliveryInOptions}
-            {...register("deliveryIn")}
+            {...register("deliveryIn", {
+              valueAsNumber: true,
+            })}
             error={errors.deliveryIn}
           />
         </div>
