@@ -38,6 +38,7 @@ export const FoodDeliveryForm = (): React.JSX.Element => {
   //* Register contains: onChange, onBlur, name and ref!
   const methods: UseFormReturn<FoodDeliveryFormType> = useForm<FoodDeliveryFormType>({
     mode: "onChange",
+    shouldUnregister: true,
     defaultValues: async (): Promise<FoodDeliveryFormType> => {
       if (id === 0) {
         return new Promise((resolve) => resolve(defaultValues));
