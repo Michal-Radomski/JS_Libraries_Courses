@@ -15,7 +15,7 @@ const RenderCount: () => React.JSX.Element = getRenderCount();
 
 const id: number = 1;
 
-const defaultValues: FoodDeliveryFormType = {
+const initialValues: FoodDeliveryFormType = {
   orderId: 0,
   orderNo: new Date().valueOf(),
   customerName: "",
@@ -41,10 +41,10 @@ export const FoodDeliveryForm = (): React.JSX.Element => {
     shouldUnregister: true,
     defaultValues: async (): Promise<FoodDeliveryFormType> => {
       if (id === 0) {
-        return new Promise((resolve) => resolve(defaultValues));
+        return new Promise((resolve) => resolve(initialValues));
       } else {
         const tempOrder = await fetchLastOrder();
-        return new Promise((resolve) => resolve(tempOrder ? tempOrder : defaultValues));
+        return new Promise((resolve) => resolve(tempOrder ? tempOrder : initialValues));
       }
     },
   });
@@ -72,7 +72,15 @@ export const FoodDeliveryForm = (): React.JSX.Element => {
     // getValues,
     // setValue,
     // setFocus
+    // resetField,
+    // formState: { defaultValues },
+    reset,
+    // setError,
+    // clearErrors,
   } = methods;
+
+  // useWatch({ control });
+  // console.log("defaultValues:", defaultValues);
 
   // const paymentMethod = watch("paymentMethod");
   // React.useEffect(() => {
@@ -103,6 +111,7 @@ export const FoodDeliveryForm = (): React.JSX.Element => {
     formData.orderId = 1;
     formData.placedOn = new Date();
     createOrder(formData);
+    // setError("email", { type: "duplicateEmail", message: "The email already taken." });
     console.log("submitted form data", formData);
   };
 
@@ -110,6 +119,12 @@ export const FoodDeliveryForm = (): React.JSX.Element => {
     console.log("validation errors", errors);
     // console.log(getFieldState("address.city"));
     // console.log(getValues(["customerName", "email"]));
+  };
+
+  const onReset = (): void => {
+    // resetField("email", { keepError: true, defaultValue: "abc@gmail.com" });
+    reset(initialValues, { keepErrors: true });
+    // clearErrors();
   };
 
   //* V2
@@ -135,6 +150,9 @@ export const FoodDeliveryForm = (): React.JSX.Element => {
         {/* <button className="btn btn-secondary ms-2" onClick={onDemo} type="button">
           Demo
         </button> */}
+        <button className="btn btn-secondary w-100" onClick={onReset} type="button">
+          Reset
+        </button>
       </form>
     </React.Fragment>
   );
