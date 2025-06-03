@@ -22,4 +22,6 @@ Files created during Udemy.com different JS libraries courses:
 
 10. [React Hook Form: The Complete Guide](https://www.udemy.com/course/react-hook-form-the-complete-guide-with-react-js)
 
-11. [Material UI](https://www.udemy.com/course/react-hook-form-the-complete-guide-with-react-js)
+11. [Material UI - The Complete Guide](https://www.udemy.com/course/material-ui)
+
+12. [Lodash 4 - The Master Guide](https://www.udemy.com/course/lodash-4-the-master-guide)
