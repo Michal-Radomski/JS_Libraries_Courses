@@ -22,18 +22,33 @@ const schema = z.object({
 type FormData = z.infer<typeof schema>;
 
 const App = (): React.JSX.Element => {
-  const {
-    // register,
-    handleSubmit,
-    control,
-  } = useForm<FormData>({
+  // const {
+  //   // register,
+  //   handleSubmit,
+  //   control,
+  // } = useForm<FormData>({
+  //   mode: "onChange",
+  //   defaultValues: {
+  //     fullName: "",
+  //     email: "",
+  //     password: "",
+  //   },
+  //   resolver: zodResolver(schema),
+  // });
+  const { handleSubmit, control } = useForm<FormData, { blockedEmailDomains: string[] }>({
     mode: "onChange",
     defaultValues: {
       fullName: "",
       email: "",
       password: "",
     },
-    resolver: zodResolver(schema),
+    resolver: async (data, context, options) => {
+      // you can debug your validation schema here
+      console.log("formData", data);
+      console.log("validation result", await zodResolver(schema)(data, context, options));
+      return zodResolver(schema)(data, context, options);
+    },
+    context: { blockedEmailDomains: ["example.com", "xyz.com"] },
   });
 
   const onSubmit = (data: FormData): void => {
