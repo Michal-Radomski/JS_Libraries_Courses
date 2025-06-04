@@ -1,15 +1,25 @@
 import React from "react";
 import { useForm, type FieldErrors } from "react-hook-form";
 import { Button } from "@mui/material";
+import { z } from "zod";
+import { zodResolver } from "@hookform/resolvers/zod";
 
 import "./App.scss";
 import MuiTextField from "./MuiTextField";
 
-type FormData = {
-  email: string;
-  fullName: string;
-  password: string;
-};
+const schema = z.object({
+  fullName: z.string().min(1, "This field is required."),
+  email: z.string().email("Incorrect email format."),
+  password: z.string().min(6, "Minimum 6 characters required.").max(12, "Can't exceed 12 characters."),
+});
+
+// type FormData = {
+//   email: string;
+//   fullName: string;
+//   password: string;
+// };
+
+type FormData = z.infer<typeof schema>;
 
 const App = (): React.JSX.Element => {
   const {
@@ -23,6 +33,7 @@ const App = (): React.JSX.Element => {
       email: "",
       password: "",
     },
+    resolver: zodResolver(schema),
   });
 
   const onSubmit = (data: FormData): void => {
@@ -46,14 +57,14 @@ const App = (): React.JSX.Element => {
           rules={{ required: "This field is required." }}
           render={({ field }) => <TextField variant="outlined" label="Full Name" {...field} inputRef={field.ref} />}
         /> */}
-        <MuiTextField name="fullName" label="Full Name" control={control} rules={{ required: "This field is required." }} />
+        {/* <MuiTextField name="fullName" label="Full Name" control={control} rules={{ required: "This field is required." }} /> */}
         {/* <br />
         <input type="text" placeholder="Email" {...register("email")} />
         <br />
         <input type="password" placeholder="Password" {...register("password")} />
         <br /> */}
 
-        <br />
+        {/* <br />
         <MuiTextField
           name="email"
           label="Email"
@@ -73,6 +84,13 @@ const App = (): React.JSX.Element => {
           control={control}
           rules={{ required: "This field is required." }}
         />
+        <br /> */}
+
+        <MuiTextField name="fullName" label="Full Name" control={control} />
+        <br />
+        <MuiTextField name="email" label="Email" control={control} />
+        <br />
+        <MuiTextField type="password" name="password" label="Password" control={control} />
         <br />
 
         <Button type="submit" variant="contained" color="warning">
