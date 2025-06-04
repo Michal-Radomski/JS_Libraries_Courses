@@ -1,0 +1,21 @@
+{
+  "name": "000",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.ts",
+  "scripts": {
+    "start": "nodemon index.ts"
+  },
+  "keywords": [],
+  "author": "Michal Radomski <michalra@op.pl>",
+  "license": "MIT",
+  "type": "commonjs",
+  "dependencies": {
+    "lodash": "^4.17.21",
+    "underscore": "^1.13.7"
+  },
+  "devDependencies": {
+    "@types/lodash": "^4.17.17",
+    "@types/underscore": "^1.13.0"
+  }
+}
