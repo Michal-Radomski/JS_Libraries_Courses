@@ -12,7 +12,11 @@ type FormData = {
 };
 
 const App = (): React.JSX.Element => {
-  const { register, handleSubmit, control } = useForm<FormData>({
+  const {
+    // register,
+    handleSubmit,
+    control,
+  } = useForm<FormData>({
     mode: "onChange",
     defaultValues: {
       fullName: "",
@@ -43,11 +47,34 @@ const App = (): React.JSX.Element => {
           render={({ field }) => <TextField variant="outlined" label="Full Name" {...field} inputRef={field.ref} />}
         /> */}
         <MuiTextField name="fullName" label="Full Name" control={control} rules={{ required: "This field is required." }} />
-        <br />
+        {/* <br />
         <input type="text" placeholder="Email" {...register("email")} />
         <br />
         <input type="password" placeholder="Password" {...register("password")} />
+        <br /> */}
+
         <br />
+        <MuiTextField
+          name="email"
+          label="Email"
+          control={control}
+          rules={{
+            pattern: {
+              value: /^[^\s@]+@[^\s@]+\.[^\s@]+$/,
+              message: "Incorrect email formate.",
+            },
+          }}
+        />
+        <br />
+        <MuiTextField
+          type="password"
+          name="password"
+          label="Password"
+          control={control}
+          rules={{ required: "This field is required." }}
+        />
+        <br />
+
         <Button type="submit" variant="contained" color="warning">
           Submit
         </Button>

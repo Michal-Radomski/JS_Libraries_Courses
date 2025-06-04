@@ -1,6 +1,7 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
+import React from "react";
 import { TextField, type TextFieldProps } from "@mui/material";
-import { type Control, Controller, type RegisterOptions } from "react-hook-form";
+import { type Control, Controller, type RegisterOptions, useController } from "react-hook-form";
 
 type MuiTextFieldType = {
   variant?: "filled" | "outlined" | "standard";
@@ -15,6 +16,41 @@ type MuiTextFieldType = {
   };
 
 export default function MuiTextField(props: MuiTextFieldType): React.JSX.Element {
+  const {
+    name,
+    control,
+    defaultValue,
+    rules,
+    shouldUnregister,
+    disabled,
+    variant = "outlined",
+    margin = "dense",
+    ...otherProps
+  } = props;
+
+  const { field, fieldState } = useController({
+    name,
+    control,
+    rules,
+    defaultValue,
+    shouldUnregister,
+    disabled,
+  });
+
+  return (
+    <TextField
+      variant={variant}
+      margin={margin}
+      {...field}
+      inputRef={field.ref}
+      error={fieldState.invalid}
+      helperText={fieldState.error?.message}
+      {...otherProps}
+    />
+  );
+}
+
+export function MuiTextFieldWithComponent(props: MuiTextFieldType): React.JSX.Element {
   const { name, control, defaultValue, rules, shouldUnregister, disabled, variant = "outlined", ...otherProps } = props;
 
   return (
