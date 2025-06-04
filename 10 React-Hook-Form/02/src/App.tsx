@@ -1,8 +1,9 @@
 import React from "react";
-import { Controller, useForm, type FieldErrors } from "react-hook-form";
-import { Button, TextField } from "@mui/material";
+import { useForm, type FieldErrors } from "react-hook-form";
+import { Button } from "@mui/material";
 
 import "./App.scss";
+import MuiTextField from "./MuiTextField";
 
 type FormData = {
   email: string;
@@ -12,7 +13,9 @@ type FormData = {
 
 const App = (): React.JSX.Element => {
   const { register, handleSubmit, control } = useForm<FormData>({
+    mode: "onChange",
     defaultValues: {
+      fullName: "",
       email: "",
       password: "",
     },
@@ -33,12 +36,13 @@ const App = (): React.JSX.Element => {
       <form autoComplete="off" noValidate onSubmit={handleSubmit(onSubmit, onError)}>
         {/* <input type="text" placeholder="Full Name" {...register("fullName")} /> */}
         {/* <TextField variant="outlined" label="Full Name" {...fullNameRR} inputRef={ref} defaultValue="abc" /> */}
-        <Controller
+        {/* <Controller
           name="fullName"
           control={control}
           rules={{ required: "This field is required." }}
           render={({ field }) => <TextField variant="outlined" label="Full Name" {...field} inputRef={field.ref} />}
-        />
+        /> */}
+        <MuiTextField name="fullName" label="Full Name" control={control} rules={{ required: "This field is required." }} />
         <br />
         <input type="text" placeholder="Email" {...register("email")} />
         <br />
