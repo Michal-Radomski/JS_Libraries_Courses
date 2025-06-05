@@ -3,6 +3,7 @@ import React from "react";
 import "./App.scss";
 import TypographyComp from "./TypographyComp";
 import Buttons from "./Buttons";
+import TextFields from "./TextFields";
 
 const App = (): JSX.Element => {
   return (
@@ -10,6 +11,8 @@ const App = (): JSX.Element => {
       <TypographyComp />
       <hr />
       <Buttons />
+      <hr />
+      <TextFields />
     </React.Fragment>
   );
 };
