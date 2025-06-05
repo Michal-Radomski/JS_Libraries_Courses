@@ -1,5 +1,16 @@
 import React from "react";
-import { Box, Button, Checkbox, MenuItem, TextField } from "@mui/material";
+import {
+  Box,
+  Button,
+  Checkbox,
+  FormControl,
+  FormControlLabel,
+  FormLabel,
+  MenuItem,
+  Radio,
+  RadioGroup,
+  TextField,
+} from "@mui/material";
 import { pink } from "@mui/material/colors";
 
 const currencies = [
@@ -74,7 +85,8 @@ const FormComponent = (): JSX.Element => {
           />
           <Button type="submit">Submit</Button>
         </form>
-
+      </div>
+      <div>
         <Box component="form" sx={{ "& .MuiTextField-root": { m: 1, width: "25ch" } }} noValidate autoComplete="off">
           <TextField
             id="outlined-select-currency"
@@ -112,6 +124,18 @@ const FormComponent = (): JSX.Element => {
             },
           }}
         />
+      </div>
+
+      <div>
+        <FormControl>
+          <FormLabel id="demo-row-radio-buttons-group-label">Gender</FormLabel>
+          <RadioGroup row aria-labelledby="demo-row-radio-buttons-group-label" name="row-radio-buttons-group">
+            <FormControlLabel value="female" control={<Radio />} label="Female" />
+            <FormControlLabel value="male" control={<Radio />} label="Male" />
+            <FormControlLabel value="other" control={<Radio />} label="Other" />
+            <FormControlLabel value="disabled" disabled control={<Radio />} label="other" />
+          </RadioGroup>
+        </FormControl>
       </div>
     </React.Fragment>
   );
