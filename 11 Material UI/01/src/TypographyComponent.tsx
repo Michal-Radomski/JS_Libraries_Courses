@@ -11,11 +11,11 @@ const Div = styled("div")(({ theme }) => ({
   padding: theme.spacing(1),
 }));
 
-const TypographyComp = (): JSX.Element => {
+const TypographyComponent = (): JSX.Element => {
   return (
     <React.Fragment>
       <div>
-        <Box sx={{ typography: "body2", textAlign: "left", fontWeight: "bold" }}>Box</Box>
+        <Box sx={{ typography: "body2", textAlign: "right", fontWeight: "bold" }}>Box</Box>
         <Typography variant="h5" sx={{ color: "red" }}>
           Hello World
         </Typography>
@@ -28,4 +28,4 @@ const TypographyComp = (): JSX.Element => {
   );
 };
 
-export default TypographyComp;
+export default TypographyComponent;

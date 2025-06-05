@@ -1,18 +1,21 @@
 import React from "react";
 
 import "./App.scss";
-import TypographyComp from "./TypographyComp";
+import TypographyComponent from "./TypographyComponent";
 import Buttons from "./Buttons";
 import TextFields from "./TextFields";
+import FormComponent from "./FormComponent";
 
 const App = (): JSX.Element => {
   return (
     <React.Fragment>
-      <TypographyComp />
+      <FormComponent />
+      <hr />
+      <TextFields />
       <hr />
       <Buttons />
       <hr />
-      <TextFields />
+      <TypographyComponent />
     </React.Fragment>
   );
 };
