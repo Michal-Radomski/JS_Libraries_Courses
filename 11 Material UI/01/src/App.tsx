@@ -8,6 +8,7 @@ import FormComponent from "./FormComponent";
 import AppBarComponent from "./AppBarComponent";
 import TabsComponent from "./TabsComponent";
 import MenuComponent from "./MenuComponent";
+import AdvancedComponents from "./AdvancedComponents";
 
 const App = (): JSX.Element => {
   return (
@@ -15,6 +16,8 @@ const App = (): JSX.Element => {
       <AppBarComponent />
       <br />
 
+      <AdvancedComponents />
+      <br />
       <MenuComponent />
       <br />
       <TabsComponent />
