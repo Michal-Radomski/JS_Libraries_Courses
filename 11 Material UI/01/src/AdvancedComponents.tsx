@@ -7,11 +7,14 @@ import {
   CardActions,
   CardContent,
   CardMedia,
+  Container,
+  CssBaseline,
   Dialog,
   DialogActions,
   DialogContent,
   DialogContentText,
   DialogTitle,
+  Link,
   Modal,
   Typography,
 } from "@mui/material";
@@ -92,6 +95,34 @@ const AdvancedComponents = (): JSX.Element => {
             </Typography>
           </Box>
         </Modal>
+      </div>
+
+      <div>
+        <Link href="#" underline="none">
+          {'underline="none"'}
+        </Link>
+        <Link href="#" underline="hover">
+          {'underline="hover"'}
+        </Link>
+        <Link href="#" underline="always">
+          {'underline="always"'}
+        </Link>
+        <Link
+          component="button"
+          variant="body2"
+          onClick={() => {
+            console.info("I'm a button.");
+          }}
+        >
+          Button Link
+        </Link>
+      </div>
+
+      <div>
+        <CssBaseline />
+        <Container maxWidth="sm">
+          <Box sx={{ bgcolor: "#cfe8fc", height: "100vh" }} />
+        </Container>
       </div>
     </React.Fragment>
   );
