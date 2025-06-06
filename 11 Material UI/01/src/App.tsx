@@ -7,11 +7,15 @@ import TextFields from "./TextFields";
 import FormComponent from "./FormComponent";
 import AppBarComponent from "./AppBarComponent";
 import TabsComponent from "./TabsComponent";
+import MenuComponent from "./MenuComponent";
 
 const App = (): JSX.Element => {
   return (
     <React.Fragment>
       <AppBarComponent />
+      <br />
+
+      <MenuComponent />
       <br />
       <TabsComponent />
       <br />
