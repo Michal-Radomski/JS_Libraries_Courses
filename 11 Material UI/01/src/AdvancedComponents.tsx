@@ -3,6 +3,7 @@ import {
   Accordion,
   AccordionDetails,
   AccordionSummary,
+  Autocomplete,
   Avatar,
   Box,
   Button,
@@ -27,6 +28,7 @@ import {
   ListItemIcon,
   ListItemText,
   Modal,
+  TextField,
   Typography,
 } from "@mui/material";
 import ImageIcon from "@mui/icons-material/Image";
@@ -34,6 +36,8 @@ import WorkIcon from "@mui/icons-material/Work";
 import BeachAccessIcon from "@mui/icons-material/BeachAccess";
 import ArrowDownwardIcon from "@mui/icons-material/ArrowDownward";
 import ArrowDropDownIcon from "@mui/icons-material/ArrowDropDown";
+
+import { top100Films } from "./data/data";
 
 const AdvancedComponents = (): JSX.Element => {
   const [dialogOpen, setDialogOpen] = React.useState<boolean>(false);
@@ -241,6 +245,15 @@ const AdvancedComponents = (): JSX.Element => {
             </Typography>
           </AccordionDetails>
         </Accordion>
+      </div>
+
+      <div>
+        <Autocomplete
+          disablePortal
+          options={top100Films}
+          sx={{ width: 300 }}
+          renderInput={(params) => <TextField {...params} label="Movie" />}
+        />
       </div>
     </React.Fragment>
   );

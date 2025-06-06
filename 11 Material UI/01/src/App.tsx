@@ -15,7 +15,6 @@ const App = (): JSX.Element => {
     <React.Fragment>
       <AppBarComponent />
       <br />
-
       <AdvancedComponents />
       <br />
       <MenuComponent />
