@@ -1,5 +1,8 @@
 import React from "react";
 import {
+  Accordion,
+  AccordionDetails,
+  AccordionSummary,
   Avatar,
   Box,
   Button,
@@ -8,6 +11,7 @@ import {
   CardActions,
   CardContent,
   CardMedia,
+  Collapse,
   Container,
   CssBaseline,
   Dialog,
@@ -19,6 +23,8 @@ import {
   List,
   ListItem,
   ListItemAvatar,
+  ListItemButton,
+  ListItemIcon,
   ListItemText,
   Modal,
   Typography,
@@ -26,10 +32,15 @@ import {
 import ImageIcon from "@mui/icons-material/Image";
 import WorkIcon from "@mui/icons-material/Work";
 import BeachAccessIcon from "@mui/icons-material/BeachAccess";
+import ArrowDownwardIcon from "@mui/icons-material/ArrowDownward";
+import ArrowDropDownIcon from "@mui/icons-material/ArrowDropDown";
 
 const AdvancedComponents = (): JSX.Element => {
   const [dialogOpen, setDialogOpen] = React.useState<boolean>(false);
   const [openModal, setOpenModal] = React.useState<boolean>(false);
+  const [openList, setOpenList] = React.useState<boolean>(false);
+
+  const array = ["First", "Second", "Third", "Fourth", "Fifth"];
 
   const style = {
     position: "absolute",
@@ -181,6 +192,55 @@ const AdvancedComponents = (): JSX.Element => {
             <ListItemText primary="Vacation" secondary="July 20, 2014" />
           </ListItem>
         </List>
+      </div>
+
+      <div>
+        <Box>
+          <List>
+            <ListItem divider>
+              <ListItemButton onClick={() => setOpenList(true)}>
+                <ListItemIcon>{">"}</ListItemIcon>
+                <ListItemText primary={"Expand List"} />
+              </ListItemButton>
+            </ListItem>
+          </List>
+          <Collapse in={openList}>
+            <List sx={{ marginLeft: 25 }}>
+              {array.map((listElm, index) => (
+                <ListItem divider key={index}>
+                  <ListItemButton onClick={() => setOpenList(false)}>
+                    <ListItemText primary={listElm} />
+                  </ListItemButton>
+                </ListItem>
+              ))}
+            </List>
+          </Collapse>
+        </Box>
+      </div>
+
+      <div>
+        <Accordion>
+          <AccordionSummary expandIcon={<ArrowDownwardIcon />} aria-controls="panel1-content" id="panel1-header">
+            <Typography component="span">Accordion 1</Typography>
+          </AccordionSummary>
+          <AccordionDetails>
+            <Typography>
+              Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse malesuada lacus ex, sit amet blandit leo
+              lobortis eget.
+            </Typography>
+          </AccordionDetails>
+        </Accordion>
+        <Accordion>
+          <AccordionSummary expandIcon={<ArrowDropDownIcon />} aria-controls="panel2-content" id="panel2-header">
+            <Typography component="span">Accordion 2</Typography>
+          </AccordionSummary>
+          <AccordionDetails>
+            <Typography>
+              Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse malesuada lacus ex, sit amet blandit leo
+              lobortis eget.
+            </Typography>
+          </AccordionDetails>
+        </Accordion>
       </div>
     </React.Fragment>
   );
