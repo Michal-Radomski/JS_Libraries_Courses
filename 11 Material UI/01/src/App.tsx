@@ -6,11 +6,14 @@ import Buttons from "./Buttons";
 import TextFields from "./TextFields";
 import FormComponent from "./FormComponent";
 import AppBarComponent from "./AppBarComponent";
+import TabsComponent from "./TabsComponent";
 
 const App = (): JSX.Element => {
   return (
     <React.Fragment>
       <AppBarComponent />
+      <br />
+      <TabsComponent />
       <br />
       <FormComponent />
       <hr />
