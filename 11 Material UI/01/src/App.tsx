@@ -5,10 +5,13 @@ import TypographyComponent from "./TypographyComponent";
 import Buttons from "./Buttons";
 import TextFields from "./TextFields";
 import FormComponent from "./FormComponent";
+import AppBarComponent from "./AppBarComponent";
 
 const App = (): JSX.Element => {
   return (
     <React.Fragment>
+      <AppBarComponent />
+      <br />
       <FormComponent />
       <hr />
       <TextFields />
