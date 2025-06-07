@@ -3,6 +3,8 @@ import {
   Accordion,
   AccordionDetails,
   AccordionSummary,
+  Alert,
+  AlertTitle,
   Autocomplete,
   Avatar,
   Box,
@@ -22,6 +24,7 @@ import {
   DialogTitle,
   Divider,
   Drawer,
+  IconButton,
   Link,
   List,
   ListItem,
@@ -30,8 +33,10 @@ import {
   ListItemIcon,
   ListItemText,
   Modal,
+  Snackbar,
   TextField,
   Typography,
+  type SnackbarCloseReason,
 } from "@mui/material";
 import ImageIcon from "@mui/icons-material/Image";
 import WorkIcon from "@mui/icons-material/Work";
@@ -40,6 +45,7 @@ import ArrowDownwardIcon from "@mui/icons-material/ArrowDownward";
 import ArrowDropDownIcon from "@mui/icons-material/ArrowDropDown";
 import InboxIcon from "@mui/icons-material/MoveToInbox";
 import MailIcon from "@mui/icons-material/Mail";
+import CloseIcon from "@mui/icons-material/Close";
 
 import { top100Films } from "./data/data";
 
@@ -95,6 +101,10 @@ const AdvancedComponents = (): JSX.Element => {
 
   return (
     <React.Fragment>
+      <div>
+        <SimpleSnackbar />
+      </div>
+
       <div>
         <Card sx={{ maxWidth: 500 }}>
           <CardActionArea>
@@ -297,8 +307,64 @@ const AdvancedComponents = (): JSX.Element => {
           {DrawerList}
         </Drawer>
       </div>
+
+      <div>
+        <Alert severity="success">This is a success Alert.</Alert>
+        <Alert severity="info">This is an info Alert.</Alert>
+        <Alert variant="filled" severity="warning">
+          This is a filled warning Alert.
+        </Alert>
+        <Alert variant="filled" severity="error">
+          This is a filled error Alert.
+        </Alert>
+        <Alert variant="outlined" severity="success">
+          This is an outlined success Alert.
+        </Alert>
+        <Alert severity="success" color="warning">
+          This is a success Alert with warning colors.
+        </Alert>
+        <Alert severity="success">
+          <AlertTitle>Success</AlertTitle>
+          This is a success Alert with an encouraging title.
+        </Alert>
+      </div>
     </React.Fragment>
   );
 };
 
 export default AdvancedComponents;
+
+function SimpleSnackbar(): JSX.Element {
+  const [open, setOpen] = React.useState<boolean>(false);
+
+  const handleClick = (): void => {
+    setOpen(true);
+  };
+
+  const handleClose = (_event: React.SyntheticEvent | Event, reason?: SnackbarCloseReason): void => {
+    console.log({ reason });
+    if (reason === "clickaway") {
+      return;
+    }
+
+    setOpen(false);
+  };
+
+  const action = (
+    <React.Fragment>
+      <Button color="secondary" size="small" onClick={handleClose}>
+        UNDO
+      </Button>
+      <IconButton size="small" aria-label="close" color="inherit" onClick={handleClose}>
+        <CloseIcon fontSize="small" />
+      </IconButton>
+    </React.Fragment>
+  );
+
+  return (
+    <div>
+      <Button onClick={handleClick}>Open Snackbar</Button>
+      <Snackbar open={open} autoHideDuration={6000} onClose={handleClose} message="Note archived" action={action} />
+    </div>
+  );
+}
