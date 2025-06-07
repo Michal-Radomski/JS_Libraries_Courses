@@ -10,11 +10,15 @@ import TabsComponent from "./TabsComponent";
 import MenuComponent from "./MenuComponent";
 import AdvancedComponents from "./AdvancedComponents";
 import ReactHookFormValidation from "./ReactHookFormValidation";
+import DataGridComponent from "./DataGridComponent";
 
 const App = (): JSX.Element => {
   return (
     <React.Fragment>
       <AppBarComponent />
+      <br />
+
+      <DataGridComponent />
       <br />
       <ReactHookFormValidation />
       <br />
