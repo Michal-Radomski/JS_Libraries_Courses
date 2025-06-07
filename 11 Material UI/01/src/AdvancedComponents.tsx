@@ -20,6 +20,8 @@ import {
   DialogContent,
   DialogContentText,
   DialogTitle,
+  Divider,
+  Drawer,
   Link,
   List,
   ListItem,
@@ -36,6 +38,8 @@ import WorkIcon from "@mui/icons-material/Work";
 import BeachAccessIcon from "@mui/icons-material/BeachAccess";
 import ArrowDownwardIcon from "@mui/icons-material/ArrowDownward";
 import ArrowDropDownIcon from "@mui/icons-material/ArrowDropDown";
+import InboxIcon from "@mui/icons-material/MoveToInbox";
+import MailIcon from "@mui/icons-material/Mail";
 
 import { top100Films } from "./data/data";
 
@@ -43,6 +47,11 @@ const AdvancedComponents = (): JSX.Element => {
   const [dialogOpen, setDialogOpen] = React.useState<boolean>(false);
   const [openModal, setOpenModal] = React.useState<boolean>(false);
   const [openList, setOpenList] = React.useState<boolean>(false);
+  const [openDrawer, setOpenDrawer] = React.useState<boolean>(false);
+
+  const toggleDrawer = (newOpen: boolean) => (): void => {
+    setOpenDrawer(newOpen);
+  };
 
   const array = ["First", "Second", "Third", "Fourth", "Fifth"];
 
@@ -57,6 +66,32 @@ const AdvancedComponents = (): JSX.Element => {
     boxShadow: 24,
     p: 4,
   };
+
+  const DrawerList: JSX.Element = (
+    <Box sx={{ width: 250 }} role="presentation" onClick={toggleDrawer(false)}>
+      <List>
+        {["Inbox", "Starred", "Send email", "Drafts"].map((text, index) => (
+          <ListItem key={text} disablePadding>
+            <ListItemButton>
+              <ListItemIcon>{index % 2 === 0 ? <InboxIcon /> : <MailIcon />}</ListItemIcon>
+              <ListItemText primary={text} />
+            </ListItemButton>
+          </ListItem>
+        ))}
+      </List>
+      <Divider />
+      <List>
+        {["All mail", "Trash", "Spam"].map((text, index) => (
+          <ListItem key={text} disablePadding>
+            <ListItemButton>
+              <ListItemIcon>{index % 2 === 0 ? <InboxIcon /> : <MailIcon />}</ListItemIcon>
+              <ListItemText primary={text} />
+            </ListItemButton>
+          </ListItem>
+        ))}
+      </List>
+    </Box>
+  );
 
   return (
     <React.Fragment>
@@ -254,6 +289,13 @@ const AdvancedComponents = (): JSX.Element => {
           sx={{ width: 300 }}
           renderInput={(params) => <TextField {...params} label="Movie" />}
         />
+      </div>
+
+      <div>
+        <Button onClick={toggleDrawer(true)}>Open drawer</Button>
+        <Drawer open={openDrawer} onClose={toggleDrawer(false)}>
+          {DrawerList}
+        </Drawer>
       </div>
     </React.Fragment>
   );
