@@ -26,6 +26,8 @@ import {
   Divider,
   Drawer,
   IconButton,
+  ImageList,
+  ImageListItem,
   LinearProgress,
   Link,
   List,
@@ -51,7 +53,7 @@ import InboxIcon from "@mui/icons-material/MoveToInbox";
 import MailIcon from "@mui/icons-material/Mail";
 import CloseIcon from "@mui/icons-material/Close";
 
-import { top100Films } from "./data/data";
+import { itemData, top100Films } from "./data/data";
 
 const AdvancedComponents = (): JSX.Element => {
   const [dialogOpen, setDialogOpen] = React.useState<boolean>(false);
@@ -372,6 +374,21 @@ const AdvancedComponents = (): JSX.Element => {
           <Typography component="legend">No rating given</Typography>
           <Rating name="no-value" value={null} />
         </Box>
+      </div>
+
+      <div>
+        <ImageList sx={{ width: 500, height: 450 }} cols={3} rowHeight={164}>
+          {itemData.map((item) => (
+            <ImageListItem key={item.img}>
+              <img
+                srcSet={`${item.img}?w=164&h=164&fit=crop&auto=format&dpr=2 2x`}
+                src={`${item.img}?w=164&h=164&fit=crop&auto=format`}
+                alt={item.title}
+                loading="lazy"
+              />
+            </ImageListItem>
+          ))}
+        </ImageList>
       </div>
     </React.Fragment>
   );
