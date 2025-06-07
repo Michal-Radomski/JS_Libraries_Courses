@@ -9,11 +9,14 @@ import AppBarComponent from "./AppBarComponent";
 import TabsComponent from "./TabsComponent";
 import MenuComponent from "./MenuComponent";
 import AdvancedComponents from "./AdvancedComponents";
+import ReactHookFormValidation from "./ReactHookFormValidation";
 
 const App = (): JSX.Element => {
   return (
     <React.Fragment>
       <AppBarComponent />
+      <br />
+      <ReactHookFormValidation />
       <br />
       <AdvancedComponents />
       <br />
