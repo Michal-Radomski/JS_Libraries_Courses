@@ -11,11 +11,18 @@ import MenuComponent from "./MenuComponent";
 import AdvancedComponents from "./AdvancedComponents";
 import ReactHookFormValidation from "./ReactHookFormValidation";
 import DataGridComponent from "./DataGridComponent";
+import ThemeComponent from "./ThemeComponent";
+import Styled from "./Styled";
 
 const App = (): JSX.Element => {
   return (
     <React.Fragment>
       <AppBarComponent />
+      <br />
+
+      <Styled />
+      <br />
+      <ThemeComponent />
       <br />
       <DataGridComponent />
       <br />
