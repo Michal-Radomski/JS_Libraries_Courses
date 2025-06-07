@@ -17,7 +17,6 @@ const App = (): JSX.Element => {
     <React.Fragment>
       <AppBarComponent />
       <br />
-
       <DataGridComponent />
       <br />
       <ReactHookFormValidation />

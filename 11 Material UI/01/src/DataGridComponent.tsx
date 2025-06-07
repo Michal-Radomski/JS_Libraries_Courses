@@ -50,6 +50,7 @@ const DataGridComponent = (): JSX.Element => {
     <React.Fragment>
       <Box sx={{ height: 400, width: "100%" }}>
         <DataGrid
+          showToolbar
           rows={rows}
           columns={columns}
           initialState={{
