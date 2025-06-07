@@ -14,6 +14,7 @@ import {
   CardActions,
   CardContent,
   CardMedia,
+  CircularProgress,
   Collapse,
   Container,
   CssBaseline,
@@ -25,6 +26,7 @@ import {
   Divider,
   Drawer,
   IconButton,
+  LinearProgress,
   Link,
   List,
   ListItem,
@@ -33,7 +35,9 @@ import {
   ListItemIcon,
   ListItemText,
   Modal,
+  Rating,
   Snackbar,
+  Stack,
   TextField,
   Typography,
   type SnackbarCloseReason,
@@ -54,6 +58,7 @@ const AdvancedComponents = (): JSX.Element => {
   const [openModal, setOpenModal] = React.useState<boolean>(false);
   const [openList, setOpenList] = React.useState<boolean>(false);
   const [openDrawer, setOpenDrawer] = React.useState<boolean>(false);
+  const [value, _] = React.useState<number | null>(2);
 
   const toggleDrawer = (newOpen: boolean) => (): void => {
     setOpenDrawer(newOpen);
@@ -327,6 +332,46 @@ const AdvancedComponents = (): JSX.Element => {
           <AlertTitle>Success</AlertTitle>
           This is a success Alert with an encouraging title.
         </Alert>
+      </div>
+
+      <div>
+        <Stack sx={{ color: "grey.500" }} spacing={2} direction="row">
+          <CircularProgress color="secondary" />
+          <CircularProgress color="success" />
+          <CircularProgress color="inherit" />
+        </Stack>
+        <Stack sx={{ width: "100%", color: "grey.500" }} spacing={2}>
+          <LinearProgress color="secondary" />
+          <LinearProgress color="success" />
+          <LinearProgress color="inherit" />
+        </Stack>
+      </div>
+
+      <div>
+        <Box sx={{ "& > legend": { mt: 2 } }}>
+          <Typography component="legend">Controlled</Typography>
+          <Rating
+            name="simple-controlled"
+            value={value}
+            onChange={(_event, newValue): void => {
+              _(newValue);
+            }}
+          />
+          <Typography component="legend">Uncontrolled</Typography>
+          <Rating
+            name="simple-uncontrolled"
+            onChange={(_event, newValue): void => {
+              console.log({ newValue });
+            }}
+            defaultValue={2}
+          />
+          <Typography component="legend">Read only</Typography>
+          <Rating name="read-only" value={value} readOnly />
+          <Typography component="legend">Disabled</Typography>
+          <Rating name="disabled" value={value} disabled />
+          <Typography component="legend">No rating given</Typography>
+          <Rating name="no-value" value={null} />
+        </Box>
       </div>
     </React.Fragment>
   );
