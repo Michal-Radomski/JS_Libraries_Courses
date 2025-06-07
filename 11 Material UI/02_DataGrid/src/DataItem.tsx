@@ -14,7 +14,8 @@ const DataItem = (): JSX.Element => {
       await fetch(`https://dummyjson.com/todos/${id}`)
         .then((res) => res.json())
         .then((data) => setTodo(data))
-        .catch((err) => console.log("err:", err));
+        .catch((err) => console.log("err:", err))
+        .finally(() => console.log("fetched!"));
     }
     fetchTodos();
   }, [id]);

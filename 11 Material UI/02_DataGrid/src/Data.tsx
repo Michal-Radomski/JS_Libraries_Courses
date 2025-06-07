@@ -12,7 +12,7 @@ const columns = [
     field: "id",
     headerName: "ID",
     width: 60,
-    renderCell: (params: { value: string | number }) => {
+    renderCell: (params: { value: number }): JSX.Element => {
       return (
         <Link style={{ color: "black", textUnderlineOffset: 5 }} to={`/${params.value}`}>
           <Typography>{params.value}</Typography>
@@ -34,7 +34,7 @@ const columns = [
     field: "completed",
     headerName: "Completed",
     width: 90,
-    renderCell: (params: { value: string | number }) => {
+    renderCell: (params: { value: boolean }): JSX.Element => {
       return params.value ? (
         <AssignmentTurnedInRoundedIcon sx={{ color: "green" }} />
       ) : (
@@ -65,6 +65,10 @@ const Data = (): JSX.Element => {
     <Card sx={{ padding: 5 }}>
       <CardHeader title="Todo List 🌟📝"></CardHeader>
       <DataGrid
+        checkboxSelection
+        rowsPerPageOptions={[10, 20, 30]}
+        pageSize={10}
+        onPageChange={() => console.log("pageChange")}
         components={{
           Toolbar: DatagridToolbar,
           BaseButton: Button,
@@ -75,7 +79,9 @@ const Data = (): JSX.Element => {
         rows={todos}
         componentsProps={{
           baseButton: {
-            variant: "outlined",
+            // variant: "outlined",
+            variant: "contained",
+            color: "secondary",
           },
         }}
       />
