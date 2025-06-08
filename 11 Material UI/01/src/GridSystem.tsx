@@ -6,7 +6,6 @@ const Item = ({ children }: { children: React.ReactNode }): JSX.Element => (
   <div style={{ border: "1px solid red" }}>{children}</div>
 );
 
-//* Not Working?
 const GridSystem = (): JSX.Element => {
   return (
     <React.Fragment>

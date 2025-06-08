@@ -17,11 +17,11 @@ export const theme: Theme = createTheme({
   },
   breakpoints: {
     values: {
-      xs: 200,
-      sm: 0,
-      md: 0,
-      lg: 0,
-      xl: 0,
+      xs: 100, //* default: 0
+      sm: 600,
+      md: 900,
+      lg: 1200,
+      xl: 1536,
     },
   },
 });
