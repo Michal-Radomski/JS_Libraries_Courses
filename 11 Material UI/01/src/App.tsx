@@ -13,6 +13,7 @@ import ReactHookFormValidation from "./ReactHookFormValidation";
 import DataGridComponent from "./DataGridComponent";
 import ThemeComponent from "./ThemeComponent";
 import Styled from "./Styled";
+import DarkLightMode from "./DarkLightMode";
 
 const App = (): JSX.Element => {
   return (
@@ -20,6 +21,8 @@ const App = (): JSX.Element => {
       <AppBarComponent />
       <br />
 
+      <DarkLightMode />
+      <br />
       <Styled />
       <br />
       <ThemeComponent />
