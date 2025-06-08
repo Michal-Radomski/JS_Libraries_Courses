@@ -6,6 +6,7 @@ import JoyUIComponent from "./JoyUIComponent";
 import MUIBaseComponent from "./MUIBaseComponent";
 import ComponentMDB from "./ComponentMDB";
 import ReactStrapComponent from "./ReactStrapComponent";
+import EmotionComponent from "./EmotionComponent";
 
 const App = (): React.JSX.Element => {
   return (
@@ -19,6 +20,8 @@ const App = (): React.JSX.Element => {
       <ComponentMDB />
       <br />
       <ReactStrapComponent />
+      <br />
+      <EmotionComponent />
     </React.Fragment>
   );
 };
