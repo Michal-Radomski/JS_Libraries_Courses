@@ -15,13 +15,15 @@ import ThemeComponent from "./ThemeComponent";
 import Styled from "./Styled";
 import DarkLightMode from "./DarkLightMode";
 import MaterialIcons from "./MaterialIcons";
+import GridSystem from "./GridSystem";
 
 const App = (): JSX.Element => {
   return (
     <React.Fragment>
       <AppBarComponent />
       <br />
-
+      <GridSystem />
+      <br />
       <MaterialIcons />
       <br />
       <DarkLightMode />
