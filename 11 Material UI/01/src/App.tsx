@@ -14,6 +14,7 @@ import DataGridComponent from "./DataGridComponent";
 import ThemeComponent from "./ThemeComponent";
 import Styled from "./Styled";
 import DarkLightMode from "./DarkLightMode";
+import MaterialIcons from "./MaterialIcons";
 
 const App = (): JSX.Element => {
   return (
@@ -21,6 +22,8 @@ const App = (): JSX.Element => {
       <AppBarComponent />
       <br />
 
+      <MaterialIcons />
+      <br />
       <DarkLightMode />
       <br />
       <Styled />
