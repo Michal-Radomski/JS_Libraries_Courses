@@ -16,13 +16,15 @@ const DrawerComp = ({ pages }: { pages: string[] }): JSX.Element => {
         }}
       >
         <List>
-          {pages.map((page, index) => (
-            <ListItemButton key={index} divider={true} onClick={() => setOpenDrawer(false)}>
-              <ListItemIcon>
-                <ListItemText>{page}</ListItemText>
-              </ListItemIcon>
-            </ListItemButton>
-          ))}
+          {pages.map(
+            (page: string, index: number): JSX.Element => (
+              <ListItemButton key={index} divider={true} onClick={() => setOpenDrawer(false)}>
+                <ListItemIcon>
+                  <ListItemText>{page}</ListItemText>
+                </ListItemIcon>
+              </ListItemButton>
+            )
+          )}
         </List>
       </Drawer>
       <IconButton sx={{ color: "white", marginLeft: "auto" }} onClick={() => setOpenDrawer(!openDrawer)}>
