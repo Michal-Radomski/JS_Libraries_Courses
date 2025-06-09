@@ -2,11 +2,26 @@ import React from "react";
 import { Box, Button, TextField, Typography } from "@mui/material";
 
 const Auth = (): JSX.Element => {
+  const initialState = { name: "", email: "", password: "" };
+
   const [isSignup, setIsSignup] = React.useState<boolean>(false);
+  const [inputs, setInputs] = React.useState<{ [key: string]: string }>(initialState);
+
+  const handleChange = (event: React.ChangeEvent<HTMLInputElement>): void => {
+    setInputs((prevState) => ({
+      ...prevState,
+      [event.target.name]: event.target.value,
+    }));
+  };
+
+  const handleSubmit = (event: React.SyntheticEvent<HTMLFormElement>): void => {
+    event.preventDefault();
+    console.log("inputs:", inputs);
+  };
 
   return (
     <React.Fragment>
-      <form>
+      <form onSubmit={handleSubmit}>
         <Box
           display={"flex"}
           flexDirection={"column"}
@@ -27,13 +42,45 @@ const Auth = (): JSX.Element => {
           <Typography variant="h3" padding={3} textAlign={"center"}>
             {!isSignup ? "Login" : "Signup"}
           </Typography>
-          {isSignup ? <TextField type="text" variant="outlined" placeholder="Name" margin="normal" /> : null}
-          <TextField type="email" variant="outlined" placeholder="Email" margin="normal" />
-          <TextField type="password" variant="outlined" placeholder="Password" margin="normal" />
-          <Button variant="contained" color="warning" sx={{ marginTop: 3, borderRadius: 3 }}>
+          {isSignup ? (
+            <TextField
+              type="text"
+              variant="outlined"
+              placeholder="Name"
+              margin="normal"
+              name="name"
+              value={inputs?.name}
+              onChange={handleChange}
+            />
+          ) : null}
+          <TextField
+            type="email"
+            variant="outlined"
+            placeholder="Email"
+            margin="normal"
+            name="email"
+            value={inputs?.email}
+            onChange={handleChange}
+          />
+          <TextField
+            type="password"
+            variant="outlined"
+            placeholder="Password"
+            margin="normal"
+            name="password"
+            value={inputs?.password}
+            onChange={handleChange}
+          />
+          <Button variant="contained" color="warning" sx={{ marginTop: 3, borderRadius: 3 }} type="submit">
             {!isSignup ? "Login" : "Signup"}
           </Button>
-          <Button sx={{ marginTop: 3, borderRadius: 3 }} onClick={() => setIsSignup(!isSignup)}>
+          <Button
+            sx={{ marginTop: 3, borderRadius: 3 }}
+            onClick={() => {
+              setIsSignup(!isSignup);
+              setInputs(initialState);
+            }}
+          >
             {isSignup ? "Change To Login" : "Change To Signup"}
           </Button>
         </Box>
