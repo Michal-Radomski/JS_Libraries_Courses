@@ -1,5 +1,6 @@
 import React from "react";
 import { Box, Button, TextField, Typography } from "@mui/material";
+import { LoginOutlined, HowToRegOutlined } from "@mui/icons-material";
 
 const Auth = (): JSX.Element => {
   const initialState = { name: "", email: "", password: "" };
@@ -71,7 +72,13 @@ const Auth = (): JSX.Element => {
             value={inputs?.password}
             onChange={handleChange}
           />
-          <Button variant="contained" color="warning" sx={{ marginTop: 3, borderRadius: 3 }} type="submit">
+          <Button
+            variant="contained"
+            color="warning"
+            sx={{ marginTop: 3, borderRadius: 3 }}
+            type="submit"
+            endIcon={isSignup ? <HowToRegOutlined /> : <LoginOutlined />}
+          >
             {!isSignup ? "Login" : "Signup"}
           </Button>
           <Button
@@ -80,6 +87,7 @@ const Auth = (): JSX.Element => {
               setIsSignup(!isSignup);
               setInputs(initialState);
             }}
+            endIcon={!isSignup ? <HowToRegOutlined /> : <LoginOutlined />}
           >
             {isSignup ? "Change To Login" : "Change To Signup"}
           </Button>
