@@ -17,13 +17,15 @@ import DarkLightMode from "./DarkLightMode";
 import MaterialIcons from "./MaterialIcons";
 import GridSystem from "./GridSystem";
 import Responsiveness from "./Responsiveness";
+import OtherComponents from "./OtherComponents";
 
 const App = (): JSX.Element => {
   return (
     <React.Fragment>
       <AppBarComponent />
       <br />
-
+      <OtherComponents />
+      <br />
       <Responsiveness />
       <br />
       <GridSystem />
@@ -47,11 +49,11 @@ const App = (): JSX.Element => {
       <TabsComponent />
       <br />
       <FormComponent />
-      <hr />
+      <br />
       <TextFields />
-      <hr />
+      <br />
       <Buttons />
-      <hr />
+      <br />
       <TypographyComponent />
     </React.Fragment>
   );
