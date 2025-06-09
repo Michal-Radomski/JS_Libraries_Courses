@@ -1,12 +1,12 @@
-//* Based on: https://www.udemy.com/course/responsive-header/
+//* Based on: https://www.udemy.com/course/materialui-navbar
 import React from "react";
 
-import Navbar from "./Navbar";
+import Header from "./Header";
 
 const App = (): JSX.Element => {
   return (
     <React.Fragment>
-      <Navbar />
+      <Header />
     </React.Fragment>
   );
 };
