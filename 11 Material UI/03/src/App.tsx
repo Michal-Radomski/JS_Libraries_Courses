@@ -1,6 +1,7 @@
 //* Based on: https://www.udemy.com/course/responsive-header
 import React from "react";
 
+import "./App.scss";
 import Navbar from "./Navbar";
 
 const App = (): JSX.Element => {
