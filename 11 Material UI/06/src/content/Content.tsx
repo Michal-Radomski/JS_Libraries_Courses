@@ -3,7 +3,7 @@ import { Box } from "@mui/material";
 
 import ContentItem from "./ContentItem";
 
-const contentArray = [
+const contentArray: { [key: string]: string }[] = [
   {
     title: "Get Things Done",
     description:

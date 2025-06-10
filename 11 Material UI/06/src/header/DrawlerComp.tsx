@@ -9,8 +9,8 @@ const DrawerComp = ({ links }: { links: string[] }): JSX.Element => {
     <React.Fragment>
       <Drawer open={open} onClose={() => setOpen(false)}>
         <List>
-          {links.map((item: string) => (
-            <ListItemButton onClick={() => setOpen(false)}>
+          {links.map((item: string, index: number) => (
+            <ListItemButton onClick={() => setOpen(false)} key={index}>
               <ListItemText>{item}</ListItemText>
             </ListItemButton>
           ))}

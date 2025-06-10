@@ -12,7 +12,7 @@ const links: string[] = ["Products", "Solutions", "Pricing", "Enterprise"];
 
 const Header = (): JSX.Element => {
   const isMatch: boolean = useMediaQuery(useTheme().breakpoints.down("md"));
-  console.log({ isMatch });
+  // console.log({ isMatch });
 
   const [value, setValue] = React.useState<number>(0);
 
@@ -26,7 +26,7 @@ const Header = (): JSX.Element => {
         {isMatch ? (
           <Box display="flex">
             <ApiIcon sx={{ color: "black", padding: 1 }} />
-            <Typography sx={{ fontFamily: "fantasy", padding: 0.5, color: "black" }} variant="h6">
+            <Typography sx={{ fontFamily: "Roboto", padding: 0.5, color: "black" }} variant="h6">
               CodeEnv
             </Typography>
             <DrawerComp links={links} />
@@ -74,10 +74,13 @@ const Header = (): JSX.Element => {
         )}
 
         <Box width="100%" height="100vh">
-          <video width={"100%"} height="65%" autoPlay loop muted playsInline src="/video.mp4"></video>
+          <video width={"100%"} height="65%" autoPlay loop muted playsInline>
+            <source src="/video.mp4" type="video/mp4" />
+            <p>Your browser doesn't support HTML video.</p>
+          </video>
           <Box display="flex" width="100%">
             <CustomizedTypography
-              fontSize={{ lg: 30, md: 24, sm: 18, xs: 15 }}
+              fontSize={{ lg: 30, md: 24, sm: 18, xs: 15 }} //* Responsive Font Sizes
               margin="auto"
               variant="h4"
               color="black"
