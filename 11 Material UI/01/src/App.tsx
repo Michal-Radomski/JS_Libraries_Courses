@@ -19,11 +19,14 @@ import GridSystem from "./GridSystem";
 import Responsiveness from "./Responsiveness";
 import OtherComponents from "./OtherComponents";
 import TableComponent from "./TableComponent";
+import MyComp from "./MyComp";
 
 const App = (): JSX.Element => {
   return (
     <React.Fragment>
       <AppBarComponent />
+      <br />
+      <MyComp />
       <br />
       <TableComponent />
       <br />
