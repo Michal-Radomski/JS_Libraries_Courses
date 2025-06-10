@@ -18,11 +18,14 @@ import MaterialIcons from "./MaterialIcons";
 import GridSystem from "./GridSystem";
 import Responsiveness from "./Responsiveness";
 import OtherComponents from "./OtherComponents";
+import TableComponent from "./TableComponent";
 
 const App = (): JSX.Element => {
   return (
     <React.Fragment>
       <AppBarComponent />
+      <br />
+      <TableComponent />
       <br />
       <OtherComponents />
       <br />
