@@ -20,36 +20,40 @@ const Header = (): JSX.Element => {
 
           <Tabs value={value} onChange={(_e, val) => setValue(val)} sx={{ ml: "auto", textDecoration: "none" }}>
             {isLoggedIn
-              ? loggedInLinks.map((link: string) => (
-                  <Tab
-                    LinkComponent={Link}
-                    href={`/${link === "home" ? "" : link}`}
-                    sx={{
-                      textDecoration: "none",
-                      ":hover": {
-                        textDecoration: "underline",
-                        textUnderlineOffset: "18px",
-                      },
-                    }}
-                    key={link}
-                    label={link}
-                  />
-                ))
-              : linksArr.map((link: string) => (
-                  <Tab
-                    LinkComponent={Link}
-                    href={`/${link === "home" ? "" : link}`}
-                    sx={{
-                      textDecoration: "none",
-                      ":hover": {
-                        textDecoration: "underline",
-                        textUnderlineOffset: "18px",
-                      },
-                    }}
-                    key={link}
-                    label={link}
-                  />
-                ))}
+              ? loggedInLinks.map(
+                  (link: string): JSX.Element => (
+                    <Tab
+                      component={Link}
+                      to={`/${link === "home" ? "" : link}`}
+                      sx={{
+                        textDecoration: "none",
+                        ":hover": {
+                          textDecoration: "underline",
+                          textUnderlineOffset: "18px",
+                        },
+                      }}
+                      key={link}
+                      label={link}
+                    />
+                  )
+                )
+              : linksArr.map(
+                  (link: string): JSX.Element => (
+                    <Tab
+                      component={Link}
+                      to={`/${link === "home" ? "" : link}`}
+                      sx={{
+                        textDecoration: "none",
+                        ":hover": {
+                          textDecoration: "underline",
+                          textUnderlineOffset: "18px",
+                        },
+                      }}
+                      key={link}
+                      label={link}
+                    />
+                  )
+                )}
           </Tabs>
         </Toolbar>
       </AppBar>
