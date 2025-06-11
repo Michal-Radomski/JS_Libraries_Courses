@@ -9,6 +9,7 @@ interface UserI {
 }
 
 interface PostI {
+  id?: string;
   user?: UserI;
   _id?: string;
   image?: string;
