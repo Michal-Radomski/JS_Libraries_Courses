@@ -1,3 +1,5 @@
+type RootState = ReturnType<typeof store.getState>;
+
 interface UserI {
   name: string;
   email: string;
