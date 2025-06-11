@@ -1,16 +1,16 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import axios from "axios";
 
-export const getAllPosts = async (): Promise<PostI[]> => {
+export const getAllPosts = async (): Promise<{ posts: PostI[] }> => {
   try {
     const res = await axios.get("/posts");
 
     if (res.status !== 200) {
       console.log("Some Error Occurred");
-      return [];
+      return null as any;
     }
 
-    const data = res.data as PostI[];
+    const data = res.data as { posts: PostI[] };
     return data;
   } catch (error) {
     console.log("error:", error);
@@ -60,7 +60,7 @@ export const addPost = async (data: PostI): Promise<any> => {
   }
 };
 
-export const getPostDetails = async (id: string): Promise<PostI> => {
+export const getPostDetails = async (id: string): Promise<{ post: PostI }> => {
   try {
     const res = await axios.get(`/posts/${id}`);
     if (res.status !== 200) {
@@ -68,7 +68,7 @@ export const getPostDetails = async (id: string): Promise<PostI> => {
       return null as any;
     }
 
-    const resData = (await res.data) as PostI;
+    const resData = (await res.data) as { post: PostI };
     return resData;
   } catch (error) {
     console.log("error:", error);

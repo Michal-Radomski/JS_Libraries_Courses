@@ -3,16 +3,18 @@ interface UserI {
   email: string;
   password: string;
   posts?: PostI[];
+  _id?: string;
 }
 
 interface PostI {
+  user?: UserI;
+  _id?: string;
+  image?: string;
   imageUrl: string;
   title: string;
   description: string;
-  image: string;
   location: string;
-  date: Date;
-  user: UserI;
+  date?: Date | string;
 }
 
 interface ObjectI {
