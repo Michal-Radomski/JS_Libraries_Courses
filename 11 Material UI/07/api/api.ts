@@ -20,7 +20,7 @@ const app: Express = express();
 
 const corsOptions = {
   origin: true,
-  methods: ["POST", "GET", "OPTIONS"],
+  methods: ["POST", "GET", "OPTIONS", "PUT", "DELETE"],
   preflightContinue: false,
   optionsSuccessStatus: 200,
   credentials: true,

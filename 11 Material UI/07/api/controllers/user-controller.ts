@@ -43,7 +43,7 @@ export const signup = async (req: Request, res: Response): Promise<any> => {
     return res.status(422).json({ message: "Invalid Data" });
   }
 
-  const hashedPassword = hashSync(password, 12);
+  const hashedPassword: string = hashSync(password, 12);
 
   let user: UserI;
   try {

@@ -8,6 +8,7 @@ const Home = (): JSX.Element => {
     <React.Fragment>
       <Box position={"relative"} width="100%" height="90vh">
         <img src="/road.jpg" alt="Road" width={"100%"} height="70%" />
+
         <Typography
           fontFamily={"Dancing Script,cursive"}
           variant="h3"

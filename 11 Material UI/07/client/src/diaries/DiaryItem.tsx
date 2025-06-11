@@ -31,7 +31,7 @@ const DiaryItem: React.FC<DiaryItemProps> = ({ title, description, image, locati
 
   const handleDelete = (): void => {
     postDelete(id)
-      .then((data) => console.log(data))
+      .then((data) => console.log("data:", data))
       .catch((err) => console.log({ err }));
     setOpen(true);
   };

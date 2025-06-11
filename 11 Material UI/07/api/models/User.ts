@@ -1,4 +1,5 @@
 import mongoose, { models, Schema, Document } from "mongoose";
+
 import { PostI } from "./Post";
 
 export interface UserI extends Document {
