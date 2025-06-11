@@ -12,7 +12,8 @@ import morgan from "morgan";
 import compression from "compression";
 
 //* Import routes
-// import indexRouter from "./indexRouter"; // Temp
+import userRouter from "./routes/user-routes";
+import postRouter from "./routes/post-routes";
 
 //* The server
 const app: Express = express();
@@ -43,7 +44,8 @@ app.use(
 app.use(compression({ level: 6 }));
 
 //* Route middleware
-// app.use("/api", indexRouter); // Temp
+app.use("/user", userRouter);
+app.use("/posts", postRouter);
 
 //* Mongo DB
 mongoose.set("strictQuery", true);

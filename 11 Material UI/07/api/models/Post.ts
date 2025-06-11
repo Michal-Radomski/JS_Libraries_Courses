@@ -11,34 +11,37 @@ export interface PostI extends Document {
   user: UserI;
 }
 
-const postSchema: Schema = new mongoose.Schema({
-  title: {
-    type: String,
-    required: true,
+const postSchema: Schema = new mongoose.Schema(
+  {
+    title: {
+      type: String,
+      required: true,
+    },
+    description: {
+      type: String,
+      required: true,
+    },
+    image: {
+      type: String,
+      required: true,
+    },
+    location: {
+      type: String,
+      required: true,
+    },
+    date: {
+      type: Date,
+      required: true,
+    },
+    user: {
+      type: mongoose.Types.ObjectId,
+      ref: "User",
+      required: true,
+    },
   },
-  description: {
-    type: String,
-    required: true,
-  },
-  image: {
-    type: String,
-    required: true,
-  },
-  location: {
-    type: String,
-    required: true,
-  },
-  date: {
-    type: Date,
-    required: true,
-  },
-  user: {
-    type: mongoose.Types.ObjectId,
-    ref: "User",
-    required: true,
-  },
-});
+  { timestamps: true, collection: "Post" }
+);
 
-const Post = models?.Post || mongoose.model<PostI>("User", postSchema);
+const Post = models?.Post || mongoose.model<PostI>("Post", postSchema);
 
 export default Post;
