@@ -5,6 +5,7 @@ import { useNavigate } from "react-router-dom";
 
 import { sendAuthRequest } from "../api-helpers/helpers";
 import { authActions } from "../store";
+// console.log("authActions:", authActions);
 
 const Auth = (): JSX.Element => {
   const navigate = useNavigate();

@@ -60,12 +60,13 @@ export const addPost: RequestHandler = async (req: Request, res: Response): Prom
       date: new Date(`${date}`),
       user,
     }) as PostI;
-
+    // console.log("post:", post);
     const session: ClientSession = await mongoose.startSession();
     session.startTransaction();
     existingUser.posts?.push(post);
     await existingUser.save({ session });
     post = await post.save({ session });
+    // console.log("post:", post);
     session.commitTransaction();
   } catch (err) {
     return console.log(err);

@@ -11,9 +11,10 @@ import Home from "./home/Home";
 import Profile from "./profile/Profile";
 import { authActions } from "./store";
 import "./App.scss";
+import type { Dispatch, UnknownAction } from "redux";
 
 function App(): JSX.Element {
-  const dispatch = useDispatch();
+  const dispatch: Dispatch<UnknownAction> = useDispatch();
 
   const isLoggedIn: boolean = useSelector((state: RootState) => state.isLoggedIn);
   console.log({ isLoggedIn });

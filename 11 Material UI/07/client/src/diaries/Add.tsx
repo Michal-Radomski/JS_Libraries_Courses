@@ -43,7 +43,7 @@ const Add = (): JSX.Element => {
           <Typography fontWeight={"bold"} variant="h4" fontFamily={"dancing script"}>
             Add Your Travel Diary
           </Typography>
-          <TravelExploreIcon sx={{ fontSize: "40px", paddingLeft: 1, color: "lightcoral  " }} />
+          <TravelExploreIcon sx={{ fontSize: "40px", paddingLeft: 1, color: "lightcoral" }} />
         </Box>
         <form onSubmit={handleSubmit}>
           <Box padding={3} display="flex" width="80%" margin="auto" flexDirection={"column"}>
