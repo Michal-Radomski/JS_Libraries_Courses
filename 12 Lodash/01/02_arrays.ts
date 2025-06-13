@@ -323,3 +323,59 @@ console.log(_.xor([1, 2], [2, 3])); // [ 1, 3 ]
   console.log(_.without([1, 2, 3, 4, 5], 1, 2)); // [ 3, 4, 5 ]
   console.log(_.without([1, 2, 3, 4, 5], 1)); // [ 2, 3, 4, 5 ]
 }
+
+//- Difference
+console.log(_.difference([1, 2, 3], [2, 3])); //  [ 1 ]
+console.log(_.difference([1, 2, 3, 4, 5], [3, 4, 5])); //  [ 1, 2 ]
+
+//* DifferenceBy
+console.log(_.differenceBy([2.1, 1.2], [2.3, 3.4], Math.floor));
+
+{
+  //* DifferenceWith
+  const objects = [
+    { x: 1, y: 2 },
+    { x: 2, y: 1 },
+  ];
+  console.log(_.differenceWith(objects, [{ x: 1, y: 2 }], _.isEqual));
+}
+
+{
+  //* Flatten, FlattenDeep, FlattenDept
+  console.log(_.flatten([1, [2, 3, 4], 5]));
+  console.log(_.flattenDeep([1, [[2, [3, 4]], 5, [[6, 7], 8, 9], 10]]));
+  console.log(_.flattenDepth([1, [[2, [3, 4]], 5, [[6, 7], 8, 9], 10]]));
+  console.log(_.flattenDepth([1, [[2, [3, 4]], 5, [[6, 7], 8, 9], 10]], 2));
+}
+
+{
+  //- FromPairs
+  console.log(
+    _.fromPairs([
+      ["a", 1],
+      ["b", 2],
+    ])
+  ); // { a: 1, b: 2 }
+  console.log(
+    _.fromPairs([
+      ["name", "fred"],
+      ["age", 10],
+    ])
+  ); // { name: 'fred', age: 10 }
+}
+
+{
+  //- ZipObject
+  console.log(_.zipObject(["a", "b", "c"], [1, 2, 3])); // { a: 1, b: 2, c: 3 }
+}
+
+//* ZipObjectDeep
+console.log(_.zipObjectDeep(["a.b"], [1])); // { a: { b: 1 } }
+
+//* ZipWith
+console.log(_.zipWith([1, 2, 3], [10, 20, 30], (a, b) => a + b)); // [ 11, 22, 33 ]
+
+//* UnzipWith
+const zipped = _.zip([1, 2, 3, 4], [10, 20, 30, 40], [2, 4, 6, 8]);
+console.log(zipped); // [ [ 1, 10, 2 ], [ 2, 20, 4 ], [ 3, 30, 6 ], [ 4, 40, 8 ] ]
+console.log(_.unzipWith(zipped as number[][], _.add)); // [ 3, 30, 6 ]
