@@ -212,6 +212,53 @@ console.log(_.head([1, 2, 3, 4, 5])); // 1
 console.log(_.last([1, 2, 3, 4, 5])); // 5
 console.log(_.nth([1, 2, 3, 4, 5], 3)); // 4
 
-//* Reverse
-const numbers = [1, 2, 3, 4, 5];
-console.log(_.reverse(numbers));
+{
+  //* Reverse
+  const numbers = [1, 2, 3, 4, 5];
+  console.log(_.reverse(numbers));
+}
+
+{
+  //* Initial and Tail
+  const numbers = [1, 2, 3, 4, 5];
+  console.log(_.initial(numbers)); // [ 1, 2, 3, 4 ]
+  console.log(_.tail(numbers)); // [ 2, 3, 4, 5 ]
+}
+
+{
+  //* Take and TakeRight
+  console.log(_.take([1, 2, 3, 4, 5]));
+  console.log(_.takeRight([1, 2, 3, 4, 5]));
+}
+
+{
+  //* TakeWhile and TakeRightWhile
+  const users = [
+    { user: "barney", age: 36, active: false },
+    { user: "fred", age: 40, active: false },
+    { user: "pebbles", age: 1, active: true },
+  ];
+
+  console.log(_.takeWhile(users, (i) => i.active)); // []
+  console.log(_.takeRightWhile(users, { active: false })); // []
+}
+
+{
+  //* Slice
+  console.log(_.slice([1, 2, 3, 4, 5, 6], 0, 2)); // [ 1, 2 ]
+  console.log(_.slice([1, 2, 3, 4, 5, 6], 1, 4)); // [ 2, 3, 4 ]
+  console.log(_.slice([1, 2, 3, 4, 5, 6], 1)); // [ 2, 3, 4, 5, 6 ]
+}
+
+{
+  //* Zip and Unzip
+  console.log(_.zip([1, 2, 3, 4], [10, 20, 30, 40], [2, 4, 6, 8])); // [ [ 1, 10, 2 ], [ 2, 20, 4 ], [ 3, 30, 6 ], [ 4, 40, 8 ] ]
+  console.log(
+    _.unzip([
+      [1, 10, 2],
+      [2, 20, 4],
+      [3, 30, 6],
+      [4, 40, 8],
+    ])
+  ); // [ [ 1, 2, 3, 4 ], [ 10, 20, 30, 40 ], [ 2, 4, 6, 8 ] ]
+}
