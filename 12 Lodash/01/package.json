@@ -4,7 +4,8 @@
   "description": "",
   "main": "01_strings.ts",
   "scripts": {
-    "start": "nodemon 01_strings.ts"
+    "start": "nodemon 01_strings.ts",
+    "start2": "nodemon 02_arrays.ts"
   },
   "keywords": [],
   "author": "Michal Radomski <michalra@op.pl>",
