@@ -262,3 +262,64 @@ console.log(_.nth([1, 2, 3, 4, 5], 3)); // 4
     ])
   ); // [ [ 1, 2, 3, 4 ], [ 10, 20, 30, 40 ], [ 2, 4, 6, 8 ] ]
 }
+
+{
+  //- Chunk
+  console.log(_.chunk(["a", "b", "c", "d"], 2)); // [ [ 'a', 'b' ], [ 'c', 'd' ] ]
+  console.log(_.chunk(["a", "b", "c", "d"], 5)); // [ [ 'a', 'b', 'c', 'd' ] ]
+}
+
+{
+  //* Compact -> removes falsy values
+  console.log(_.compact([1, 2, 3])); // [ 1, 2, 3 ]
+  console.log(_.compact([0, 1, 2, 3])); // [ 1, 2, 3 ]
+  console.log(_.compact([null, 1, 2, 3])); // [ 1, 2, 3 ]
+}
+
+{
+  //- Remove
+  console.log(_.remove([1, 2, 3, 4, 5, 6], (i) => i % 2 === 0)); // [ 2, 4, 6 ]
+
+  const objects3 = [
+    { year: 2016, month: 3 },
+    { year: 2014, month: 4 },
+    { year: 2012, month: 1 },
+    { year: 2019, month: 8 },
+    { year: 2012, month: 2 },
+    { year: 2019, month: 2 },
+    { year: 2016, month: 3 },
+    { year: 2016, month: 3 },
+  ];
+
+  console.log(_.remove(objects3, (i) => i.year > 2015));
+}
+
+{
+  //*  SortedUniq and SortedUniqBy
+  console.log(_.sortedUniq(["a", "a", "b", "b", "c", "c"])); // [ 'a', 'b', 'c' ]
+  console.log(_.sortedUniqBy([1.1, 1.2, 2.3, 2.4], Math.floor)); // [ 1.1, 2.3 ]
+}
+
+//* Xor
+console.log(_.xor([1, 2], [2, 3])); // [ 1, 3 ]
+
+{
+  //* XorBy and XorWith
+  console.log(_.xorBy([2.1, 1.2], [2.3, 3.4], Math.floor));
+
+  const o1 = [
+    { a: 1, b: 2 },
+    { a: 2, b: 1 },
+  ];
+  const o2 = [
+    { a: 1, b: 1 },
+    { a: 1, b: 2 },
+  ];
+  console.log(_.xorWith(o1, o2, _.isEqual));
+}
+
+{
+  //- Without
+  console.log(_.without([1, 2, 3, 4, 5], 1, 2)); // [ 3, 4, 5 ]
+  console.log(_.without([1, 2, 3, 4, 5], 1)); // [ 2, 3, 4, 5 ]
+}
