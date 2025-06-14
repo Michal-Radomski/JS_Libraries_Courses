@@ -140,4 +140,56 @@ import _ from "lodash";
   console.log(_.find(objects3, (i) => i.year === 2019)); // { year: 2019, month: 8 }
   console.log(_.findLast([1, 2, 3, 4], (i) => i % 2 === 0)); // 44
   console.log(_.findLast(objects3, (i) => i.month < 6)); // { year: 2016, month: 3 }
+
+  //* JS
+  const array1 = [5, 12, 50, 130, 44];
+  const found = array1.findLast((element: number) => element > 45);
+  console.log({ found }); // Expected output: 130
+}
+
+{
+  //* Includes
+  console.log(_.includes([1, 2, 3, 4, 5], 1)); // true
+  console.log(_.includes([1, 2, 3, 4, 5], 10)); // false
+}
+
+{
+  //* SortBy
+  const objects3 = [
+    { year: 2016, month: 3 },
+    { year: 2014, month: 4 },
+    { year: 2012, month: 1 },
+    { year: 2019, month: 8 },
+    { year: 2012, month: 2 },
+    { year: 2019, month: 2 },
+    { year: 2016, month: 3 },
+    { year: 2016, month: 3 },
+  ];
+
+  console.log(
+    _.sortBy(objects3, function (x) {
+      return x.year;
+    })
+  );
+
+  console.log(_.sortBy(objects3, (x) => x.year));
+  console.log(_.sortBy(objects3, ["year", "month"]));
+}
+
+{
+  console.log("--------");
+  //* OrderBy
+  const objects3 = [
+    { year: 2016, month: 3 },
+    { year: 2014, month: 4 },
+    { year: 2012, month: 1 },
+    { year: 2019, month: 8 },
+    { year: 2012, month: 2 },
+    { year: 2019, month: 2 },
+    { year: 2016, month: 3 },
+    { year: 2016, month: 3 },
+  ];
+
+  console.log(_.orderBy(objects3, (x) => x.year));
+  console.log(_.orderBy(objects3, (x) => x.year, "desc"));
 }
