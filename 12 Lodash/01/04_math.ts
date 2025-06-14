@@ -64,3 +64,8 @@ console.log(_.clamp(22, 15, 20)); // 20
 console.log(_.inRange(3, 2, 4)); // true
 console.log(_.inRange(2, 2, 4)); // true
 console.log(_.inRange(5, 2, 4)); // false
+
+//* Random
+console.log(_.random(10));
+console.log(_.random(0, 10));
+console.log(_.random(5, 10));
