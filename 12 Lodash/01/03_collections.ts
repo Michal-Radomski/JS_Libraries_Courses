@@ -1,6 +1,73 @@
 import _ from "lodash";
 
 {
+  //* The Fisher-Yates shuffle
+
+  /**
+   * Shuffles an array in-place using the Fisher-Yates (Knuth) shuffle algorithm.
+   *
+   * @param array The array to be shuffled.
+   * @returns The shuffled array (modified in-place).
+   */
+  function shuffleArray<T>(array: T[]): T[] {
+    let currentIndex = array.length;
+    let randomIndex: number;
+
+    // While there remain elements to shuffle.
+    while (currentIndex !== 0) {
+      // Pick a remaining element.
+      randomIndex = Math.floor(Math.random() * currentIndex);
+      currentIndex--;
+
+      // And swap it with the current element.
+      [array[currentIndex], array[randomIndex]] = [array[randomIndex], array[currentIndex]];
+    }
+
+    return array;
+  }
+
+  // Example usage:
+  const myNumbers = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
+  console.log("Original array:", myNumbers);
+
+  shuffleArray(myNumbers);
+  console.log("Shuffled array:", myNumbers); // Output will be a random permutation
+
+  const myStrings = ["apple", "banana", "cherry", "date", "elderberry"];
+  console.log("Original array:", myStrings);
+
+  shuffleArray(myStrings);
+  console.log("Shuffled array:", myStrings); // Output will be a random permutation
+}
+
+//* JS reduce and reduceRight
+{
+  const numbers = [1, 2, 3, 4];
+
+  // Using reduce (left to right)
+  const sumLeftToRight: number = numbers.reduce((accumulator, currentValue) => {
+    return accumulator + currentValue;
+  }, 0);
+  console.log(sumLeftToRight); // Output: 10
+
+  // Using reduceRight (right to left)
+  const sumRightToLeft: number = numbers.reduceRight((accumulator, currentValue) => {
+    return accumulator + currentValue;
+  }, 0);
+  console.log(sumRightToLeft); // Output: 10
+
+  const arr = ["a", "b", "c", "d"];
+
+  // Using reduce to concatenate from left to right
+  const leftConcat: string = arr.reduce((acc, curr) => acc + curr);
+  console.log(leftConcat); // Output: "abcd"
+
+  // Using reduceRight to concatenate from right to left
+  const rightConcat: string = arr.reduceRight((acc, curr) => acc + curr);
+  console.log(rightConcat); // Output: "dcba"
+}
+
+{
   //* Each/ForEach -> the same!
 
   const users = [
