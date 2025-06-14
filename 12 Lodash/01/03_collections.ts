@@ -291,3 +291,64 @@ import _ from "lodash";
   console.log(_.some(users, (i) => i.age > 38)); // true
   console.log(_.some(users, (i) => i.active)); // true
 }
+
+{
+  //* 02. FlatMap, FlatMapDeep and FlatMapDepth
+  console.log(_.flatMap([1, 2, 3, 4], (i) => i * i));
+  console.log(_.flatMap([1, 2, 3, 4], (i) => [i, i]));
+  console.log(_.flatMap([1, 2, 3, 4], (v, i) => `${i}:${v}`));
+  console.log(_.flatMapDeep([1, [[2], [22]], [3], 4], (i) => [[[i, i]]]));
+  console.log(_.flatMapDepth([1, [[2], [22]], [3], 4], (i) => [[[i, i]]], 1));
+  console.log(_.flatMapDepth([1, [[2], [22]], [3], 4], (i) => [[[i, i]]], 2));
+  console.log(_.flatMapDepth([1, [[2], [22]], [3], 4], (i) => [[[i, i]]], 3));
+  console.log(_.flatMapDepth([1, [[2], [22]], [3], 4], (i) => [[[i, i]]], 4));
+  console.log(_.flatMapDepth([1, [[2], [22]], [3], 4], (i) => [[[i, i]]], 5));
+}
+
+{
+  //* InvokeMap
+  console.log(
+    _.invokeMap(
+      [
+        [5, 2, 9],
+        [2, 4, 1],
+      ],
+      "sort"
+    )
+  );
+}
+
+{
+  //- KeyBy
+  const totalSales = [
+    { year: 2013, total: 100 },
+    { year: 2014, total: 120 },
+    { year: 2015, total: 180 },
+    { year: 2016, total: 200 },
+  ];
+  console.log(_.keyBy(totalSales, (i) => i.year));
+  console.log(_.keyBy(totalSales, "year"));
+
+  const users = [
+    { user: "barney", age: 36, active: false },
+    { user: "fred", age: 40, active: false },
+    { user: "pebbles", age: 1, active: true },
+  ];
+  console.log(_.keyBy(users, (i) => i.user));
+}
+
+{
+  //* Reduce and ReduceRight
+  console.log(_.reduce([1, 2, 3, 4], (sum, m) => sum + m * 2, 0));
+  console.log(_.reduce([1, 2, 3, 4], (sum, m) => sum + m * 2, 10));
+  console.log(_.reduce([1, 2, 3, 4], (sum, m) => sum + m * 2));
+
+  const array = [
+    [0, 1],
+    [2, 3],
+    [4, 5],
+  ];
+
+  console.log(_.reduce(array, (a, m) => a.concat(m)));
+  console.log(_.reduceRight(array, (a, m) => a.concat(m)));
+}
