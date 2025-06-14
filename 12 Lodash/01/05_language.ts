@@ -124,3 +124,102 @@ console.log(_.isRegExp(/(.*)/)); // true
 
 //* isSymbol
 console.log(_.isSymbol(Symbol.iterator)); // true
+
+//* isTypedArray
+console.log(_.isTypedArray([])); // false
+console.log(_.isTypedArray(new Uint8Array())); // true
+
+{
+  //* isMatch
+  const myobject = { a: 1, b: 2 };
+
+  console.log(_.isMatch(myobject, { a: 1, b: 3 })); // false
+  console.log(_.isMatch(myobject, { a: 1, b: 2 })); // true
+}
+
+{
+  //* isMatchWith
+  const src = { a: 8 };
+  const dest = { a: 16 };
+
+  function customizer(destValue: number, srcValue: number) {
+    console.log(destValue, srcValue); // 16 8
+    if (destValue % 2 === 0 && srcValue % 2 === 0) return true;
+  }
+
+  console.log(_.isMatchWith(dest, src, customizer));
+}
+
+//* isUndefined
+console.log(_.isUndefined(undefined)); // true
+console.log(_.isUndefined(void 0)); // true -> void 0 evaluates to undefined
+
+//* ToArray and CastArray
+console.log(_.toArray(1)); // []
+console.log(_.castArray(1)); //[1]
+console.log(_.toArray(null)); // []
+console.log(_.castArray(null)); // [null]
+
+//* ToFinite
+console.log(_.toFinite(6.4)); // 6.4
+console.log(_.toFinite("6.4")); // 6.4
+console.log(_.toFinite(Infinity)); // 1.7976931348623157e+308
+console.log(_.toFinite(Number.MIN_VALUE)); // 5e-324
+console.log(Number.MIN_VALUE); // 5e-324
+
+//* ToInteger and ToSafeInteger
+console.log(_.toInteger("3.4")); // 3
+console.log(_.toSafeInteger("3.2")); // 3
+console.log(_.toInteger(Infinity)); // 1.7976931348623157e+308
+console.log(_.toSafeInteger(Infinity)); // 9007199254740991
+
+//* ToNumber
+console.log(_.toNumber("6.4")); // 6.4
+console.log(_.toNumber(undefined)); // NaN
+console.log(_.toNumber(Number.MIN_VALUE)); // 5e-324
+
+//* ToString
+console.log(_.toString(234.34)); // 234.34
+
+//* IsBuffer and IsArrayBuffer
+console.log(_.isBuffer(new Buffer(3))); // true
+console.log(_.isArrayBuffer(new ArrayBuffer(2))); // true
+
+{
+  //* Clone
+  const myobject = { a: 1, v: 2 };
+  const mycopy = _.clone(myobject);
+  console.log(_.isEqual(myobject, mycopy)); // true
+}
+
+{
+  //* CloneDeep
+  const array = [{ id: 1 }, { id: 2 }, { id: 3 }, { id: 4 }, { id: 5 }];
+  const copy1 = _.cloneDeep(array);
+  console.log("copy1:", copy1);
+}
+
+{
+  //* CloneWith
+  const src = { a: 8 };
+
+  const customizer = function (value: object): object[] {
+    console.log({ value });
+    return [value];
+  };
+
+  console.log(_.cloneWith(src, customizer)); // [ { a: 8 } ]
+}
+
+{
+  //* CloneDeepWith
+  const array = [{ id: 1 }, { id: 2 }, { id: 3 }, { id: 4 }, { id: 5 }];
+
+  function customizer(value: { [key: string]: number }[]): number[] {
+    console.log(value);
+    return _.map(value, (item) => item.id * 2);
+  }
+
+  const array2 = _.cloneDeepWith(array, customizer);
+  console.log("array2:", array2);
+}
