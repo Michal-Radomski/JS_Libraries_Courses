@@ -190,6 +190,78 @@ import _ from "lodash";
     { year: 2016, month: 3 },
   ];
 
-  console.log(_.orderBy(objects3, (x) => x.year));
+  console.log(_.orderBy(objects3, (x) => x.year)); // Ascending
   console.log(_.orderBy(objects3, (x) => x.year, "desc"));
 }
+
+{
+  //* GroupBy
+  const objects3 = [
+    { year: 2016, month: 3 },
+    { year: 2014, month: 4 },
+    { year: 2012, month: 1 },
+    { year: 2019, month: 8 },
+    { year: 2012, month: 2 },
+    { year: 2019, month: 2 },
+    { year: 2016, month: 3 },
+    { year: 2016, month: 3 },
+  ];
+
+  console.log(_.groupBy(objects3, (i) => i.year));
+  console.log(_.groupBy(objects3, (i) => i.month));
+}
+
+{
+  //* Partition
+  const totalSales = [
+    { year: 2013, total: 100 },
+    { year: 2014, total: 120 },
+    { year: 2015, total: 180 },
+    { year: 2016, total: 200 },
+  ];
+  console.log(_.partition(totalSales, (i) => i.total > 150));
+  console.log(_.partition(totalSales, (i) => i.total > 180));
+
+  const users = [
+    { user: "barney", age: 36, active: true },
+    { user: "fred", age: 40, active: false },
+  ];
+  console.log(_.partition(users, (i) => i.active));
+}
+
+{
+  //* Shuffle -> collection in randomize order
+  const numbers = [1, 2, 3, 4, 5];
+
+  console.log(_.shuffle(numbers));
+
+  const objects = [
+    { year: 2016, month: 3 },
+    { year: 2014, month: 4 },
+    { year: 2012, month: 1 },
+    { year: 2019, month: 8 },
+  ];
+
+  console.log(_.shuffle(objects));
+}
+
+{
+  //* Size
+  console.log(_.size("hello")); // 5
+
+  const numbers = [1, 2, 3, 4, 5];
+  console.log(_.size(numbers)); // 5
+
+  const objects = [
+    { year: 2016, month: 3 },
+    { year: 2014, month: 4 },
+    { year: 2012, month: 1 },
+    { year: 2019, month: 8 },
+  ];
+  console.log(_.size(objects)); // 4
+
+  const letters = ["A", "B", "C", "D", "E"];
+  console.log(_.size(letters)); // 5
+}
+// https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/reduceRight
+// fisher-yates shuffle
