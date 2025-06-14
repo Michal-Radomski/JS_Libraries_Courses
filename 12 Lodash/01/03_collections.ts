@@ -263,5 +263,31 @@ import _ from "lodash";
   const letters = ["A", "B", "C", "D", "E"];
   console.log(_.size(letters)); // 5
 }
-// https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/reduceRight
-// fisher-yates shuffle
+
+{
+  //* Some and Every
+  const objects3 = [
+    { year: 2016, month: 3 },
+    { year: 2014, month: 4 },
+    { year: 2012, month: 1 },
+    { year: 2019, month: 8 },
+    { year: 2012, month: 2 },
+    { year: 2019, month: 2 },
+    { year: 2016, month: 3 },
+    { year: 2016, month: 3 },
+  ];
+
+  console.log(_.every(objects3, (i) => i.year > 2016)); // false
+  console.log(_.every(objects3, (i) => i.year >= 2016)); // false
+  console.log(_.every(objects3, (i) => i.year >= 2010)); // true
+
+  const users = [
+    { user: "barney", age: 36, active: true },
+    { user: "fred", age: 40, active: false },
+  ];
+
+  console.log(_.every(users, ["active", false])); // false
+  console.log(_.some(objects3, (i) => i.year >= 2016)); // true
+  console.log(_.some(users, (i) => i.age > 38)); // true
+  console.log(_.some(users, (i) => i.active)); // true
+}
