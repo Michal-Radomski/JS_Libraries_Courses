@@ -202,3 +202,18 @@ console.log(_.mapKeys({ a: 1, b: 2 }, (value, key) => key + value)); // { a1: 1,
   console.log(_.forOwn(myobject, (value, key) => console.log(key, value))); // c 3 b 2 a 1
   console.log(_.forOwnRight(myobject, (value, key) => console.log(key, value))); // { a: 1, b: 2, c: 3 }
 }
+
+{
+  //* Merge
+  const obj = { a: 1, b: 2 };
+
+  _.merge(obj, { b: 99 });
+
+  _.merge(obj, { c: 77 });
+
+  _.merge(obj, { d: { a: [4, 5, 6] } });
+
+  _.merge(obj, { e: { b: [4, 5, 6] } });
+
+  console.log("obj:", obj);
+}
