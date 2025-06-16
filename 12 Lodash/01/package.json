@@ -11,7 +11,8 @@
     "start5": "nodemon 05_language.ts",
     "start6": "nodemon 06_utils.ts",
     "start7": "nodemon 07_objects.ts",
-    "start8": "nodemon 08_functions.ts"
+    "start8": "nodemon 08_functions.ts",
+    "start9": "nodemon 09_other.ts"
   },
   "keywords": [],
   "author": "Michal Radomski <michalra@op.pl>",
